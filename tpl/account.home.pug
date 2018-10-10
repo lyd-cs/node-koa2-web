@@ -1,0 +1,232 @@
+extend base
+
+block title
+  | 用户中心 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  - var _userAssetsTotal = _.get(accountAssets, 'assetsTotal') - 0 || 0
+  - var _userEarnTotal = _.get(accountAssets, 'earnTotal') - 0 || 0
+  - var _userPlanAssets = _.get(accountAssets, 'financePlanAssets') - 0 || 0
+  - var _userPlanEarn = _.get(accountAssets, 'financePlanSumPlanInterest') - 0 || 0
+  - var _userLoanAssets = _.get(accountAssets, 'lenderPrincipal') - 0 || 0
+  - var _userLoanEarn = _.get(accountAssets, 'lenderEarned') - 0 || 0
+  - var _userBanlanceAvailable = _.get(accountAssets, 'availablePoint') - 0 || 0
+  - var _userBanlanceFrozen = _.get(accountAssets, 'frozenPoint') - 0 || 0
+  - var _userYesterdayInterest = _.get(accountAssets, 'yesterdayInterest') - 0
+  - var _userBanlanceTotal = _userBanlanceAvailable + _userBanlanceFrozen
+  - var _userHasAssets = _userPlanAssets + _userLoanAssets
+  - var _userName = _.get(userState, 'username')
+  - var _userHasBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _isTrusted = _.get(userState, 'isIdPassed') - 0 || 0
+  - var _isTradPwd = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userLastTime = _.get(userState, 'lastLoginTime') - 0 || 0
+  - var _isMobile = _.get(userState, 'isMobilePassed') - 0 || 0
+  - var _isRiskvail = _.get(userState, 'riskEvaluationTime') - 0 || 0
+  - var _IdNum = _.get(userState, 'idNo') || ''
+  - var _userSex = _.get(userState, 'gender') - 0
+  - var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _isRiskEvaluationScore = _.get(userState, 'riskEvaluationScore')
+  - var _userRealName = _.get(userState, 'realName')
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0
+  - var _isAllPassed = _userIsCashPasswordPassed && _userIsBindCard && _userIsIdPassed && _isCreateAccount
+  include ./mod/account.nav.pug
+  .section
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(userState)}
+    .uc-panel.uc-home-panel
+      .uc-info
+        if !_isTrusted
+          img(src='/img/avatar-default.png')
+        else
+          if _userSex
+             img(src='/img/avatar-woman.png') 
+          else
+             img(src='/img/avatar-man.png')
+        span #{UIHelper.sayHi()} #{_userRealName ? UIHelper.safeRealname(_userRealName) : _userName} 
+        if _userLastTime    
+          .uc-last-login-time 上次登录时间：#{UIHelper.formatdate('YYYY-MM-DD HH:mm', _userLastTime)} 
+      .uc-aptitude
+        if _isMobile
+          span(title='手机已验证').uc-aptitude-mobile.active
+        else
+          span.uc-aptitude-mobile(title='手机号未绑定，请联系客服')
+        if !_isCreateAccount
+          a: span.uc-aptitude-tradpwd.J_tradpwd-createaccount-guide(title='点击设置交易密码')
+        else if !_isTradPwd
+          a(href='/deposit/createaccount', title='点击设置交易密码')
+            span.uc-aptitude-tradpwd
+        else
+          span(title='交易密码已设置').uc-aptitude-tradpwd.active
+        if !_isCreateAccount
+          a(href='/deposit/createaccount', title='点击开通存管账户')
+            span.uc-aptitude-account
+        else
+          span(title='存管账户已开通').uc-aptitude-account.active
+        if !_isCreateAccount || !_userIsIdPassed
+          a: span.J_riskvail-createaccount-guide.uc-aptitude-auth.uc-aptitude-last
+        else if !_isRiskEvaluationScore
+          a(href='/account/riskvail', title='点击进行风险测评')
+            span.uc-aptitude-auth.uc-aptitude-last
+        else  
+          span(title='风险评测已完成').uc-aptitude-auth.active.uc-aptitude-last
+    .uc-home-asset
+      .uc-home-asset-count
+        .uc-panel
+          .uc-panel-item
+            .uc-panel-body #{UIHelper.formatNumber(_userHasAssets < 0? 0: _userHasAssets, 2)}
+            .uc-panel-header
+              | 持有资产(元)
+          .uc-panel-item
+            .uc-panel-body.uc-panel-active #{UIHelper.formatNumber(_userYesterdayInterest < 0 ? 0 : _userYesterdayInterest, 2)}
+            .uc-panel-header
+              | 昨日收益(元)
+          .uc-panel-item
+            .uc-panel-body #{UIHelper.formatNumber(_userEarnTotal < 0? 0: _userEarnTotal, 2)}
+            .uc-panel-header  
+              | 累计收益(元)
+        .uc-coupon
+          if accountAvailableCouponTotal
+          .uc-coupon-total
+            .coupon-count 优惠券
+              a(href='/account/coupon')
+                span #{accountAvailableCouponTotal}
+              | 张
+            if passed
+              div 您有优惠劵即将过期，
+                a(href='/account/coupon') 点此查看
+            else if accountAvailableCouponTotal
+              div 您有优惠券可用，
+                a(href='/plan') 立即出借
+            else 
+              div 您可通过活动获取优惠券
+      .uc-home-asset-info
+        .uc-home-asset-info-header
+          h4 资产总览
+          .item-info-header
+            .item-info-chart#J_chart-assert
+            .item-info-asset
+              | 资产总额
+              span #{UIHelper.formatNumber(_userAssetsTotal, 2)}元  
+          .item-info-body
+            dl
+              dt.item-info-plan 红利智投
+              dd
+                | 持有资产:
+                span.item-info-plan-amount #{UIHelper.formatNumber(_userPlanAssets, 2)}元
+                | 累计收益:
+                span.item-info-plan-earnings #{UIHelper.formatNumber(_userPlanEarn < 0? 0:_userPlanEarn, 2)}元
+            dl
+              dt 散标债权
+              dd
+                | 持有资产:
+                span.item-info-plan-amount #{UIHelper.formatNumber(_userLoanAssets, 2)}元
+                | 累计收益:
+                span.item-info-plan-earnings #{UIHelper.formatNumber(_userLoanEarn< 0? 0: _userLoanEarn, 2)}元
+            dl
+              dt.item-info-userfund 账户余额
+              dd
+                | 账户余额:
+                span.item-info-plan-amount #{UIHelper.formatNumber(_userBanlanceTotal, 2)}元
+        .uc-home-asset-info-body
+          h4 余额明细
+          .uc-home-item
+            .uc-home-item-body #{UIHelper.formatNumber(_userBanlanceTotal, 2)} 
+            .uc-home-item-header
+              | 账户余额(元) 
+          .uc-home-userfund
+            dl
+              dt 可用余额(元)
+              dd #{UIHelper.formatNumber(_userBanlanceAvailable, 2)}
+            dl.uc-home-userfund-last
+              dt 冻结金额(元)
+              dd #{UIHelper.formatNumber(_userBanlanceFrozen, 2)}
+          .uc-home-recharge-withdraw
+            if _isCreateAccount && _isTradPwd && _userIsIdPassed
+              a(href='/account/quickpay').uc-home-recharge 充值
+            else
+              a.J_charge-createaccount-guide.uc-home-recharge 充值
+            if _isAllPassed
+              a(href='/account/withdraw').uc-home-withdraw 提现
+            else
+              a.J_charge-createaccount-guide.uc-home-withdraw 提现
+    .uc-home-tradorder
+      h4 
+        | 交易记录  
+        a(href='/account/tradlist') 查看全部记录
+      if !accountTradList || accountTradList.length == 0
+        include ./mod/nothing.data.pug
+      else  
+        table(cellspacing='0', cellpadding='0', width='100%')
+          thead
+            tr
+              th.trade-time 交易时间
+              th 交易类型
+              th 交易金额(元)
+              th.balance 账户余额(元)
+          tbody
+            each item, idx in accountTradList
+              - var _tradTime = _.get(item, 'time') - 0 || 0
+              - var _tradNotes = _.get(item, 'notes') || ''
+              - var _tradType = _.get(item, 'pointType') || ''
+              - var _tradIsPlus = _.get(item, 'isPlus') || false
+              - var _tradIncome = _.get(item, 'income') - 0 || 0
+              - var _tradPay = _.get(item, 'pay') - 0 || 0
+              - var _userBanlance = _.get(item, 'balance') - 0 || 0
+              - var _productLoanId = _.get(item, 'loanId') - 0 || 0
+              - var _productFinancePlanId = _.get(item, 'financePlanId') - 0 || 0
+              - var _productLoanTitle = _.get(item, 'loanTitle') || ''
+              - var _productPlanName = _.get(item, 'financePlanName') || ''
+              - var _productPointType = _.get(item, 'pointDisplayType') || ''
+              tr(class={'item-spac': idx%2 !== 0})
+                td.trade-time #{UIHelper.formatdate('YYYY-MM-DD HH:mm', _tradTime)}
+                td #{_productPointType}
+                td
+                  if _tradPay
+                    span.item-minus -#{UIHelper.formatNumber(_tradPay, 2)}
+                  else
+                    span.item-plus +#{UIHelper.formatNumber(_tradIncome, 2)}
+                  if _productLoanId
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<a href=/loan/" + _productLoanId+">"+_productLoanId+_tradNotes+"</a>")  
+                  else if _productFinancePlanId
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<a href=/plan/" + _productFinancePlanId+">"+_productPlanName+_tradNotes+"</a>")  
+                  else if _tradNotes
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content=_tradNotes)  
+                td.balance #{UIHelper.formatNumber(_userBanlance, 2)}
+  #J_create-account-modal
+
+block foot-script
+  - var userfund = _userBanlanceTotal
+  - var userPlan = _userPlanAssets
+  - var userLoan = _userLoanAssets
+  - var isCreateAccount = _isCreateAccount
+  - var _userIsCashPasswordPassed = _userIsCashPasswordPassed
+  - var _userIsBindCard = _userIsBindCard
+  script.
+    var _userfund = #{userfund}
+    var _userPlan = #{userPlan}
+    var _userLoan = #{userLoan}
+    var _isCreateAccount = #{isCreateAccount}
+    var _userIsSettingTradPwd = #{_userIsCashPasswordPassed}
+    var _userIsBindCard = #{_userIsBindCard}
+    var _userIsIdPassed = #{_userIsIdPassed}
+    app.modalShow.init({
+      isCreateAccount: _isCreateAccount,
+      isSettingTradPwd: _userIsSettingTradPwd,
+      isBindCard: _userIsBindCard,
+      isIdPassed: _userIsIdPassed,
+      //- isMobilePassed: #{_isMobilePassed},
+    })
+    app.accountHome.init({
+      userFund: _userfund,
+      userPlan: _userPlan,
+      userLoan: _userLoan,
+      isCreateAccount: _isCreateAccount,
+      isSettingTradPwd: _userIsSettingTradPwd,
+      isBindCard: _userIsBindCard,
+      isIdPassed: _userIsIdPassed
+    });

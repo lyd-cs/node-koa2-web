@@ -1,0 +1,8 @@
+- var _action = action
+#J_send_modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel')
+  .modal-dialog(role='document').modal-dialog-wrap
+    .modal-content.modal-dialog-content
+      .modal-body.modal-dialog-title 单笔充值最低金额1元，是否确认充值？
+      .modal-footer.modal-dialog-footer
+        button(type="button" data-dismiss="modal").btn.btn-default.btn-cancel 取消
+        button(type="button", data-init=_action).btn-sure#J_sendcode 确定

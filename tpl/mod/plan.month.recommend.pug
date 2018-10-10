@@ -1,0 +1,50 @@
+//-
+  textarea(style="width: 100%; height: 100px") #{JSON.stringify(_monthlyPaymentsRecommendList)}
+if !_monthlyPaymentsRecommendList || _monthlyPaymentsRecommendList.length == 0
+  include ./nothing.data.pug
+else
+  each item, idx in _monthlyPaymentsRecommendList
+    - var _productStatus = _.get(item, 'unifyStatus', '0')
+    - var _state = UIHelper.parsePlanStatus(_productStatus)
+    - var countDown = _state.wait_reserve
+    - var waitopen = _state.wait_open
+    - var binding = _state.opening
+    - var bindingdone = _state.open_full
+    - var doing = _state.period_locking
+    - var done = _state.period_closed
+    - var _planYieldRate = _.get(item, 'expectedRate', 0) - 0
+    - var _planBaseRate = _.get(item, 'baseInterestRate', 0) - 0
+    - var _planDuration = _.get(item, 'lockPeriod', 0) - 0
+    - var _planProductId = _.get(item, 'id', 0) - 0
+    - var _planActiveYearRate = _.get(item, 'extraInterestRate', 0) - 0
+    - var _planActiveCopywriter = _.get(item, 'tag', '')
+    - var _startTime = _.get(item, 'beginSellingTime', 0) - 0 || 0
+    - var _now = _now || Date.now()
+    - var _planMinInvestAmount = _.get(item, 'minRegisterAmount', 0) - 0
+    .plan-recommend-month-item(class ={'plan-recommend-month-item-last': idx == _monthlyPaymentsRecommendList.length-1})
+      dl.plan-recommend-month-item-rate
+        dt.plan-recommend-month-rate(class=_planActiveCopywriter ? 'plan-recommend-month-rate-active' : '') #{UIHelper.formatNumber(_planBaseRate, 1)}
+          small(class=_planActiveCopywriter ? 'plan-recommend-month-rate-active' : '') %
+            if _planActiveYearRate
+              | +#{UIHelper.formatNumber(_planActiveYearRate, 1)}%
+        dd 平均历史年化收益
+      dl
+        dt #{_planDuration}
+          if _planProductId > 675
+            | -36
+        dd 适用出借期限(月)
+      dl
+        dt #{UIHelper.formatNumber(_planMinInvestAmount)}
+        dd 起投金额(元)
+      dl
+          a(href='/plan/' + _planProductId, target='_blank').plan-state-btn
+            if waitopen
+              | #{UIHelper.formatdate('MM月DD日 HH:mm', _startTime)}开售
+            else if countDown
+              include ./count-down.pug
+            else if binding
+              | 立即加入
+            else
+              | 查看详情
+      if _planActiveCopywriter
+        .plan-recommend-month-item-active #{_planActiveCopywriter}

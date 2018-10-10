@@ -1,0 +1,1626 @@
+.landing
+  $new-title-color = #4A4A4A
+  $new-content-color = #666666
+  $deposit-bg-color = #FAFDFF
+  $deposit-domin-blue = #7BB0FF
+  $deposit-domin-pink = #EC6F6F
+  $deposit-finish-color = #2A2A2A
+  $footer-bg-color = #192837
+  $finance-bg-color = #6829d2
+  $finance-conter-bg = #7975DD
+  $finance-tips = #9295A2
+  $finance-rule = #F5E3FF
+  $finance-item = #ebebeb
+  $agreement-base-color = #73ADFF
+  $jd-bg-color = #fce9da
+  $sub-title-color = #FF7F5D
+  $smscode-btn-color = #FFA338
+  $border-base-color = #B5B5B5
+  $novice-color-bg = #fbe4cd
+  $font-novice-banner-h2 = #FFE8E8
+  $font-color-top = #FFF5A7
+  $font-color-bottom = #FFFDF4
+  $_novice-rate-color = #F55151
+  $_novice-dt-color = #2A2B2D
+  $_novice-why-detail = #5D3636
+  $_novice-why-desc = #8C5252
+  &-newedition
+    background-color: $white-color
+    &-wrap
+      min-width: $container-width
+    &-banner
+      min-width: $container-width
+      height: 300px
+      background: url('/img/landing_banner_bg.png') no-repeat center center
+    .big-title
+      display: block
+      margin: 100px auto 50px
+    .special-title
+      margin-top: 30px
+      color: $new-title-color
+      .block-title
+        font-size: $font-size-h3
+    .brand-img-service
+      vertical-align: bottom
+      margin-right: 25px
+      padding-left: 4px
+    .brand-img-manage
+      vertical-align: bottom
+      margin-right: 23px
+    .special-content
+      color: $new-title-color
+      margin-top: 8px
+      margin-left: 70px
+      line-height: 24px
+    .safe-content
+      color: $new-content-color
+      font-size: $font-size-middle
+      text-align: center
+      line-height: 24px
+    .science-img
+      margin: 30px 0
+      text-align: center
+    .circle-title
+      color: #0D0C0C
+      font-size: $font-size-huge
+      .circle
+        margin-right: 10px
+    .bank-space
+      margin-bottom: 60px
+    .future-content
+      color: $new-title-color
+      line-height: 24px
+      margin: 0 0 30px 30px
+    .foot-space
+      margin-bottom: 0
+  &-depository
+    background-color: $white-color
+    &-wrap
+      min-width: $container-width
+    &-banner
+      min-width: $container-width
+      height: 420px
+      background: url('/img/depository-banner-new.png') no-repeat center center
+    h2
+      padding-top: 80px
+      margin: 0  
+      letter-spacing: 2.5px
+      &:after
+        content: ''
+        width: 123px
+        height: 17px
+        display: inline-block
+        background: url('/img/depository-title-right.png') no-repeat
+        margin: 0 0 -3px 10px
+      &:before
+        content: ''
+        width: 123px
+        height: 17px
+        display: inline-block
+        background: url('/img/depository-title-left.png') no-repeat
+        margin: 0 10px -3px 0
+    .content
+      width: 1000px
+      text-align: center
+      margin: 40px auto 
+      line-height: 28px
+      color: $new-content-color
+    &-graph
+      height: 770px
+      text-align: center
+    &-superior
+      background: $deposit-bg-color   
+      height: 780px
+      text-align: center
+      .verse-second
+        margin: -20px auto 0
+      .dominant
+        width: 1050px
+        margin: 40px auto 0
+        &-detail
+          width: 240px
+          height: 240px
+          margin-left: 30px
+          float: left
+          padding: 20px
+          .title
+            font-size: $font-size-slightly
+            width: 200px
+            height: 30px
+            line-height:30px
+            color: $white-color
+            background: $deposit-domin-blue
+            border-radius(4px)
+          .explain
+            width: 200px
+            line-height: 28px
+            color: $new-content-color  
+            text-align: left
+            margin-top: 20px 
+        .norm
+          background: url('/img/depository-norm.png') no-repeat
+          margin-left: 0
+        .insulate
+          background: url('/img/depository-insulate.png') no-repeat
+          .title
+            background: $deposit-domin-pink
+        .upgrade
+          background: url('/img/depository-upgrade.png') no-repeat
+        .transparent
+          background: url('/img/depository-transparent.png') no-repeat
+          .title
+            background: $deposit-domin-pink
+    &-bank
+      text-align: center
+      .finish
+        font-size: $font-size-h3
+        letter-spacing: 2.67px
+        line-height: 42px
+        color: $deposit-finish-color
+        opacity: .7
+      &-invest
+        margin-top: 35px
+        padding-bottom: 40px
+        .invest-body
+          background: $deposit-bg-color
+          width: 1000px
+          margin: 35px auto 20px
+          padding: 33px 0 43px
+          &-item
+            float: left
+            width: 370px
+            height: 200px
+            padding-right: 110px
+            &:after
+              content: ''
+              display: inline-block
+              width: 59px
+              height: 52px
+              background: url('/img/depository-arrow.png')
+              position: relative
+              top: -155px
+              left: 171px
+            span
+              font-size: $font-size-huge
+              letter-spacing: 1.64px
+              color: $new-content-color
+              margin-top: 210px
+              display: inline-block
+              width: 100%
+              padding-right: 10px
+          a
+            height: 46px
+            width: 260px
+            background: $deposit-domin-pink
+            color: $white-color
+            font-size: $font-size-huge
+            border-radius(4px) 
+            display: inline-block
+            line-height: 46px
+            margin-top: 80px
+          &-register
+            background: url('/img/depository-register.png') no-repeat
+            &-complete
+              background: url('/img/depository-register-complete.png') no-repeat   
+              &:after
+                background: url('/img/depository-arrow-complete.png') no-repeat
+          &-dredge
+            background: url('/img/depository-dredge.png') no-repeat
+            &-complete
+              background: url('/img/depository-dredge-complete.png') no-repeat
+              &:after
+                background: url('/img/depository-arrow-complete.png') no-repeat
+          &-buy
+            background: url('/img/depository-invest.png') no-repeat
+            width: 260px
+            padding-right: 0 
+            &:after
+              width: 0
+            &-complete
+              background: url('/img/depository-invest-complete.png') no-repeat
+  &-signup
+    $product-title-color = #FFFFCC
+    $product-safe-bg-color = #FFF8F8
+    $signup-guide-color = #F63939
+    $font-color-footer = #717b85
+    background: $white-color
+    padding-bottom: 80px
+    .signup-banner
+      width: 100%
+      height: 433px
+      min-width: $container-width
+      background: url('/img/signup-landing-banner-new.jpg')
+      position: relative
+      background-position: center
+    .product
+      &-title
+        width: 450px
+        height: 65px
+        margin: 92px auto 70px
+        color: $product-title-color
+        font-size: $font-size-h2
+        line-height: 54px
+        text-align: center
+        letter-spacing: 10px
+        background: url('/img/product-title-bg.png')
+      &-detail
+        width: $container-width
+        clearfix()
+        padding: 0 10px
+        margin-bottom: 80px
+      &-item
+        width: 500px
+        height: 200px
+        box-shadow: 0 2px 12px 2px rgba(255,143,143,0.50)
+        position: relative
+        overflow: visible
+        float: left
+        background: url('/img/product-bg.png')
+        margin-right: 80px
+        padding: 74px 25px 48px
+        &-last
+          margin: 0
+        &-title
+          color: $white-color
+          font-size: $font-size-huge
+          position: absolute
+          top: 5px
+          left: 50%
+          margin-left: -40px
+      &-rate
+        float: left
+      &-months
+        float: left
+        margin-left: 45px
+      &-invest
+        float: left
+        margin-left: 45px
+      .rate
+      .months
+      .invest
+        margin-bottom: 25px
+        line-height: 36px
+        text-align: center
+        font-size: $font-size-h3
+      .rate
+        color: $btn-primary-color
+        font-size: $font-size-h1
+      p
+        font-size: $font-size-h4
+        line-height: 18px
+        color: $new-title-color
+      &-safe
+        width: 100%
+        height: 504px
+        padding: 80px 0
+        min-width: $container-width
+        background: $product-safe-bg-color
+    .safe-title
+      width: 450px
+      height: 65px
+      font-size: $font-size-h2
+      color: $product-title-color
+      text-align: center
+      line-height: 54px
+      margin: 0 auto 78px
+      background: url('/img/product-title-bg.png')
+    .safe-wrap
+      clearfix()
+    .safe-item
+      width: 25%
+      float: left
+      padding-top: 95px
+      position: relative
+      &:before
+        content: ''
+        width: 80px
+        height: 88px
+        position: absolute
+        top: 0
+        left: 50%
+        margin-left: -40px
+      h4
+        color: $btn-primary-color
+        text-align: center
+      .description
+        font-size: $font-size-base
+        width: 190px
+        margin: 20px auto
+        text-align: justify
+        color: $new-content-color
+      &-bank:before
+        background: url('/img/signup-landing-bank.png') no-repeat
+      &-project:before
+        background: url('/img/signup-landing-project.png') no-repeat
+      &-safeguard:before
+        background: url('/img/signup-landing-safeguard.png') no-repeat
+      &-standard:before
+        width: 120px
+        height: 88px
+        margin-left: -60px
+        background: url('/img/signup-landing-standard.png') no-repeat
+    .signup-guide
+      width: 360px
+      height: 85px
+      background: url('/img/signup-btn-bg.png')
+      border-radius(4px)
+      padding: 0 30px
+      line-height: 85px
+      font-size: $font-size-h2
+      color: $product-title-color
+      position: relative
+      text-align: right
+      margin: 92px auto 0
+      cursor: pointer
+      &:before
+        content: ''
+        width: 120px
+        height: 107px
+        position: absolute
+        bottom: 15px
+        left 20px
+        background: url('/img/signup-guide-coupon.png')
+    &-header
+      .service-tel
+        float: right
+        font-size: $font-size-h4
+        color: $new-content-color
+    &-footer-copyright
+      width: 100%
+      min-width: $container-width
+      background: $footer-bg-color
+      color: $font-color-footer
+      a
+        color: $font-color-footer
+        &:hover
+          color: $font-color-footer
+  &-jdcard-signup
+    $welfare-desc-color = #FF423C
+    $product-desc-color = #4A4A4A
+    padding-bottom: 0
+    min-width: $container-width
+    .signup-banner
+      height: 433px
+      position: relative
+      background: url('/img/jdcard-active-banner.png') no-repeat center
+    .success
+      &-img
+        width: 215px
+        height: 159px
+        position: relative
+        margin: 12px auto 20px
+        background: url('/img/signup-success-card.png') no-repeat
+        .amount
+          position: absolute
+          top: 40px
+          left: 24px
+          font-size: $font-size-huge
+          color: $white-color
+      &-title
+        font-size: $font-size-h3
+        color: $welfare-desc-color
+        text-align: center
+      &-desc
+        font-size: $font-size-h4
+        color: $grey-color
+        text-align: center
+        margin-bottom: 24px
+      &-btn
+        display: inline-block
+        width: 300px
+        height: 44px
+        .btn
+          font-size: $font-size-h4
+          line-height: 30px
+    .welfare
+      height: 592px
+      padding: 100px 0
+      background: $jd-bg-color
+      .sub-title
+        font-size: $font-size-h3
+        color: $sub-title-color
+        text-align: center
+        margin: 30px auto 60px
+      &-content
+        width: $container-width
+        margin: 0 auto
+      &-title
+        height: 36px
+        background: url('/img/novice-welfare.png') no-repeat center top
+      &-item
+        width: 200px
+        height: 224px
+        margin-right: 25px
+        float: left
+        text-align: center
+        span
+          display: inline-block
+          margin-top: 165px
+          font-size: $font-size-h3
+          color: $welfare-desc-color
+        &-first
+          background: url('/img/signup-jdcard-20.png')
+        &-second
+          background: url('/img/signup-jdcard-80.png')
+        &-third
+          background: url('/img/signup-jdcard-200.png')
+        &-fourth
+          background: url('/img/signup-jdcard-400.png')
+        &-last
+          background: url('/img/signup-jdcard-900.png')
+          margin-right: 0
+    .landing-signup-product
+      background: $jd-bg-color
+      .product-title
+        width: 500px
+        margin: 0 auto
+        height: 36px
+        background: url('/img/signup-product-title.png') no-repeat center top
+    .red-packet
+      height: 504px
+      background: url('/img/signup-red-packet.png') no-repeat center
+    .receive-packet
+      height: 160px
+      background: $jd-bg-color
+      padding: 50px 0
+    .receive-button
+      width: 300px
+      height: 60px
+      background: url('/img/packet-button.png') no-repeat
+      color: $white-color
+      margin: 0 auto
+      font-size: $font-size-h3
+      text-align: center
+      line-height: 60px
+      cursor: pointer
+  &-active
+    $h3-title-color = #a441d6
+    width: 100%
+    height: 100%
+    min-width: $container-width
+    background: url('/img/landing-active-bg.png') no-repeat
+    background-position: top center
+    &-banner
+      width: 100%
+      height: 457px
+      background: url('/img/landing-register-active-banner.png') no-repeat
+      background-position: center
+    .invite-welfare
+      width: 900px
+      height: 280px
+      margin: 130px 0 auto auto
+      padding: 100px 432px 0 30px
+      position: relative
+      &:before
+        content: ''
+        width: 408px
+        height: 180px
+        background: url('/img/landing-active-1000.png') no-repeat
+        position: absolute
+        top: -10px
+        left: 0
+      &:after
+        content: ''
+        width: 377px
+        height: 237px
+        background: url('/img/landing-active-invite-packet.png') no-repeat
+        position: absolute
+        right: 60px
+        top: 40px
+    .invest-welfare
+      width: 1100px
+      height: 280px
+      margin-top: 130px
+      padding: 100px 30px 0 630px
+      position: relative
+      &:before
+        content: ''
+        width: 448px
+        height: 256px
+        background: url('/img/landing-active-invest-packet.png') no-repeat
+        position: absolute
+        left: 80px
+        top: 25px
+      &:after
+        content: ''
+        width: 408px
+        height: 165px
+        background: url('/img/landing-active-0.5.png')
+        position: absolute
+        right: 85px
+        top: -10px
+    .invest-example
+      width: 781px
+      height: 181px
+      background: url('/img/landing-active-example-bg.png')
+      margin: 130px auto 0
+      padding: 30px 50px
+      p
+        line-height: 16px 
+        margin-bottom: 25px
+    h3
+      font-size: $font-size-h1
+      color: $h3-title-color
+      position: relative
+      font-weight: bold
+      z-index: 1
+      margin-bottom: 30px
+    p
+      font-size: $font-size-middle
+      color: $h3-title-color
+      position: relative
+      z-index: 1
+    h4
+      font-size: $font-size-huge
+      margin-bottom: 30px
+      color: $h3-title-color
+    .invest-btn
+      width: 458px
+      height: 151px
+      cursor: pointer
+      padding: 25px 30px 50px
+      margin: 100px auto auto
+      background: url('/img/landing-active-invite-btn.png') no-repeat
+      a
+        width: 380px 
+        height: 80px
+        display: block
+    .active-rule
+      width: 812px
+      margin: 115px auto 40px
+      ol
+        padding-left: 16px
+      li
+        line-height: 16px
+        margin-bottom: 14px
+        color: $h3-title-color
+  &-novice
+    background: $novice-color-bg
+    &-banner
+      width: 100%
+      height: 450px
+      padding-top: 30px
+      text-align: center
+      background: url('/img/landing-novice-banner.png') center center no-repeat
+      h1
+        margin-top: 0
+        font-size: 64px
+        color: $font-color-top
+        background-image: linear-gradient($font-color-top, $font-color-bottom)
+        -webkit-background-clip: text
+        -webkit-text-fill-color: transparent
+        letter-spacing: 0
+        margin-bottom: 60px
+      h2
+        font-size: $font-size-h3
+        color: $font-novice-banner-h2
+    &-product
+    &-why
+    &-step
+      padding: 100px 0 40px 0
+      h2
+        text-align: center
+        font-size: 22px
+        position: relative
+        margin-bottom: 40px
+        &:before
+          content: ''
+          width: 300px
+          height: 1px
+          border-top: 1px solid #333
+          position: absolute
+          top: 10px
+          left: 40px
+        &:after
+          content: ''
+          width: 300px
+          height: 1px
+          border-top: 1px solid #333
+          position: absolute
+          top: 10px
+          right: 40px
+    &-product
+      width: 100%
+      text-align: center
+      img
+        margin: 0 auto
+      .product-content
+        width: 100%
+        height: 170px
+        margin-top: 50px
+        padding: 46px 0 0
+        clearfix()
+        background: url('/img/landing-novice-product-bg.png') center center no-repeat
+        .item-base-rate
+          font-size: 40px
+          color: $_novice-rate-color
+          letter-spacing: 0
+        .item-subsidy-rate
+          font-size: $font-size-h3
+          color: $_novice-rate-color
+          letter-spacing: 0
+        dl
+          float: left
+          position: relative
+          width: 25%
+          text-align: center
+          dt
+            font-size: $font-size-h2
+            color: $_novice-dt-color
+            letter-spacing: 0
+            font-weight: normal
+            line-height: 46px
+          dd
+            color: $grey-color
+            font-size: $font-size-middle
+            margin-top: 6px
+          &:after
+            content: ''
+            width: 1px
+            height: 51px
+            border-right: 1px solid rgba(245, 81, 81, 0.2)
+            position: absolute
+            top: 19px
+            right: 0
+        .item-first
+          dt
+            line-height: 40px
+        .item-last
+          &:after
+            border: 0
+        a
+          display: inline-block
+          width: 200px
+          height: 44px
+          line-height: 44px
+          text-align: center
+          border-radius: 4px
+          background-color: $_novice-rate-color
+          color: $white-color
+          font-size: $font-size-large
+          margin-top: 20px
+    &-why
+      text-align: center
+      margin-top: 50px
+      img
+        margin-bottom: 50px
+      &-controller
+        position: relative
+        text-align: left
+        .icon-container
+          position: relative
+          display: inline-block
+          width: 82px
+          height: 120px
+          margin-right: 62px
+          text-align: center
+          i
+            display: inline-block
+            width: 82px
+            height: 82px
+          p
+            margin-top: 16px
+          .active
+            opacity: 1
+      &-detail
+        position: relative
+        text-align: left
+        margin-top: 68px
+        height: 300px
+
+        h1
+          position: relative
+          font-size: $font-size-h1
+          color: $_novice-why-detail
+          letter-spacing: 0
+          &:after
+            content: ''
+            width: 60px
+            height: 1px
+            border-bottom: 4px solid $_novice-rate-color
+            position: absolute
+            bottom: -24px
+            left: 0
+        p
+          margin-top: 34px
+          font-size: 22px
+          width: 440px
+          color: $_novice-why-desc
+          letter-spacing: 0
+        .desc-container
+          position: absolute
+          top: 0
+          left: 0
+          height: 300px
+          opacity: 0
+        .active
+          opacity: 1
+          transition: 1s
+        .desc-image
+          position: absolute
+          top: -150px
+          right: 0
+          width: 500px
+          height: 400px
+          img
+            position: absolute
+            display: none
+          .active
+           display: block
+
+
+    &-step
+      text-align: center
+      &-image
+        text-align: left
+        margin-top: 50px
+        .step-item
+          width: 251px
+          height: 250px
+          position: relative
+          display: inline-block
+          margin-right: 169px
+        .step-invest
+          margin-right: 0
+        .step-account
+          padding-left: 30px
+        p
+          text-align: center
+          font-size: $font-size-huge
+          color: $grey-color-dark
+          margin-top: 20px
+        i
+          display: block
+          width: 49px
+          height: 52px
+          position: absolute
+          top: 30%
+          left: 125%
+      &-btn
+        display: block
+        width: 270px
+        height: 46px
+        color: $white-color
+        font-size: $font-size-huge
+        border-radius: 46px
+        background: linear-gradient(to right, #F55251, #FF6D62 )
+        line-height: 46px
+        margin: 100px auto 140px
+    &-activity
+      width: 100%
+      min-height: 540px
+      background: url('/img/landing-novice-activity-bg-img.png') center 10px no-repeat
+      padding: 120px 0 0
+      .item-list
+        padding-left: 0
+        font-weight: lighter
+        letter-spacing: 1px
+        margin-bottom: 0
+      h4
+      li
+        list-style: none
+        font-size: $font-size-h4
+        line-height: 30px
+        color: $white-color
+      h4
+        margin: 0
+        letter-spacing: 1px
+  &-deposit
+    $liner-color = #F8800F
+    $liner-color-right = #FF5E1F
+    $content-color-bg = #FFFBF7
+    $why-color-bg = #FFF6EB
+    $btn-bg-color = #FD9F46
+    $btn-bg-color-right = #FF672B
+    width: 100%
+    height: 100%
+    min-width: $container-width
+    background-color: $content-color-bg
+    &-banner
+      width: 100%
+      height: 430px
+      background: url('/img/landing-deposit-banner.png') center center no-repeat
+    &-content
+      h3
+        color: $grey-color-dark
+        font-size: $font-size-h2
+        position: relative
+        margin: 0
+        &:after
+          content: ''
+          width: 240px
+          height: 2px
+          background: linear-gradient(to right, $liner-color, $liner-color-right)
+          position: absolute
+          bottom: -10px
+          left: 0
+      p
+        width: 238px
+        margin-top: 18px
+        color: $grey-color
+        letter-spacing: 0
+        line-height: 22px
+    &-diagram
+      .section
+        position: relative
+        padding-top: 80px
+        height: 487px
+      .diagram-image
+        position: absolute
+        right: 80px
+        top: 50px
+      .diagram-image-bg
+        position: absolute
+        bottom: -40px
+        left: 0
+    &-why
+      background-color: $why-color-bg
+      h3
+        text-align: right
+        &:after
+          width: 327px
+          left: -4px
+      p
+        width: 324px
+      .section
+        height: 487px
+        position: relative
+        padding: 80px 60px 0 0
+        &-content
+          float: right
+          &-second
+            margin-top: 0
+        img
+          position: absolute
+          top: 120px
+          left: 0
+    &-advantage
+      h3
+        &:after
+          width: 170px
+      &-content
+        clearfix()
+        margin-top: 80px
+        .item
+          position: relative
+          float: left
+          width: 240px
+          height: 285px
+          margin-right: 30px
+          padding-top: 60px
+          text-align: center
+          background: url('/img/landing-deposit-advantage-item-bg.png') center center no-repeat
+          h4
+            color: $white-color
+            font-size: 22px
+            letter-spacing: 0
+            margin-bottom: 18px
+          p
+            width: 220px
+            height: 147px
+            background-color: $white-color
+            color: $grey-color
+            letter-spacing: 0
+            line-height: $font-size-bigger
+            margin: 0 auto
+            padding: 16px 12px 0
+            text-align: left
+        .item-last
+          margin-right: 0
+      .section
+        padding-top: 80px
+        height: 663px
+        position: relative
+        a
+          display: block
+          width: 270px
+          height: 46px
+          background: linear-gradient(to right, $btn-bg-color 0%, $btn-bg-color-right 82%)
+          font-size: $font-size-huge
+          color: $white-color
+          letter-spacing: 1.67px
+          margin: 60px auto 0
+          text-align: center
+          line-height: 46px
+          border-radius: 46px
+        img
+          position: absolute
+          top: -100px
+          right: 0
+  &-raise
+    $raise-bg = #2B2D39
+    $raise-line-color = #EBEBEB
+    $raise-rule-color = #6C717F
+    min-width: $container-width
+    background: $raise-bg
+    &-banner
+      padding: 50px 0
+      text-align: center    
+    &-title
+    &-join
+      text-align: center
+      margin-top: 20px
+    &-title
+      background: url('/img/landing-raise-title-bg.png') top center no-repeat 
+    &-rule
+      color: $raise-rule-color
+      font-size: $font-size-middle
+      ol
+        padding-left: 100px
+      li
+        margin-bottom: 10px
+      &-title
+        display: block
+        margin: 70px auto 40px
+    &-list
+      text-align: center
+      margin-top: 70px
+    &-enjoy
+      padding-left: 100px
+    &-product
+      width: 930px
+      padding: 30px 0
+      background: $white-color
+      border-bottom-left-radius: 10px
+      border-bottom-right-radius: 10px
+      clearfix()
+      &-item
+        width: 33.33%
+        float: left
+        text-align: center
+        position: relative
+        &:after
+          width: 1px
+          height: 200px
+          background: $raise-line-color
+          content: ' '
+          display: block
+          position: absolute
+          top: 10px
+          right: 0
+      &-last
+        &:after
+          display: none
+    &-tips
+      text-align: center 
+      color: $raise-rule-color
+      padding: 30px 0
+      font-size: $font-size-middle
+  &-finance
+    min-width: $container-width
+    &-banner
+      min-width: $container-width
+      height: 906px
+      background: url('/img/landing-finance-banner.png') no-repeat center center
+      overflow: hidden
+      h2
+        font-size: $font-size-giant
+        color: $finance-bg-color
+        font-weight: bold
+        padding-top: 560px
+        z-index: 999
+        text-align: center
+        padding-bottom: 20px
+      a
+        display: block
+        width: 439px
+        height: 60px
+        border-radius: 3px
+        background:linear-gradient(0deg,#F99C54 0%,#FAB784 96%)
+        color: $white-color
+        font-size: $font-size-h3
+        line-height: 60px
+        margin: 0 auto
+        text-align: center
+    &-title
+      img
+        display: block
+        margin: 92px auto 13px 
+      p
+        font-size: $font-size-large
+        color: $finance-conter-bg
+        text-align: center
+    &-product
+      width: $container-width
+      height: 364px
+      margin: 50px auto 30px
+      border: 4px solid $finance-bg-color
+      border-radius: 10px
+      position: relative
+      padding: 40px
+      &:after
+        content: ''
+        width: 10px
+        height: 56px
+        position: absolute
+        top:350px
+        left: 120px
+        display: block
+        background: url('/img/landing-finance-line.png') no-repeat center center
+        z-index: 999
+      .item
+        display: inline-block
+        text-align: center
+        position: relative
+        margin: 0 20px
+        &:after
+          content: ''
+          display: block
+          width: 30px
+          height: 200px
+          border-right: 1px solid $finance-item
+          right: -20px
+          bottom: 50px
+          position: absolute
+      .last
+        &:after
+          display: none
+      .title
+        font-size: $font-size-huge
+        color: $grey-color-dark
+        font-weight: bold
+      .date
+        font-size: $font-size-middle
+        color: $gray
+        line-height: 18px
+        margin: 15px 0 10px
+        letter-spacing: 1.14px
+      .rate
+        margin-top: 20px
+        color: $btn-primary-color
+        font-size: $font-size-giant
+      span
+        font-size: $font-size-h3
+      .tip
+        color: $finance-tips 
+        margin-bottom: 40px
+      a
+        display: inline-block
+        width: 210px
+        height: 45px
+        color: $white-color
+        line-height: 45px
+        background: $btn-primary-color
+        border-radius: 4px
+        font-size: $font-size-h4 
+    &-month
+      width: 1108px
+      height: 143px
+      margin: 0px auto 80px
+      clearfix()
+      background: url('/img/landing-finance-month.png') no-repeat center center
+      position: relative
+      &:after
+        content: ''
+        width: 10px
+        height: 56px
+        position: absolute
+        top:-40px
+        right: 120px
+        display: block
+        background: url('/img/landing-finance-line.png') no-repeat center center
+      &-title
+        clearfix()
+        dl
+          width: 25%
+          float: left
+          text-align: center
+          .plan-rate
+            font-size: $font-size-h1
+            color: $btn-primary-color
+            margin-top: 27px
+            display: inline-block
+          span
+            display: inline-block
+            font-size: $font-size-large
+            color: $btn-primary-color
+            margin-top: 27px
+          .plan-month
+            font-size: $font-size-h3
+            margin-top: 41px
+            position: relative
+            &-nums
+              font-weight: normal
+              color: $grey-color-dark
+              margin-top: 0px
+            &-desc
+              padding-top: 8px
+            &:after
+              content: ''
+              width: 1px
+              height: 51px
+              display: block
+              background: $btn-primary-color
+              opacity: 0.2
+              position: absolute
+              top: 4px
+              right: 268px
+          dd
+            font-size: $font-size-base
+            color: $finance-tips 
+          p
+            font-size: $font-size-huge
+            font-weight: bold
+            color: $grey-color-dark 
+            margin-left: -65px
+    .plan-name
+      font-size: $font-size-huge
+      font-weight: bold
+      color: $grey-color-dark 
+      margin-top: 35px
+      margin-left: -65px
+    .plan-state-btn
+      display: block
+      width: 200px
+      height: 44px
+      line-height: 44px
+      color: $white-color
+      font-size: $font-size-large
+      background: $btn-primary-color
+      margin-top: 53px
+    &-instruction
+      width: 100%
+      height: 516px
+      clearfix()
+      background: url('/img/landing-finance-rule.png') no-repeat center center
+      h2
+        display: block
+        width: 96px
+        height: 33px
+        font-size: $font-size-h3
+        margin: 101px auto 30px
+        color: $white-color
+        text-align: center
+      .tips
+        display: block
+        font-size: $font-size-middle
+        text-align: center
+        color: $white-color
+        opacity: 0.6
+    &-rule
+      width: 1100px
+      color: $finance-rule
+      margin: 0 auto
+      font-size: $font-size-middle
+      li
+        margin-bottom: 10px
+  &-jd
+    $jd-disabled-color = #F2F2F2 
+    $jd-count-color = #FF433F
+    $jd-intro-color = #FF7F5D
+    $jd-shadow-color = #FFCBBD
+    $jd-rate-color = #FF492B
+    $jd-tip-color = #FF7F58
+    $jd-tip-bg-color = #fdf1e8
+    $packet-bg-color = #FFF7F1
+    min-width: $container-width
+    &-banner
+      height: 433px
+      background: url('/img/landing-jd-general-banner.png') no-repeat center
+      &-active
+        background: url('/img/landing-jd-active-banner.png') no-repeat center
+    &-card
+      height: 543px
+      background:  $jd-bg-color
+      padding-top: 100px
+      text-align: center
+      &-title
+        height: 36px
+        width: 561px
+        background: url('/img/landing-jd-card-title.png') no-repeat
+        margin: 0 auto
+      &-convert
+        margin-top: 50px
+        display: inline-block
+        .card
+          width: 200px
+          height: 260px
+          float: left
+          margin-right: 30px
+          padding-top: 150px
+          background: url('/img/landing-jd-card-20.png')
+        .eighty
+          background: url('/img/landing-jd-card-80.png')
+        .two-hundred
+          background: url('/img/landing-jd-card-200.png')
+        .four-hundred
+          background: url('/img/landing-jd-card-400.png')
+        .nine-hundred
+          background: url('/img/landing-jd-card-900.png')
+          margin-right: 0
+        a
+          display: inline-block
+          width: 147px
+          height: 39px
+        .intro
+          color: $grey-color
+          text-align: center
+          margin-bottom: 20px
+        .swap
+          margin: 0 auto
+          width: 147px
+          height: 39px
+          background: url('/img/landing-jd-card-btn.png')
+          color: $white-color
+          line-height: 39px
+          text-align: center
+        .disabled
+          color: $grey-color
+          background: $jd-disabled-color
+    &-new
+      height: 654px
+      padding-top: 50px
+      text-align: center
+      background: $packet-bg-color
+      &-active
+        height: 543px
+        background: url('/img/landing-jd-card-bg.png')
+      &-title
+        height: 36px
+        background: url('/img/landing-jd-new-general-title.png') no-repeat center top
+        margin: 0 auto
+        &-active
+          background: url('/img/landing-jd-new-active-title.png') no-repeat center top
+      &-redpacket
+        margin-top: 50px
+        .item
+          width: 362px
+          height: 296px
+          background: url('/img/landing-jd-general-packet.png') no-repeat center
+          margin: 0 auto
+          text-align: center
+          position: relative
+          padding-top: 42px
+        .count
+          font-size: 72px
+          color: $jd-count-color
+          text-align: center
+          .symbol
+            font-size: $font-size-giant
+        .tip
+          color: $white-color
+          font-size: $font-size-middle
+          margin-top: 85px
+      &-redpacket-active
+        margin-top: 60px
+        display: inline-block
+        .item
+          width: 160px
+          height: 176px
+          background: url('/img/landing-jd-new-redpacket.png')
+          float: left
+          margin-right: 28px
+          padding-top: 30px
+          position: relative
+        .last
+          margin-right: 0
+        .count
+          font-size: $font-size-h1
+          color: $jd-count-color
+          text-align: center
+          .symbol
+            font-size: $font-size-h2
+        .tip
+          color: $white-color
+          position: absolute
+          font-size: $font-size-h6
+          bottom: 10px
+          left: 15px
+      &-use
+        a
+          display: inline-block
+          width: 300px
+          height: 60px
+          background: url('/img/landing-jd-redpacket-btn.png')
+          margin: 60px 400px 0
+          text-align: center
+          line-height: 60px
+          color: $white-color
+          font-size: $font-size-h3
+          border-radius: 4px
+    &-plan
+      background: $jd-bg-color
+      height: 598px
+      padding-top: 50px
+      text-align: center
+      &-active
+        height: 750px
+      &-content
+        width: $container-width
+        margin: 0 auto
+      &-title
+        height: 36px
+        width: 506px
+        background: url('/img/landing-jd-plan-title.png')
+        margin: 0 auto
+      &-intro
+        font-size: $font-size-h3
+        font-weight: lighter
+        color: $jd-intro-color
+        text-align: center
+        margin: 30px 0 60px
+      &-list
+        display: inline-block
+        margin-bottom: 50px 
+        .item
+          width: 260px
+          height: 280px
+          background: $white-color
+          margin-right: 20px
+          box-shadow: 0 2px 10px 0 $jd-shadow-color
+          float: left
+        .last
+          margin: 0
+        .date-limit
+          width: 114px
+          height: 36px
+          background: url('/img/landing-jd-plan-limit.png')
+          margin-left: 73px
+          color: $white-color
+          text-align: center
+          font-size: $font-size-huge
+          line-height: 36px
+        .rate
+          font-size: $font-size-h1
+          color: $jd-rate-color
+          margin-top: 60px
+          text-align: center
+          font-weight: bold
+          span
+            font-size: $font-size-h3
+            font-weight: normal
+        p
+          color: $gray-base
+          text-align: center
+        .plan-btn
+          display: inline-block
+          width: 220px
+          height: 46px
+          background: url('/img/landing-jd-plan-btn.png')
+          color: $white-color
+          line-height: 46px
+          font-size: $font-size-large
+          text-align: center
+          margin: 40px 20px 0 20px
+        .disable-plan-btn
+          background: $gray-txt-black
+      &-tips
+        width: 1100px
+        height: 102px
+        background: $jd-tip-bg-color
+        color: $jd-tip-color
+        line-height: 24px
+        margin: 0 auto
+        padding: 15px
+        text-align: left
+    &-explain
+      height: 483px
+      background: $jd-bg-color
+      text-align: center
+      padding-top: 50px
+      .intro
+        display: inline-block
+        color: $jd-tip-color
+        line-height: 32px
+        font-size: $font-size-large
+        margin: 0 auto
+        text-align: left
+        ol
+          padding-left: 20px
+      table
+        width: 300px
+    &-platform
+      $agreement-base-color = #73ADFF
+      $platform-bg-color = #FFF7F1
+      height: 538px
+      padding: 50px auto 80px
+      background-color: $platform-bg-color
+      .platform
+        &-content
+          height: 538px
+          width: $container-width
+          margin: 0 auto
+          position: relative
+          background: url('/img/platform-aptitude.png') no-repeat center 50px
+          .detail
+            margin-top: 10px
+            text-align: center
+            font-size: $font-size-base
+            color: $agreement-base-color
+            cursor: pointer
+        img
+          width: 600px
+        &-item
+          font-size: $font-size-middle
+          color: $grey-color
+          position: absolute
+        &-guarantee
+          left: 68px
+          top: 430px
+        &-deposit
+          left: 222px
+          top: 270px
+        &-signup
+          left: 768px
+          top: 270px
+        &-credit
+          left: 915px
+          top: 430px
+  &-ordinary-signup
+    .signup-banner
+      height: 433px
+      position: relative
+      min-width: $container-width
+      background: url('/img/landing-ordinary-signup-banner.png') no-repeat center
+    &-content
+      min-width: $container-width
+      padding-bottom: 100px
+      background: url('/img/landing-ordinary-signup-bg.png') no-repeat top $white-color
+      .product-title
+        height: 31px
+        margin-top: 30px
+        background: url('/img/landing-oridinary-signup-product-title.png') no-repeat center top
+      .landing-signup-platform
+        width: $container-width
+        height: 412px
+        margin: 20px auto 100px
+        box-shadow: 0 2px 12px 2px rgba(255,143,143,0.50)
+        position: relative
+        background: url('/img/landing-ordinary-signup-platform.png') no-repeat
+      .platform
+        &-item
+          font-size: $font-size-middle
+          color: $grey-color
+          position: absolute
+          .detail
+            margin-top: 10px
+            text-align: center
+            font-size: $font-size-base
+            color: $agreement-base-color
+            cursor: pointer
+          img
+            width: 600px
+        &-guarantee
+          left: 75px
+          top: 345px
+        &-deposit
+          left: 224px
+          top: 185px
+        &-signup
+          left: 770px
+          top: 185px
+        &-credit
+          left: 918px
+          top: 345px
+      .landing-ordinary-signup-button
+        width: 300px
+        height: 60px
+        background: url('/img/packet-button.png') no-repeat
+        line-height: 60px
+        margin: 100px auto 0
+        text-align: center
+        color: $white-color
+        font-size: $font-size-h3
+        cursor: pointer
+  &-signup-product
+    .product
+      &-content
+        width: $container-width
+        height: 768px
+        margin: 0 auto
+        padding-top: 50px
+      &-item 
+        width: 528px
+        height: 226px
+        float: left
+        margin-right: 44px
+        box-shadow: none
+        padding: 0 84px
+        text-align: center
+        background: url('/img/signup-product-bg.png')
+    .sub-title
+      font-size: $font-size-h3
+      color: $sub-title-color
+      text-align: center
+      margin: 30px auto 50px
+    .item
+      &-head
+        font-size: $font-size-h4
+        font-weight: lighter
+        color: $white-color
+        margin: 20px auto 0
+      &-body
+        overflow: hidden
+        margin-top: 60px
+        .desc
+          color: $product-desc-color
+      &-rate
+        float: left
+        text-align: center
+        .rate
+          height: 40px
+          font-size: $font-size-h1
+          margin-bottom: 10px
+          color: $btn-primary-color
+          line-height: 40px
+        span
+          font-size: $font-size-h3
+      &-month
+        margin-left: 258px
+        .month
+          font-size: $font-size-h1
+          height: 36px
+          line-height: 36px
+          margin-bottom: 14px
+      &-last
+        margin-right: 0
+  &-signup-wrap
+    .signup-wrap
+      width: 350px
+      height: 393px
+      position: absolute
+      top: 20px
+      left: 50%
+      margin-left: 200px
+      padding: 30px 25px
+      background: $white-color
+      border-radius(4px)
+    .form-group
+      width: 300px
+      height: 40px
+      margin-bottom: 20px
+      clearfix()
+    .form-control
+      width: 300px
+      height: 40px
+      line-height: 40px
+      border-radius(4px)
+      outline: none
+      box-shadow: none
+    .control-small
+      float: left
+      width: 170px
+    .control-captcha
+    .control-button
+      width: 120px
+      float: left
+      height: 40px
+      margin-left: 10px
+      border-radius(4px)
+    .control-captcha
+      border: solid 1px $border-base-color
+    .control-button
+      background: $smscode-btn-color
+      color: $white-color
+    .signup-form-btn
+      margin: 44px auto 0
+      position: relative
+    .error-label-container
+      width: 300px
+      height: 20px
+      color: $base-red-color
+      position: absolute
+      top: -20px 
+      right: 0
+      .errors
+        padding: 0
+      li
+        list-style: none
+        color: $base-red-color
+      .error
+        border: none
+    .form-button
+      height: 40px
+      line-height: 38px
+    .agreement-group
+      margin-top: 10px
+      color: $brand-gray
+      .agreement-control
+        float: left
+        margin: 4px 4px auto auto
+      label
+        font-weight: normal
+      a
+        color: $agreement-base-color
+    .error  
+      border: solid 1px red

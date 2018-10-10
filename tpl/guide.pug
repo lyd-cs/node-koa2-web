@@ -1,0 +1,105 @@
+extend base
+
+block title
+  | 新手引导 -
+
+block content
+  - var _userIsLogin = isLogin || 0
+  - var _userIsCreateEscrowAcc= _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsInvestPlan = _.get(userState, 'hasEverInvest') - 0 || 0
+  - var _userIsInvestLoan = _.get(userState, 'hasEverInvestLoan') - 0 || 0
+  .section
+    .guide
+      .guide-banner
+      .guide-we-doing
+        .content-intro 红小宝是一家专业的网络金融信息服务平台，秉承“稳健、安全、专业”的发展理念，为出借人提供专业、有保障的互联网出借服务，您可以将手中的闲置资金，在平台上直接出借给由合作机构推荐的、信用良好的借款人，并获得一定的利息回报。
+        img.img-intro(src='/img/guide-doing-intro.png')
+      .guide-choose-us
+        ul
+          li
+            .choose-title 1.期限灵活，循环出借
+            dl
+              img(src='/img/guide-limit.png')
+              dd 期限灵活
+            dl
+              img(src='/img/guide-money.png')
+              dd 100元起投  
+          li
+            .choose-title 2.信息安全，透明有保障
+            dl
+              img(src='/img/guide-bank.png')
+              dd 银行存管
+            dl
+              img(src='/img/guide-transparent.png')
+              dd 借款人信息透明
+            dl
+              img(src='/img/guide-safe.png')
+              dd 信息安全不泄露
+          li
+            .choose-title 3.小额分散，抗风险能力强
+            img(src='/img/guide-map.png')
+            .choose-content
+              .disperse 借款人分布在全国百余座城市，
+              .disperse 平均单笔借款金额5.3万元，
+              .disperse 从源头把控借款集中的风险
+      .guide-plan
+        .guide-plan-icon
+          dl 
+            img(src='/img/guide-investment.png')
+            dt 本金复投
+            dd 更高的利用资金
+          dl 
+            img(src='/img/guide-time-limit.png')
+            dt 资金灵活
+            dd 多期限选择
+          dl 
+            img(src='/img/guide-nimble.png')
+            dt 分散出借
+            dd 降低出借风险
+        .guide-plan-text
+          .title 红利智投
+          .content 红利智投是红小宝平台为出借人提供的本金自动循环出借及到期自动转让退出的投标工具，由系统自动实现资金的分散出借，有效帮助出借人分散出借风险。
+        .guide-plan-profit
+          .guide-plan-profit-header
+            h5 收益计算器
+            .guide-plan-profit-item
+              label 3个月
+              .guide-plan-profit-processbar
+                .guide-plan-profit-processing
+                span.guide-plan-profit-processing-text
+            .guide-plan-profit-item
+              label 6个月
+              .guide-plan-profit-processbar
+                .guide-plan-profit-processing
+                span.guide-plan-profit-processing-text
+            .guide-plan-profit-item
+              label 12个月
+              .guide-plan-profit-processbar
+                .guide-plan-profit-processing
+                span.guide-plan-profit-processing-text
+            .guide-plan-profit-item
+              label 24个月
+              .guide-plan-profit-processbar
+                .guide-plan-profit-processing
+                span.guide-plan-profit-processing-text
+          .guide-plan-profit-body
+            h6 如果您出借
+            input.money-input( maxlength='9', value='10000')
+            h6 元
+            .btn-profit 算算收益
+
+      .guide-invest
+        .guide-invest-body
+          .guide-invest-item.guide-invest-register(class={'guide-invest-register-complete': _userIsLogin}) 注册
+          .guide-invest-item.guide-invest-secure(class={'guide-invest-secure-complete': _userIsCreateEscrowAcc}) 开户
+          .guide-invest-item.guide-invest-buy(class={'guide-invest-buy-complete': _userIsInvestPlan || _userIsInvestLoan}) 出借
+        if !_userIsLogin
+          a.guide-step-btn(href='/signup') 立即注册
+        else if !_userIsCreateEscrowAcc
+          a.guide-step-btn(href='/deposit/createaccount') 立即开户
+        else
+          a.guide-step-btn(href='/plan') 去出借
+
+block foot-script
+  script.
+    app.guideProfit.init();

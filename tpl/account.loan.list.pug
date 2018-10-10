@@ -1,0 +1,89 @@
+extend base
+
+block title
+  | 散标资产 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))   
+  
+block content
+  - var _ucAssets = _.get(ucAsset, 'loanlenderPrincipal') - 0 || 0
+  - var _ucSumIncome = _.get(ucAsset, 'loanlenderEarned') - 0 || 0
+  - var _productDoingCount = _.get(ucAsset, 'rePayingTotalCount') - 0 || 0
+  - var _productBiddingCount = _.get(ucAsset, 'BIDTotalCount') - 0 || 0
+  - var _productDoneCount = _.get(ucAsset, 'finishTotalCount') - 0 || 0
+  - var _productTransferCount = _.get(ucAsset, 'transferingCount') - 0 || 0
+  - var _ucPlanCount = _productDoingCount + _productTransferCount
+  //- - var dataList = true
+  include ./mod/account.nav.pug
+  .section
+    .uc-panel
+      .uc-panel-item
+        .uc-panel-header.uc-panel-header-loan
+          img(src='/img/account-loan-panel-property.png')
+          | 持有资产(元)
+        .uc-panel-body #{UIHelper.formatNumber(_ucAssets < 0? 0: _ucAssets, 2)}
+      .uc-panel-item
+        .uc-panel-header.uc-panel-header-loan 
+          img(src='/img/account-loan-panel-moeny.png')
+          | 累计收益(元)
+        .uc-panel-body.uc-panel-active #{UIHelper.formatNumber(_ucSumIncome < 0? 0: _ucSumIncome, 2)}
+      .uc-panel-item.last
+        .uc-panel-header.uc-panel-header-loan 
+          img(src='/img/account-loan-panel-touches.png')
+          | 当前持有(笔)
+        .uc-panel-body #{_ucPlanCount}  
+    .uc-product-list#J_loan-wrap
+      include ./mod/account.filter.nav.pug
+      .uc-block.uc-tabs-content.uc-tabs-table
+        - var _followListShowCurrentAsset = (query && (query.filter == 1)) || false
+        if dataList && dataList.length
+          table(cellspacing='0', cellpadding='0', width='100%').uc-product-list-tab
+            thead
+              tr
+                if _filter == 1
+                  th.first 散标ID
+                  th 出借金额(元)
+                  th 年利率
+                  th 待还期数(个月)
+                  th 待收本息(元)
+                  th 月收本息(元)
+                  th 下次还款日
+                  th 操作
+                    span.icon-question-circle(data-trigger='hover', data-toggle='popover', data-content='<span>散标持有'+ limitDays +'天以上方可转让</span>')
+                  th 合同
+                  th  
+                else if _filter == 2
+                  th.first 散标ID
+                  th 出借金额(元)
+                  th 年利率
+                  th 期限(月)
+                  th 剩余时间
+                  th 投标进度
+                else if _filter == 3
+                  th.first 转让ID 
+                  th 债权ID
+                  th 年利率
+                  th 待还期数(个月)
+                  th 转让金额(元)
+                  th 待转让金额(元) 
+                else
+                  th.first 散标ID
+                  th 出借金额(元)
+                  th 年利率
+                  th 回收金额(元)
+                  th 已赚金额(元)
+                  th 结清日期
+                  th 合同
+                  th 结清方式
+                  th
+            tbody#J_loan-list-wrap
+              include ./mod/account.loan.list.pug
+        else  
+          include ./mod/nothing.data.pug
+
+block foot-script
+  script.
+    app.accountLoan.init();
+    app.accountListDropdown.init();

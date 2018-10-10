@@ -1,0 +1,107 @@
+.uc-mobile-header
+  .item(class= step == 1 || step == 2 || step == 3 ? 'active' : '')
+    i.fa.fa-circle-o
+    | 充值
+  .item(class= step == 2 || step == 3 ? 'active' : '')
+    i.fa.fa-circle-o
+    | 支付
+  .item(class= step == 3 ? 'active' : '')
+    i.fa.fa-circle-o
+    | 支付成功
+.uc-mobile-body
+  if(step == 1)
+    form#J_recharge-form.form-horizontal.uc-form(method='post')
+      .form-group
+        label.control-label 可用金额
+        .uc-mobile-form-title 4077.87元
+      .form-group
+        label.control-label 充值金额
+        .control-content
+          input#J_amount.form-control(type='text', autocomplete='off', name='amount', placeholder='', value=_query.amount, onkeyup="if(isNaN(value))execCommand('undo')", onafterpaste="if(isNaN(value))execCommand('undo')")
+        if pageErrors.amount
+          .help-inline.error-msg
+            .fa.fa-times-circle
+            span.error #{pageErrors.amount}
+      .form-group
+        label.control-label 手续费
+        .uc-mobile-form-title 免手续费
+      .form-group
+        label.control-label 充值后余额
+        .uc-mobile-form-title 0.00
+      .form-group.form-group-button
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='step', value='1')
+          button.btn.btn-basic.btn-secure-submit(type='submit') 下一步
+  else if(step == 2)
+    if isBindCard
+      form#J_recharge-form.form-horizontal.uc-form(method='post')
+        .form-group
+          label.control-label 充值金额
+          .uc-mobile-form-title #{payamount}元
+        .form-group
+          label.control-label 银行卡
+          .uc-mobile-form-title 工商银行
+        .form-group
+          label.control-label 预留手机
+          .uc-mobile-form-title 130****0063 
+        .form-group
+          label.control-label 短信验证码
+          .control-content
+            input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='smscode', minlength='6', maxlength='6', placeholder='手机验证码', value=_query.smscode)
+            button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+          if pageErrors.smscode
+            .help-inline.error-msg
+              .fa.fa-times-circle
+              span.error #{pageErrors.smscode}  
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='step', value='2')
+            button.btn.btn-basic.btn-secure-submit(type='submit') 确认修改
+    else
+      form#J_recharge-form.form-horizontal.uc-form(method='post')
+        .form-group
+          label.control-label 充值金额
+          .uc-mobile-form-title #{payamount}元
+        .form-group
+          label.control-label 银行卡号
+          .control-content
+            input#J_bankid.form-control(type='text', minlength='7', autocomplete='off', name='bankid', placeholder='请输入银行卡号', value=_query.bankid, ime-mode='disabled',onkeydown="if(event.keyCode==13)event.keyCode=9",onKeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false")  
+        .form-group
+          label.control-label 所属银行
+          .control-content.control-select
+            select#J_bank.form-control(name='bank')
+            .help-inline
+        .form-group
+          label.control-label 持卡人
+          .uc-mobile-form-title **名称
+        .form-group
+          label.control-label 预留手机
+          .uc-mobile-form-title 130****0063 
+        .form-group
+          label.control-label 短信验证码
+          .control-content
+            input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='smscode', minlength='6', maxlength='6', placeholder='手机验证码', value=_query.smscode)
+            button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+          if pageErrors.smscode
+            .help-inline.error-msg
+              .fa.fa-times-circle
+              span.error #{pageErrors.smscode}  
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='step', value='2')
+            button.btn.btn-basic.btn-secure-submit(type='submit') 确认修改        
+  else
+    .uc-mobile-result
+      .uc-mobile-result-success
+        h2
+          i.fa.fa-check-circle
+          | 充值成功
+        a(href='/account/setting').mobile-success 确定
+      .uc-mobile-result-fail
+        h2
+          i.fa.fa-exclamation-circle
+          | 充值失败
+        a(href='/account/setting').mobile-success 确定  

@@ -1,0 +1,142 @@
+extends base
+
+block title
+  | 蜜芽用户理财专场
+
+block page-val
+  - var pageClass = 'landing-miya-turntable-body'
+block content
+  - var noticeList = [{'time':'1秒前', 'phone':'176****2736', 'prize':'850元蜜芽券'},{'time':'3秒前', 'phone':'135****5637', 'prize':'100元蜜芽券'},{'time':'11秒前', 'phone':'155****2213', 'prize':'600元理财红包'},{'time':'16秒前', 'phone':'139****6673', 'prize':'100元蜜芽券'},{'time':'20秒前', 'phone':'155****1994', 'prize':'300元理财红包'},{'time':'21秒前', 'phone':'155****2213', 'prize':'850元蜜芽券'},{'time':'26秒前', 'phone':'139****6673', 'prize':'500元蜜芽券'},{'time':'29秒前', 'phone':'155****1994', 'prize':'600元理财红包'},{'time':'30秒前', 'phone':'139****0021', 'prize':'500元蜜芽券'},{'time':'34秒前', 'phone':'177****2241', 'prize':'100元理财红包'},{'time':'46秒前', 'phone':'135****6583', 'prize':'100元蜜芽券'},{'time':'49秒前', 'phone':'185****5246', 'prize':'600元理财红包'},{'time':'56秒前', 'phone':'133****6542', 'prize':'500元蜜芽券'}]
+  - var _turntablePlanList = turntablePlanList 
+  - var _utmSource = utmSource || 'Group5-miya'
+  - var _isNotShowPlanTitle = true
+  - var _isMiyaActiveUser = true
+  - var _miyaTurntableUser = true
+  .landing-miya-turntable#J_landing-turntable-wrap
+    #J_signup_error_container.landing-register-toast-notify
+    .J_exchange-dialog.turntable-exchange-prizes.hide.register-six
+      #J_register-form-close.form-close
+      form#J_register-form.turntable-signform(method='post')
+        .exchange-prizes-wrap
+          #J_form-control-mobile.form-mobile
+            input#J_mobile.exchange-mobile.exchange-opera(type="text", name="mobile", placeholder="请输入手机号", autocomplete='off', minlength='11', maxlength='11')
+          #J_form-control-register.form-sms-password.hide
+            .form-tips 验证码已发送至：
+              span.J_form-tips
+              span.J_form-edit.form-edit 修改&gt;
+            .form-control.form-control-smscode
+              input#J_smscode.exchange-smscode.exchange-current(type="text", name="smscode", placeholder="请输入验证码", autocomplete='off', maxlength='6')
+              button(type='button').exchange-countdown.exchange-current#J_verifycode 获取验证码
+            .form-control.form-control-password
+              input#J_password.exchange-password.exchange-current(type="password", name="password", placeholder="请设置登录密码，8-20位字母+数字", autocomplete='off', maxlength='20')
+          input(type="hidden", name="inviteSerial", value=inviteSerial)
+          input(type="hidden", name="utmSource", value=_utmSource)
+          input(type="hidden", name="action", value='carnival')
+          input(type='hidden', name='_csrf', value=csrf)
+          button#J_btn-invite-submit.exchange-goods.exchange-opera.goods-draw(type='submit') 立即兑奖
+          .J_landing-miya-product#J_turntable-draw
+            .exchange-draw.exchange-opera.goods-draw 继续抽奖(剩余
+              span.J_degree.degree
+              span 次)
+            .exchange-times.exchange-opera.goods-draw.hide 抽奖次数已用尽
+        
+    .J_turntable-shade.turntable-shade.hide
+    .turntable-title
+    .turntable-active
+      .turntable-prize
+        img.prize-list(src='/img/mobile/landing-miya-turntable-prize.png')
+      .J_turntable-point.turntable-point
+        .J_turntable-point-zhizhen
+          img.prize-zhizhen(src='/img/mobile/landing-miya-turntable-point.png')
+          .J_go-point.go-point
+          #J_lottery-draw.lottery-draw 剩余
+            span.J_degree
+            span 次
+      .turntable-notice
+        #J_turntable-winners.turntable-winners 当前参与人数：#{userCount}
+        .turntable-notice-wrap#J_notice-box
+          ul
+            each item, idx in noticeList
+              li 
+                .turntable-time #{item.time}
+                .turntable-win-info #{UIHelper.safeMobile(item.phone)}用户抽中#{item.prize}
+    .turntable-show
+      img(src='/img/mobile/landing-miya-turntable-win-none.png').J_prize-show-none
+      img(src='/img/mobile/landing-miya-turntable-win-850-0627.png').J_prize-show-eight.hide
+      img(src='/img/mobile/landing-miya-turntable-win-600-0627.png').J_prize-show-six.hide
+    #J_turntable-exchange-index.turntable-exchange.exchange-goods.exchange-opera.goods-draw 立即兑奖
+    .turntable-financial
+      h2.turntable-content-title.financial-title
+      each item, idx in _turntablePlanList
+        .turntable-plan-item
+          .item-rate
+            .item-tip 蜜芽专享
+            .item-rate-show.show-info #{item.baseInterestRate}
+              .item-rate-extra
+                | %
+                if planType === 'RED_PLAN' && item.extraInterestRate
+                  | +#{item.extraInterestRate}%
+                if planType === 'NEW_PLAN' && item.subsidyInterestRate
+                  | +#{item.subsidyInterestRate}%
+            .item-desc 平均年化收益
+          .item-money
+            .item-show.show-info #{UIHelper.formatNumber(item.minRegisterAmount)}元
+            .item-desc 起投金额
+          .item-cycle 
+            .item-show.show-info 
+              if item.lockDays
+                | #{item.lockDays}天
+              else
+                | #{item.lockPeriod}个月
+            .item-desc 投资期限
+      .turntable-safety
+        h2.turntable-content-title.safety-title.turntable-content-title-safety
+        .turntable-cliente
+          .turntable-cliente-wrap.deposit
+            p 恒丰银行
+            p 资金存管
+          .turntable-cliente-wrap.sign
+            p 2亿元
+            p 注册资本
+          .turntable-cliente-wrap.business
+            p AAA级
+            p 信用企业
+          .turntable-cliente-wrap.union
+            p 中国小额
+            p 信贷联盟
+      .landing-miya-active
+        .landing-miya-active-desc
+          .desc-title 活动说明
+          ol
+            li 对活动如有任何疑问，敬请咨询红小宝客服热线400-1552-888；
+            li 活动时间：2018年6月21日起，本活动仅针对活动期间通过蜜芽渠道注册的新用户；
+            li 抽取到蜜芽券奖励后，需下载红小宝APP投资激活；
+            li 蜜芽券兑换码将在完成激活后的下一个工作日，以短信的形式发送至您的注册手机号，全部蜜芽券为0门槛全场通用； 
+            li 本活动规则解释权归红小宝所有。
+  .landing-miya-turntable-success#J_landing-turntable-result.hide
+    .landing-miya-turntable-success-image
+      img(src='/img/mobile/landing-miya-turntable-result-bg-0622.png')
+    .turntable-result-tips
+      .turntable-result-light
+        img(src='/img/mobile/landing-miya-turntable-result-light-one.png').turntable-result-light-img.turntable-result-light-one
+        img(src='/img/mobile/landing-miya-turntable-result-light-two.png').turntable-result-light-img.turntable-result-light-two
+        .turntable-result-info
+          .result-prize-show
+            //- span#J_turntable-result-prizes.icon-prizes.icon-prizes-six.icon-prizes-eight
+            span#J_turntable-result-prizes.icon-prizes.icon-prizes-eight
+          p.J_prizes-desc-six.hide 850元蜜芽券已发放至您的红小宝账户，红小宝再送您
+            span.eight-tip 600元理财红包
+            | ！下载红小宝APP查看！
+          p.J_prizes-desc-eight.hide 奖品已发放至您的红小宝账户,请下载红小宝APP后查看！
+    .turntable-result-buiss
+      .turntable-result-buiss-title
+        p 无门槛 全场通用
+      .turntable-result-plan
+        include ./mod/landing.miya.active.pug
+    .J_landing-miya-download.turntable-success-download
+
+block foot-script
+  script.
+    app.landingMiyaTurntable.init({
+      downloadHandler: '.J_landing-miya-download'
+    });

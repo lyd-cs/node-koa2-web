@@ -1,0 +1,24 @@
+.modal-dialog(role='document').modal-product
+  .modal-product-box
+    if status === 'exit'
+      .modal-main
+        span.title-padding 您是否申请退出
+        div.content-modal 您申请退出后，预计在
+          span#J_quit-date
+          | 开始退出，
+          br
+          | 如不退出，会继续享有收益。
+      a.btn-modal.btn-let(data-dismiss="modal") 继续持有 
+      a.btn-modal.btn-guard(href='/account/plan/'+ planId +'/exit') 确认退出
+    else if status === 'cancle'
+      .modal-main
+        span.title-padding 您是否撤销退出
+        div.content-modal.plan-cancle-content 您如果撤销退出，期间的收益依然继续享有。
+      a.btn-modal.btn-let#J_plan-exit-cancle-btn 确认撤销
+      a.btn-modal.btn-guard(data-dismiss="modal") 依然退出
+    else
+      .modal-main
+        span.title-padding.title-quit 您是否取消加入
+        div.content-modal.plan-join-cancle-content 加入红利智投后#{calmPeriodTime}分钟内可随时取消，取消后，您将无法再次加入本期红利智投，您加入本期红利智投的全部金额将会自动返还至账户余额（返还金额中不包括已使用的优惠券金额，同时已使用的优惠券将无法再次使用），如不撤销将进入锁定期继续享有收益。
+      a.btn-modal.btn-let.btn-join-cancle(data-dismiss="modal") 继续持有 
+      a.btn-modal.btn-guard.btn-join-cancle(href='/account/plan/join/'+ planId +'/exit') 确认退出

@@ -1,0 +1,137 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  .about-company
+    .section.case
+      .brief
+        .content 红小宝是红上金融信息服务（上海）有限公司旗下的网络借贷信息服务平台，总部位于国际金融中心上海，注册资金20000万，公司秉承“稳健、安全、专业”的发展理念，依托健全的风控体系和云计算、大数据技术，通过金融产品创新、服务模式创新、技术创新，为有投融资需求的中小微企业主和个人提供安全、高效的互联网金融服务。
+      .enterprise-intro
+        .sense-worth
+          img(src='/img/about-company-values.png')
+          .enterprise-content
+            .title 企业价值观
+            .goal 同成长，共分享
+        .mission
+          img(src='/img/about-company-mission.png')
+          .enterprise-content
+            .title 企业使命
+            .goal 以创造价值为核心，以回馈社会为己任
+      .about-company-introduction.industry-and-commerce-information
+        h4 工商信息
+        .license(data-toggle="modal",data-target=".license-pic")
+          img(src="/img/about-company-license.jpg")
+        .company-information
+          p 企业全称：红上金融信息服务（上海）有限公司
+          p 法人代表：徐东
+          p 注册地址：上海市嘉定区银翔路655号B区1158室
+          p 经营地址：上海市嘉定区南翔镇银翔路799号21楼04室
+        .company-information.company-information-last
+          p 企业简称：红上金融
+          p 实际控制人：何源
+          p 注册/实缴资本：20000/20000万元
+          p 经营状态：在营
+      .about-company-introduction.organizational-structure
+        h4 组织架构
+        .organizational-structure-img
+          img(src="/img/about-company-organizational.png")
+      .about-company-introduction.shareholder-information
+        .character-introduction-head
+          h4 股东信息
+        .character-introduction-body
+          ul
+            li 西安胤信基金管理有限公司
+              span 股份占比：60%
+            li 西安鲲镁资产管理有限公司
+              span 股份占比：30%
+            li 深圳市前海千意智合十三期投资合伙企业（有限合伙）
+              span 股份占比：10%
+
+      .about-company-introduction
+        h4 管理团队
+        .character-introduction-body
+          .shareholder-info
+            p.name 徐东
+              span.introduce 执行董事  首席风控官
+            p.describe 中国零售信贷行业精耕十余年，服务中国平安、人人友信期间，在零售信贷领域市场营销、产品创新、反欺诈审查、借后管理、风控体系搭建方面有深刻认识和丰富经验，2017年担任红小宝平台首席风控官，负责客户风险识别与评价、出借产品设计与创新、借前反欺诈、借中与借后管理、反舞弊操作等一系列风险管控体系的管理工作。
+        .character-introduction-body
+          .shareholder-info
+            p.name
+              | 王锐哲
+              span.introduce 总经理
+            p.describe 中国首批互联网金融从业者，是互联网金融行业早期发展与崛起的见证者。对互联网证券及网络借贷业务有着独到的见解，曾先后服务于和讯、金融界（NYSE:JRJC）、人人贷等知名企业，负责产品规划、创新及运营管理工作。2016出任红小宝平台总经理，负责战略规划及经营管理。
+        .character-introduction-body
+          .shareholder-info
+            p.name
+              | 杨东海
+              span.introduce 首席财务官
+            p.describe 伦敦大学国王学院访问学者,中共党员,获经济学学士、工商管理硕士、博士。世界银行硬贷款项目财务管理专家。具备20 多年大中型企业财务管理及资本运作管理经验,曾任上海浦东联合信托投资有限公司董事长助理、克莉丝汀国际控股有限公司（HK:01210）首席财务官、光明乳业股份有限公司（SH:600597）财务副总监、上海外高桥保税区开发股份有限公司（SH:600648）董事长助理等职务。2017年担任红小宝平台首席财务官，负责财务、投融资、内控、合规等方面工作的管理。
+        a.all-manage-info.J_all-manage-info(data-toggle='modal', data-target='#manage-info') 全部董监高信息>
+        .modal.fade.management-team-modal#manage-info(tabindex='-1', role='dialog', aria-hidden='true' )
+          .modal-dialog
+            .modal-content
+              .modal-body
+                p.manage-title 董监高信息
+                table
+                  thead
+                    tr
+                      th.manage-name 姓名
+                      th 职位
+                  tbody
+                    tr
+                      td 徐东
+                      td 执行董事、首席风控官
+                    tr
+                      td 金陈超
+                      td 监事长
+                    tr
+                      td 梁玉婷
+                      td 监事
+                    tr
+                      td 许铭
+                      td 监事
+                    tr
+                      td 王锐哲
+                      td 总经理
+                    tr
+                      td 杨东海
+                      td 首席财务官
+
+      .about-company-introduction.employee-information
+        h4 员工信息
+        .employee-information-head
+          | 截止2018年3月15日，公司员工68人，其中技术团队人数占28%，风控团队人数占37%；本科占比60%，硕士及以上占4%，人员构成、年龄结构、学历分布如下：
+        .employee-information-body
+          .employee-information-body-people.recommend
+            p 人员构成
+            .item-info-chart#J_pie-people
+            .item-info-body
+              .item-info-content.red 风控占比37%
+              .item-info-content 技术占比28%
+              .item-info-content.orange 其他占比35%
+          .employee-information-body-age.recommend
+            p 年龄构成
+            .item-info-chart#J_pie-age
+            .item-info-body
+              .item-info-content.red 20~25岁占比31%
+              .item-info-content 26~30岁占比37%
+              .item-info-content.orange 31~55岁占比32%
+          .employee-information-body-education.recommend.recommend-last
+            p 学历分布
+            .item-info-chart#J_pie-education
+            .item-info-body
+              .item-info-content.red 研究生及以上4%
+              .item-info-content 本科60%
+              .item-info-content.orange 本科以下35%
+  .modal.fade.license-pic(tabindex="-1",role="dialog",aria-labelledby="myLargeModalLabel")
+    .modal-dialog(role="document")
+      img(src='/img/about-company-license.jpg')
+
+block foot-script
+  script.
+    app.aboutCompany.init();

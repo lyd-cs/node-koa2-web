@@ -1,0 +1,257 @@
+.guide
+  $bg-gray-blue = #f7f8fd
+  $grey-color-darkless = #666666
+  $bg-blue-dark = #3e6aad
+  $bg-origin-light = #f8f5f9
+  $border-origin-light = #fbeced
+  $process-bar-bg = #f7eceb
+  $start-color = #FF7777
+  $end-color = #FD7FA9
+  $content-color = #444444
+  $plan-title-color = #F55189
+  $input-color = #979797
+  $scroll-bar-color = #FB7C7C
+  background-color: $white-color
+  padding-bottom: 40px
+  margin: 20px auto 40px 
+  &-title-item
+    margin: 0
+    font-size: $font-size-h2
+    line-height: 1
+    font-weight: 400
+    text-align: center
+    color: $gray-txt-light
+  &-banner
+    height: 401px
+    background: url("/img/banner.png") no-repeat center center
+    background-size: 1100px 401px
+  &-we-doing
+    margin: 106px 50px 0
+    width: 1000px
+    height: 472px
+    background: url('/img/guide-doing-bg.png') no-repeat
+    &:after
+      content: ''
+      width: 260px
+      height: 126px
+      display: inline-block
+      background: url('/img/guide-transition-first.png') 
+      margin: 50px 0 0 110px
+    .content-intro
+      width: 410px
+      padding: 203px 0 0 50px
+      color: $content-color
+      line-height: 24px
+      letter-spacing: 1.08px
+      display: inline-block
+    .img-intro
+      margin: -100px 0 0 40px
+  &-choose-us
+    width: 1000px
+    height: 942px
+    margin: 22px 50px 0
+    background: url('/img/guide-choose-bg.png') no-repeat
+    &:after
+      content: ''
+      width: 260px
+      height: 126px
+      display: inline-block
+      background: url('/img/guide-transition-second.png') 
+      margin: 20px 0 0 630px
+    ul
+      list-style: none
+      padding: 110px 0 0 40px
+    .choose-title
+      font-size: $font-size-middle
+      color: $content-color
+      margin-bottom: 20px
+    dl
+      display: inline-block
+      text-align: center
+      width: 165px
+      margin: 0 80px 70px 0
+      color: $grey-color-darkless
+      img
+        margin-bottom: 8px 
+    .choose-content 
+      display: inline-block  
+      margin: 20px 0 0 119px
+    .disperse
+      line-height: 24px
+      color: $content-color
+  &-plan
+    width: 1000px
+    height: 613px
+    margin: 22px 50px 0
+    background: url('/img/guide-plan.png') no-repeat
+    &:after
+      content: ''
+      width: 260px
+      height: 126px
+      display: inline-block
+      background: url('/img/guide-transition-third.png') 
+      margin: -60px 0 0 110px
+    &-icon
+      display: inline-block
+      padding: 130px 0 0 7px
+      dl
+        width: 150px
+        margin-right: 50px
+        text-align: center
+        display: inline-block
+      dt
+        color: $content-color
+        margin: 10px 0
+        font-weight: normal
+      dd
+        font-size: $font-size-h6
+        color: $gray-txt-black
+        letter-spacing: 0.92px
+    &-text
+      display: inline-block
+      width: 300px
+      margin-left: 27px
+      .title
+        color: $plan-title-color
+        font-size: $font-size-middle
+        letter-spacing: 2px
+        margin-bottom: 30px
+    &-profit
+      margin: 40px auto 50px
+      width: 1000px
+      height: 280px
+      position: relative
+      clearfix()
+      &-header
+        float: left
+        margin: 6px 0 0 36px
+        h5
+          margin: 0
+          font-size: $font-size-middle
+          line-height: 86px
+          color: $grey-color-darkless
+        label
+          width: 38px
+          margin: 0 10px 0 0
+          font-weight:normal
+          text-align: right
+          line-height: 34px
+          font-size: $font-size-h6
+          vertical-align: middle
+          color: $grey-color-darkless
+      &-item
+        margin-bottom: 10px     
+      &-processbar
+        display: inline-block
+        width: 800px
+        height: 6px
+        border-radius: 4px
+        vertical-align: middle
+      &-processing
+        position: relative
+        width: 0
+        height: 6px
+        border-radius: 4px
+        background: $scroll-bar-color
+        float: left
+        &-text
+          float: left
+          color: $plan-title-color
+          font-size: $font-size-middle
+          letter-spacing: 2px
+          margin: -7px 0 0 10px
+      &-body
+        position: absolute
+        left: 668px
+        top: 90px
+        h6
+          margin-bottom: 20px
+          margin-left: 8px
+          font-size: $font-size-middle
+          line-height: 1
+          color: $grey-color-darkless
+          letter-spacing: 2px
+          display: inline-block
+        .money-input
+          display: inline-block
+          width: 100px
+          text-align: center
+          margin: 0 5px
+          background: transparent
+          border: none
+          border-bottom: 1px solid $input-color
+          outline: none
+          vertical-align: middle
+          font-size: $font-size-huge
+          color: $content-color
+          border-radius(0px)
+        .btn-profit
+          width: 250px
+          height: 44px
+          margin-top: 22px
+          font-size: $font-size-middle
+          text-align: center
+          line-height: 44px
+          color: $white-color
+          background: url('/img/guide-income-btn.png') no-repeat
+          cursor: pointer
+  &-invest
+    width: 1000px
+    height: 513px
+    margin: 22px 50px 0
+    background: url('/img/guide-how-lend-bg.png') no-repeat
+    &-body
+      padding: 150px 80px 0
+      text-align: center
+      clearfix()
+      .guide-invest
+        &-item
+          float: left
+          position: relative
+          left: 0
+          top: 0
+          width: 346px
+          padding: 154px 200px 0 0
+          font-size: $font-size-large
+          color: $grey-color-darkless
+          vertical-align: middle
+          &:after
+            content: ''
+            position: absolute
+            right: 108px
+            top: 54px
+            display: inline-block
+            height: 43px
+            width: 40px
+            background: url("/img/guide-arrow.png") no-repeat
+            vertical-align: middle
+        &-register
+          background: url("/img/guide-login.png") no-repeat
+          &-complete
+            background-image: url("/img/guide-login-complete.png")
+            &:after
+              background: url("/img/guide-arrow-complete.png") no-repeat
+        &-secure
+          background: url("/img/guide-open-account.png") no-repeat
+          &-complete
+            background-image: url("/img/guide-open-account-complete.png")
+            &:after
+              background: url("/img/guide-arrow-complete.png") no-repeat
+        &-buy
+          width: 148px
+          padding: 154px 0 0
+          background: url("/img/guide-invest.png") no-repeat
+          &:after
+            width: 0
+          &-complete
+            background-image: url("/img/guide-invest-complete.png")
+    .guide-step-btn
+      display: block
+      width: 300px
+      height: 44px
+      margin: 60px auto 0
+      font-size: $font-size-middle
+      text-align: center
+      line-height: 44px
+      color: $white-color
+      background: url('/img/guide-invest-btn.png') no-repeat

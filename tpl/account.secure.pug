@@ -1,0 +1,58 @@
+extend base
+
+block title
+  | 安全认证 - 账户设置 - 
+  
+block content
+  - var _query = query || {}
+  - var _isTrusted = _.get(userState, 'isIdPassed') - 0 || 0
+  - var _isTradPwd = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _isMobile = _.get(userState, 'isMobilePassed') - 0 || 0
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 安全认证
+    if errors
+      .alert-danger
+        include ./mod/error.pug
+    //-    
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(query)}
+    if !_isMobile
+      .uc-setting-nomobile 您尚未绑定手机号，请联系400-1552-888绑定手机后再进行后续操作。
+    else
+      form#J_secure-form.form-horizontal.uc-form.secure-form(method='post')
+        if !_isTrusted
+          .form-group
+            label.control-label 姓名
+            .control-content
+              input#J_realname.form-control(type='text', name='name', required, autocomplete='off', placeholder='真实姓名', value=_query.name)
+          .form-group
+            label.control-label 身份证号码
+            .control-content
+              input#J_identity.form-control.J_numValidate(type='text', name='idNo', autocomplete='off', required, placeholder='您的身份证号码', value=_query.idNo, maxlength='18', minlength='18')
+        if !_isTradPwd
+          .form-group
+            label.control-label 设置交易密码
+            .control-content
+              input#J_trad-pwd.form-control(type='password', name='tradpwd', autocomplete='off', required, placeholder='8-20位数字大小写字母组合', maxlength='20', minlength='8')
+          .form-group
+            label.control-label 确认交易密码
+            .control-content
+              input#J_trad-repwd.form-control(type='password', name='tradrepwd', autocomplete='off', required, placeholder='8-20位数字大小写字母组合', maxlength='20', minlength='8')      
+        .form-group
+          label.control-label
+          .control-content#J_agree
+            input#J_agree-check(type="checkbox", name="agreecheck" checked)
+            label(for="J_agree-check").uc-setting-agree-tips
+              | 我已阅读并同意
+              a(href='/agreement/realname', target='_blank', rel='nofollow').realname-agree-link 《红小宝认证服务协议》
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            button.btn.btn-basic.btn-secure-submit(type='submit') 安全认证
+
+block foot-script
+  script.
+    app.accountSecure.init({
+      form: '#J_secure-form'
+    });          

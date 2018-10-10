@@ -1,0 +1,140 @@
+.landing-ordinary
+  $landing-jdcard-sub-title = #FF947B
+  $landing-jdcard-signup-title = #FF413C
+  $landing-jdcard-signup-desc = #9295A2
+  $landing-jdcard-signup-activity = #BE7D73
+  $landing-jdcard-download-text-color = #B6634F
+  &-signup 
+    width: 100%
+    position: relative
+    img 
+      max-width: 100%
+    &-form
+      position: absolute
+      bottom: 2rem
+      left: 0
+      right: 0
+      .propoganda-register 
+        .form-submit
+          margin-top: 2rem
+        .error-label-container, error-submit-container
+          color: $white-color
+    &-wrap 
+      &-product
+        padding-top: 2.81rem
+        text-align: center
+        .sub-title
+          display: block
+          font-size: 0.625rem 
+          color: $landing-jdcard-sub-title
+        h1 
+          &:before, &:after
+            top: 0.6rem
+        &-content 
+          display: flex
+          justify-content: space-around
+          flex-wrap: wrap
+          padding: 0 1rem
+          .item-product 
+            width: 40%
+            text-align: center
+            box-shadow: 0 0 12px 0 rgba(172,101,32,0.24)
+            border-radius: 2px
+            background: $white-color
+            margin-bottom: 2.125rem
+            h4 
+              margin: 0
+              line-height: 1.6rem 
+              color: $white-color
+              background: url('/img/mobile/landing-register-jacard-item-title.png') no-repeat center center
+              background-size: 5.1rem 1.6rem
+              font-weight: normal
+              font-size: 1rem
+            dl 
+              margin: 1.625rem 0 2.03rem
+
+            dt 
+              font-size: 1.56rem 
+              color: $landing-jdcard-signup-title
+              line-height: 1.56rem
+              margin-bottom: 0.53rem
+            dd 
+              margin-left: 0
+              font-size: 0.75rem
+              color: $landing-jdcard-signup-desc
+              line-height: 0.75rem
+      &-platform
+        text-align: center
+        padding: 0.6875rem 0 0.94rem
+        &-content
+          display: flex
+          justify-content: space-around
+          .item-platform 
+            width: 21%
+            padding-top: 5.218rem
+            font-size: 0.688rem
+            text-align: center
+            color: $text-color
+            p 
+              margin: 0
+            &:nth-child(1)
+              background: url('/img/mobile/landing-register-jdcard-icon-bank.png') no-repeat center top
+              background-size: 5.218rem 5.218rem
+            &:nth-child(2)
+              background: url('/img/mobile/landing-register-jdcard-icon-registered-fund.png') no-repeat center top
+              background-size: 5.218rem 5.218rem
+            &:nth-child(3)
+              background: url('/img/mobile/landing-register-jdcard-icon-secure.png') no-repeat center top
+              background-size: 5.218rem 5.218rem
+            &:nth-child(4)
+              background: url('/img/mobile/landing-register-jdcard-icon-alliance.png') no-repeat center top
+              background-size: 5.218rem 5.218rem
+        .signup-button
+          display: block
+          width: 80%
+          background-image: linear-gradient(-179deg, #FF814D 3%, #FF5E38 99%)
+          border-radius: 0.125rem
+          color: $white-color
+          margin: 2.375rem auto 0.94rem
+          line-height: 2.56rem
+        .activity-desc
+          display: block
+          font-size: 0.75rem
+          color: $landing-jdcard-signup-activity
+    &-success
+      position: absolute
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      font-size: $font-size-base
+      color: $landing-jdcard-download-text-color
+      text-align: center
+      background-color: $white-color
+      &-image 
+        max-width: 100%
+      &-download
+        position: relative
+        z-index: 10
+        width: 18.5rem
+        height: 2.75rem
+        margin-top: 5rem
+        font-size: $font-size-large
+        color: $white-color
+        background-image: linear-gradient(-179deg, #FF8059 0%, #FF413C 100%)
+        border-radius: 0.25rem
+        border: none
+      &-footer
+        position: absolute
+        left: 0
+        bottom: 0
+        padding-bottom: 1rem
+        width: 100%
+        font-size: 0.75rem
+        &-image
+          position: absolute
+          left: 0
+          bottom: 0
+          width: 100%
+        
+

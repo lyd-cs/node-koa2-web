@@ -1,0 +1,48 @@
+if waitopen || binding || countDown
+  .loan-item-buy.loan-item-doing.plan-detail-item-buy
+    .item-info-wrap
+      .item-title 剩余可投(元)
+      .item-cash.item-residue-cast #{UIHelper.formatNumber(_planDetailRemainAmount, 2)}
+    .item-owner-wrap
+      if isLogin
+        .item-title.user-owner-title 账户余额(元)
+        .item-cash.user-owner-cash #{UIHelper.formatNumber(userAvailableBalance, 2)}
+      else
+        .user-own-cash
+          | 可用金额
+          a(href='/login')  登录
+          | 后可见
+    include ./account.plan.buy.pug
+else if doing && _productStatus === 'PURCHASE_END'
+  .loan-item-buy.loan-item-bidding.uc-plandetail-bidding
+    .uc-plandetail-status
+      h3 锁定期
+      include ./account.plan.detail.button.pug 
+else if doing && _productStatus === 'PURCHASEING'
+  .loan-item-buy.loan-item-bidding.uc-plandetail-bidding.uc-plandetail-bidingdone
+    .uc-plandetail-status
+      h3 债权
+      h3 匹配中
+      if _productCalmPeriod 
+        if _calmPeriodTime > 0
+          button#J_plan-join-cancle 取消加入 
+        else
+          button(disabled= _buttonClick)#J_plan-exit-can 可退出 
+      else if _FinancePlanStatus === 'NEW' && _quitStatus === 'ANNUL_QUIT'
+        button#J_plan-exit-cancle 撤销退出
+        div.tip #{UIHelper.formatdate('YYYY-MM-DD', _repealDate)}(不含)前可撤销
+      else if _FinancePlanStatus === 'NEW'
+        button(disabled= _buttonClick)#J_plan-exit-can 可退出 
+else if doing && _productStatus === 'REDEMPTION_PERIOD'
+  .loan-item-buy.loan-item-bidding.uc-plandetail-bidding.uc-plandetail-opening
+    .uc-plandetail-status
+      h3 开放期
+      include ./account.plan.detail.button.pug
+else if done
+  .uc-plandetail-bidding.uc-plandetail-done
+    .uc-plandetail-status
+      h3 已退出
+else
+  .loan-item-buy.loan-item-bidding.uc-plandetail-bidding.uc-plandetail-outing
+    .uc-plandetail-status
+      h3 退出中

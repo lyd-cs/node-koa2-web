@@ -1,0 +1,65 @@
+extend base
+
+block title
+  | 绑定银行卡 - 账户设置 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+  
+block content
+  - var _query = query || {}
+  - var _userName = _.get(userState, 'username') || _.get(userState, 'realName') || _.get(user, 'name') || ''
+  - var _realName = _.get(userState, 'realName') || ''
+  - var _userIdCardNo = _.get(userState, 'idNo') || ''
+  - var _mobile = _.get(userState, 'mobile') || ''
+  - var _userIsIdentity = _.get(userState, 'isAllPassed') - 0 || 0
+  - var banklist = [{id: '0102', name: '中国工商银行'}, {id: '0103', name: '中国农业银行'}, {id: '0104', name: '中国银行'}, {id: '0105', name: '中国建设银行'}, {id: '0301', name: '交通银行'}, {id: '0302', name: '中信银行'}, {id: '0303', name: '中国光大银行'}, {id: '0304', name: '华夏银行'}, {id: '0305', name: '中国民生银行'}, {id: '0306', name: '广东发展银行'}, {id: '0307', name: '平安银行股份有限公司'}, {id: '0308', name: '招商银行'}, {id: '0309', name: '兴业银行'}, {id: '0310', name: '上海浦东发展银行'}, {id: '0403', name: '中国邮政储蓄银行股份有限公司'}, {id: '0000', name: '银联'}]
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 绑定银行卡
+    //-
+      textarea.info(style='width:100%;height:100px') error = #{JSON.stringify(query)}
+    .uc-bank
+      if errors
+        include ./mod/error.pug
+      form(method='post')#J_bank-add.form-horizontal.uc-form.uc-bank-form
+        .form-group
+          label.control-label 姓名
+          .control-content #{UIHelper.safeRealname(_realName)}
+        .form-group
+          label.control-label 身份证号
+          .control-content #{UIHelper.safeIdentity(_userIdCardNo)}
+        .form-group
+          label.control-label 银行卡号
+          input#J_bank-number.bank-number.form-control(type='text', maxlength='27', name='bank', autocomplete='off', placeholder='请输入银行卡号', value=_query.bankid, ime-mode='disabled',onkeydown="if(event.keyCode==13)event.keyCode=9",onKeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false")
+          #J_bank-card-error.bank-card-error
+        .form-group
+          label.control-label 银行名称
+          .J_show-bank-list.select-bank
+            input#J-bank-name.form-control(type='text', name='bankname', autocomplete='off', placeholder='输入卡号后会智能识别银行', readonly, value='')
+          input#J_bank-code(type='hidden', name='bankcode', value='')
+          #J_bank-card-limit.bank-card-limit
+            if _bankCode
+              #{UIHelper.limitShow(_bankItem, false)}
+          a#J_show-bank-list 查看银行限额
+          #J_bank-list
+        .form-group
+          label.control-label 银行预留手机号
+          .control-content
+            input#J_mobile.form-control.forgot-input.forgot-tel.J_numValidate(type='text', autocomplete='off', name='mobile', placeholder='请输入手机号', value=_query.mobile, minlength='11', maxlength='11')
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            button#J_btn-bank.btn-control.btn-basic.btn-secure-submit(type='submit') 提交
+
+block foot-script
+  script.
+    app.accountBankAdd.init({
+      form: '#J_bank-add',
+      bank: '#J_bankid',
+      mobile: '#J_mobile',
+      bankTips: !{JSON.stringify(bankTips)},
+      bankCodeList: !{JSON.stringify(bankCodeList)}
+    });
+    app.accountSelectBank.selectedBank();

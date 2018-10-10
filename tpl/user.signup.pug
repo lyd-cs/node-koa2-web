@@ -1,0 +1,85 @@
+extend base
+
+block title
+  | 注册 -
+
+block content
+  - var _query = query || {}
+  - var _isShowCaptcha = !(_.get(global, 'disabledcaptcha') - 0 || 0)
+  if errors
+    - var pageErrors = UIHelper.arr2obj(errors) || {}
+    //- var _repwdError = _.get(pageErrors, 'repwd') || ''
+  .user-signup
+    .section
+      .user-signup-body
+        h3.signup-title 注册
+        //-
+          textarea.info(style='width:100%;height:100px') error = #{JSON.stringify(pageErrors)}
+        if errors
+          .singup-errors.alert-danger
+            include ./mod/error.pug
+        //- form#J_user-signup-form.signup-form.form-horizontal.control-form(method='post')
+        form#J_user-signup-form.signup-form.form-horizontal.control-form(method='post')
+          .form-group
+            .user-signup-icon
+              img.identify(src='/img/login_mobile.png')
+            .control-content
+              input#J_mobile.form-control(type='text', name='mobile', placeholder='请输入手机号码', minlength='11', maxlength='11',  autocomplete='off', value = _query.mobile)
+              .help-inline
+          .form-group.form-group-graphicCode
+            .user-signup-icon
+              i.fa.fa-shield
+            .control-content
+              input#J_graphicCode.control-smscode.form-control(type='text', name='captcha', placeholder='请输入右图中的验证码', autocomplete='off', value='', maxlength='4')
+              .help-inline
+            img#J_graphicCode_container.verifycode-img(type='button', alt='看不清，点击刷新', data-src='/captcha', src='/captcha?_=' + Math.random().toString().substr(2, 6), data-target='#J_graphicCode_container')
+          .form-group.form-group-smscode
+            .user-signup-icon
+              i.fa.fa-shield
+            .control-content
+              input#J_smscode.control-smscode.form-control(type='text', name='smscode', placeholder='手机验证码', autocomplete='off', value=_query.smscode, maxlength='6')
+              .help-inline.sms-help-inline
+            button#J_verifycode.btn.verifycode-button(type='button', tabindex='-1') 发送验证码
+          .form-group
+            .user-signup-icon
+              img.identify(src='/img/login_password.png')
+            .control-content
+              input#password.form-control(type='password', name='password', value='', autocomplete='off', placeholder='8-20位数字+字母', maxlength='20')
+              .help-inline
+          .form-group
+            .user-signup-icon
+              img.identify(src='/img/login_password.png')
+            .control-content
+              input#confirmPassword.form-control(type='password', name='repwd', value='', autocomplete='off', placeholder='重复登录密码', maxlength='20')
+              if errors && pageErrors.repwd
+                .help-inline #{pageErrors.repwd}
+              .help-inline  
+          .form-group
+            .user-signup-icon
+              i.fa.fa-user  
+            .control-content
+              input#inviteCode.form-control(type='text', name='inviteCode', autocomplete='off', placeholder='请输入邀请码')
+              .help-inline
+          .form-group.form-group-button.user-submit
+            .control-content
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='utmSource', value= utmSource )
+              button#J_submit.sign-button.btn.btn-basic(type='sumbit' data-toggle="modal" data-target="#myModal") 立即注册
+          .signup-protocol
+            | 点击立即注册即代表我已阅读并同意
+            a(href='/agreement/signup', target='_blank') 《用户注册协议》
+        .signin-switch 已有账号?
+          a(href='/login') 去登录
+  #J_signup-success
+
+block footer
+  .user-signup-footer
+    .section
+      include ./mod/footer.copyright.pug
+
+block foot-script
+  - var _signupSuccess = signupSuccess || 0
+  script.
+    app.userSignup.init({
+      signupSuccess: #{_signupSuccess}
+    });

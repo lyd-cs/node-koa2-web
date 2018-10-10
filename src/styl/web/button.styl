@@ -1,0 +1,36 @@
+//button
+.btn
+  $base-btn-color = #4970a7
+  $base-btn-hover-color = #5d83ba
+  $base-color = $btn-primary-color
+  $base-color-hover = $btn-primary-hover-color
+  $forbid-btn-bg-color = #C6CACC
+  &-basic
+    width: 100%
+    display: inline-block
+    text-align: center
+    font-weight: normal
+    margin: 0
+    background: $base-color
+    color: $white-color
+    white-space: nowrap
+    font-size: $font-size-base
+    border: none
+    height: 44px
+    line-height: 44px
+    border-radius(4px)
+    &:visited
+    &:hover
+    &:active
+      background: $base-color-hover
+      color: $white-color
+      outline: 0
+    &:disabled
+      background-color: $forbid-btn-bg-color
+      color: $white-color
+  &-trad-search
+    padding: 0 20px
+    height: 34px
+    line-height: 34px
+    
+

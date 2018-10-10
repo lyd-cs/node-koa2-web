@@ -1,0 +1,22 @@
+extend base
+
+block title
+  | 填写邀请码 |
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+
+block header
+  .header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+      img.hengfeng-logo(src='')
+
+block content
+  .uc-invite-code-result
+    .section
+      img(src='/img/create-account-success.png')
+      p 邀请码设置成功
+      h5 您已成功设置邀请码
+      a(href='/account') 确定

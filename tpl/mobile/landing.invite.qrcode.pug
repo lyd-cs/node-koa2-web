@@ -1,0 +1,28 @@
+extends base
+
+block title
+  | 专属邀请
+
+block page-val
+  - var pageClass = 'propoganda-body'
+
+block content
+  .propoganda-qrcode-result
+    .propoganda-qrcode-result-container
+      p.propoganda-qrcode-result-number 邀请码: #{staffId}
+      img(src= '/qrcode/inviteh5/'+ staffId).propoganda-qrcode-result-img
+      p.propoganda-qrcode-result-scan 扫描二维码了解更多红小宝
+    span.propoganda-qrcode-result-link.realize#J_share 立即分享我的专属链接
+    a(href='/landing/about/'+staffId + '?utmSource=Group4-SalesH5').propoganda-qrcode-result-link.register 一分钟了解红小宝
+
+block foot-script
+  script.
+    app.util.wx.init({
+      title: '红小宝2.0新版起航，邀您体验',
+      link: '/landing/about/' + '#{staffId}',
+      desc: '红小宝携手恒丰银行完成资金存管，2.0版本扬帆起航，一分钟探索新版红小宝',
+      imgUrl: '/img/mobile/logo-wx.jpg'
+    });
+    $('#J_share').on('click', function () {
+      app.util.wxShare();
+    })

@@ -1,0 +1,128 @@
+extend base
+
+block title
+  | 新用户专享福利 - 
+
+block content
+  - var _jdCardUse = cardList || {};
+  - var _promotion = _.get(userState, 'promotion') || ''
+  - var _isActive = _promotion.startsWith('Group3')
+  - var _isGroup6 = _promotion.startsWith('Group6')
+  - var _defaultDataList = (_isActive || _isGroup6) ? [{lockPeriod: 1,expectedRate: '5.8'},{lockPeriod: 3,expectedRate: '6.5'},{lockPeriod: 6,expectedRate: '7.5'},{lockPeriod: 12,expectedRate: '9.6'}] : [{lockPeriod: 3,expectedRate: '6.5'},{lockPeriod: 6,expectedRate: '7.5'},{lockPeriod: 12,expectedRate: '9.6'},{lockPeriod: 24,expectedRate: '9.9'}]
+  - var _dataList = dataList || _defaultDataList
+  - var _redpacketList = [{amount: 18, limit: 1000}, {amount: 50, limit: 5000}, {amount: 100, limit: 10000}, {amount: 200, limit: 20000}, {amount: 500, limit: 50000}, {amount: 1000, limit: 100000}]
+  - var _jdCardUseLimit = [{amount: 20, limit:1000, month: '不限'}, {amount: 80, limit:5000, month: '不限'}, {amount: 200, limit:10000, month: '≥3个月'}, {amount: 400, limit:20000, month: '≥6个月'}, {amount: 900, limit:50000, month: '≥6个月'}]
+  .landing-jd
+    .landing-jd-banner(class={'landing-jd-banner-active': _isActive})
+    if _isActive
+      .landing-jd-card
+        .landing-jd-card-title
+        .landing-jd-card-convert
+          .card
+            .intro 需投资1月期及以上产品
+            if _jdCardUse['20']
+              .swap.disabled 已兑换 
+            else
+              a(href='#invest')
+                .swap 出借1000元兑换
+          .card.eighty
+            .intro 需投资1月期及以上产品
+            if _jdCardUse['80']
+              .swap.disabled 已兑换 
+            else
+              a(href='#invest')
+                .swap 出借5000元兑换
+          .card.two-hundred
+            .intro 需投资3月期及以上产品
+            if _jdCardUse['200']
+              .swap.disabled 已兑换 
+            else
+              a(href='#invest')
+                .swap 出借10000元兑换
+          .card.four-hundred
+            .intro 需投资6月期及以上产品
+            if _jdCardUse['400']
+              .swap.disabled 已兑换 
+            else
+              a(href='#invest')
+                .swap 出借20000元兑换
+          .card.nine-hundred
+            .intro 需投资6月期及以上产品
+            if _jdCardUse['900']
+              .swap.disabled 已兑换 
+            else
+              a(href='#invest')
+                .swap 出借50000元兑换
+    .landing-jd-new(class={'landing-jd-new-active': _isActive})
+      .landing-jd-new-title(class={'landing-jd-new-title-active': _isActive})
+      if _isActive
+        .landing-jd-new-redpacket-active
+          each item, idx in _redpacketList
+            - var _amount = _.get(item, 'amount') || 0
+            - var _limit = _.get(item, 'limit') || 1000
+            .item
+              .count
+                span.symbol &yen;
+                span #{_amount}
+              .tip 使用期限：12月及以上
+                br
+                | 满#{UIHelper.formatNumber(_limit)}元可使用
+      else
+        .landing-jd-new-redpacket
+          .item
+            .count
+              span.symbol &yen;
+              span 300
+            .tip 适用产品：12月及以上红利智投
+              br
+              | 抵扣率：0.1%
+      .landing-jd-new-use
+        a(href='/plan') 立即使用
+    
+    .landing-jd-plan(class={'landing-jd-plan-active': _isActive} id='invest')
+      .landing-jd-plan-content
+        .landing-jd-plan-title
+        .landing-jd-plan-intro 锁定期结束可随时退出，退出前持续享受收益
+        .landing-jd-plan-list
+          each item, idx in _dataList
+            - var _planYieldRate = _.get(item, 'expectedRate', 0) - 0
+            - var _planDuration = _.get(item, 'lockPeriod', 0) - 0
+            - var _planId = _.get(item, 'id') - 0
+            - var _totalAmount = _.get(item, 'totalAmount', 0) - 0
+            .item(class={'last': idx + 1 == 4})
+              .date-limit #{_planDuration}月期
+              .rate #{_planYieldRate}
+                span %
+              p 平均历史年化收益
+              if _isGroup6 && (idx == 0) && (_totalAmount>=500000)
+                a.plan-btn.disable-plan-btn 立即加入
+              else
+                a(href='/plan/'+_planId).plan-btn 立即加入
+        if _isActive
+          .landing-jd-plan-tips 智投小贴士:
+            br
+            | 购买方案A：购买3月期红利智投10,000元，可获得收益为：200元京东卡+10,000*6.5%*3/12=362.62元。
+            br
+            | 购买方案B：购买12月期红利智投50,000元，可获得收益为：900元京东卡+500元满减红包+9.6%*50,000=6204.45元。
+    include ./mod/landing.platform.pug
+    if _isActive
+      .landing-jd-explain
+        .intro 活动说明
+          ol
+            li 活动时间：2018年5月22日起，本活动仅限活动期间内通过活动链接注册的新用户参与；
+            li 活动期间：新用户注册45日内单笔出借达到以下条件，即可领取京东卡奖励，
+              table
+                tr
+                  td 京东卡
+                  td 出借金额
+                  td 出借期限
+                each item, idx in _jdCardUseLimit
+                  tr
+                    td #{item.amount}
+                    td #{item.limit}
+                    td #{item.month}
+            li 单笔出借仅限领取最大奖励，多次出借可领取多个奖励，每种奖励最多领取1次；
+            li 出借成功后3个工作日内，京东卡领取方式将以短信形式发送至用户注册的手机号码，请注意查收；
+            li 新手红包将在注册成功后，发送至用户账户内，请登录后进入我的优惠券查看；
+              br
+              | 本活动规则解释权归红小宝所有

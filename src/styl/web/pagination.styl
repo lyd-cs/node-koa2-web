@@ -1,0 +1,44 @@
+.pagination
+  $_color         = #1a96c7
+  $_text-color    = #808080
+  $_bg-color      = rgba(0, 0, 0, 0.1)
+  $_border-color  = #c8cccc
+  text-align: center
+  margin-top: 20px
+  padding-bottom: 20px
+  padding-left: 0
+  display: inherit
+  li
+    display: inline-block
+    a
+    button
+      border: 1px solid $_border-color
+      background: $_white
+      border-radius: 4px
+      font-size: 16px
+      display: inline-block
+      margin-right: 10px
+      padding: 0 10px
+      line-height: 30px
+      color: $_text-color
+      &:hover
+        text-decoration: none
+        background: $buy-botton-color
+        border-color: $buy-botton-color
+        color: $white-color
+    button[disabled]
+      color: $_text-color
+      background-color: $_bg-color
+      &:hover
+        color: $_text-color
+        border-color: $_border-color
+    span
+      display: inline-block
+      margin-right: 10px
+      line-height: 30px
+      color: #666666
+  .pages-active
+    a
+      background: $buy-botton-color
+      border-color: $buy-botton-color
+      color: $white-color

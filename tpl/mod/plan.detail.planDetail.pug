@@ -1,0 +1,101 @@
+if planDetail
+  - var _planDetailDataList = _.get(planDetail, 'dataList[0]', {});
+  - var _endTime = _.get(_planDetailDataList, 'endLockingTime', '');
+  - var _startTime = UIHelper.moment(_.get(_planDetailDataList, 'beginSellingTime', ''));
+  - var _planName = _.get(_planDetailDataList, 'name', '')
+  - var _planIntroduce = _.get(_planDetailDataList, 'introduce', '')
+  - var _yieldRate = _.get(_planDetailDataList, 'expectedRate', 0) - 0
+  - var _amount = _.get(_planDetailDataList, 'amount', 0) - 0
+  - var _duration = _.get(_planDetailDataList, 'lockPeriod', 0) - 0
+  - var _productId = _.get(_planDetailDataList, 'id', 0) - 0
+  - var _joinCount = _.get(_planDetailDataList, 'joinCount', 0) - 0
+  - var _singleJoin = _.get(_planDetailDataList, 'singleMaxRegisterAmount', 0) - 0;
+  - var _minAmount = _.get(_planDetailDataList, 'minRegisterAmount', 0) -0;
+  - var _investRange = _.get(_planDetailDataList, 'productsJson' , '');
+  - var _joinRate = _.get(_planDetailDataList, 'buyInRate' , 0)-0;
+  - var _quitRate = _.get(_planDetailDataList, 'quitRate' , 0)-0;
+  - var _quitRateAdvance = _.get(_planDetailDataList, 'quitRateAdvance' , '暂无数据');
+  - var _increasingAmount = _.get(_planDetailDataList, 'registerMultipleAmount', 0) - 0 || 0;
+  - var _productCashType = _.get(_planDetailDataList, 'cashType', '');
+  - var _productDrawDay = _.get(_planDetailDataList, 'cashDrawDay', '')
+  - var isMonthlyPaymentsPlan = UIHelper.parsePlanPayments(_productCashType);
+  - var _productBaseInterestRate = _.get(_planDetailDataList, 'baseInterestRate', 0) - 0
+  - var _productSubsidyInterestRate = _.get(_planDetailDataList, 'subsidyInterestRate', 0) - 0
+  - var _productLockDays = _.get(_planDetailDataList, 'lockDays', 0) - 0
+  - var _productNovice = _.get(_planDetailDataList, 'novice', 0) - 0
+  - var _newbiePlanAmount = _.get(planDetail, 'newbiePlanAmount', 0) - 0
+  .plan-detail-info
+    table(cellpadding='0', cellspacing='0', width='100%')
+      tbody
+        tr
+          th 服务名称
+          td #{_planName}
+        tr.item-spac
+          th 服务介绍
+          td #{_planIntroduce}
+        tr
+          th 出借范围
+          td 红小宝平台上发布的已审核借款需求以及红小宝【债权转让市场】转让的债权
+        tr.item-spac
+          th 出借项目
+          td 
+            a(href='/plan/invest/list').manual-color 待成交散标列表
+        tr
+          th 平均历史年化收益
+          td
+            p #{UIHelper.parsePlanCashType(_productCashType)} 
+              if _productNovice
+                | #{UIHelper.formatNumber(_productBaseInterestRate + _productSubsidyInterestRate, 1)}%
+              else 
+                | #{UIHelper.formatNumber(_yieldRate, 1)}%
+        tr.item-spac
+          th 锁定期
+          if _duration
+            td #{_duration}个月
+          else if _productLockDays
+            td #{_productLockDays}天
+        tr
+          th 加入条件
+          td 加入金额#{_minAmount}元起，#{_increasingAmount}元递增
+        tr.item-spac
+          th 加入上限
+          if _productNovice
+            td #{UIHelper.formatNumber(_newbiePlanAmount, 0)}元
+          else
+            td #{UIHelper.formatNumber(_singleJoin, 0)}元
+        tr
+          th 加入日期
+          td #{UIHelper.formatdate('YYYY-MM-DD',_startTime)}
+        tr.item-spac
+          th 锁定期结束日
+          td #{UIHelper.formatdate('YYYY-MM-DD',_endTime)}
+        if isMonthlyPaymentsPlan
+          tr
+            th 收益提取日
+            td 收益期内，每月#{_productDrawDay}日提取收益
+              span.icon-question-circle(data-trigger='hover', data-toggle='popover', data-content='收益会按月返回到账户内，如当月无此提取日，则当月最后一天为提取日。')
+        tr(class={'item-spac': isMonthlyPaymentsPlan})
+          th 到期退出方式
+          td 
+            if _productId > 675
+              p 1、用户加入红利智投，锁定期结束后可随时申请退出红利智投；
+              p 2、锁定期后申请退出有5天时间可撤销退出，期间收益继续持有，5天后以债权转让形式进行退出。
+            else
+              | 锁定期届满时，系统将您所持有的出借项目自动发起转让，转出时间以转让实际完成时间为准，全部转出后成功退出。
+        tr(class={'item-spac': !isMonthlyPaymentsPlan})
+          th 费用
+          td
+            p 加入费率：#{UIHelper.formatNumber(_joinRate, 2)}%
+            p 管理费率：参见
+              a(href='/agreement/'+(!isMonthlyPaymentsPlan?'plan':'planMonth'), target="_blank").manual-color 《红利智投服务协议》
+        //- tr.item-spac
+        //-   th 适合人群
+        //-   td #{_applyPeople}
+        tr(class={'item-spac': isMonthlyPaymentsPlan})
+          th.plan-detail-info-last 服务协议
+          td.plan-detail-info-last
+            a(href='/agreement/'+(!isMonthlyPaymentsPlan?'plan':'planMonth'), target="_blank").manual-color 《红利智投服务协议》
+            a(href="/agreement/electronicSignature", target="_blank").manual-color 《个人电子签章授权委托书》
+            a(href="/agreement/digitalCertificate", target="_blank").manual-color 《CFCA数字证书服务协议》
+else
+  include ./nothing.data.pug

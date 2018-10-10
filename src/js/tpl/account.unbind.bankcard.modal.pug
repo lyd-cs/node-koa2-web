@@ -1,0 +1,18 @@
+- var _isUnbindBankcard = isUnbindBankcard
+- var _isUnbindBankcardReason = isUnbindBankcardReason
+
+#J_send_modal.modal.fade(tabindex='-1' role='dialog')
+  .modal-dialog.uc-setting-unbind-modal
+    p.unbind-modal-info
+      if _isUnbindBankcard
+        | 解绑银行卡后，将无法进行提现充值操作，是否确定要解绑
+      else 
+        | #{_isUnbindBankcardReason}
+    .unbind-modal-btn
+      if _isUnbindBankcard
+        a(data-dismiss="modal").unbind-modal-btn-close  取消
+        a(href='/account/unbind').unbind-modal-btn-skip 确定
+      else
+        a(data-dismiss="modal").unbind-modal-btn-close 确定
+
+        

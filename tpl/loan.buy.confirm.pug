@@ -1,0 +1,136 @@
+extend base
+
+block title
+  | 购物确认 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+
+block content
+  - var _buyResultBidAmount = _.get(buyResult, 'bidAmount', 0) - 0 || 0
+  - var _buyResultMonths = _.get(buyResult, 'months', 0) - 0 || ''
+  - var _buyResultYearRate = _.get(buyResult, 'interest', 0) - 0 || 0
+  - var _buyResultPredictIncome = _.get(buyResult, 'balance', 0) - 0 || 0
+  - var _buyResultRefundType = _.get(buyResult, 'loanType') || ''
+  - var _buyResultTotal = _.get(buyResult, 'monthReturn', 0) - 0 || 0
+  - var _buyResultLoanId = _.get(buyResult, 'loanid') - 0 || 0
+  - var _buyResultName = _.get(buyResult, 'loanTitle', '') || ''
+  - var _hasRiskWarn = _.get(buyResult, 'showRisk')
+  - var _productId = loanId || 0
+  - var _userAvailableBalance = _.get(userAssets, 'availablePoints', 0) - 0 || 0
+  - var _isUserHasBindCard = _.get(userState, 'hasBindCard', 0) - 0 || 0
+  - var _userBankCardId = _.get(userCard, 'cardId') || ''
+  - _userBankCardId = UIHelper.safeBank(_userBankCardId)
+  - var _bankCode = _.get(userCard, 'bankCode') || ''
+  - var _bankName = _.get(userCard, 'bankType') || ''
+  - var _bankMobile = _.get(userCard, 'mobile')
+  - _bankMobile = UIHelper.safeMobile(_bankMobile)
+  - var _errorState = UIHelper.parseProductErrorCode(errorCode)
+  - var _isAmountShort = _errorState.amount_short
+  - var _isSaleFinish = _errorState.sale_finish
+  - var _isUnSecurityCertificate = _errorState.not_security_certificate
+  - var _isDebtProcessed = _errorState.debt_processed
+  - var _isShowBtn = (_userAvailableBalance < _buyResultBidAmount && _isUserHasBindCard) || (_userAvailableBalance >= _buyResultBidAmount)
+
+  if buyResult
+    .section.product-buy-confirm#J_content
+      h3 确认出借信息
+      form#J_buy-form.product-buy-confirm-case(method='post')
+        .product-buy-confirm-box
+          h4 #{_buyResultName}
+          .item-list.item-loan
+            .item-title 出借金额
+            .item-content #{UIHelper.formatNumber(_buyResultBidAmount, 2)}元
+          .item-list.item-loan
+            .item-title 期限
+            .item-content #{_buyResultMonths}个月
+          .item-list.item-loan
+            .item-title 年利率
+            .item-content #{UIHelper.formatNumber(_buyResultYearRate, 2)}%
+          .item-list.item-loan.item-list-last
+            .item-title 还款方式
+            .item-content #{_buyResultRefundType}  
+          .pay-amount 支付金额
+            span #{UIHelper.formatNumber(_buyResultBidAmount, 2)} 元  
+        h3 支付方式 
+          if errors
+            .alert-danger
+              include ./mod/error.pug
+        .buy-confirm-wrapper 
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='amount', value= _buyResultBidAmount)
+          input(type='hidden', name='balanceAmount', value=_userAvailableBalance)
+          input(type='hidden', name='productId', value=_productId)
+          include ./mod/buy.confirm.pay.pug
+          if _isShowBtn
+            .error-info
+            button#J_btn-buy-confirm.btn-basic.btn-buy-confirm(type='submit', data-init='0', data-type='loan') 确认加入
+            .product-buy-confirm-check
+              if _hasRiskWarn
+                p
+                  input(type='checkbox', name='willingToBuy')#J_adventure-checkbox
+                  label(for='J_adventure-checkbox')
+                    | 我同意向超出我风险承受能力的标的出借资金
+              input(type='checkbox', checked)#J_protocol-checkbox
+              label(for='J_protocol-checkbox')
+                | 我已阅读并同意
+                a(href='/agreement/loan', target='_blank', rel='nofollow').product-buy-confirm-link 《借款协议》
+                a(href='/agreement/hint', target='_blank', rel='nofollow').product-buy-confirm-link 《网络借贷提示书》
+              p
+                a(href='/agreement/electronicSignature', target='_blank', rel='nofollow').product-buy-confirm-link 《个人电子签章授权委托书》
+                a(href='/agreement/digitalCertificate', target='_blank', rel='nofollow').product-buy-confirm-link 《CFCA数字证书服务协议》
+  else 
+    .section.loan-buy-failed
+      .error-warpper
+        if _isAmountShort
+          img(src='/img/buy-insufficient-balance.png')
+          .error-title
+            span.error-hint-message 余额不足
+            h5 当前账户可用余额不足，请前往充值页面进行充值
+          a.result-link.btn-basic(href='/account/quickpay') 去充值
+        else if _isSaleFinish
+          img(src='/img/buy-insufficient-balance.png')
+          .error-title
+            span.error-hint-message 已售罄
+          a.result-link.btn-basic(href='/loan' ) 确定
+        else if _isUnSecurityCertificate
+          .error-title
+            span.error-hint-message 您尚未进行实名认证，请联系客服
+            h5 客服电话400-1552-888
+          a(href='/loan/'+ loanId).btn.btn-basic.buy-result-btn 确定
+        else if _isDebtProcessed
+          .error-title
+            i.fa.fa-exclamation-circle.error-hint-font
+            span.error-hint-message 恒丰银行处理中
+            //-
+              h5 您尚未完成安全认证，请完成认证后再进行购买~
+          a.result-link.btn-basic(href='/account/loan') 查看我的出借
+        else
+          img(src='/img/buy-join-failed.png')
+          .error-title 
+            span.error-hint-message 失败
+          .error-msg #{errorMessage} 
+          a.result-link.btn-basic(href='/loan/' + loanId) 确定
+block foot-script
+  - var userPayAble = _.get(buyResult, 'payable', '0')
+  script.
+    var _userCharge;
+    var _payAble = #{userPayAble};
+    var _userPayAble = _payAble;
+    var _userBalance = #{_userAvailableBalance};
+    var _userBidAmount = #{_buyResultBidAmount};
+    var _hasRiskWarn = #{_hasRiskWarn}
+    if(_userPayAble){
+      _userCharge = _userPayAble - _userBalance;
+    }else{
+      _userCharge = _userBidAmount - _userBalance;
+    }
+    app.productBuy.init({
+      form: '#J_buy-form',
+      smscode: '#J_getcode-btn',
+      voice: '#J_voice-verifycode',
+      verifycode: '.J_getcode-btn',
+      userCharge: _userCharge,
+      hasRiskWarn: _hasRiskWarn
+    });
+    

@@ -1,0 +1,28 @@
+if couponBest
+  - var _couponBestType = _.get(couponBest, 'couponType') || ''
+  - var _state = UIHelper.parseCouponStatus(_couponBestType)
+  - var _deductionBest = _state.discount
+  - var _moneyOffBest = _state.money_off
+  - var _dicountRateBest = _.get(couponBest, 'dicountRate') || 0
+  - var _moneyOffAmountBest = _.get(couponBest, 'derateAmount') || 0
+  - var _minInvestAmountBest = _.get(couponBest, 'allowDerateInvest') || 0
+  - var _maxDiscountAmountBest = _.get(couponBest, 'maxDiscountAmount') || 0
+  - var _valueActualBest = _.get(couponBest, 'valueActual') || 0
+  - var _couponBestId = _.get(couponBest, 'id') || ''
+  - var _discountMinInvestAmount = _.get(couponBest, 'minInvestAmount') || 0
+  - var _expireTime = _.get(couponBest, 'expireTime') || ''
+  - var _remainDays = UIHelper.parseCouponOverdueTime(_expireTime)
+  .coupon-default-display(data-id=_couponBestId) #{UIHelper.parseCouponType(_couponBestType)}：
+    if _deductionBest
+      | #{_dicountRateBest}%抵扣，最高抵扣#{_maxDiscountAmountBest}元
+    if _moneyOffBest
+      | 满#{_minInvestAmountBest}元减#{_moneyOffAmountBest}元
+    if _remainDays
+      if _remainDays == '0'
+        |  （今天过期）
+      else
+        |  （#{_remainDays}天后过期）
+    span.coupon-amount -#{UIHelper.formatNumber(_valueActualBest, 2)}
+      span.coupon-amount-unit 元
+else 
+  .coupon-default-display 暂无可用优惠券

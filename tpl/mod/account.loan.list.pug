@@ -1,0 +1,111 @@
+- var _filter = _.get(query, 'filter', 0) - 0 || 0
+//- - var dataList = [{"earnMoney": "180.00","amount": 18000,"finishType": "债权转让","interest": 12,"finishTime": "2017-06-20 15:26:18.0", "repayMoney": "18180.00", "transfered": false, "loanId": 761816},{"earnMoney": "190.00","amount": 19000,"finishType": "提前还款","interest": 12,"finishTime": "2017-06-20 15:26:18.0", "repayMoney": "18180.00", "transfered": true, "loanId": 761816}]  //已结清
+//- - var dataList = [{ "title": "lbia中安的第10.1标","transferId": 31,"loanMonths": 12,"status": "TRANSFERING","interest": 10,"leftMonths": 11,"leftTransAmount": 9280.87,"initTransAmount": 9280.87,"loanId": 758881,"isBuyTransfer": 1},{ "title": "lbia中安的第10.1标","transferId": 11,"loanMonths": 12,"status": "TRANSFERING","interest": 10,"leftMonths": 11,"leftTransAmount": 9280.87,"initTransAmount": 9280.87,"loanId": 758881,"isBuyTransfer": 0}]//转让中
+//- - var dataList = [{ "monthlyInterest": 133,"termsInTotal": 3,"termsLeft": 3,"loanTitle": "理财人资金核算-勿投","amount": 19000,"share": 19000,"interest": 8.4,"repaymentType": "按月等额本息", "monthlyPrincipal": 6289.21, "monthlyRepay": 6422.21, "status": "还款中", "repaid": 0, "transfered": true, "isBuyTransfer": 1, "transferable": "1",  "loanId": 758963,"nextRepayDate": 1499345854000,"toRepay": 19266.62},{ "monthlyInterest": 133,"termsInTotal": 3,"termsLeft": 3,"loanTitle": "理财人资金核算-勿投","amount": 19000,"share": 19000,"interest": 8.4,"repaymentType": "按月等额本息", "monthlyPrincipal": 6289.21, "monthlyRepay": 6422.21, "status": "还款中", "repaid": 0, "transfered": true, "isBuyTransfer": 1, "transferable": "0",  "loanId": 761607,"nextRepayDate": 1499345854000,"toRepay": 19266.62}]
+each item, idx in dataList
+  - var _startTime = _.get(item, 'startTime') - 0
+  - var _now = _now || Date.now()
+  - var _loanremainTime = UIHelper.diffDate(_now, _startTime)
+  - var _loanprogress = _.get(item, 'progress') - 0
+  - var _loanmonthlyRepay = _.get(item, 'monthlyRepay', 0) - 0 || 0
+  - var _loanAmount = _.get(item, 'amount') - 0 || 0
+  - var _loanInterest = _.get(item, 'interest') - 0 || 0
+  - var _loanToRepay = _.get(item, 'toRepay') - 0 || 0
+  - var _loanPaidCardinal = _.get(item, 'termsLeft') - 0 || 0
+  - var _loanTermsInTotal = _.get(item, 'termsInTotal') - 0 || 0
+  - var _loanRepayMoney = _.get(item, 'repayMoney') - 0 || 0
+  - var _loanEarnMoney = _.get(item, 'earnMoney') - 0 || 0
+  - var _loanFinishTime = _.get(item, 'finishTime') || ''
+  - var _loanFinishType = _.get(item, 'finishType') || ''
+  - var _loanMonthlyInterest = _.get(item, 'monthlyInterest', 0) - 0 || 0
+  - var _loanMonthlyPrincipal = _.get(item, 'monthlyPrincipal', 0) - 0 || 0 
+  - var _loanTransferable = _.get(item, 'transferable', 0) - 0 || 0
+  - var _loanTransfered = _.get(item, 'transfered', 0) - 0 || 0
+  - var _isBuyTransfer = _.get(item, 'isBuyTransfer', 0) - 0 || 0
+  //- - var _isBuyTransfer = true
+  - var _loanTransferId = _.get(item, 'transferId', 0) - 0 || 0
+  - var _loanLeftMonths = _.get(item, 'leftMonths', 0) - 0 || 0
+  - var _loanMonths = _.get(item, 'loanMonths', 0) - 0 || 0
+  - var _loanInitTransAmount = _.get(item, 'initTransAmount', 0) - 0 || 0
+  - var _loanLeftTransAmount = _.get(item, 'leftTransAmount', 0) - 0 || 0
+  - var _hasAgreementFile = _.get(item, 'hasFile') || false
+  - var _agreementFilePath = _.get(item, 'filePath') || ''
+  tr.uc-tab-item.J_uc-tab-item
+    if _filter == 1
+      td.first 
+        if _isBuyTransfer
+          span.transfered 
+        else
+          span.none-transfer  
+        a(href='/loan/' + item.loanId) #{item.loanId}
+      td #{UIHelper.formatNumber(_loanAmount, 2)}
+      td #{UIHelper.formatNumber(_loanInterest, 2)}%
+      td #{_loanPaidCardinal} / #{_loanTermsInTotal}
+      td #{UIHelper.formatNumber(_loanToRepay, 2)}
+      td 
+        | #{UIHelper.formatNumber(_loanmonthlyRepay, 2)}
+        span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<p>本金："+ UIHelper.formatNumber(_loanMonthlyPrincipal, 2) +"元</p><p>利息："+ UIHelper.formatNumber(_loanMonthlyInterest, 2) +"元</p>")      
+      td #{UIHelper.formatdate('YYYY-MM-DD', item.nextRepayDate)}
+      td 
+        if _loanTransferable
+          a(href='/account/transfer/' + item.loanId) 转让
+        else
+          a.transferable 转让
+      td
+        if _hasAgreementFile
+          a(href='/account/loan/'+item.loanId+'/agreement') 合同
+        else
+          a 签章中
+      td
+        if _isBuyTransfer
+          a.J_dropdown.release(data-loanid=item.loanId, data-derail=0, data-filter=_filter, data-init=0) 
+    else if _filter == 2
+      td.first
+        a(href='/loan/' + item.loanId) #{item.loanId}
+      td #{UIHelper.formatNumber(_loanAmount, 2)}
+      td #{UIHelper.formatNumber(_loanInterest, 2)}%
+      td #{_loanTermsInTotal}
+      if _loanremainTime.day > 0
+        td #{_loanremainTime.day}天#{_loanremainTime.hour}小时
+      else if _loanremainTime.day == 0 && _loanremainTime.hour > 0
+        td #{_loanremainTime.hour}小时#{_loanremainTime.minute}分
+      else
+        td #{_loanremainTime.minute}分#{_loanremainTime.second}秒
+      td #{UIHelper.productProgress(_loanprogress)}%
+    else if _filter == 3
+        td.first 
+          a(href='/transfer/' + item.transferId) #{_loanTransferId}
+        td 
+          if _isBuyTransfer
+            span.transfered 
+          else
+            span.none-transfer 
+          a(href='/loan/' + item.loanId) #{item.loanId}
+        td #{UIHelper.formatNumber(_loanInterest, 2)}%
+        td #{_loanLeftMonths}/#{_loanMonths}
+        td #{UIHelper.formatNumber(_loanInitTransAmount, 2)}
+        td #{UIHelper.formatNumber(_loanLeftTransAmount, 2)}
+    else
+      td.first 
+        if _loanTransfered
+          span.transfered 
+        else
+          span.none-transfer  
+        a(href='/loan/' + item.loanId) #{item.loanId}
+      td #{UIHelper.formatNumber(_loanAmount, 2)}
+      td #{UIHelper.formatNumber(_loanInterest, 2)}%
+      td #{UIHelper.formatNumber(_loanRepayMoney, 2)}
+      td #{UIHelper.formatNumber(_loanEarnMoney < 0? 0: _loanEarnMoney, 2)}
+      td #{UIHelper.formatdate('YYYY-MM-DD', _loanFinishTime)}
+      td
+        if _hasAgreementFile
+          a(href='/account/loan/'+item.loanId+'/agreement') 合同
+        else
+          a 签章中
+      td #{_loanFinishType}  
+      td 
+        if _loanTransfered
+          a.J_dropdown.release(data-loanid=item.loanId, data-derail=0, data-filter=_filter, data-prime=0)
+tr        
+  td(colspan='9').uc-loan-list-page.page
+    include ./pager.ajax.pug   

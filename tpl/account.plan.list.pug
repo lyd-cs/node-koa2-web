@@ -1,0 +1,79 @@
+extend base
+
+block title
+  | 红利智投资产 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+  
+block content
+  - var _ucAssets = _.get(ucAsset, 'assets') - 0 || 0
+  - var _ucSumIncome = _.get(ucAsset, 'sumPlanInterest') - 0 || 0
+  - var _productDoingCount = _.get(ucAsset, 'currentPlanCount') - 0 || 0
+  - var _productDoneingCount = _.get(ucAsset, 'exitingCount') - 0|| 0
+  - var _productDoneCount = _.get(ucAsset, 'exitCount') - 0 || 0
+  - var _ucPlanCount = _productDoingCount + _productDoneingCount
+  //- - var dataList = true
+  include ./mod/account.nav.pug
+  .section
+    .uc-panel
+      .uc-panel-item
+        .uc-panel-header.uc-panel-header-plan
+          img(src='/img/account-loan-panel-property.png')
+          | 持有资产(元)
+        .uc-panel-body #{UIHelper.formatNumber(_ucAssets < 0? 0: _ucAssets, 2)}
+      .uc-panel-item
+        .uc-panel-header.uc-panel-header-plan
+          img(src='/img/account-loan-panel-moeny.png')
+          | 累计收益(元)
+        .uc-panel-body.uc-panel-active #{UIHelper.formatNumber(_ucSumIncome < 0? 0: _ucSumIncome, 2)}
+      .uc-panel-item.last
+        .uc-panel-header.uc-panel-header-plan
+          img(src='/img/account-loan-panel-touches.png')
+          | 当前持有(笔)
+        .uc-panel-body #{_ucPlanCount}
+    .uc-product-list#J_loan-wrap
+      include ./mod/account.plan.filter.nav.pug
+      .uc-block.uc-tabs-content.uc-tabs-table
+        - var _followListShowCurrentAsset = (query && (query.filter == 1)) || false
+        if dataList && dataList.length
+          table(cellspacing='0', cellpadding='0', width='100%').uc-product-list-tab
+            thead
+              tr
+                if _filter == 1
+                  th.first 产品名称
+                  th 加入金额(元)
+                  th.income 已获收益(元)
+                  th.rate 平均历史年化收益
+                  th 锁定期
+                  th.endtime 锁定期结束日期
+                  th 收益处理方式
+                  th 状态
+                  th 操作
+                else if _filter == 2
+                  th.first 产品名称
+                  th 加入金额(元)
+                  th 平均历史年化收益	
+                  th 锁定期
+                  th 待转让金额(元)
+                  th 收益处理方式                  
+                  th 退出方式
+                else
+                  th.first 产品名称
+                  th 加入金额(元)
+                  th 平均历史年化收益	
+                  th 锁定期
+                  th 回收金额(元)
+                  th 已赚收益(元)
+                  th 收益处理方式                  
+                  th 退出时间
+                  th 退出方式
+            tbody#J_plan-list-wrap
+              include ./mod/account.plan.list.pug
+        else
+          include ./mod/nothing.data.pug
+
+block foot-script
+  script.
+    app.accountPlan.init();

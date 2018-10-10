@@ -1,0 +1,21 @@
+if dataList.length != 0
+  table(cellpadding='0', cellspacing='0', width='100%').plan-detail-order
+    thead
+      tr
+        th 序号
+        th 出借人
+        th 加入金额(元)
+        th 加入时间
+    tbody
+      each item, idx in dataList
+        - var _index = _.get(item, 'index', 0);
+        - var _nickName = _.get(item, 'nickName', 0);
+        - var _joinTime = _.get(item, 'joinTime', 0);
+        - var _amount = _.get(item, 'amount', 0);
+        tr(class = {'plan-detail-order-item': (idx+1) !== dataList.length})
+          td #{_index}
+          td #{userName === _nickName ? _nickName.toLowerCase() : UIHelper.safeUserName(_nickName)}
+          td #{UIHelper.formatNumber(_amount, 2)}
+          td #{UIHelper.formatdate('YYYY-MM-DD HH:mm', _joinTime)}
+else
+  include ./nothing.data.pug

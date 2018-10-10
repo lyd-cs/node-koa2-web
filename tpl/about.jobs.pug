@@ -1,0 +1,36 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+  
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  .about-job#J_about-job
+    .section.case
+      - var list = [{'id': 1, 'title': '招贤纳士','name': '高级合规管理', 'dept': '法务合规部', 'place': '上海 外滩SOHO', 'duty':'<p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p><p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p>' },{'id': 2, 'title': '高级合规管理', 'name': '高级合规管理', 'dept': '法务合规部', 'place': '上海 外滩SOHO', 'duty':'<p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p><p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p>' },{'id': 3, 'title': '招贤纳士', 'name': '高级合规管理', 'dept': '法务合规部', 'place': '上海 外滩SOHO', 'duty':'<p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p><p>熟悉互联网金融领域，负责互联网金融产品研发设计以及全流程操作</p>' }]
+      h2.about-job-title 招贤纳士
+      .about-job-list
+        .nav-info
+          p.nav-info-name 职位
+          p.nav-info-dept 工作部门
+        .nav-info-place 工作地点
+      each item,idx in list
+        .job-item
+          .job-info.J_job-info
+            .job-info-left
+              p.job-name #{item.name}
+              p.new NEW
+              p.job-dept #{item.dept}
+            .job-place
+              i.fa.fa-map-marker.map
+              | #{item.place}
+          .condition.J_condition
+            .condition-item
+              img(src='/img/red_disc.png' class='condition-disc')
+              span.condition-describe 工作职责:
+              .condition-describe-list!= item.duty
+block foot-script
+  script.
+    app.aboutJobs.slider()

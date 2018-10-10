@@ -1,0 +1,90 @@
+.buy
+  $btn-base-color =  #4970a7
+  $btn-hover-color = #5d83ba
+  $buy-success-color = #7ED321
+  &-result
+    background: $white-color
+    min-height: 450px
+    margin: 20px auto 40px
+    text-align: center
+    padding-top: 80px 
+    h2
+      height: 40px
+      text-align: center
+      font-size: $font-size-huge
+      color: $gray-txt-light
+      margin: 50px auto 0
+      line-height: 40px
+    &-desc
+      color: $gray-txt-black
+      margin: 0
+      font-size: $font-size-middle
+    .success-icon
+      font-size: $font-size-h1
+      color: $buy-success-color
+      vertical-align: middle
+      margin-right: 10px
+      line-height: 40px
+    span
+      line-height: 40px
+    dt
+      display: inline-block
+      text-align: left
+      width: 180px
+      font-size: $font-size-middle
+      color: $gray-txt-black
+      font-weight: normal
+    dd
+      display: inline-block
+      width: 150px
+      font-size: $font-size-middle
+      text-align: right
+      color: $gray-txt-light
+    .result-info-list
+      margin-top: 40px  
+    .result-link
+      display: inline-block
+      width: 300px
+      height: 40px
+      border-radius: 2px
+      text-align: center
+      line-height: 40px
+      color: $white-color
+      margin: 70px 0 80px
+      font-size: $font-size-h4
+      background-color: $btn-base-color
+      &:hover
+        background-color: $btn-hover-color
+    .error
+      &-hint-font
+        font-size: $font-size-h1
+        color: $base-red-color
+        vertical-align: middle
+        margin-right: 10px
+        line-height: 40px
+    h5
+      text-align: center
+      color: $gray-txt-black
+      margin-top: 16px
+    .result-link
+      margin-top: 40px
+    .result-info-intro
+      width: 380px
+      margin: 0 auto
+      text-align: left
+      line-height: 24px
+      padding-left: 28px
+      position: relative
+      &:before
+        width: 18px
+        height: 18px
+        content: ' '
+        background: url('/img/prompt.png')
+        display: block
+        position: absolute
+        top: 3px
+        left: 0
+    &-btn
+      width: 300px
+      margin: 60px 0
+      line-height: 30px

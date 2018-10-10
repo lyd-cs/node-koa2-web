@@ -1,0 +1,36 @@
+extend base
+
+block title
+  | 2017运营年报 -
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  .about-sevenreport
+    .about-sevenreport-banner
+    .about-sevenreport-banner-desc
+    .section.about-sevenreport-content
+      .about-sevenreport-glance.report-title
+      .about-sevenreport-lender-title
+      .about-sevenreport-lender-age
+      .about-sevenreport-lender-sex
+      .about-sevenreport-lender-area
+      .about-sevenreport-lender-nice
+      .about-sevenreport-lender-loan-amount
+      .about-sevenreport-lender-loan-user.report-title
+      .about-sevenreport-borrow-title
+      .about-sevenreport-borrow-sex
+      .about-sevenreport-borrow-area
+      .about-sevenreport-borrow-use
+    .about-sevenreport-footer
+      .footer-qrcode
+        .qrcode-wrap.app-qrcode
+          img(src='/img/about-sevenreport-app-qrcode.png')
+          p APP下载二维码
+        .qrcode-wrap.weixin-qrcode
+          img(src='/img/about-sevenreport-footer-weixin-qrcode.png')
+          p 微信二维码
+
+block foot-script
+  script.
+    app.guideProfit.init();

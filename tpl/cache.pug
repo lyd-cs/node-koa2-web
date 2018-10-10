@@ -1,0 +1,11 @@
+h2
+  a(href='/purge/*') clear all
+if keys && keys.length
+  ol
+    each k in keys
+      li
+        a(href='/purge/'+ k) #{k}
+if key
+  h3
+    a(href='/purge/'+ key +'?act=del') #{key}
+  textarea(style='width:100%' rows="20") #{JSON.stringify(content)}

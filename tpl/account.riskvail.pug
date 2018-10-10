@@ -1,0 +1,45 @@
+extends base
+
+block title
+  | 风险测评 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+
+block content
+  - var _url = reurl
+  include ./mod/account.nav.pug
+  .section.uc-riskvail
+    h4 风险测评
+    span.uc-riskvail-skip 跳过
+    .uc-riskvail-content
+      form
+        p.uc-riskvail-content-info 
+          |尊敬的用户，您在购买红小宝平台任何产品前，需要完成评测问卷了解自身的风险承受能力，并每两年进行重新评估。本问卷旨在了解您可承受的风险程度、以及您的出借经验，借此协助您选择适合的产品类别，以达到您的预期目标。
+        - var question = [{ques_name:"您目前的人生阶段:",opt:["退休期（已退休）","退休前期（未退休，子女已参加工作）","家庭成长期（子女出生到完成大学教育）","家庭形成期（结婚到子女出生前）","单身期: (独身，无子女)"]},{ques_name:"您对投资价值波动的感觉是：",opt:["对任何波动都感到难以承受，不希望本金损失，可以接受较低收益","能够接受轻微波动，关心资产保值多于增值","能理解并接受“高收益意味着要承受投资波动”，愿意投资非保本型产品获得较高收益","尽管会担心投资价值的剧烈波动，但能够接受投资亏损","潜意识中追求高增长，同时能够坦然接受投资亏损"]},{ques_name:"如果您打算用部分资金做风险投资，投资A预期获得10%的收益，可能损失非常小；投资B预期获得30%的收益，但可能承担较大亏损。您会如何投资？",opt:["全部投资于收益较小且风险较小的A","同时投资于A和B，但大部分资金投资于收益较小且风险较小的A","同时投资于A和B，且两种资产各占一半","同时投资于A和B，但大部分资金投资于收益较大且风险较大的B","全部投资于收益较大且风险较大的B"]},{ques_name:"假设你投资了一只股票100000元, 但一个星期中亏了15%，你看不出是什么原因, 大盘也没有跌这么多, 你会怎么办?",opt:["清仓, 然后投入到一个波动小的标的中","卖掉一半","等着价格反弹再卖掉","什么都不做(觉得这是正常的)","补仓"]},{ques_name:"您目前的家庭财务状况属于哪一种？",opt:["有较大数额3年内到期的债务（房贷除外）","收支相抵后无结余","收入扣除支出后，剩余不多","收入稳定，每月有储蓄，可以投资","收入丰厚，每月有大量剩余资金可供投资"]},{ques_name:"您家庭现在持有的存款、银行理财、P2P、基金、股票等金融资产的总量为",opt:["10万以下","10-30万元","30-100万","100-300万","300万以上"]},{ques_name:"您投资最主要的目标是什么？",opt:["保险计划或将资产妥善地传承给下一代","储备退休养老的资金","为小孩准备的教育金","购置符合自己身份的房、车","创造更多的财富"]},{ques_name:"针对该目标，您的投资期限是多久？",opt:["一年及一年以内","一年以上三年以内","三年以上五年以内","五年以上十年以内","十年以上"]}]
+        .question-list
+          each item,idx in question
+            .uc-riskvail-question
+              h5.uc-riskvail-question-title 
+                span #{idx+1}
+                | #{item.ques_name}
+              each opt,num in item.opt  
+                li.uc-riskvail-question-option
+                  label
+                    input(type="radio",name="ques_num_"+idx,value=num+1)
+                    i #{opt}
+        button(type="button").btn-basic.uc-riskvail-btn-submit 提交
+      .modal.fade.skipmodal(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel")
+        .modal-dialog.uc-riskvail-modal
+          p.riskmodal-info 风险测评主要用于检测您的投资偏好
+          p.riskmodal-info 跳过评测将默认为
+            span “保守型”
+          .riskmodal-btn
+            a.riskmodal-btn-cancel 继续评测
+            a.riskmodal-btn-skip 确认跳过
+      .modal.fade#risk-result-modal
+
+block foot-script
+  script.
+    var _backUrl = '#{_url}';
+    app.accountRiskvail.init({url: _backUrl});

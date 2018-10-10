@@ -1,0 +1,64 @@
+extend base
+
+block title
+  | 提现记录 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+
+block content
+  include ./mod/account.nav.pug
+  //- - var dataList = [{applyTime:'1504103145000',arrivalTime: '1504103145000' ,cashAmount: '50000', 'cashDrawStatus': 'CASHDRAW_SUCCESS'},{applyTime:'1504103145000',arrivalTime: '1504103145000' ,cashAmount: '50000', 'cashDrawStatus': 'CASHDRAW_FAILED', logDesc: '余额不足'},{applyTime:'1504103145000',arrivalTime: '1504103145000' ,cashAmount: '50000', 'cashDrawStatus': 'NEW_APPLY'}]
+  .section.uc-setting
+    .uc-title
+      h4 提现记录
+      a.uc-skip(href='/account/withdraw') 提现 &gt;
+    if dataList && dataList.length
+      .uc-withdraw-list#J_withdraw-list
+        .withdraw-list-title
+          .item.item-time 申请时间
+          .item.item-amount 提现金额(元)
+          .item.item-status 状态
+          .item.item-summary 摘要
+        each item ,idx in dataList
+          - var _withdrawApplyTime = _.get(item, 'applyTime') - 0 || 0
+          - var _withdrawCashAmount = _.get(item, 'cashAmount') - 0 || 0
+          - var _withdrawListStatus = _.get(item, 'cashDrawStatus') || ''
+          - var _withdrawArrivalTime = _.get(item, 'arrivalTime') - 0 || 0
+          - var _withdrawLogDesc = _.get(item, 'logDesc') || ''
+          - var _isSuccess = _withdrawListStatus === 'CASHDRAW_SUCCESS' ? true : false
+          - var _isFailed = _withdrawListStatus === 'CHECK_ERROR' || _withdrawListStatus === 'REFUND_RECHARGED' || _withdrawListStatus === 'REJECTED' || _withdrawListStatus === 'CASHDRAW_FAILED' ? true : false
+          .withdraw-list-body
+            .item.item-time #{UIHelper.formatdate('YYYY-MM-DD HH:mm:ss', _withdrawApplyTime)}
+            .item.item-amount #{UIHelper.formatNumber(_withdrawCashAmount,2)}
+            if _isSuccess
+              .item.item-status.item-withdraw-success 提现成功
+              .item.item-summary #{UIHelper.formatdate('YYYY-MM-DD', _withdrawArrivalTime)} 到账成功
+            else if _isFailed
+              .item.item-status.item-withdraw-fail 提现失败
+              .item.item-summary #{_withdrawLogDesc?_withdrawLogDesc:'银行账户信息有误'}
+            else
+              .item.item-status 银行处理中
+              .item.item-summary.item-progress 
+                a.examine 查看进度
+                  span.dropdown
+          if !_isSuccess && !_isFailed
+            .withdraw-list-progress(data-show='0')
+              .item-progress.active
+                span 1
+                | 提现申请
+              .item-progress.active
+                span 2
+                | 银行处理中
+              .item-progress
+                span 3
+                | 提现到账
+                .predict 预计#{UIHelper.formatdate('YYYY-MM-DD', _withdrawArrivalTime)}到账
+      include ./mod/pagination.pug
+    else
+      include ./mod/nothing.data.pug            
+
+block foot-script
+  script.
+    app.accountWithdrawList.init();
+        

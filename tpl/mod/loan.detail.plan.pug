@@ -1,0 +1,22 @@
+if refundPlan && refundPlan.length != 0
+  table(cellpadding='0', cellspacing='0', width='100%')
+    thead
+      tr
+        th 序号
+        th 还款日期
+          span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="为预计还款日期，实际还款日期以到账日期为准")
+        th 还款金额(元)
+        th 状态
+    tbody
+      each item, idx in refundPlan
+        - var _loanDetailRefundDate = _.get(item, 'dueDate', 0) - 0 || 0
+        - var _loanDetailRefundAmount = _.get(item, 'amount') - 0 || 0
+        - var _loanDetailRefundStatus = _.get(item, 'status') || ''
+        - var _loanDetailRepaidType = _.get(item, 'repaidType') || ''
+        tr(class={'normal':_loanDetailRepaidType==='COMMON_REPAY'|| _loanDetailRepaidType==='IN_REPAY'}, class={'last-no-border':(idx+1) == refundPlan.length})
+          td #{idx+1}
+          td #{UIHelper.formatdate('YYYY-MM-DD', _loanDetailRefundDate)}
+          td #{UIHelper.formatNumber(_loanDetailRefundAmount, 2)}
+          td #{_loanDetailRefundStatus == 'UNREPAID'? '未还款' : UIHelper.parseLoanRepaidType(_loanDetailRepaidType)}
+else
+  include ./nothing.data.pug

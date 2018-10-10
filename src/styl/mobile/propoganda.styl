@@ -1,0 +1,578 @@
+.propoganda
+  $propoganda-orange = #F3B85B
+  $propoganda-orange-light = #FCEFDA
+  $propoganda-brown = #7B6651
+  $register = #F55151
+  $register-red = #F95A5A
+  $register-input =#F2D6B8
+  $register-input-border = #F6CD8C
+  $register-input-bg = #FFFEF0
+  $register-agreement = #B1814D
+  &-body
+    padding: 0
+    margin: 0 auto
+  vertical-align: invert()
+  &-page
+    padding: 0 1rem
+    overflow: hidden
+    .fp-tableCell
+      vertical-align: inherit
+    .register-now
+      position: absolute
+      bottom: 1rem
+      right: 0.7rem
+      color: $register
+      font-size: $font-size-small
+  &-introduce
+    padding: 0
+    &-poster
+      width: 100%
+      height: 100%
+  &-title
+    font-size: $font-size-huge
+    color: $propoganda-orange
+    text-align: center
+    line-height: 1
+    margin-top: 2.85rem
+    margin-bottom: .85rem
+    font-weight: normal
+  &-product
+    background: url('/img/propoganda-bottom-bg.png') center bottom no-repeat
+    background-size: contain
+    &-introduce
+      font-size: $font-size-large
+      color: $propoganda-brown
+      text-align: center
+      line-height: 1
+      margin-bottom: 1.87rem
+      margin-top: 0
+    &-type
+      width: 100%
+      margin-bottom: 2rem
+    &-tip
+      margin: 0
+      font-size: $font-size-small
+      color: $propoganda-brown
+      text-align: center
+  &-secure
+    &-process
+      display: block
+      width: 80%
+      margin: 0 auto
+    &-title
+      font-size: $font-size-large
+      color: $propoganda-brown
+      margin-top: 2rem
+      margin-bottom: 0
+      line-height: 1
+      font-weight: normal
+    &-text
+      font-size: $font-size-small
+      color: $propoganda-brown
+      margin-top: 0.7rem
+      margin-bottom: 0
+  &-safety
+    background: url('/img/propoganda-sheild.png') center center no-repeat,
+                url('/img/propoganda-bottom-bg.png') center bottom no-repeat
+    background-size: contain
+    &-technology
+      display: flex
+      align-items: center
+      margin-top: 3.5rem
+      margin-left: 0.3rem
+      img
+        width: 2rem
+        margin-right: 1rem
+      .geotrust
+        width: 6.4rem
+      p
+        flex: 1
+        margin: 0
+        color: $propoganda-brown
+  &-riskcontrol
+    &-introduce
+      margin-top: 1.87rem
+      margin-bottom: 0
+      font-size: $font-size-small
+      color: $propoganda-brown
+    &-system
+      width: 100%
+      display: block
+      margin: 0 auto
+    &-cooperate
+      font-size: $font-size-large
+      font-weight: normal
+      color: $propoganda-orange
+      margin-top: 0
+    .meilin-logo
+      width: 7.7rem
+      float: left
+    .tongdun-logo
+      width: 6.25rem
+      float: right
+    .zixin-logo
+      width: 12.37rem
+      float: left
+      margin-top: 1.87rem
+    .zhengxin-logo
+      width: 5.5rem
+      float: right
+      margin-top: 1.87rem
+      margin-right: 0.63rem
+  &-disperse
+    background: url('/img/propoganda-disperse-bg.png') top center no-repeat,
+                url('/img/propoganda-bottom-bg.png') center bottom no-repeat
+    background-size: contain
+    &-system
+      display: block
+      width: 80%
+      margin: 1.87rem auto 3.12rem
+    &-introduce
+      position: relative
+      font-size: $font-size-small
+      color: $propoganda-brown
+      padding-left: 1.37rem
+      margin-bottom: 1.87rem
+      &:before
+        content: ''
+        display: block
+        height: 0.75rem
+        width: 0.75rem
+        position: absolute
+        top: 0.25rem
+        left: 0
+        background: url('/img/propoganda-arrow-text.png') no-repeat
+        background-size: contain
+  &-receive
+    background: url('/img/propoganda-receive-bg.png') center top no-repeat,
+                url('/img/propoganda-bottom-bg.png') center bottom no-repeat
+    background-size: contain
+    &-subtitle
+      font-size: $font-size-large
+      color: $propoganda-orange
+      margin-top: 2.1rem
+      font-weight: normal
+    &-manage-header
+      color: $propoganda-orange
+      font-weight: normal
+      margin-left: 0.625rem
+      margin-bottom: 0.5rem
+      padding-left: 1.75rem
+      position: relative
+      &:before
+        content: ''
+        height: 1rem
+        width: 1rem
+        display: block
+        background: $propoganda-orange-light
+        border-radius: 50%
+        position: absolute
+        left: 0
+        top: 0.2rem
+      &:after
+        content: ''
+        height: 0.5rem
+        width: 0.5rem
+        display: block
+        border-radius: 50%
+        background: $propoganda-orange
+        position: absolute
+        left: 0.25rem
+        top: 0.45rem
+    &-manage-text
+      font-size: $font-size-small
+      color: $propoganda-brown
+      margin-left: 1rem
+      padding: 0.2rem 0 0.2rem 1.25rem
+      border-left: 0.13rem solid $propoganda-orange
+    &-guaranteen
+      font-size: $font-size-small
+      color: $propoganda-brown
+      margin-left: 1rem
+  &-legal
+    background: url('/img/propoganda-legal-bg.png') center center no-repeat,
+                url('/img/propoganda-legal-bottom-bg.png') center bottom no-repeat
+    background-size: contain
+    &-type
+      margin-top: 2.3rem
+      margin-bottom: 3.1rem
+      display: flex
+      align-items: center
+      &-logo
+        height: 6.25rem
+      &-introduce
+        flex: 1
+        position: relative
+        padding-left: 2.5rem
+        font-size: $font-size-small
+        color: $propoganda-brown
+        &:before
+          content: ''
+          display: block
+          height: 0.75rem
+          width: 0.75rem
+          position: absolute
+          top: 0.25rem
+          left: 1rem
+          background: url('/img/propoganda-arrow-text.png') no-repeat
+          background-size: contain
+  &-achievement
+    background: url('/img/propoganda-achievement-bottom.png') center bottom no-repeat
+    background-size: contain
+    .fp-tableCell
+      display: block
+      overflow-y: auto
+    &-map
+      width: 100%
+      height: 13.9rem
+      margin: 1.25rem auto 0
+      overflow: hidden
+      background: url('/img/propoganda-map.png') center center no-repeat
+      background-size: contain
+    &-slogen
+      font-size: $font-size-small
+      color: $propoganda-brown
+      text-align: center
+      display: block
+      padding: 1rem 0
+      background: rgba(255,255,255,0.71)
+      margin-top: 5.75rem
+    &-menber
+      display: flex
+      margin-top: 1.25rem
+      align-items: center
+      &-logo
+        height: 2.5rem
+        margin-left: 0.62rem
+      &-introduce
+        font-size: $font-size-large
+        color: $propoganda-brown
+        flex: 1
+        margin: 0
+        margin-left: 1.25rem
+  &-register
+    padding: 0
+    .fp-tableCell
+      position: relative
+    &-poster
+      width: 100%
+      margin-bottom: 1.25rem
+    &-slogen
+      background: url('/img/propoganda-register-slogen-bg.png') center center no-repeat
+      background-size: contain
+      height: 6.65rem
+      max-width: 23.125rem
+      margin: 0 auto
+      margin-top: 1rem
+      overflow: hidden
+      display: flex
+      span
+        flex: 1
+        margin-top: 4.1rem
+        font-size: $font-size-small
+        color: $propoganda-orange
+        text-align: center
+      &-deposit
+        margin-left: 0.75rem
+      &-guranteen
+        margin-right: 0.75rem
+    &-copyright
+      font-size: $font-size-tiny
+      color: $propoganda-orange
+      text-align: center
+      width: 100%
+      position: absolute
+      bottom: 1rem
+    .fp-tableCell
+      overflow-y: auto
+      display: block
+    .register-form
+      width: 18.75rem
+      margin: 0 auto
+      position: relative
+    .form-group
+      position: relative
+      margin-bottom: 0.63rem
+      display: flex
+    .user-register-icon
+      position: absolute
+      top: 50%
+      margin-top: -0.6rem
+      height: 1.25rem
+      width: 1.25rem
+      left: 1rem
+      .mobile
+        width: 1rem
+        height: 1.25rem
+      .captcha
+        width: 1.13rem
+      .smscode
+        width: 1.13rem
+      .password
+        width: 1rem
+    .form-control
+      height: 2.5rem
+      width: 18.75rem
+      padding-left: 2.87rem
+      border: 0.07rem solid $register-input-border
+      background: $register-input-bg
+      border-radius: 0.3rem
+      line-height: 2.5rem
+      &.error
+        border-color: $register-red
+      &::-webkit-input-placeholder
+        color: $register-input
+    .control-smscode
+      width: 12.5rem
+    .control-captcha
+      width: 80px
+      overflow: hidden
+    .verifycode-img
+      user-drag: none
+      user-select: none
+      border: none
+      border-style: none
+      border-radius: 0
+      outline: 0
+      margin-left: 0.63rem
+    .verifycode-button
+      flex: 1
+      background: $register-input-border
+      border-radius: 0.3rem
+      border: none
+      font-size: $font-size-small
+      height: 2.5rem
+      padding: 0
+      margin-left: 0.63rem
+      color: $white-color
+    .form-submit
+      margin: 3rem 0 0 0
+      position: relative
+      &-button
+        background: $register-input-border
+        color: $white-color
+        font-size: $font-size-huge
+        width: 18.75rem
+        line-height: 2.5rem
+        text-align: center
+        border: none
+        border-radius: 0.3rem
+        margin-bottom: 0.3rem
+        &:disabled
+          background: $text-gray
+      &-checkbox
+        margin: 0.15rem 0.25rem 0 0
+      &-agree
+        color: $register-input-border
+        font-size: $font-size-small
+        a
+          color: $register-agreement
+    .error-label-container
+      position: absolute
+      bottom: 3.2rem
+      left: 0
+      width: 100%
+      text-align: center
+      color: $register-red
+      list-style: none
+    .error-submit-container
+      position: absolute
+      bottom: 4.3rem
+      left: 0
+      width: 100%
+      text-align: center
+      color: $register-red
+    .btn
+      $btn-red-bg = #f0544c
+      $btn-yellow-bg = #fdae49
+      &-red
+        background: $btn-red-bg
+        color: $white-color
+      &-lighter
+        background: $btn-yellow-bg 
+        color: $white-color
+  &-header-poster
+    background: url('/img/propoganda-header-bg.png') center top no-repeat
+    background-size: contain
+    overflow: hidden
+    &-icon
+      height: 6.75rem
+      width: 6.75rem
+      position: relative
+      background: $white-color
+      margin: 6.25rem auto 2rem
+      padding: 0.63rem
+      border-radius: 50%
+      box-shadow: 0 0 0.5rem $gray-txt-black
+      .success
+        height: 5rem
+        width: 5rem
+        position: absolute
+        margin: -2.5rem 0 0 -2.5rem
+        top: 50%
+        left: 50%
+      .logo
+        width: 5.26rem
+        height: 1.62rem
+        position: absolute
+        margin: -0.81rem 0 0 -2.63rem
+        top: 50%
+        left: 50%
+  &-result
+    width: auto
+    &-welcome
+      color: $register-input-border
+      margin-top: 0
+      margin-bottom: 0.63rem
+      line-height: 1
+      text-align: center
+    &-slogen
+      display: block
+      width: 18.75rem
+      margin: 2.8rem auto 5.6rem
+    &-download
+      display: block
+      margin: 0 auto
+      width: 12rem
+      height: 2.5rem
+      line-height: 2.5rem
+      border-radius: 0.3rem
+      background: $register-input-border
+      &.link
+        color: $white-color
+      &-icon
+        height: 1.5rem
+        vertical-align: top
+        margin: 0.5rem 1rem 0 1.5rem
+    .register-errors
+      list-style: none
+      text-align: center
+      padding: 0
+      font-size: $font-size-huge
+      color: $register-red
+  &-get-qrcode
+    width: auto
+    &-form
+      position: relative
+      overflow: hidden
+    &-input
+      display: block
+      margin: 1rem auto 0.3rem
+      height: 2.5rem
+      width: 18.75rem
+      text-align: center
+      border: 0.07rem solid $register-input-border
+      background: $register-input-bg
+      border-radius: 0.3rem
+      line-height: 2.5rem
+      &::-webkit-input-placeholder
+        color: $register-input
+    &-btn
+      background: $register-input-border
+      color: $white-color
+      font-size: $font-size-huge
+      display: block
+      height: 2.5rem
+      width: 18.75rem
+      line-height: 2.5rem
+      text-align: center
+      border: none
+      border-radius: 0.3rem
+      margin: 0 auto 3.25rem
+    &-tip
+      font-size: $font-size-small
+      color: $register-agreement
+      margin-top: 0
+      margin-bottom: 0.8rem
+      padding-left: 2rem
+    .help-inline
+      height: 1rem
+      margin-bottom: 0.5rem
+      text-align: center
+      color: $register-red
+    .errors
+      list-style: none
+      padding: 0
+      width: 100%
+      text-align: center
+      color: $register-red
+      position: absolute
+      bottom: 5rem
+  &-qrcode-result
+    padding-bottom: 2rem
+    &-container
+      background: url('/img/propoganda-qrcode-bg-0123.png') center top no-repeat
+      background-size: cover
+      overflow: hidden
+      width: 100%
+      height: 29.5rem
+      margin-bottom: 2.75rem
+    &-number
+      margin-top: 12.5rem
+      color: $white-color
+      font-size: $font-size-small
+      text-align: center
+    &-img
+      height: 10.5rem
+      width: 10.5rem
+      display: block
+      margin: 0 auto
+    &-scan
+      color: $white-color
+      font-size: $font-size-small
+      text-align: center
+      margin-top: 0.8rem
+    &-link
+      width: 18.75rem
+      height: 2.5rem
+      line-height: 2.5rem
+      display: block
+      color: $propoganda-orange
+      border: 0.07rem solid $propoganda-orange
+      margin: 0 auto 1.25rem
+      text-align: center
+      border-radius: 0.3rem
+      &.realize
+        color: $propoganda-orange
+        border: 0.07rem solid $propoganda-orange
+      &.register
+        color: $white-color
+        background: $propoganda-orange
+@media screen and (max-width: 360px)
+  .propoganda
+    &-title
+      margin-top: .85rem
+    &-secure
+      &-title
+        margin-top: 1rem
+    &-safety-technology
+      margin-top: 2rem
+    &-riskcontrol
+      &-introduce
+        margin-top: 1rem
+      &-cooperate
+        margin-bottom: 0.8rem
+      .zixin-logo
+        margin-top: 0.8rem
+        width: 10.3rem
+      .zhengxin-logo
+        margin-top: 0.8rem
+    &-receive
+      &-subtitle
+        margin-top: 1rem
+        margin-bottom: 1rem
+      &-manage-header
+        margin-top: 0.7rem
+      &-manage-text
+        margin-top: 0.7rem
+        margin-top: 0.7rem
+    &-legal-type
+      margin-top: 1.5rem
+      margin-bottom: 0
+      &-introduce
+        margin: 0
+    &-achievement
+      &-map
+        height: 12rem
+      &-menber
+        margin-top: 0.8rem

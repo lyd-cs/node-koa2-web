@@ -1,0 +1,74 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  .about-safety
+    .section.case
+      .about-safety-system-title
+        h3 安全保障
+        p Security System
+      .about-safety-deposit.about-safety-content
+        h3.about-safety-title 银行存管
+        .about-safety-wrap
+          p.about-safety-left.about-safety-deposit-text 2017年8月，红小宝平台恒丰银行存管系统正式上线。恒丰银行存管系统上线后，按照监管部门的要求，将为红上的客户在红小宝平台上的交易提供集实名认证、支付结算、资金存管等多项功能于一体的金融服务，并对全交易流程进行核查，使借贷双方的债权关系清晰明确，保障用户资金安全。
+          img(src='/img/about-safety-bank-deposit.png').about-safety-right.about-safety-deposit-img
+      .about-safety-info.about-safety-content
+        h3.about-safety-title 信息安全保障
+        .about-safety-info-ensure
+          .about-safety-develop.about-safety-wrap.info-wrap
+            .about-safety-info-content.about-safety-left
+              h4.info-title 开发建设、维护情况
+              p.info-text 平台系统定期维护，实时跟踪服务器的健康状况，升级维护严格执行系统升级维护流程，确保变更请求、变更受理、变更审批、变更实施等各个环节可控。
+            .info-line
+            img(src='/img/about-safety-pic-develop.png').about-safety-right.about-safety-info-img.about-safety-info-small-img
+          .about-safety-intent.about-safety-wrap.info-wrap
+            .about-safety-info-content.about-safety-right
+              h4.info-title 信息安全情况
+              p.info-text 网站和APP由自有专业技术团队开发，在信息安全和数据安全方面有着非常丰富的经验，拥有基于大数据的统一监控/告警/分析系统，能实时感知业务/应用/系统运行状态并及时反馈。在信息安全和数据安全方面有着非常丰富的经验，让您享受高级别的安全保障，确保交易数据安全。
+            .info-line
+            img(src='/img/about-safety-pic-safety.png').about-safety-left.about-safety-info-img
+          .about-safety-backups.about-safety-wrap.info-wrap
+            .about-safety-info-content.about-safety-left
+              h4.info-title 数据存储、备份情况
+              p.info-text 采取各种合适的物理、电子和管理方面的措施来存储数据，有效避免重要信息被篡改以及删除。
+            .info-line
+            img(src='/img/about-safety-pic-date.png').about-safety-right.about-safety-info-img
+      .about-safety-organ.about-safety-content
+        h3.about-safety-title 合作机构情况
+        .about-safety-wrap
+          ul.about-info-content-cooperate
+            li
+              img(src='/img/partners-hengfeng-bank.png')
+              .cooperater-info
+                h4 恒丰银行
+                p 恒丰银行股份有限公司，是12家全国性股份制商业银行之一。目前，在全国设有18家一级分行，共306家分支机构；另外还发起设立了5家村镇银行。全国布局正在加速，大量分支行和子公司正在筹建开业，同时快速拓展海外业务和设立海外分支机构。截止2016年年底，恒丰银行总资产达1.2万亿，各方面实现了高速跨越式增长。恒丰银行先后跻身“亚洲银行竞争力排名30强”、“中国企业500强”、“全球银行1000强”，在英国《银行家》杂志发布的“2016年全球银行1000强”排名中，位列第143位，正在向世界一流银行大步迈进。
+            li
+              img(src='/img/partners-financial-auth.png')
+              .cooperater-info
+                h4 中国金融认证公司
+                p 中国金融认证中心（China Financial Certification Authority，简称CFCA）是经中国人民银行和国家信息安全管理机构批准成立的国家级权威安全认证机构，是国家重要的金融信息安全基础设施之一。在《中华人民共和国电子签名法》颁布后，CFCA成为首批获得电子认证服务许可的电子认证服务机构。
+            li
+              img(src='/img/partners-halfpenny.png')
+              .cooperater-info
+                h4 中国小额信贷联盟
+                p 中国小额信贷联盟，简称联盟，英文名称：China Association of Microfinance (CAM)，其前身是“中国小额信贷发展促进网络”，是中国小额信贷领域最早的全国性会员制协会组织。其引进并推动的普惠金融理念已经写入十八届三中全会决议，并成为国务院在金融改革领域的重点工作。联盟坚持农村金融领域实践，支持公益小额信贷机构发展，得到各方面赞赏。联盟率先在国内成立互联网P2P行业自律委员会，在普惠金融和小额信贷领域具有广泛的影响力。
+            li
+              img(src='/img/partners-meritdata.png')
+              .cooperater-info
+                h4 美林数据
+                p 美林数据技术股份有限公司（简称：美林数据，NEEQ：831546）是国内知名的工业大数据领军企业，重点面向智能电网、智能制造等工业领域企业客户，提供包括大数据产品与技术服务在内的大数据增值解决方案。作为“中国大数据企业50强”，公司积极携手广大优秀厂商及行业客户，共同推动国家工业大数据行业标准的制定，致力于利用大数据技术推动中国工业实现转型升级。
+            li
+              img(src='/img/partners-shcredit.png')
+              .cooperater-info
+                h4 上海资信有限公司
+                p 成立于1999年7月的上海资信有限公司是上海目前唯一一家融个人征信系统与企业征信系统为一体、既从事征信数据库建设又提供个人征信与企业征信服务的专业化机构。在公司发展过程中先后得到了两任国务院总理的亲切关怀 ，得到人民银行与上海市政府的大力支持。
+            li
+              img(src='/img/partners-netpay.png')
+              .cooperater-info
+                h4 网易支付
+                p 网易支付是网易公司为方便用户进行网上交易推出的安全、稳定、快捷的在线支付平台，为用户提供了多种方便的在线充值、交易管理、在线支付帐户管理、代收、提现等服务。

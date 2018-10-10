@@ -1,0 +1,69 @@
+extend base
+
+block title
+  | 解绑银行卡 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+
+block content
+  - var _query = query || {}
+  - var _userBankCardId = _.get(userCard, 'cardId', '')
+  - var _bankCode = _.get(userCard, 'bankCode', '') 
+  - var _bankName = _.get(userCard, 'bankType', '')
+  - var _realName = _.get(userCard, 'name', '')
+  include ./mod/account.nav.pug
+  .section.uc-unbindcard
+    if isResult == 'success'
+      .uc-unbindresult
+        h2 解绑成功
+        .buy-result-desc 您已成功解绑尾号#{UIHelper.reBankCardSlice(_userBankCardId, 2)}的银行卡
+        a(href='/account/bank/add').btn.uc-unbindresult-sub-btn.uc-unbindresult-new-card 绑定新卡
+        a(href='/account').btn.uc-unbindresult-sub-btn.uc-unbindresult-myaccount.uc-unbindresult-margin  返回我的账户
+    else if isResult == 'error'
+      .uc-unbindresult.icon-unbind-error
+        h2 解绑失败
+        .buy-result-desc #{orderMessage}
+        a(href='/account').btn.uc-unbindresult-sub-btn.uc-unbindresult-myaccount  返回我的账户
+    else
+      .uc-title   
+        h4 解绑银行卡
+      if errors
+        .alert-danger
+          include ./mod/error.pug
+      form.form-horizontal.uc-form.uc-unbindcard-from#J_unbindCard(method='post')
+        .form-group.form-line
+          label.control-label 银行卡
+          .uc-trad-password-form-title
+          span.item-buy-icon.bank-logo(class='buy-bank-logo-' + _bankCode)
+          | #{_bankName}(#{UIHelper.reBankCardSlice(_userBankCardId, 2)})
+        .form-group
+          label.control-label 持卡人
+          .uc-trad-password-form-title #{UIHelper.safeRealname(_realName)}
+        .form-group
+          label.control-label 身份证号
+          .control-content.uc-withdraw-cash
+          input#J_unbindCard-cardNo.form-control.unbind-cardno(type='text',name='identityNo', maxlength='18', autocomplete='off', placeholder='身份证号', value=_query.idNo)
+          .help-inline
+        .form-group
+          label.control-label 交易密码
+          .control-content.uc-withdraw-cash
+          input#J_unbindCard-cardPass.form-control.unbind-password(type='password', name='tradPassword', maxlength='6', autocomplete='off', placeholder='交易密码', value='')
+          a.uc-unbindcard-findpass(href='/account/trad/password') 忘记密码？
+          .help-inline
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='_userBankCardId', value=_userBankCardId)
+            input(type='hidden', name='_bankName', value=_bankName)
+            button.btn.btn-basic.charge-btn#J_unbindCard-submit(type='submit') 提交  
+     
+  
+block foot-script
+  script.
+    app.accountUnbind.init({
+      form: '#J_unbindCard',
+      trigger: '#J_unbindCard-submit',
+      identityNo: '#J_unbindCard-identityNo',
+      tradPassword: '#J_unbindCard-tradPassword'
+    });

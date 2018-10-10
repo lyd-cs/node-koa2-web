@@ -1,0 +1,68 @@
+extends base
+
+block title
+  | 注册 - 
+
+block header
+  .header.landing-signup-header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+      .service-tel 客服电话：400-1552-888
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))
+
+block content
+  - var productDetail = [{title: '红利智投', rate: '7.0', months: '3', investMin: '1000'}, {title: '红利智投', rate: '10.8', months: '12', investMin: '1000'}]
+  - var _signupQuery = signupQuery || {}
+  - var _recommendList = planList || [{lockPeriod: 1,expectedRate: '5.8'},{lockPeriod: 3,expectedRate: '6.5'},{lockPeriod: 6,expectedRate: '7.5'},{lockPeriod: 12,expectedRate: '9.6'}]
+  - var _landingSignupFormButtonText = '注册领取1600元京东卡'
+  .landing-jdcard-signup
+    .signup-banner
+      include ./mod/landing.signup.form.pug
+    .welfare
+      .welfare-content
+        .welfare-title
+        .sub-title 1600元京东卡等你拿
+        .welfare-list
+          .welfare-item.welfare-item-first 
+            span 20元京东卡
+          .welfare-item.welfare-item-second 
+            span 80元京东卡
+          .welfare-item.welfare-item-third 
+            span 200元京东卡
+          .welfare-item.welfare-item-fourth 
+            span 400元京东卡
+          .welfare-item.welfare-item-last 
+            span 900元京东卡
+    .red-packet
+    .landing-signup-product
+      .product-content
+        .product-title
+        .sub-title 锁定期结束可随时退出，退出前持续享受收益
+        include ./mod/landing.plan.pug
+    include ./mod/landing.platform.pug
+    .receive-packet
+      #J_icon-scroll-top.receive-button 立即领取1600元京东卡
+
+block footer
+  .footer.user-operate-footer
+    .container.landing-signup-footer-copyright
+      include ./mod/footer.copyright.pug
+block foot-script
+  - var _isJdActive = true
+  script.
+    app.userSignup.init({
+      form: '#J_user-signup-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      captcha: '#J_graphicCode',
+      captchaimg: '#J_graphicCode_container',
+      trigger: '#J_verifycode',
+      captchaholder: '.J_form-group-graphicCode',
+      smscode: '#J_smscode',
+      signupSuccess: #{_isSignupSuccess || 0},
+      isJdActive: #{_isJdActive || false}
+    });
+    app.backTopAction.goTop();

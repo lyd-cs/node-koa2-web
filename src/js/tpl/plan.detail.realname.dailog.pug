@@ -1,0 +1,11 @@
+#J_planDetailRealnameModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+  .modal-dialog.user-signup-realname-modal(role="document")
+    
+    .modal-content
+      .modal-header.realname-modal-header
+        button.close.btn-custom(type="button",data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body.realname-modal-body
+        h3.realname-modal-title 未实名认证，请先实名认证再出借！
+      .modal-footer.realname-modal-footer
+        a(href="/account/secure").realname-modal-footer-btn.btn-primary 去认证

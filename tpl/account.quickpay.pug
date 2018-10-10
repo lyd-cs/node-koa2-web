@@ -1,0 +1,100 @@
+extend base
+
+block title
+  | 快捷充值 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  - var _bankTips = bankTips
+  - var _query = query || {}
+  - var pageErrors = {}
+  - var _bankCode = _.get(userCard, 'bankCode') || ''
+  - var _bankCardId = _.get(userCard, 'cardId') || ''
+  - var _reservedMobile = _.get(userCard, 'mobile') || ''
+  - var _bankItem = _bankTips[_bankCode]
+  - var _bankSingleQuota = _.get(_bankItem, 'single') || 0
+  - var _bankDayQuota = _.get(_bankItem, 'day') || 0
+  - var _step = step || 'nextStep'
+  - var _isHasBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _isAllPassed = _isCreateAccount && _userIsCashPasswordPassed && !_userIsBindCard
+  include ./mod/account.nav.pug
+  .section.uc-setting.uc-chargeall
+    ul.tab-bar
+      li.item-nav-quickpay.active
+        a(href='/account/quickpay') 快捷充值
+      li.last-tabs
+        a(href='/account/charge') 网银充值  
+
+    .item-list-detail.tab-content.tab-card-ebank.J_user-tab
+    if _isAllPassed
+      .uc-bindbank
+        h2 尚未绑卡
+        .bindbank-tip 请绑定银行卡后再进行充值操作
+        a(href='/account/bank/add').btn.bindbank-sub-btn.bindbank-new-card 去绑卡
+    else
+      if errors
+        .alert-danger
+          include ./mod/error.pug
+      if _step == 'nextStep'
+        form.form-horizontal.uc-form.uc-quickpay#J_quickpay(method='post')
+          .form-group
+            label.control-label 可用金额
+            .uc-mobile-form-title.uc-banlance-title #{UIHelper.formatNumber(accountAvailableBalance, 2)}元
+          .form-group
+            label.control-label 银行卡
+            .uc-bind-card
+              .uc-bind-card-logo.bank-icon(class='bank-icon-' + _bankCode)
+              .uc-bind-card-txt #{UIHelper.safeBank(_bankCardId)}
+              .uc-bind-card-quota #{UIHelper.limitShow(_bankItem, true)}
+              .bank-largelogo(class='bank-largelogo-' + _bankCode)
+          .form-group
+            label.control-label 充值金额
+            .control-content.uc-withdraw-cash
+              input#J_quickpay-amount.form-control.charge-amount(class= pageErrors.amount ? 'form-errors' : '', type='text', name='amount', maxlength='11', autocomplete='off', placeholder='充值免手续费', value=_query.qamount)
+              span 元
+          .form-group.form-group-button
+            .control-content
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='step', value='nextStep')
+              button.btn.btn-basic.charge-btn#J_quickpay-btn(type='submit') 下一步
+      else if _step == 'confirm'
+        form.form-horizontal.uc-form.uc-quickpay#J_quickpay(method='post')
+          .form-group
+            label.control-label 充值金额
+            .uc-mobile-form-title.uc-banlance-title #{UIHelper.formatNumber(amount, 2)}元
+          .form-group
+            label.control-label 预留手机号
+            .uc-mobile-form-title #{UIHelper.safeMobile(_reservedMobile)}
+          .form-group
+            label.control-label 短信验证码
+            .control-content
+              input#J_smscode.control-smscode.form-control.form-smscode.uc-quickpay-smscode(type='text', autocomplete='off', name='smscode', placeholder='手机验证码', value=_query.newsmscode, data-amount = UIHelper.formatNumber(amount, 2), data-mobile = _reservedMobile, data-orderid = '0', maxLength='6')
+              button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+            //- .user-voice
+            //-   .voice-verifycode 若您未收到验证码，请
+            //-     button#J_voice-verifycode(type='button') 点此获取语音验证码
+            .help-inline
+          .form-group.form-group-button
+            .control-content
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='step', value='confirm')
+              input(type='hidden', name='amount', value= amount)
+              button.btn.btn-basic.charge-btn#J_quickpay-btn(type='submit', data-flag='0') 充值
+      .uc-warm-tips
+        include ./mod/account.warn.prompt.pug
+  #J_quickpay-loading
+
+block foot-script
+  script.
+    app.quickPay.init({
+      form: '#J_quickpay',
+      trigger: '#J_quickpay-btn',
+      input: '#J_quickpay-amount',
+      smscode: '#J_verifycode',
+      //- voiceVerifycode: '#J_voice-verifycode'
+    });

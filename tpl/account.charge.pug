@@ -1,0 +1,100 @@
+extend base
+
+block title
+  | 网银充值 - 
+  
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+
+block content
+  - var _defaultShowBankNums = 7
+  - var _query = query || {}
+  //- var pageErrors = UIHelper.arr2obj(errors) || {}
+  - var pageErrors = errors || {}
+  - var _ebankCode =  ebankCode && [String(ebankCode)] || []
+  - var _ebankCodeList = UIHelper.ebankCodeList
+  - var _ebankLimitList = UIHelper.ebankLimitList
+  //- var _bankTips = {'0102': {'single': '300', 'day': '300', 'netPassSingle': '500', 'netPassDay': '1000', 'certificateSingle': '50000', 'certificateDay': '50000', 'generUkeySingle': '500000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '5000000', 'smscodeSingle': '-', 'smscodeDay': '-'},'0104': {'single': '50000', 'day': '300', 'netPassSingle': '500', 'netPassDay': '1000', 'certificateSingle': '50000', 'certificateDay': '50000', 'generUkeySingle': '500000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '5000000', 'smscodeSingle': '50000', 'smscodeDay': '50000'}}
+  include ./mod/account.nav.pug
+  .section.uc-setting.uc-chargeall
+    ul.tab-bar
+      li.item-nav-quickpay
+        a(href='/account/quickpay') 快捷充值
+      li.last-tabs.active
+        a(href='/account/charge') 网银充值  
+
+    .item-list-detail.tab-content.tab-card-ebank.J_user-tab
+      .item-list-box.item-info.tab-pane(class='active', role="tabpanel")#user_info
+        if errors
+          .alert-danger
+            include ./mod/error.pug
+        form.form-horizontal.uc-bank-form#J_recharge-form(method='post', target='_blank')
+          .banklist.J_banklist
+            .banklist-wrap.J_banklist-wrap
+              - var _sortBanklist = [...new Set([..._ebankCode, ..._ebankCodeList])];
+                each item , idx in _sortBanklist  
+                  - let _itemActive = (idx == 0)
+                    label.ebank-label.J_ebank-label(class={'bank-active': ebankCode && _itemActive,'bank-display-status': idx >= _defaultShowBankNums} )
+                      label.icon-bank-radio(class={'icon-bank-radio-check': ebankCode && _itemActive})
+                        input(type='radio', value=item, data-bankcode=item, name='bank', checked={'checked': ebankCode && _itemActive}).bank-code-radio.J_bank-radio
+                      i.bank-icon(class='bank-ebank-icon-' + item)
+              label.ebank-label.ebank-more-btn
+                span.ebank-more-btn-ok#J_ebank-more-btn 查看更多银行
+                input(type='hidden', name='bankId', value=ebankCode )#J_ebank-code
+          #J_bank-limit.banklimit    
+          .form-group.avail-money
+            label.control-label 可用余额
+            .uc-mobile-form-title #{UIHelper.formatNumber(accountAvailableBalance, 2)}
+              span 元
+          .form-group.charge-money
+            label.control-label 充值金额
+            .control-content
+              input#J_amount.form-control.charge-amount(class= pageErrors.amount ? 'form-errors' : '', type='text', name='amount', autocomplete='off', placeholder='充值免手续费', value=_query.amount, onkeyup="if(isNaN(value))execCommand('undo')", onafterpaste="if(isNaN(value))execCommand('undo')")
+              .uc-recharge-cash-tips 元
+            if pageErrors.amount
+              .help-inline.error-msg
+                .fa.fa-times-circle
+                span.error #{pageErrors.amount}
+            .help-inline
+          .form-group.form-group-button
+            .control-content
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='action', value='gateway')
+              button.btn.btn-basic.charge-btn#J_charge-pay(type='submit') 充值
+             
+    .uc-warm-tips
+      include ./mod/account.warn.prompt.pug
+  .modal.fade(tabindex="-1", role="dialog", aria-labelledby="myLargeModalLabel")#J_payModal
+    .modal-dialog.modal-wrap
+      .modal-content
+        .modal-header
+          h4.modal-title.charge-title 需在新打开的网关支付完成充值后选择：
+        .modal-body.charge-content
+          dl
+            dt
+              img(src='/img/icon-check.png')
+              | 充值成功
+            dd
+              a(href='/account') 查看资产
+                img(src='/img/icon-arrows-blue.png')
+              a(href='/plan').charge-invest-link 立即出借
+                img(src='/img/icon-arrows-blue.png')
+          dl
+            dt
+              img(src='/img/icon-cancel.png')
+              | 充值失败
+            dd
+              span(data-dismiss="modal") 重新充值
+                img(src='/img/icon-arrows-red.png')
+          .charge-footer 如遇问题可拨打红小宝客服电话：
+            span 400-1552-888
+
+block foot-script
+  script.
+    app.accountGatewayCharge.init({
+      form: '#J_recharge-form',
+      trigger: '#J_charge-pay',
+      input: '#J_amount',
+      onload: '#J_ebank-more-btn',
+      bankLimitList: !{JSON.stringify(_ebankLimitList)},
+    });

@@ -1,0 +1,43 @@
+extend base
+
+block title
+  | 登录 | 
+  
+block content
+  .user-forgot 
+    .section.forget-case
+      .user-forget
+        h2.user-forgot-title 找回登录密码
+        .user-forgot-step
+          .user-forgot-substep.user-forgot-finish
+            .step-number 
+              span 1
+            .instr 验证手机号码
+          .user-forgot-substep.user-forgot-finish
+            .step-number 
+              span 2
+            .instr 设置新密码
+          .user-forgot-substep
+            .step-number 
+              span 3
+            .instr 修改成功
+        if errors
+          .user-forgot-step-errors.alert-danger
+            include ./mod/error.pug
+        .user-forgot-step2-warp
+          form#J_forgot-step.user.forgot-step1(method='post')
+            .form-group.new-password
+              p.entry-item 新登录密码
+              input.form-control.forgot-input(type='password', autocomplete='off', name='newPassword', id='newPassword', placeholder='请输入新密码', maxlength='20')
+            .form-group
+              p.entry-item 确认新密码
+              input.form-control.forgot-input(type='password', autocomplete='off', name='repeatPassword', placeholder='确认新密码', maxlength='20')
+            .form-group
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='mobile', value=mobile)
+              input(type='hidden', name='action', value='password')
+              button.btn-basic.btn-block.login-button.login-btn.next-btn(type='submit') 确定修改密码
+block foot-script
+  script.
+    app.loginForgotStep.init()
+    

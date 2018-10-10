@@ -1,0 +1,106 @@
+// @see https://github.com/daneden/animate.css
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+.animated.bounceIn,
+.animated.bounceOut {
+  animation-duration: .75s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY {
+  animation-duration: .75s;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes flipToBack {
+  from {
+    transform: perspective(1280px) rotateY(0)
+  }
+
+  to {
+    transform: perspective(1280px) rotateY(-180deg)
+  }
+}
+@keyframes flipToFront {
+  from {
+    transform: perspective(1280px) rotateY(-180deg)
+  }
+
+  to {
+    transform: perspective(1280px) rotateY(0)
+  }
+}
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes swipeup {
+  0% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) rotate(45deg)
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) rotate(45deg)
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -100%, 0) rotate(45deg)
+  }
+}
+
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
+}
+
+@keyframes shake
+  from, to {
+    transform: translate3d(0, 0, 0)
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-5px, 0, 0)
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate3d(5px, 0, 0)
+  }
+
+@keyframes open-rotate
+  to {
+    background-position: -426px 0
+  }

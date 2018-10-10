@@ -1,0 +1,234 @@
+.landing-duanwu
+  $content-bg-color = #23AE85
+  $invest-title-color = #444444
+  $prize-state-color = #A6D3C1
+  $invest-button-color = #F2993D
+  $invest-button-24-color = #E35A68
+  $active-desc-color = #1b553c
+  $prize-received-color = #51AB85
+  $product-rate-font = 40px
+  background: $content-bg-color
+  min-width: $container-width
+  &-banner
+    width: 100%
+    height: 412px
+    background: url('/img/landing-duanwu-banner.png') no-repeat center center
+    min-width: $container-width
+  &-content
+    width: $container-width
+    margin: 0 auto
+    padding: 50px 75px
+  &-top-spot
+    width: 950px
+    height: 272px
+    border-radius: 8px
+    background: $white-color
+    .top-spot-body
+      height: 185px
+      background: url('/img/landing-duanwu-top-spot-prize.png') no-repeat center 25px
+      color: $gray-txt-light
+      font-size: $font-size-middle
+      text-align: center
+      padding-top: 150px
+    .top-spot-footer
+      width: 370px
+      height: 40px
+      background: $content-bg-color
+      border-radius(20px)
+      color: $white-color
+      font-size: $font-size-huge
+      text-align: center
+      line-height: 40px
+      margin: 0 auto
+  &-active-prize
+    width: 950px
+    text-align: center
+    .active-prize-body
+      clearfix()
+      .title
+        font-size: $font-size-h4
+        color: $invest-title-color
+        margin: 20px auto
+    .active-prize-footer
+      font-size: $font-size-h6
+      color: $gray-txt-black
+      margin-top: 36px
+      text-align: center
+    .prize-item
+      height: 200px
+      width: 221px
+      float: left
+      margin: 0 8px
+      &-header
+        width: 178px
+        height: 120px
+        text-align: center
+        padding-top: 90px
+        color: $white-color
+        font-size: $font-size-base
+        margin: 0 auto
+        &-first
+          background: url('/img/landing-duanwu-prize-01.png') no-repeat center center
+        &-second
+          background: url('/img/landing-duanwu-prize-02.png') no-repeat center center
+        &-thrid
+          background: url('/img/landing-duanwu-prize-03.png') no-repeat center center
+        &-last
+          background: url('/img/landing-duanwu-prize-04.png') no-repeat center center
+      &-name
+        color: $invest-title-color
+        font-size: $font-size-middle
+        margin-top: 20px
+      &-value
+        height: 18px
+        color: $invest-title-color
+        font-size: $font-size-middle
+      &-state
+        color: $prize-state-color
+        margin-top: 15px
+      &-received
+        color: $prize-received-color
+  &-active-prize
+    height: 368px
+    border-radius: 8px
+    background: $white-color
+    margin-top: 100px
+  &-user-list
+    position: relative
+    &:before
+      content: ''
+      width: 950px
+      height: 14px
+      position: absolute
+      top: -7px
+      left: 0
+      background: url('/img/landing-duanwu-user-list-top.png') no-repeat center center
+  &-user-list-content
+    width: 920px
+    border-top-left-radius: 0
+    border-top-right-radius: 0
+    border-bottom-right-radius: 8px
+    border-bottom-left-radius: 8px
+    background: $white-color
+    margin: 100px auto 0
+    position: relative
+    z-index: 10px
+    padding: 0 0 10px
+    .user-list-body
+      table
+        width: 700px
+        margin: 20px 0px 20px 145px;
+        font-size: $font-size-h4
+      th
+        color: $content-bg-color
+        text-align: center
+        line-height: 36px
+        font-weight: normal
+      .item-total
+        width: 40%
+      td
+        color: $invest-title-color
+        text-align: center
+        line-height: 32px
+  &-product-list
+    width: 950px
+    height: 325px
+    padding-top: 100px
+    .product-list-header
+      height: 35px
+      width: 950px
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px
+      background: url('/img/landing-duanwu-title-green-bg.png') no-repeat center -1px $white-color
+      text-align: center
+      font-size: $font-size-huge
+      color: $white-color
+      line-height: 35px
+    .product-list-body
+      width: 950px
+      padding: 40px 15px
+      background: $white-color
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px
+      clearfix()
+    .product-item
+      width: 380px
+      height: 106px
+      padding: 20px
+      clearfix()
+      color: $white-color
+      float: left
+      background: url('/img/landing-duanwu-product-12-bg.png') no-repeat center center
+      margin: 0 40px
+      &-last
+        background: url('/img/landing-duanwu-product-24-bg.png') no-repeat center center
+    .product-rate
+      float: left
+    .rate
+      font-size: $product-rate-font
+      line-height: 40px
+    span 
+      font-size: $font-size-bigger
+    .desc
+      font-size: $font-size-middle
+      opacity: 0.7
+    .product-month
+      margin-left: 250px
+    .month
+      font-size: $font-size-middle
+      line-height: 30px
+    .button
+      width: 100px
+      height: 30px
+      margin-top: 8px
+      margin-left: -12px
+      cursor: pointer
+      a
+        display: block
+        width: 100px
+        border-radius(15px)
+        background: $white-color
+        color: $invest-button-color
+        text-align: center
+        line-height: 30px
+    .button-24 a
+        color: $invest-button-24-color
+  &-active-header
+    height: 35px
+    background: url('/img/landing-duanwu-title-bg.png') no-repeat center -1px
+    text-align: center
+    font-size: $font-size-huge
+    color: $white-color
+    line-height: 35px
+  &-active-desc
+    height: 534px
+    background: url('/img/landing-duanwu-active-desc-bg.png') no-repeat center center
+    min-width: $container-width
+    .active-desc-contetn
+      width: 950px
+      margin: 0 auto
+      padding: 60px 0
+    .active-title
+      text-align: center
+      font-size: $font-size-huge
+      color: $active-desc-color
+      margin-bottom: 40px
+    ol
+      padding: 0
+    li
+      font-size: $font-size-middle
+      color: $active-desc-color
+      list-style: none
+      margin-top: 5px
+  &-tips-modal
+    .modal-dialog
+      width: 500px
+      height: 200px
+    .modal-header
+      border-bottom: none
+    .modal-content
+      width: 500px
+      height: 200px
+      text-align: center
+      font-size: $font-size-huge
+      

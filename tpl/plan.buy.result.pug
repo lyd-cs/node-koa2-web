@@ -1,0 +1,51 @@
+- var _errorState = UIHelper.parseProductErrorCode(errorCode)
+- var _isAmountShort = _errorState.amount_short
+- var _isSaleFinish = _errorState.sale_finish
+- var _isUnSecurityCertificate = _errorState.not_security_certificate
+- var _isChargeProcessed = _errorState.charge_processed
+- var _isDebtProcessed = _errorState.debt_processed
+- var _userType = _.get(userState, 'inviteRole') || ''
+- var _isShowInviteFriend = _.get(userState, 'isShowInviteFriend')
+
+if isSuccess
+  img(src='/img/buy-successed.png')
+  h2
+    span 加入成功
+  .buy-result-desc #{UIHelper.formatdate('YYYY年MM月DD日', lockStart)}开始计息
+  a(href='/account/plan').btn.btn-basic.buy-result-btn 确认
+  if _userType != 'SALES' && _isShowInviteFriend !== '0'
+    a(href='/account/invite')
+      img.invite-banner(src='/img/invest-invite-banner.png')
+else if _isAmountShort
+  img(src='/img/buy-insufficient-balance.png')
+  h2
+    span 余额不足
+  .buy-result-desc 当前账户可用余额不足，请前往充值页面进行充值
+  a(href='/account/charge').btn.btn-basic.buy-result-btn 去充值
+else if _isSaleFinish
+  img(src='/img/buy-sold-out.png')
+  h2
+    span 已售罄
+  a(href='/plan').btn.btn-basic.buy-result-btn 确认
+else if _isUnSecurityCertificate
+  h2.plan-buy-result-title 您尚未进行实名认证，请联系客服
+  p 客服电话400-1552-888
+  a(href='/plan/'+ planId).btn.btn-basic.buy-result-btn 确认
+else if _isChargeProcessed
+  img(src='/img/connect_timeout.png') 
+  h2
+    span 恒丰银行处理中 
+  .buy-result-desc 请稍后前往用户中心查看充值记录
+  a(href='/account').btn.btn-basic.buy-result-btn 查看充值记录
+else if _isDebtProcessed
+  img(src='/img/connect_timeout.png') 
+  h2
+    span 恒丰银行处理中 
+  .buy-result-desc 请稍后前往用户中心查看出借记录
+  a(href='/account/plan').btn.btn-basic.buy-result-btn 查看出借记录  
+else
+  img(src='/img/buy-join-failed.png')
+  h2
+    span 加入失败
+  .buy-result-desc #{errorMessage}
+  a(href='/plan/'+ planId).btn.btn-basic.buy-result-btn 确认

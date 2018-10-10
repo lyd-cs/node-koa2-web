@@ -1,0 +1,138 @@
+.product-detail-header
+  .item-header
+    .item-title
+      if _isFromPlan
+        h3 #{_planDetailPlanName}
+        a(href='/agreement/'+(!isMonthlyPaymentsPlan?'plan':'planMonth') target= '_blank') 《红利智投服务协议》
+      if _isFromLoan
+        h3 #{_loanDetailTitle}
+        a(href='/agreement/loan', target= '_blank') 《借款协议》
+      if _isTransfer
+        h3 #{_loanDetailTitle}
+        a(href='/agreement/transfer', target= '_blank') 《债权转让及受让协议》
+    .item-intro
+      dl.item-intro-first
+        if _isTransfer
+          dd #{UIHelper.formatNumber(_transferInitMoney, 2)}  
+        else  
+          dd #{UIHelper.formatNumber(_productDetailAmount)}
+        if _isFromPlan
+          dt 总金额(元)
+        if _isFromLoan
+          dt 标的金额(元)
+        if _isTransfer
+          dt 初始转让金额(元)  
+            span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<span>初始转让金额为债权人发起转让当时的待收本金和公允利息。</span>")
+      dl
+        if _isFromPlan
+          if _productExtraInterestRate
+            dd.item-rate 
+              span.item-base-rate #{UIHelper.formatNumber(_productBaseInterestRate, 1)}
+              span.item-exrate % +#{UIHelper.formatNumber(_productExtraInterestRate, 1)}%
+            dt 平均历史年化收益
+          else if _productSubsidyInterestRate
+            dd.item-rate
+              span.item-base-rate #{UIHelper.formatNumber(_productBaseInterestRate, 1)}
+              span.item-exrate %+#{UIHelper.formatNumber(_productSubsidyInterestRate, 1)}%
+            dt 平均历史年化收益
+          else
+            dd.item-rate #{UIHelper.formatNumber(_productDetailYearRate, 1)}
+              span.item-exrate %  
+            dt 平均历史年化收益  
+        if _isFromLoan || _isTransfer
+          if _isTransfer
+            dd.item-rate #{UIHelper.formatNumber(_transferRate, 2)}
+              span %
+          else    
+            dd.item-rate #{UIHelper.formatNumber(_productDetailYearRate, 2)}
+              span %
+          dt 年利率
+      dl.item-intro-last
+        if _isTransfer
+          dd
+            | #{_transferLastMonth}
+            span.small /#{_transferTotalMonth}
+          dt 剩余期限(月) 
+        else
+          if _isFromPlan && _productDetailDuration
+            dd
+              if _planDetailProductId > 675
+                if _productCashType == 'INVEST'
+                  | #{UIHelper.extendLockPeriod(_productDetailDuration, 'INVEST')['month']}
+                else
+                  | #{UIHelper.extendLockPeriod(_productDetailDuration, 'HXB')['month']}
+              else
+                | #{_productDetailDuration}
+            dt 适用出借期限(月)
+              span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="持有" + _productDetailDuration + "个月后转让退出")
+          else if _isFromPlan && _productLockDays
+            dd
+              | #{_productLockDays}
+            dt 锁定期限(天)
+              span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="持有" + _productLockDays + "天后转让退出")
+          else
+            dd #{_productDetailDuration}
+            dt 期限(月)
+    .item-propertys
+      dl
+        if _isFromPlan
+          dt #{UIHelper.parsePlanCashType(_productCashType)}
+        if _isFromLoan || _isTransfer
+          dt 还款方式：#{_loanDetailRepaymentType}
+      if _isFromPlan
+        dl
+          if _productLockDays
+            dt 锁定期#{_productLockDays}天
+          if _productDetailDuration
+            dt 锁定期#{_productDetailDuration}个月
+      if _isTransfer
+        dl
+          dt 下一还款日：#{UIHelper.formatdate('YYYY-MM-DD', _loanDetailRefundDate)}
+      else
+        if _isFromPlan && !_productNovice
+          dl
+            dt 加入上限：#{UIHelper.formatNumber(_productDetailInvestLimit)} 元
+        if _productNovice && _isNewBie
+          dl
+            dt 新手产品可购买额度：#{UIHelper.formatNumber(_productNewBiePlanLeftAmount)} 元
+        if _isFromLoan
+          dl
+            dt 起投金额：#{UIHelper.formatNumber(_productDetailInvestLimit)} 元
+        if _isBidding
+          //-
+            dl
+              if _isFromPlan
+                dt 投资进度：
+                  +progress(_productDetailProgress)
+                  span.item-product-progress #{_productDetailProgress}%
+              if _isFromLoan
+                dt 投标进度：
+                  +progress(_productDetailProgress)
+                  span.item-product-progress #{_productDetailProgress}%
+          dl
+            dt 剩余时间
+              if _isFromPlan
+                if _planDetailJoinDuration.day > 0
+                    | #{_planDetailJoinDuration.day}
+                    span 天
+                    | #{_planDetailJoinDuration.hour}
+                    span 时
+                else if _planDetailJoinDuration.day == 0 && _planDetailJoinDuration.hour > 0
+                    | #{_planDetailJoinDuration.hour}
+                    span 时
+                    | #{_planDetailJoinDuration.minute}
+                    span 分
+                else
+                    | #{_planDetailJoinDuration.minute}
+                    span 分
+                    | #{_planDetailJoinDuration.second}
+                    span 秒
+              if _isFromLoan
+                | #{_loanDetailRestTime}
+      if _isDoing && _isFromLoan
+        dl
+          dt 起息日：#{UIHelper.formatdate('YYYY-MM-DD', _dataDetailnterestDate)}
+  if _isTransfer
+    include ./transfer.buy.pug
+  else
+    include ./product.buy.pug  

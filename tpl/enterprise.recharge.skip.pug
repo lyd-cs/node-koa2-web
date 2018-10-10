@@ -1,0 +1,42 @@
+extend enterprise
+
+block content
+
+  - var _originUrl = _.get(rechargeData, 'url') || ''
+  - var _dataInfo = _.get(rechargeData, 'result') || {}
+  - var _OrderMoney = _.get(_dataInfo, 'OrderMoney') || ''
+  - var _KeyType = _.get(_dataInfo, 'KeyType') || ''
+  - var _InterfaceVersion = _.get(_dataInfo, 'InterfaceVersion') || ''
+  - var _PageUrl = _.get(_dataInfo, 'PageUrl') || ''
+  - var _TransID = _.get(_dataInfo, 'TransID') || 0
+  - var _TradeDate = _.get(_dataInfo, 'TradeDate') || ''
+  - var _Amount = _.get(_dataInfo, 'Amount') || ''
+  - var _NoticeType = _.get(_dataInfo, 'NoticeType') || ''
+  - var _ReturnUrl = _.get(_dataInfo, 'ReturnUrl') || ''
+  - var _TerminalID = _.get(_dataInfo, 'TerminalID') || ''
+  - var _MemberID = _.get(_dataInfo, 'MemberID') || ''
+  - var _Signature = _.get(_dataInfo, 'Signature') || ''
+  - var _PayID = _.get(_dataInfo, 'PayID') || ''
+
+  img.uc-enterprise-loading(src='/img/spinner.gif')
+
+  form(method='post', action= _originUrl)#J_pay
+    input(type='hidden', name='OrderMoney', value=_OrderMoney)
+    input(type="hidden", name='KeyType', value=_KeyType)
+    input(type='hidden', name='InterfaceVersion', value=_InterfaceVersion)
+    input(type='hidden', name='PageUrl', value=_PageUrl)
+    input(type='hidden', name='TransID', value=_TransID)
+    input(type='hidden', name='TradeDate', value=_TradeDate)
+    input(type='hidden', name='Amount', value=_Amount)
+    input(type='hidden', name='NoticeType', value=_NoticeType)
+    input(type='hidden', name='ReturnUrl', value=_ReturnUrl)
+    input(type='hidden', name='TerminalID', value=_TerminalID)
+    input(type='hidden', name='MemberID', value=_MemberID)
+    input(type='hidden', name='Signature', value=_Signature)
+    input(type='hidden', name='PayID', value=_PayID)
+
+  block foot-script
+    script.
+      window.onload= function(){
+        document.getElementById('J_pay').submit();
+      }

@@ -1,0 +1,55 @@
+extend base
+
+block title
+  | 登录 | 
+  
+block content
+  - var _query = query || {}
+  .user-login
+    .section.user-login-case
+      .user-login-wrap
+        .user-login-header
+          h1 登录
+        .user-login-body
+          #J_login-error.login-errors.text-danger.user-login-errors
+            if errors
+              include ./mod/error.pug
+          form#J_login-form.login-form(method='post')
+            .form-group
+              .logo
+                img.identify(src='/img/login_mobile.png')
+              input#J_username.form-control.user-login-input(type='text', autocomplete='off', name='mobile', placeholder='手机号码', value=_query.mobile, minlength='11', maxlength='11')
+            .form-group
+              .logo
+                img.identify(src='/img/login_password.png')
+              input#J_password.form-control.user-login-input(type='password', autocomplete='new-password', name='password', placeholder='密码')
+            if loginCount
+              .form-group.safe-code
+                .logo.safe
+                  img.identify(src='/img/validate_identify.png')
+                input#J_captcha.form-control.user-login-validate(type='text', name='captcha', autocomplete='off', placeholder='请输入验证码', maxlength='4')
+                img.user-login-captcha#J_captcha-img(src='/captcha?_='+Math.random().toString().substr(2,6), data-target='#J_captcha-img', data-src='/captcha', alt='看不清，点击刷新')
+            .text-right.user-login-forgot
+              a(href='/forgot') 忘记密码
+            .form-group
+              input(type='hidden', name='_csrf', value=csrf)
+              button.btn.btn-basic.btn-block.user-login-button.login-btn#J_submit(type='submit') 登录
+            .user-login-warn 点击登录即代表我已阅读并同意
+              a(href="/agreement/signup", target='_blank').protocol 《用户注册协议》
+            .user-login-signup
+              a(href='/signup') 免费注册
+
+block footer
+  .user-signup-footer
+    .section
+      include ./mod/footer.copyright.pug
+
+block foot-script
+  script.
+    app.userLogin({
+      form: '#J_login-form',
+      user: '#J_username',
+      pwd: '#J_password',
+      tip: '#J_login-error',
+      captcha: '#J_captcha'
+    })

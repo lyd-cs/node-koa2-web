@@ -1,0 +1,21 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+  
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  .about-report
+    .section.case
+      .about-report-title
+        h3 运营报告
+      .about-report-main
+        a(href='/about/report/2018Q1')
+          img(src='/img/about-report-2018-0626.png')
+        a.right(href='/about/report/2017')
+          img(src='/img/about-report-2017.png')
+      .about-report-main
+        a(href='/about/report/2016')
+          img(src='/img/about-report-2016.png')

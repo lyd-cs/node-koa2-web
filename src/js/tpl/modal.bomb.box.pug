@@ -1,0 +1,13 @@
+- var modalObj = {'0': {contentFirst:'为保证您的账户安全', contentSecond:'请先完成安全认证后再进行出借！', btnFirst:'去认证', btnSecond:'取消'}, '1':{contentFirst:'为您安全出借行为考虑', contentSecond:'您需要先进行风险评测方可进行出借', btnFirst:'去测测看', btnSecond:'我是保守型'}};
+- var modalBombBoxId = modalBoxId;
+- var modalHref = modalBombBoxId ? 'riskvail' : 'secure';
+- var modalId = modalBombBoxId ? 'J_guard' : 'J_cancle' ;
+.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+  .modal-dialog.modal-product(role='document')
+    .modal-product-box
+      .modal-main
+        span.title-padding #{modalObj[modalBombBoxId].contentFirst}
+        div #{modalObj[modalBombBoxId].contentSecond}
+      a(href='/account/'+ modalHref).btn-modal.btn-let #{modalObj[modalBombBoxId].btnFirst}
+      a(id=modalId).btn-modal.btn-guard #{modalObj[modalBombBoxId].btnSecond}
+      span#J_guard-err.guard-err

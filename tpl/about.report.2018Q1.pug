@@ -1,0 +1,52 @@
+extend base
+
+block title
+  | 2018年一季度运营报告 -
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  .about-2018Q1
+    .about-2018Q1-title
+    .section.about-2018Q1-content
+      .about-2018Q1-achievement
+        .report-title 业绩速览
+        .explain-info.explain-achievement
+      .about-2018Q1-achievement-Q1
+        .report-title 第一季度业绩速览
+        .explain-info.explain-achievement-Q1
+      .about-2018Q1-lender
+        .report-title 出借人篇
+        .explain-info.explain-lender-age
+        .explain-info.explain-lender-sex
+        .explain-info.explain-lender-area
+        .explain-info.explain-lender-nice
+        .explain-info.explain-lender-loan-amount
+    .explain-info.explain-lender-loan-user
+    .section.about-2018Q1-content
+      .about-2018Q1-borrow
+        .report-title 借款人篇
+        .explain-info.explain-borrow-sex
+        .explain-info.explain-borrow-work
+        .explain-info.explain-borrow-area
+        .explain-info.explain-borrow-use
+      .about-2018Q1-compliance
+        .report-title 合规备案篇
+        .compliance-records
+          .compliance-records-time 2018年1月
+          .compliance-records-content.first
+            p 红小宝正式向嘉定区金融办表示公司将积极申请网贷机构备案；
+            p 金融办指定会计师事务所入场进行网贷机构备案专项合规审计工作；
+            p 金融办指定律师事务所入场进行网贷机构备案专项尽职调查工作。
+        .compliance-records
+          .compliance-records-time 2018年2月
+          .compliance-records-content 
+            p 红小宝平台按照上海市金融办227号文、18号文完成优化
+    .about-2018Q1-qrcodes
+      .qrcodes-content
+        .qrcode-wrap.app-qrcode
+          img(src='/img/about-sevenreport-app-qrcode.png')
+          p APP下载二维码
+        .qrcode-wrap.weixin-qrcode
+          img(src='/img/about-sevenreport-footer-weixin-qrcode.png')
+          p 微信二维码

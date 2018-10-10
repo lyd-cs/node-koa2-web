@@ -1,0 +1,46 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-2018Q1#J_about-2018Q1
+    .section.about-2018Q1-index
+      img(src='/img/mobile/about-eightreport-index.png')
+    .section
+      img(src='/img/mobile/about-eightreport-look.png')
+    .section
+      img(src='/img/mobile/about-eightreport-look-q1.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-age.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-sex.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-area.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-nice.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-amount.png')
+    .section
+      img(src='/img/mobile/about-eightreport-lender-user-top.png')
+    .section
+      img(src='/img/mobile/about-eightreport-borrow-sex.png')
+    .section
+      img(src='/img/mobile/about-eightreport-borrow-work.png')
+    .section
+      img(src='/img/mobile/about-eightreport-borrow-area.png')
+    .section
+      img(src='/img/mobile/about-eightreport-borrow-use.png')
+    .section
+      img(src='/img/mobile/about-eightreport-records.png')
+    .section.about-2018Q1-last
+      img(src='/img/mobile/about-eightreport-qrcodes.png')
+  .about-2018Q1-navigation
+
+
+block foot-script
+  script.
+    $('#J_about-2018Q1').fullpage();

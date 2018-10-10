@@ -1,0 +1,25 @@
+extend base
+
+block title
+  | 购买结果 - 
+  
+block content
+  .section.buy-result
+    #J_result-wrap
+      .result-title-img
+        img(src='/img/loading.png')
+      h2 恒丰银行处理中...
+
+block foot-script
+  script.
+    var _productId = #{productId};
+    var _amount = #{amount};
+    var _isTransfer = #{isTransfer};
+    var _url = _isTransfer ? '/api/transfer/buy' : '/api/loan/buy';
+    $(function(){
+      $.post(_url, {amount: _amount, productId: _productId}).done(function(json){
+        setTimeout(function(){
+          $('#J_result-wrap').html(json.data.html);
+        }, 2000);
+      });
+    })

@@ -1,0 +1,139 @@
+doctype html
+include ./mixins.pug
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='renderer', content='webkit')
+    meta(name='keywords', content = page_keywords?page_keywords:site_keywords)
+    meta(name='description' content = page_description?page_description:site_description)
+    title
+      block title
+      | #{site_title}
+    meta(name='csrf-param', content='_csrf')
+    meta(name='csrf-token', content=csrf)
+    meta(http-equiv='Cache-Control', content='no-transform')
+    meta(http-equiv='Cache-Control', content='no-siteapp')
+    //- apple-touch-icon
+      each val in [57,72,114,144]
+        link(rel='apple-touch-icon', href='/apple-touch-icon-144.png', sizes=val+'x'+val)
+    link(rel='stylesheet', href= UIHelper.static_url('/css/app.css') )
+    block head-style
+    //- <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    //- <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    script(src= UIHelper.static_url('/lib/html5shiv.min.js') )
+    script(src= UIHelper.static_url('/lib/respond.min.js') )
+    <![endif]-->
+    script(src= UIHelper.static_url('/js/lib.js') )
+    block head-script
+  body(class= path == '/login' || path == '/signup' ? 'user-body' : '' || path == '/deposit/createaccount' ? 'user-deposit-body' : '')
+    block body
+      - var _userName = _.get(userState, 'username') || _.get(userState, 'realName') || _.get(user, 'name')
+      - var _userMobile = _.get(userState, 'mobile') || ''
+      - var _userUnreadCount = _.get(userState, 'unread') - 0 || 0
+      - var _userSecure = _.get(userState, 'isAllPassed') - 0 || 0
+      - var _isJdActiveUser = (_.get(userState, 'promotion') || '').startsWith('Group3')
+      block header
+        if(path == '/login' || path == '/signup')
+          .header
+            .section
+              .header-logo
+                a(href='/'): img(src='/img/logo.png')
+        else
+          .header-top
+            .section
+              .header-reg
+                .company-tel 400-1552-888
+                if user
+                  a(href='/account').header-top-welcome 欢迎您，#{UIHelper.safeMobile(_userMobile)}
+                  a(href='/logout').header-top-logout [ 退出 ]
+                  a(href='/account/message').header-top-item.header-top-message 消息
+                    i.fa.fa-envelope-o.message-icon(class=_userUnreadCount ? 'message-unread' : '')
+                else  
+                  a(href='/login').header-reg-btn.header-login 登录
+                  a(href='/signup').header-reg-btn.header-signup 注册
+                a(href='/help').header-top-item.header-reg-btn.header-top-aboutus 小宝课堂
+                a(href='/app', target='_blank').header-top-item.header-reg-btn.header-top-app 移动客户端
+                span.header-tips 市场有风险，出借需谨慎
+          block headerlogo
+          .header
+            .section
+              .header-logo
+                a(href='/'): img(src='/img/logo.png')
+              .header-nav
+                ul
+                  li: a(href='/', class={native: path=='/'}) 首页
+                  li: a(href='/plan', class={native: _.startsWith(path,'/plan')}) 红利智投
+                  li: a(href='/loan', class={native: _.startsWith(path,'/loan') || _.startsWith(path,'/transfer')}) 散标债权
+                  //- li: a(href='/transfer', class={native: _.startsWith(path,'/transfer')}) 债权转让
+                  li: a(href='/guide', class={native: _.startsWith(path,'/guide')}) 新手引导
+                  li: a(href='/about/company', class={native: _.startsWith(path,'/about/company')}) 信息披露
+                  li: a(href='/wscredit', class={native: _.startsWith(path,'/wscredit')}) 我要借款
+                  li.last-nav
+                    a(href='/account', class={native: _.startsWith(path,'/account')}) 我的账户
+        block subnav
+      block content
+      block top
+        include ./mod/backtop.pug
+      block footer
+        .footer
+          .section
+            .footer-section
+              dl
+                dt 关于我们
+                dd
+                 a.footer-section-first(href='/about/company') 公司简介
+                 //-  a(href='/about/news') 红上动态
+                 a(href='/about/company') 信息披露
+                 a(href='/about/announcement').footer-section-last 网站公告
+                 //-
+                  a.footer-section-last(href='/about/jobs') 招贤纳士
+              dl
+                dt 友情链接
+                dd
+                 a(href='http://www.wdzj.com' target='_blank' rel='nofollow').footer-section-first 网贷之家 
+                 a(href='http://www.p2peye.com' target='_blank' rel='nofollow') 网贷天眼
+                 a(href='http://www.hexun.com' target='_blank' rel='nofollow') 和讯财经
+                 a(href='http://money.163.com' target='_blank' rel='nofollow').footer-section-last 网易财经
+              dl
+                dt 客服热线
+                dd.service-desc 400-1552-888 （工作日9:00-18:00）
+              .footer-weixin
+                .footer-weixin-item
+                  img(src='/img/app-download-code.png')
+                  img(src="/img/wx.png")
+              //-
+                dl.pure-u-4-24
+                  dt 友情链接
+                  dd: a(href='/') 网贷天眼
+                  dd: a(href='/') 网贷之家
+                  dd: a(href='/') 网贷中国
+                  dd: a(href='/') 竑翀网络
+                  dd: a(href='/') ITFINANCE
+                  dd: a(href='/') 中国小额信贷联盟
+            .footer-copyright
+              p 红上金融信息服务（上海）有限公司 | Copyright &copy; 2017 红小宝
+                a.footer-copyright-link(href='http://www.miitbeian.gov.cn', target='_blank') #{hoomxbBeian}
+                | | 
+                a.footer-copyright-link(href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102002582', target='_blank') 沪公网安备 31010102002582号
+              p.footer-copyright-public-tips-light 市场有风险，出借需谨慎
+            .footer-secure
+              a.finance(href='http://si.trustutn.org/info?sn=931160922000525161941', target='_blank')
+              a.certification(href='http://www.itrust.org.cn/home/index/itrust_certifi/wm/PJ2018051601', target='_blank')
+              a.safe(href='http://union.rising.com.cn/InfoManage/attestation.aspx?p0=W3MxAhp6gJ5ixQrIXD9tlNUSqzla1GRg', target='_blank')
+              a.secured(href='https://sealsplash.geotrust.com/splash?&dn=www.hoomxb.com', target='_blank')
+              a.police(href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102002582', target='_blank')
+      script(src= UIHelper.static_url('/js/app.js') )
+      if debug
+        script(src= UIHelper.static_url('/lib/echarts.js') ) 
+      else
+        script.
+          var _hmt = _hmt || [];
+          (function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?669d03c874797a405408c4aafdff0c46";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();
+        script(src= UIHelper.static_url('/lib/echarts.common.min.js') )
+      +udesk()
+      script.
+        app.backTopAction.init();
+        
+    block foot-script  

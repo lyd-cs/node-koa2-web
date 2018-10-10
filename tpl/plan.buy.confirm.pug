@@ -1,0 +1,196 @@
+extend base
+
+block title
+  | 加入信息确认 -
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))
+
+block content
+  - var _userId = _.get(userState, 'userId') || 0
+  - var _buyResultName = _.get(buyConfirm, 'name', '') || ''
+  - var _buyResultBidAmount = _.get(buyConfirm, 'amountStr', 0) - 0 || 0
+  - var _buyResultYearRate = _.get(buyConfirm, 'expectedRate', 0) - 0 || 0
+  - var _buySubsidyInterestRate = _.get(buyConfirm, 'subsidyInterestRate', 0) - 0 || 0
+  - var _buyExpectedSubsidyInterestAmount = _.get(buyConfirm, 'expectedSubsidyInterestAmount', 0) - 0 || 0
+  - var _buyResultMonths = _.get(buyConfirm, 'lockPeriod', 0) - 0 || 0
+  - var _buyLockDays = _.get(buyConfirm, 'lockDays', 0) - 0 || 0
+  - var _buyResultInvest = _.get(buyConfirm, 'expectedAmount', 0) - 0
+  - var _buyResultPlanId = _.get(buyConfirm, 'id', 0) - 0 || 0
+  - var _hasRiskWarn = _.get(buyConfirm, 'showRisk')
+  - var _buyResultProductNovice = _.get(buyConfirm, 'novice', 0) - 0
+  - var _productId = planId || 0
+  - var _userAvailableBalance = _.get(userAssets, 'availablePoints', 0) - 0 || 0
+  - var _isUserHasBindCard = _.get(userState, 'hasBindCard', 0) - 0 || 0
+  - var _userBankCardId = _.get(userCard, 'cardId') || ''
+  - _userBankCardId = UIHelper.safeBank(_userBankCardId)
+  - var _bankCode = _.get(userCard, 'bankCode') || ''
+  - var _bankName = _.get(userCard, 'bankType') || ''
+  - var _bankMobile = _.get(userCard, 'mobile')
+  - _bankMobile = UIHelper.safeMobile(_bankMobile)
+  - var _errorState = UIHelper.parseProductErrorCode(errorCode)
+  - var _isAmountShort = _errorState.amount_short
+  - var _isSaleFinish = _errorState.sale_finish
+  - var _isUnSecurityCertificate = _errorState.not_security_certificate
+  - var _payable = _.get(buyConfirm, 'payable')
+  - var _isShowBtn = (_userAvailableBalance < _payable && _isUserHasBindCard) || (_userAvailableBalance >= _payable)
+  - var _buyResultCashType = _.get(buyConfirm, 'cashType', '')
+  - var isMonthlyPaymentsPlan = UIHelper.parsePlanPayments(_buyResultCashType)
+  //- textarea(style="width: 100%; height: 100px") #{JSON.stringify(buyConfirm)}
+  if buyConfirm
+    .section.product-buy-confirm#J_content
+      h3 确认加入信息
+      form#J_buy-form.product-buy-confirm-case(method='post')
+        .product-buy-confirm-box.product-buy-confirm-box-plan
+          .product-info-confirm
+            .product-detail
+              h4 #{_buyResultName}
+              .item-list
+                .item-title 加入金额
+                .item-content #{UIHelper.formatNumber(_buyResultBidAmount)}元
+              .item-list
+                .item-title 平均历史年化收益
+                .item-content #{UIHelper.formatNumber(_buyResultYearRate, 2)}%
+                  if _buySubsidyInterestRate
+                    | + #{UIHelper.formatNumber(_buySubsidyInterestRate, 2)}%
+              .item-list
+                .item-title 期限
+                .item-content
+                  if _buyResultMonths
+                    | #{_buyResultMonths}个月
+                  else if _buyLockDays
+                    | #{_buyLockDays}天
+
+              .item-list
+                .item-title 预期收益
+                .item-content #{UIHelper.formatNumber((_buyResultInvest + _buyExpectedSubsidyInterestAmount) / 100 * _buyResultBidAmount , 2)}元
+                  if _buyResultProductNovice
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>加息部分"+UIHelper.formatNumber(_buyExpectedSubsidyInterestAmount / 100 * _buyResultBidAmount, 2)+"元将在计划退出时返还至您的账户。</span>")
+              .item-list.item-list-last
+                .item-title 收益处理方式
+                .item-content #{UIHelper.parsePlanCashType(_buyResultCashType)}
+              if _productId > 675
+                .exit-way 退出方式：锁定期结束后可随时申请退出
+          .product-coupon-content
+            .product-coupon
+              .coupon-title 优惠券
+                span.coupon-icon
+                .J_coupon-exchange.coupon-exchange 兑换优惠券
+              if _buyResultProductNovice
+                .coupon-list
+                  .coupon-default-display 暂无可用优惠券
+              else
+                .J_coupon-list.coupon-list
+                  .J_coupon-default.coupon-best
+                    include ./mod/product.best.coupon.pug
+                  .J_coupon-more.coupon-more(class=(couponList && couponList.length) ? '' : 'hide')
+                    .coupon-more-btn
+                      .J_more-coupon.more
+                        span 选择其他优惠券
+                        i.fa.fa-angle-down
+                  .J_coupon-more-list.coupon-more-list(class=(couponList && couponList.length) ? 'hide' : '')
+                    if couponList && couponList.length
+                      include ./mod/product.coupon.list.pug
+                      .J_coupon-more-list.coupon-more-list
+            .pay-amount 支付金额
+              span.J_pay-amount #{UIHelper.formatNumber(_payable, 2)}
+              | 元
+        h3 支付方式 
+          if errors
+            .alert-danger
+              include ./mod/error.pug
+        .buy-confirm-wrapper 
+          input(type="hidden", name='action', value='buy')
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='amount', value=_buyResultBidAmount)
+          input(type='hidden', name='balanceAmount', value=_userAvailableBalance)
+          input(type='hidden', name='productId', value=_productId)
+          input(type='hidden', name='couponId', value=bestCouponId ? bestCouponId : '')
+          #J_pay-amount
+            include ./mod/buy.confirm.pay.pug
+          if _isShowBtn
+            .error-info
+            button#J_btn-buy-confirm.btn-basic.btn-buy-confirm(type='submit', data-init='0', data-type='plan') 确认加入
+            .product-buy-confirm-check
+              if _hasRiskWarn
+                p
+                  input(type='checkbox', name='willingToBuy')#J_adventure-checkbox
+                  label(for='J_adventure-checkbox')
+                    | 我同意向超出我风险承受能力的标的出借资金
+              input(type='checkbox', checked)#J_protocol-checkbox
+              label(for='J_protocol-checkbox')
+                | 我已阅读并同意
+                a(href='/agreement/'+(isMonthlyPaymentsPlan?'planMonth':'plan'), target='_blank', rel='nofollow').product-buy-confirm-link 《红利智投服务协议》
+                a(href='/agreement/hint', target='_blank', rel='nofollow').product-buy-confirm-link 《网络借贷提示书》
+              p
+                a(href='/agreement/electronicSignature', target='_blank', rel='nofollow').product-buy-confirm-link 《个人电子签章授权委托书》
+                a(href='/agreement/digitalCertificate', target='_blank', rel='nofollow').product-buy-confirm-link 《CFCA数字证书服务协议》
+  else
+    .section.loan-buy-failed
+      .error-warpper
+        if _isAmountShort
+          img(src='/img/buy-insufficient-balance.png')
+          .error-title
+            span.error-hint-message 余额不足
+          .error-msg 当前账户可用余额不足，请前往充值页面进行充值
+          a(href='/account/quickpay').result-link.btn-basic 去充值
+        else if _isUnSecurityCertificate
+          .error-title
+            span.error-hint-message 您尚未进行实名认证，请联系客服
+          .error-msg 客服电话400-1552-888
+          a(href='/plan/'+ planId).btn-basic.buy-result-btn 确定
+        else if _isSaleFinish
+          img(src='/img/buy-insufficient-balance.png')
+          .error-title
+            span.error-hint-message 已售罄
+          a(href='/plan').result-link.btn-basic 确定
+        else
+          img(src='/img/buy-join-failed.png')
+          .error-title
+            span.error-hint-message 加入失败
+          .error-msg #{errorMessage}
+          a(href='/plan/'+ planId).result-link.btn-basic 确定
+
+block foot-script
+  - var buyResultBidAmount = _buyResultBidAmount
+  - var userAvailableBalance = _userAvailableBalance
+  - var productId = _productId
+  - var isUserHasBindCard = _isUserHasBindCard
+  - var bankCode = _bankCode
+  - var userBankCardId = _userBankCardId
+  - var bankName = _bankName
+  - var bankMobile = _bankMobile
+  - var productType = _productType
+  - var agreementName = _agreementName
+  - var userPayAble = _.get(buyConfirm, 'payable')
+  script.
+    var _userCharge;
+    var _userPayAble = #{userPayAble};
+    var _userBalance = #{_userAvailableBalance};
+    var _userBidAmount = #{_buyResultBidAmount};
+    var _hasRiskWarn = #{_hasRiskWarn}
+    if(_userPayAble){
+      _userCharge = _userPayAble - _userBalance;
+    }else{
+      _userCharge = _userBidAmount - _userBalance;
+    }
+    app.productBuy.init({
+      form: '#J_buy-form',
+      smscode: '#J_getcode-btn',
+      verifycode: '.J_getcode-btn',
+      buyResultBidAmount: #{buyResultBidAmount},
+      userAvailableBalance: #{userAvailableBalance},
+      productId: #{productId},
+      isUserHasBindCard: #{isUserHasBindCard},
+      bankCode: !{JSON.stringify(bankCode)},
+      userBankCardId: !{JSON.stringify(userBankCardId)},
+      bankName: !{JSON.stringify(bankName)},
+      bankMobile: !{JSON.stringify(bankMobile)},
+      userCharge: _userCharge,
+      hasRiskWarn: _hasRiskWarn
+    });
+    app.exchangeCoupon.init({
+      buyResultBidAmount: #{buyResultBidAmount},
+      productId: #{_productId}
+    });
+    //- app.selectCoupon.init();

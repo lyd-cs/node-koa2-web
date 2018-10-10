@@ -1,0 +1,31 @@
+extend base
+
+block title
+  | 邀请好友分千元红包
+
+block page-val
+  - var pageClass = 'landing-body'
+  - var _shareData = shareData || '{}'
+block content
+  .invite-seller-container
+    img(src='/img/mobile/invite-seller-header.png').invite-seller-container-img
+    h2 分享或扫描下方二维码
+      br
+      | 进行邀请注册
+    .invite-seller-container-ornamental
+      .triangle-small
+      .triangle1-middle
+      .triangle1-large
+      h4 专属二维码
+      img(src='/qrcode/inviteh5/'+staffId).seller-qrcode
+      .staff 邀请码：#{staffId}
+    .invite-toast-notify.J_invite-toast-notify
+  .invite-seller-share.J_invite-seller-share 立即分享
+block foot-script
+  script.
+    app.appInvite.init({
+      hasUpgradeMsg: !{!!hasUpgradeMsg},
+      shareData: !{_shareData},
+      isSalesDisplay: !{!!isSalesDisplay},
+      staffId: #{staffId}
+    });

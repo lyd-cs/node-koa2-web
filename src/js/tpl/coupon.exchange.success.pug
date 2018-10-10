@@ -1,0 +1,14 @@
+if coupon
+  - var _couponType = coupon.couponType 
+  .success-icon
+  p 恭喜您兑换成功
+  .coupon-detail
+    if _couponType == 'DISCOUNT'
+      | #{coupon.dicountRate}%抵扣券：
+      if coupon.allowDerateInvest
+        |单笔出借满#{coupon.allowDerateInvest}元可用,
+      |最高抵扣#{coupon.maxDiscountAmount}元
+    else
+      | 满减券：满#{coupon.allowDerateInvest}元减#{coupon.derateAmount}元
+  button.J_exchange-success-btn.btn.btn-basic.exchange-success-btn 确认
+

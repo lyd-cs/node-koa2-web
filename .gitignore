@@ -1,0 +1,17 @@
+*.DS_*
+*.idea*
+*.vscode*
+node_modules
+*.log
+Thumbs.db
+npm-debug.log
+.editorconfig
+/setting.js
+/package-lock.json
+/db.json
+static/js/app.js
+static/css/*.css
+static/css/*/*.css
+static/build
+static/dist
+static/upload

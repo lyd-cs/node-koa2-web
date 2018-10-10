@@ -1,0 +1,505 @@
+.plan
+  $border-color = #f2f2f2
+  $view-bg-color = #f1f1f1
+  $view-font-color = #c0c0c0
+  $list-item-bg = #f9f9f9
+  $list-item-color = #eaeaea
+  $list-bidding-color = #ff7f25
+  $list-recommend-bidding-bg = #f4585b
+  $buy-blue-linghter= #f6f9ff
+  $plan-border-color = #f0f0f0
+  $guide-rate-color = #F65050
+  $font-largest-size = 70px
+  $plan-bg-color = #F55151
+  $plan-active-color = #FFA338
+  $setp-line-bg = #FF933C
+  $list-title-color = #ED3E40
+  $plan-recommend-btn-bg = #DE4747
+  $plan-recommend-title-color = #9B9B9B
+  $plan-step-income-color = #FF933C 
+  $plan-step-text = #192837
+  &-banner
+    min-width: $container-width
+    height: 300px
+    background: url('/img/plan-banner-home-0525.png') no-repeat center center
+  &-view-link
+    width: 180px
+    height: 48px
+    display: block
+    float: right
+    background: $view-bg-color
+    color: $view-font-color
+    text-align: center
+    line-height: 48px
+    margin-top: 16px
+  &-recommend
+    margin: 60px auto
+    margin-bottom: 20px
+    .plan-icon
+      margin: 20px auto
+      text-align: center 
+    h3
+      padding: 0 10px 0 10px
+      margin-bottom: 0
+      border-left: 3px solid $base-red-color
+    &-body
+      padding-top: 30px
+      clearfix()
+      &-header
+        margin-bottom: 25px
+        font-size: $font-size-h3
+        color: $grey-color
+    &-item
+      position: relative
+      width: 260px
+      padding: 20px 0 0
+      margin: 0 20px 0 0
+      float: left
+      background: $white-color
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.05)
+      transition: 0.3s all
+      &:hover
+        transform: translate(0, -5px)
+      &-last
+        margin: 0
+      &-title
+        text-align: center
+        margin-bottom: 80px
+        h5
+          font-size: $font-size-huge
+          color: $grey-color
+          margin: 0 0 6px 0
+        p
+          font-size: 14px
+          color: $gray-txt-black
+          margin-bottom: 5px
+        &:after
+          content: ''
+          width: 178px
+          height: 2px
+          position: absolute
+          top: 81px
+          right: 41px
+          background: url('/img/plan-recommend-line.png') no-repeat
+      &-rate
+        text-align: center
+        color: $guide-rate-color
+        line-height: 48px
+        position: relative
+        &-title 
+          font-size: $font-size-base
+          color: $gray-txt-black
+          text-align: center
+          line-height: 18px
+          margin-bottom: 0
+      .plan-recommend-item-footer-active
+        background: $plan-active-color
+        .plan-state-btn:hover
+          color: $plan-active-color
+      &-active
+        position: absolute
+        top: 104px
+        width: 156px
+        height: 44px
+        text-align: center
+        color: $grey-color
+        font-size: $font-size-base
+        margin: 0 57px 21px
+        i
+          display: inline-block
+          width: 14px
+          height: 16px
+          margin-right: 6px
+          background: url('/img/plan-recommend-icon.png') no-repeat
+      &-month
+        font-size: $font-size-h5
+        color: $gray-txt-black
+        text-align: center
+        line-height: 1
+        margin: 23px 0
+      &-footer
+        position: relative
+        margin: 0 
+        background-color: $plan-bg-color
+        padding: 36px 30px 30px
+      &-details
+        position: relative
+        margin: 0 
+        background: url('/img/plan-recommend-bg-home.png') no-repeat
+        padding: 50px 20px 30px
+        &:after
+          content: ''
+          width: 0px
+          height: 0
+          border-width: 8px 8px 0px 8px
+          border-color: $white-color transparent
+          border-style: solid
+          position: absolute
+          top: 0
+          right: 50%
+          margin-right: -8px
+        h5
+          text-align: center
+          margin: 0
+          font-size: $font-size-slightly
+          margin-bottom: 50px
+        .plan-state-btn
+          display: block
+          background: url('/img/plan-recommend-btn.png') no-repeat
+          margin: auto
+          color: $white-color
+          font-size: $font-size-large
+          text-align: center
+          line-height: 44px
+          box-shadow: 0 2px 4px 0
+          &:hover
+            color: $white-color
+    &-month-item
+      position: relative
+      padding-top: 45px
+      margin-bottom: 30px
+      height: 170px
+      border-top: 2px solid $plan-bg-color
+      background: $white-color
+      box-shadow: 0 2px 3px 0 rgba(0,0,0,0.10)
+      dl
+        position: relative
+        float: left
+        width: 25%
+        text-align: center
+        &:nth-of-type(1):after
+        &:nth-of-type(2):after
+        &:nth-of-type(3):after
+          position: absolute
+          right: 0
+          top: 19px
+          content: ''
+          border-right: 1px solid $border-color
+          height: 50px
+      dt
+        font-size: $font-size-h1
+        font-weight: normal
+        small
+          font-size: $font-size-large
+      dd
+        padding-top: 10px
+        font-size: $font-size-small
+        color: $gray-txt-black
+      .plan-recommend-month-rate
+        color: $plan-bg-color
+      .plan-state-btn
+        display: block
+        border: solid 1px $white-color
+        width: 200px
+        margin: 20px auto
+        color: $white-color
+        font-size: $font-size-h4
+        border-radius(4px)
+        text-align: center
+        line-height: 44px
+        background: $plan-bg-color
+        &:hover
+          color: $white-color
+          background-color: $plan-recommend-btn-bg
+      &-active
+        position: absolute
+        left: 10px
+        top: 0
+        height: 38px
+        width: 134px
+        padding: 0 5px
+        font-size: $font-size-tiny
+        text-align: center
+        line-height: 38px
+        color: $white-color
+        background: $plan-bg-color
+        &:before
+          content: ''
+          position: absolute
+          height: 0
+          width: 100%
+          bottom: 0
+          left: 0
+          border-width: 7px 67px 0
+          border-style: solid
+          border-color: transparent $white-color $plan-bg-color
+      &-last
+        margin-bottom: 0
+    &-rate-left
+      font-size: $font-largest-size
+      display: inline-block
+    &-rate-right
+      margin-left: 5px
+      height: 54px
+      font-size: $font-size-bigger
+      display: inline-block
+    &-rate
+      font-size: $font-size-giant
+      display: inline-block
+      font-weight: bold
+      span
+        font-size: $font-size-h3
+        line-height: 1
+      p
+        text-align: left
+        line-height: 22px
+        margin-bottom: 10px
+      h5
+        color: $gray-txt-black
+        font-size: $font-size-middle
+        text-align: center
+        font-weight: normal
+        border-bottom: 1px solid $bg-color
+        padding-bottom: 10px
+        i
+          margin-right: 6px
+      .btn-block
+        line-height: 36px
+        background: $plan-view-link-bg
+    &-binding
+      color: $white-color
+      background: $list-recommend-bidding-bg
+      &:hover
+        color: $white-color
+        background: $list-recommend-bidding-bg
+    
+    &-rate-active
+      color: $plan-active-color
+  &-binding
+    padding: 8px 15px
+    color: $list-title-color
+  &-list
+    padding-bottom: 100px
+    h3
+      padding-left: 10px
+      border-left: 3px solid $list-title-color
+      letter-spacing: 1.2px
+      margin: 40px 0 20px
+    &-content
+      position: relative
+      background: $white-color
+      padding: 20px 20px 0 20px
+      height: 720px
+      text-align: center
+      &:after
+        display: inline-block
+        height: 100%
+        vertical-align: middle
+      .loading
+        display: inline-block
+        position absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+      .list-main
+        display: table
+        border-collapse: collapse  
+        width: 100%
+    &-body
+      display: table-row-group
+    .item  
+      &-title
+        font-weight: normal
+        color: $gray-txt-black
+        padding: 10px 0
+        width: 14%
+        text-align: center
+        font-size: $font-size-base
+        display: table-cell   
+      &-yield
+        color: $base-red-color
+      &-bidding-link
+        width: 70px
+        height: 30px
+        text-align: center
+        line-height: 30px
+        color: $list-bidding-color
+        display: inline-block
+        border-radius(2px)
+        &:hover
+          color: $white-color
+          background: $list-bidding-color       
+      &-list
+        display: table-row
+        border-bottom: 1px solid $list-item-color
+        &:hover
+          background: $list-item-bg
+          color: $grey-color-dark
+          .plan-binding
+            color: $white-color
+            background: $list-title-color
+            border-radius(4px)
+      &-cell
+        padding: 20px 0
+        text-align: center
+        display: table-cell
+      &-name
+        padding-left: 20px
+        text-align: left  
+        overflow: hidden
+        text-overflow: ellipsis
+      &-status
+        text-align: center
+        width: 12%
+    .first-item
+      padding-left: 20px
+      text-align: left
+      overflow: hidden
+      text-overflow: ellipsis  
+  .pagination
+    position: absolute;
+    bottom: -100px
+    width: 1060px
+  &-detail-header
+    .item-header
+      width: 100%      
+  &-detail-help-inline.help-inline
+    position: static
+  &-detail-info
+    $detail-wrap-bg = #f7f9fc
+    $detail-wrap-border = #eaecef
+    .item-spac
+      background: rgba(245,245,249,.35)
+    th
+      width: 180px
+      padding: 20px 40px 20px 20px
+      font-weight: normal
+      text-align: left
+      color: $gray-txt-black
+      vertical-align: middle
+    td
+      padding: 20px 20px 20px 50px
+      a
+        color: $brand-hover-color
+      span
+        color: $base-red-color
+    .plan-detail-info-last
+      border-bottom: none
+    .manual-color
+      color: #3282FF
+  &-detail-order
+    $info-list-bg = #f7f9fc
+    thead
+      color: $gray-txt-black
+      background: $info-list-bg
+    th
+      font-weight: normal
+      padding: 20px 0 20px 0
+      text-align: center
+    &-item
+      border-bottom: 1px solid $border-color-light
+    td
+      padding: 20px 0 20px 0
+      text-align: center
+  &-detail-step
+    height: 166px
+    margin-bottom: 20px
+    padding: 36px 0 23px 50px
+    background: $white-color
+    position: relative
+    overflow: hidden
+    .step
+      &-line
+        width: 1050px
+        height: 40px
+      &-month-done
+        background: url('/img/plan-detail-month-open.png') no-repeat
+      &-month-doing
+        background: url('/img/plan-detail-month-lock.png') no-repeat
+      &-month-join
+        background: url('/img/plan-detail-month-join.png') no-repeat
+      &-month-wait
+        background: url('/img/plan-detail-month-wait.png') no-repeat
+      &-done
+        background: url('/img/plan-detail-reinvest-open.png') no-repeat
+      &-doing
+        background: url('/img/plan-detail-reinvest-lock.png') no-repeat
+      &-join
+        background: url('/img/plan-detail-reinvest-join.png') no-repeat
+      &-wait
+        background: url('/img/plan-detail-reinvest-wait.png') no-repeat
+      &-income
+        padding-left: 22px
+        background: url('/img/plan-month-open.png') no-repeat 0 2px
+        color: $buy-botton-color
+        display: inline-block
+        margin-left: 460px
+      &-month-done-income
+        background: url('/img/plan-month-lock.png') no-repeat 0 2px
+        color: $plan-step-income-color
+      &-month-doing-income
+        background: url('/img/plan-month-join.png') no-repeat 0 2px
+        color: $gray-txt-black
+      &-reinvest-income
+        background: url('/img/plan-reinvest-open.png') no-repeat 0 2px
+      &-reinvest-done-income
+        background: url('/img/plan-reinvest-lock.png') no-repeat 0 2px
+        color: $plan-step-income-color
+      &-reinvest-doing-income
+        background: url('/img/plan-reinvest-join.png') no-repeat 0 2px
+        color: $gray-txt-black
+      &-quit
+        color: $buy-botton-color
+        position: absolute
+        right: 114px
+      &-month-done-quit
+        color: $gray-txt-black
+      &-item
+        display: inline-block
+        margin-top: 12px
+        line-height: 14px
+        color: $gray-txt-black
+        &-title
+          margin-bottom: 8px
+        &-lock
+          margin-left: 130px
+        &-open
+          margin-left: 451px
+      &-text
+        color: $plan-step-text
+  &-buy-confirm
+    &-link
+      color: $brand-hover-color
+    &-wrapper.buy-confirm-wrapper
+      width: 100%
+    &-box
+      background: none
+    &-info-wrapper
+      background: $white-color
+    &-btn
+      width: 256px
+      display: block
+      margin: 40px auto 0
+      line-height: 40px
+      &:disabled
+        background-color: $border-color-light
+        color: $gray-txt-black
+    &-recharge-link
+      display: block
+      margin: 30px auto
+      width: 256px
+      height: 40px
+      text-align: center
+      line-height: 40px
+      color: $white-color
+      background: $plan-bg-color
+      &:hover
+        color: $white-color
+  &-buy-result
+    &-erricon
+      margin-right: 10px
+      color: $error-color
+    p
+      font-size: $font-size-h5
+      text-align: center
+      color: $gray-txt
+    &-link
+      display: block
+      margin: 30px auto
+      width: 300px
+      height: 40px
+      text-align: center
+      line-height: 40px
+      color: $white-color
+      font-size: $font-size-h4
+      background: $blue-active-color

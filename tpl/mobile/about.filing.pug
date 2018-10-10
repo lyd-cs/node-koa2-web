@@ -1,0 +1,57 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-filing
+    .about-filing-content
+      .about-filing-process.first
+      .about-filing-process
+        .filing-time 2018年5月
+        .filing-content
+          p 等待出具会计师事务所专享审计报告
+          p 等待出具律师事务所法律意见书及合规审查报告
+          p 向监管部门提交验收申请报告并接受现场检查
+        .filing-content.content-desc
+          p 接入中国互联网金融协会信用信息共享平台
+      .about-filing-process
+        .filing-time 2018年3月
+        .filing-content.content-desc
+          p 完成计算机信息安全等级保护(三级)认证
+      .about-filing-process
+        .filing-time 2018年2月
+        .filing-content.content-desc
+          p 红小宝平台按照上海市金融办227号文、18号文
+      .about-filing-process
+        .filing-time 2018年1月
+        .filing-content
+          p 金融办指定律师事务所入场进行网贷机构备案专享尽职调查工作
+        .filing-content
+          p 金融办指定会计师事务所入场进行网贷机构备案专享合规审计工作
+        .filing-content.content-desc
+          p 红小宝正式向嘉定区金融办表示积极申请网贷机构备案
+      .about-filing-process
+        .filing-time 2017年12月
+        .filing-content.content-desc
+          p CFCA电子签章认证系统上线
+      .about-filing-process
+        .filing-time 2017年8月
+        .filing-content
+          p 按照上海嘉定区金融办现场检查指导意见对红小宝网站进行升级优化
+        .filing-content.content-desc
+          p 恒丰银行资金存管系统 对接完成上线
+      .about-filing-process.last
+        .filing-time 2017年6月
+        .filing-content
+          p 红小宝2.0新版起航上线啦！
+
+block foot-script
+  script.
+    app.scrollPosition.init();

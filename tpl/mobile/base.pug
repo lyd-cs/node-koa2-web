@@ -1,0 +1,43 @@
+doctype html
+html(lang='zh-cn')
+  block page-val
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    meta(name='renderer', content='webkit')
+    meta(name='keywords', content = page_keywords?page_keywords:site_keywords)
+    meta(name='format-detection' content='telephone=no')
+    block meta
+      meta(name='description' content = page_description?page_description+', '+site_description:site_description)
+    title
+      block title
+        | #{site_title}
+    meta(name='csrf-param', content='_csrf')
+    meta(name='csrf-token', content=csrf)
+    //- apple-touch-icon
+      each val in [57,72,114,144]
+        link(rel='apple-touch-icon', href='/apple-touch-icon-144.png', sizes=val+'x'+val)
+    block head-style
+    block head-script
+    link(rel='stylesheet', href= UIHelper.static_url('/css/mobile.css') )
+    script(src= UIHelper.static_url('/js/mobile.lib.js'))
+    script(src='//res.wx.qq.com/open/js/jweixin-1.2.0.js')
+  body( class=pageClass)
+  block body
+    div(style='display:none;margin:0')
+      block weixin-share-img
+      img(src='/img/mobile/logo-wx.jpg')
+    block header
+      block subnav
+    block content
+    block footer
+    script(src= UIHelper.static_url('/js/mobile.js') )
+    if !debug
+      script.
+        var _hmt = _hmt || [];
+        (function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?b51ed240c20ea6beeeaceae8ddbeec36";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();
+      script(src= UIHelper.static_url('/lib/echarts.common.min.js') )
+    else
+      script(src= UIHelper.static_url('/lib/echarts.js') ) 
+  block foot-script

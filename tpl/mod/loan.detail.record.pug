@@ -1,0 +1,20 @@
+if investRecord && investRecord.length != 0
+  table(cellpadding='0', cellspacing='0', width='100%')
+    thead
+      tr
+        th 序号
+        th 出借人
+        th 出借金额(元)
+        th 出借时间
+    tbody
+      each item, idx in investRecord
+        - var _loanDetailUserName = _.get(item, 'username', '')
+        - var _loanDetailLoanAmount = _.get(item, 'amount') || 0
+        - var _loanDetailLoanDate = _.get(item, 'lendTime') - 0 || 0
+        tr
+          td #{investCount - idx}
+          td #{userName === _loanDetailUserName ? _loanDetailUserName.toLowerCase() : UIHelper.safeUserName(_loanDetailUserName)}
+          td #{UIHelper.formatNumber(_loanDetailLoanAmount, 2)}
+          td #{UIHelper.formatdate('YYYY-MM-DD HH:mm', _loanDetailLoanDate)}
+else
+  include ./nothing.data.pug

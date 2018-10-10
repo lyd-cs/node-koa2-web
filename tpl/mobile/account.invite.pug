@@ -1,0 +1,88 @@
+extend base
+
+block title
+  | 邀请好友分千元红包
+
+block page-val
+  - var pageClass = 'landing-body'
+  
+  - var inviteAmount = _.get(inviteReward, 'cashBackAmount') - 0 || 0
+  - var inviteCouponNum = _.get(inviteReward, 'couponNumber') - 0 || 0
+  - var _isCreateEscrowAcc = isCreateEscrowAcc || 0
+  - var _shareData = shareData || '{}'
+block content
+  .invite-container
+    img(src='/img/mobile/invite-detail-share-header.png')
+    .invite-list
+      .item
+        img(src='/img/mobile/invite-detail-share-list-equally.png')
+        .invite-list-equally
+          h3 邀请好友平分千元红包
+          p 邀请好友成功注册，
+            br
+            | 您和好友可分别获得500元红包。
+      .item
+        img(src='/img/mobile/invite-detail-share-list-again.png')
+        .invite-list-again
+          h3 好友出借再得0.5%返现
+          p 好友注册30天内的每笔出借，
+           br
+           | 您均可获得0.5%年化返现，上不封顶！
+      .item
+        img(src='/img/mobile/invite-detail-share-list-example.png')
+        .invite-list-example
+          h3 举个例子
+          p 好友A加入12月期红利智投10万元，您可获得
+            br
+            | 返现奖励：(10万x12)/12x0.5%=500元
+        .invite-list-text
+          p 好友B加入6月期红利智投5万元，您可获得
+            br
+            | 返现奖励：(5万x6)/12x0.5%=125元
+      if isLogin
+        .item
+          img(src='/img/mobile/invite-detail-share-reward.png')
+          .invite-list-reward
+            .invite-reward
+              .invite-desc 现金奖励
+              .invite-num
+                span #{UIHelper.formatNumber(inviteAmount, 2)}
+                | 元
+            .invite-coupon
+              .invite-desc 优惠券
+              .invite-num
+                span #{inviteCouponNum}
+                | 张
+          .invite-record.J_invite-record 查看邀请记录
+    .invite-activity-rules
+      img(src='/img/mobile/invite-detail-bottom-bg.png')
+      .invite-activity-rules-list
+        h3 活动规则
+        li.item
+          span 1
+          | 邀请好友拆红包，好友拆开红包并注册后，您和好友平分一千元现金红包，用于购买平台产品
+        li.item
+          span 2
+          | 好友出借，您可再获得好友注册之日起30天内所有出借金额年化的0.5%返现奖励，奖励发放到您的账户余额，可自由支配（新手产品不在活动范围内）
+        li.item
+          span 3
+          | 您可邀请多个好友帮你拆红包，红包金额累计，上不封顶
+        li.item
+          span 4
+          | 您可邀请多个好友出借，奖励上不封顶
+        li.item
+          span 5
+          | 本活动最终解释权归红小宝所有，如有疑问，请致电400-1552-888
+      .invite-footer.J_invite_btn 立即邀请
+    .invite-toast-notify.J_invite-toast-notify
+block foot-script
+  script.
+    app.appInvite.init({
+      isLogin: #{isLogin},
+      isCreateEscrow: #{_isCreateEscrowAcc},
+      hasNativeShowMsg: !{!!hasNativeShowMsg},
+      hasUpgradeMsg: !{!!hasUpgradeMsg},
+      shareData: !{_shareData},
+      isCustomerDisplay: !{!!isCustomerDisplay},
+      hasInviteActivityOverMsg: #{!isDisplayInvite}
+    });

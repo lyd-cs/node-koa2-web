@@ -1,0 +1,35 @@
+if _isBidding || _isPresale
+  .product-detail-buy
+    dl
+      dt 剩余金额(元)
+      dd #{UIHelper.formatNumber(_transferLastMoney, 2)}
+    dl
+      dt 可用金额(元)
+      if isLogin
+        dd 
+          | #{UIHelper.formatNumber(_userAvailableBalance, 2)}
+          if _userIsCreateAccount && _userIsCashPasswordPassed && _userIsIdPassed
+            a(href='/account/quickpay').item-recharge 充值
+          else
+            a.J_charge-createaccount-guide.item-recharge 充值
+      else
+        dd.item-login
+          a(href='/login') 登录
+          | 后查看
+    include ./buy.form.pug
+if _isDone || _isClosedCancle
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-doing-status.done-space
+      h3 已完成
+      .item-time 转让用时
+      .item-done 
+        if _transferFinishTime.hours() > 0 
+          | #{Math.floor(_transferFinishTime.asHours())}
+          span 时
+        if _transferFinishTime.minutes() > 0 || _transferFinishTime.hours() > 0 || _transferFinishTime.days() > 0
+          | #{_transferFinishTime.minutes()}
+          span 分
+        | #{_transferFinishTime.seconds()}
+        span 秒
+      a(href='/transfer').btn.btn-other 查看其它债权 
+      

@@ -1,0 +1,387 @@
+.modal
+  $modal-button-color = #ED3E40
+  $bank-border-color = #DEDEDE
+  $border-active-color = #003D7E
+  $font-title-color = #666666
+  $border-dashed-color = #E5E5E5
+  $button-style-color = #E3BF80
+  &-wrap
+  &-product
+    width: 500px
+    height: 270px
+    &-box
+      margin: 0 auto
+      height: 270px
+      background-color: $white-color
+      border-radius(4px)
+      .modal-main
+        text-align: center
+        font-size: $font-size-huge
+        color: $gray-txt-light
+        line-height: $font-size-huge
+        .title-padding
+          padding-top: 60px
+          display: inline-block
+          margin-bottom: 20px
+        i
+          font-size: $font-size-h3
+          color: $success-color
+      .modal-large-title
+        display: inline-block
+      .modal-no-border
+        border: none
+      .btn-modal
+        position: absolute
+        bottom: 60px
+        width: 150px
+        height: 40px
+        text-align: center
+        font-size: $font-size-base
+        letter-spacing: 0
+        line-height: 40px
+        border-radius(4px)
+        cursor: pointer
+      .btn-link-home
+        display: block
+        width: 180px
+        height: 40px
+        margin: 60px auto 0
+        line-height: 40px
+        text-align: center
+      .btn-let
+        background: $modal-button-color
+        color: $white-color
+        margin-left: 85px
+      .btn-guard
+        background: $white-color
+        border: 1px solid $modal-button-color
+        color: $modal-button-color
+        margin-left: 260px
+      .guard-err
+        color: $modal-button-color
+        font-size: $font-size-middle
+        display: inline-block
+        margin-top: 10px
+        position: absolute
+        bottom: 20px
+        left: 87px
+      .header-close
+        width: 24px
+        height: 24px
+        line-height: 24px
+        background: $grey-color-dark
+        border-radius(50%)
+        color: $white-color
+  &-dialog
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    margin: auto
+  &-signup-success
+    width: 700px
+    height: 475px
+    margin-top: 100px
+    .modal-header
+      padding: 0
+      border-bottom: none
+      position: relative
+    .modal-body
+      text-align: center
+    .modal-footer
+      border-top: none
+      text-align: center
+      padding: 0 0 40px
+    .close-button
+      width: 27px
+      height: 27px
+      position: absolute
+      z-index: 10
+      right: 20px
+      outline: none
+      top: 20px
+      background: url('/img/close-button.png') no-repeat 0 0
+      opacity: 0.8
+      &:hover
+        opacity: 1
+    h3
+      font-size: $font-size-h3
+      color: $font-title-color
+      margin: 15px auto 20px
+    p
+      font-size: $font-size-middle
+      color: $font-title-color
+      margin-bottom: 5px
+    .user-platform-number
+      width: 600px
+      border-bottom: dashed 1px $border-dashed-color
+      padding-bottom: 20px
+      margin: 0 auto 20px
+    img
+      width: 250px
+      height: 198px
+      margin: 0 auto 20px
+    a
+      width: 335px
+      height: 40px
+      display: inline-block
+      color: $white-color
+      font-size: $font-size-base
+      text-align: center
+      line-height: 40px
+      border-radius(4px)
+      background-color: $button-style-color
+  &-create-account-guide
+    width: 700px
+    height: 475px
+    margin-top: 100px
+    .modal-header
+      padding: 8px 0
+      border-bottom: none
+      position: relative
+    .modal-body
+      padding: 0
+      text-align: center
+    img
+      width: 285px
+      height: 190px
+      margin: 0 auto 20px
+    h3
+      font-size: $font-size-h3
+      color: $font-title-color
+      margin: 15px auto 20px
+    p
+      font-size: $font-size-middle
+      color: $font-title-color
+      width: 600px
+      border-bottom: dashed 1px $border-dashed-color
+      padding-bottom: 20px
+      margin: 0 auto 20px
+    .create-account-guide-desc
+      width: 440px
+      padding-bottom: 0
+      border-bottom: none
+      margin-top: 20px
+    .modal-footer
+      padding: 0 0 40px 0
+      border-top: none
+      text-align: center
+    a
+      width: 335px
+      height: 40px
+      display: inline-block
+      color: $white-color
+      font-size: $font-size-base
+      text-align: center
+      line-height: 40px
+      border: none
+      border-radius(4px)
+      background-color: $button-style-color
+      &:hover
+        background-color: $button-style-color
+        color: $white-color
+  &-user-info-perfect
+    .modal-content
+      width: 600px
+      margin-top: 100px
+    .modal-body
+      width: 450px
+      margin: 30px auto
+    h3
+      font-size: $font-size-huge
+      color: $font-title-color
+      text-align: center
+    .modal-footer
+      border-top: none
+      text-align: center
+    a
+      width: 150px
+      height: 40px
+      display: inline-block
+      border-radius(4px)
+      margin: 20px 30px
+      border: solid 1px $modal-button-color
+      text-align: center
+      color: $modal-button-color
+      line-height: 40px
+      font-size: $font-size-base
+      cursor: pointer
+    .active
+      background-color: $modal-button-color
+      color: $white-color
+      &:hover
+        color: $white-color
+  .close-button
+    width: 27px
+    height: 27px
+    position: absolute
+    z-index: 10
+    right: 20px
+    top: 20px
+    outline: none
+    background: url('/img/close-button.png') no-repeat 0 0
+    opacity: 0.8
+    &:hover
+      opacity: 1
+  &-bank-list
+    .bank-active
+      border: solid 1px $border-active-color
+    .modal-dialog
+      width: 1020px
+      margin-top: 100px
+    .modal-header
+      border-bottom: none
+    .close-button
+      width: 24px
+      height: 24px
+      float: right
+      background: url('/img/close.png') no-repeat 0 0
+      margin: 0 10px 0 0
+      cursor: pointer
+    .modal-body
+      clearfix()
+      max-height: 460px
+      overflow-y: auto
+      padding: 20px 60px
+  &-bank-item
+    width: 248px
+    height: 70px
+    float: left
+    margin: 20px
+    border: solid 1px $bank-border-color
+    border-radius(4px)
+    .bank-item-name
+      text-align: left
+      margin: 15px auto 10px 76px
+      line-height: 16px
+      font-size: $font-size-middle
+      color: $gray-txt-light
+    .bank-item-limit
+      font-size: $font-size-h6
+      color: $gray-txt-black
+      margin: 0 auto auto 76px
+      line-height: 12px
+      text-align: left
+  &-exchange-coupon
+    margin-top: 100px
+    $input-border-color = #CFCFCF
+    .modal-dialog
+    .modal-content
+      width: 706px
+      height: 267px
+    .modal-header
+      border-bottom: none
+      padding: 14px 10px 0
+      height: 85px
+    .coupon-exchange-form
+      text-align: center
+    .form-group
+      text-align: center
+    input
+      width: 100px
+      height: 38px
+      margin: auto 10px 10px
+      border-radius(4px)
+      font-size: $font-size-middle
+      color: $font-title-color
+      text-align: center
+      box-shadow: none
+      border: solid 1px $input-border-color
+    .uc-title
+      padding: 16px 20px
+    h4
+      border-left: $btn-primary-color solid 3px
+      padding-left: 13px
+    .error-tips
+      width: 400px
+      height: 20px
+      margin-left: 93px
+      text-align: left
+      color: $error-color
+    .control-btn
+      width: 220px
+      margin: 12px auto 0
+    .success-icon
+      width: 64px
+      height: 64px
+      margin: 30px auto 24px
+      background: url('/img/coupon-exchange-success.png') no-repeat
+    .error-icon
+      padding-left: 20px
+      position: relative
+      &:before
+        content: ''
+        width: 18px
+        height: 18px
+        position: absolute
+        left: 0
+        top: 2px
+        background: url('/img/coupon-exchange-error-icon.png') no-repeat
+    p
+      font-size: $font-size-huge
+      text-align: center
+      color: $gray-txt-light
+    .coupon-detail
+      font-size: $font-size-base
+      color: $gray-txt-black
+      text-align: center
+      margin-bottom: 28px
+    .exchange-success-btn
+      width: 222px
+      margin-left: 242px
+      height: 40px
+      line-height: 28px
+  &-sale-invite
+    margin-top: 150px
+    .modal-header
+      border-bottom: none
+    .modal-body
+      margin: 40px auto 30px
+      padding: 15px 80px 
+      line-height: 25px
+    .modal-footer
+      border-top: none
+      padding-bottom: 30px
+      .close-btn
+        width: 150px
+        height: 40px
+        margin: 0 auto
+        cursor: pointer
+        text-align: center
+        line-height: 40px
+        color: $white-color
+        border-radius(4px)
+        background: $buy-botton-color
+    .wraning
+      font-size: $font-size-middle
+      text-align: center
+      color: $font-title-color
+    
+  &-dialog
+    &-content
+      padding: 40px 0
+      margin-top: 100px
+    &-title
+      color: $grey-color
+      text-align: center
+      font-size: $font-size-large
+    &-footer
+      border-top: none
+      text-align: center
+      margin-top: 60px
+      .btn-cancel
+        width: 100px
+      .btn-sure
+        width: 100px
+        display: inline-block
+        border-radius: 4px
+        margin-left: 10px
+        border: solid 1px #ed3e40
+        text-align: center
+        color: #ed3e40
+        line-height: 30px
+        vertical-align: middle
+        font-size: 14px
+        cursor: pointer
+        background: none

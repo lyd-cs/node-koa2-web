@@ -1,0 +1,13 @@
+extend base
+
+block title
+  | 购买结果 -
+
+block content
+  - var _buyResultInterestStart = _.get(session, 'lockStart', '') || ''
+  .section.buy-result.plan-buy-result
+    img(src='/img/buy-successed.png')
+    h2
+      span 加入成功
+    p #{UIHelper.formatdate('YYYY年MM月DD日', _buyResultInterestStart)}开始计息
+    a(href='/account', class='plan-buy-result-link') 确认

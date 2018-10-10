@@ -1,0 +1,103 @@
+- var _filter = _.get(query, 'filter', 0) - 0 || 0
+//- - var dataList = [{ "lockPeriod": "1","earnAmount": "100.00","status": "PURCHASE_END","redProgressLeft": "50000.00","redFinishTime": "2017-05-06 14:43:46.0","type": "HOLD_PLAN","endLockingTime": "1495283676000", "id": "156688","financeSubPointId": "1291978","statusCode": "PURCHASE_END","finalAmount": "50000.00", "category": "A","expectedRate": "4.50","name": "安琪发布计划11","subPointId": "1291978",'exitWay': '正常退出'}]
+each item, idx in dataList
+  - var _productId = _.get(item, 'id') - 0 || 0
+  - var _productName = _.get(item, 'name') || ''
+  - var _productAmount = _.get(item, 'finalAmount') - 0 || 0
+  - var _productEarnAmount = _.get(item, 'earnAmount') - 0 || 0
+  - var _productExpectedRate = _.get(item, 'expectedRate') - 0 || 0
+  - var _productDuration = _.get(item, 'lockPeriod') - 0 || 0
+  - var _productEndLockingTime  = _.get(item, 'endLockingTime', 0) - 0 || 0
+  - var _productCashType = _.get(item, 'cashType') || ''
+  - var _quitStatus = _.get(item, 'quitStatus') || ''
+  - var _productTransferCash = _.get(item, 'redProgressLeft') - 0 || 0
+  - var _productStatus = _.get(item, 'status') || ''
+  - var _productExitWay = _.get(item, 'exitWay') || ''
+  - var _productRecoveryAmount = _.get(item, 'recoveryAmount') - 0 || 0
+  - var _productQuitDate = _.get(item, 'quitDate') - 0 || 0
+  - var _FinancePlanStatus = _.get(item, 'financePlanStatus', '') 
+  - var _productCalmPeriodTime = _.get(item, 'coolingOffPeriod') - 0 || 0
+  - var _productCalmPeriod = _.get(item, 'inCoolingOffPeriod')
+  - var _quitCannot = _FinancePlanStatus === 'OLD' || (_productCalmPeriod && _productCalmPeriodTime !== 0)
+  - var _quitStay = _quitStatus === 'STAY_QUIT' && (!_productCalmPeriod || (_productCalmPeriod && (_productCalmPeriodTime == 0)))
+  - var _quitCan = _quitStatus === 'QUIT'
+  - var _quitAnnul = _quitStatus === 'ANNUL_QUIT'
+  - var _productNovice = _.get(item, 'novice', 0) - 0
+  - var _productBaseInterestRate = _.get(item, 'baseInterestRate', 0) - 0
+  - var _productSubsidyInterestRate = _.get(item, 'subsidyInterestRate', 0) - 0
+  - var _productExpectedSubsidyInterestAmount = _.get(item, 'expectedSubsidyInterestAmount', 0) - 0
+  - var _productSubsidyInterest = _.get(item, 'subsidyInterest', 0) - 0
+  - var _productLockDays = _.get(item, 'lockDays', 0) - 0
+  tr.uc-loan-tab-item(class={'item-spac': idx % 2 !== 0})
+    if _filter == 1
+      td.first
+        a(href='/account/plan/' + _productId) #{_productName}
+      td #{UIHelper.formatNumber(_productAmount, 2)}
+      td.uc-plan-earn #{UIHelper.formatNumber(_productEarnAmount < 0? 0: _productEarnAmount, 2)}
+      if _productNovice
+        td #{UIHelper.formatNumber(_productBaseInterestRate, 1)}%
+          span.icon-question-circle(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>计划按照"+UIHelper.formatNumber(_productBaseInterestRate, 1)+"%计息，"+UIHelper.formatNumber(_productSubsidyInterestRate, 1) + "%加息收益（预计"+UIHelper.formatNumber(_productSubsidyInterest, 2)+"元）将在计划退出时发放至您的账户</span>")
+      else
+        td #{UIHelper.formatNumber(_productExpectedRate, 1)}%
+      if _productDuration
+        td #{_productDuration}个月
+      else if _productLockDays
+        td #{_productLockDays}天
+      td #{UIHelper.formatdate('YYYY-MM-DD', _productEndLockingTime)}
+      td #{UIHelper.parsePlanCashType(_productCashType)}
+      td
+        if _productStatus === 'PURCHASE_END'
+          | 锁定期
+        else if _productStatus === 'PURCHASEING'
+          | 债权匹配中 
+        else if _productStatus === 'REDEMPTION_PERIOD'
+          | 开放期
+      if _quitCannot
+        td 
+      else if _quitStay
+        td.disable 可退出
+      else if _quitCan
+        td: a(href='/account/plan/' + _productId) 可退出
+      else if _quitAnnul
+        td: a(href='/account/plan/' + _productId) 撤销退出
+    else if _filter == 2
+      td.first
+        a(href='/account/plan/' + _productId) #{_productName}
+      td #{UIHelper.formatNumber(_productAmount, 2)}
+      if _productNovice
+        td #{UIHelper.formatNumber(_productBaseInterestRate, 1)}%
+          span.icon-question-circle(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>计划按照" + UIHelper.formatNumber(_productBaseInterestRate, 1) + "%计息，"+ UIHelper.formatNumber(_productSubsidyInterestRate, 1) + "%加息收益（预计" + UIHelper.formatNumber(_productSubsidyInterest, 2) + "元）将在计划退出时发放至您的账户</span>")
+      else
+        td #{UIHelper.formatNumber(_productExpectedRate, 1)}%
+      if _productDuration
+        td #{_productDuration}个月
+      else if _productLockDays
+        td #{_productLockDays}天
+      td #{UIHelper.formatNumber(_productTransferCash, 2)}
+      td #{UIHelper.parsePlanCashType(_productCashType)}
+      td #{_productExitWay}
+    else
+      td.first
+        a(href='/account/plan/' + _productId) #{_productName}
+      td #{UIHelper.formatNumber(_productAmount, 2)}
+      if _productNovice
+        td #{UIHelper.formatNumber(_productBaseInterestRate, 1)}%
+          span.icon-question-circle(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>计划按照" + UIHelper.formatNumber(_productBaseInterestRate, 1) + "%计息，"+ UIHelper.formatNumber(_productSubsidyInterestRate, 1) + "%加息收益（预计" + UIHelper.formatNumber(_productSubsidyInterest, 2) + "元）将在计划退出时发放至您的账户</span>")
+      else
+        td #{UIHelper.formatNumber(_productExpectedRate, 1)}%
+      if _productDuration
+        td #{_productDuration}个月
+      else if _productLockDays
+        td #{_productLockDays}天
+      td #{UIHelper.formatNumber(_productRecoveryAmount, 2)} 
+      td.uc-plan-earn #{UIHelper.formatNumber(_productEarnAmount < 0? 0: _productEarnAmount, 2)}
+      td #{UIHelper.parsePlanCashType(_productCashType)}
+      td 
+        if _FinancePlanStatus === 'OLD' 
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productEndLockingTime)}
+        else
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productQuitDate)}
+      td #{_productExitWay}
+tr        
+  td(colspan='9').uc-loan-list-page.page
+    include ./pager.ajax.pug

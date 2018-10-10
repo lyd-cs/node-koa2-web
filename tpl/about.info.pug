@@ -1,0 +1,175 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+  
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  .about-info
+    .section
+      .about-info-container
+        .about-info-section.big-event 《网络借贷信息中介机构业务活动管理暂行办法》第四条、第九条、第三十条、第三十一条均对于网络借贷信息中介机构的信息披露义务进行了规定。根据《中国互联网金融协会信息披露自律管理规范》及《中国互联网金融协会标准：互联网金融信息披露——个体网络借贷》（T/NIFA 1-2016）的规定，红小宝平台从存管信息、产品信息、风控模式、系统信息、公司主体信息、法人及高管情况、员工信息、合作机构八个方面进行信息披露，供用户查看监督。
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-depository.png')
+          .about-info-content.deposit-info  
+            img(src='/img/information_disclosure_deposit.png')
+            p 2017年8月，红小宝平台恒丰银行存管系统正式上线。
+            p 恒丰银行存管系统上线后，按照监管部门的要求，将为红小宝平台的客户在红小宝平台上的交易提供集实名认证、支付结算、资金存管等多项功能于一体的金融服务，并对全交易流程进行核查，使借贷双方的债权关系清晰明确，保障用户资金安全。    
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-product.png')
+          .about-info-content
+            .about-info-content-product
+              h4 散标出借
+              p 散标出借是红小宝平台推出的线上个人投融资交易服务。
+              p 借款人（融资人）通过红上至信商务信息咨询（上海）有限公司的审核后，可在红小宝上发布借款标的，出借人可通过红小宝与融资人完成电子借贷协议的签署及款项的划转。
+              p 出借人通过等额本息的方式每月收取出借本金和收益。
+              .product-intro
+                img(src='/img/information_disclosure_sanbiao.png')
+                .income-status
+                  p 历史年化收益: 
+                    span.income 11.4
+                      small % 
+                      | - 12.6
+                      small %
+                    p 出借金额: 
+                      span.invest 
+                        small ￥
+                        | 100元
+                      | 起
+                  p 还款期限: 
+                    span.time 12、18、24、36
+                    | 个月
+                  p 还款方式: 
+                    span 等额本息
+            .about-info-content-product
+              h4 红利智投
+              p 红利智投是红小宝平台为理财人提供的本金自动循环出借及到期自动转让退出的投标工具，由系统自动实现资金的分散出借，有效帮助理财人分散出借风险。
+              .product-intro
+                img(src='/img/information_disclosure_hongli.png')
+                .income-status
+                  p 历史年化收益: 
+                    span.income 8
+                      small % 
+                      | - 10
+                      small %
+                  p 出借金额: 
+                    span.invest 
+                      small &yen;
+                      | 1000元
+                    | 起
+                  p 锁定期限: 
+                    span.time 3、6、12、24
+                    | 个月
+                  p 退出方式: 
+                    span 到期后以债权转让退出
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-risk.png')
+          .about-info-content
+            .about-info-content-riskcontrol
+              p 红小宝平台建立起了一套科学有效的信用审核流程及风险管理体系，对借款用户进行多维度信用风险分析及贷前、贷中、贷后管理。贷前通过信息交叉验证、大数据勾勒借款人经济画像、行业黑名单排查等方式多维度筛选优质借款人。贷中通过数据采集对借款人进行行为追踪，及时管理、防范潜在风险。贷后有效催收账款，当少量逾期发生时，通过有效、合法、合理的手段进行账款催收。
+              p 红小宝平台坚持采用小额分散式借款，平均单笔借款金额仅为
+                span 5.3
+                | 万元，借款人分布于全国
+                span 15
+                | 个省区，
+                span 58
+                | 座城市，理财用户平均每笔出借分散在
+                span 21
+                | 个项目上，真正做到小额分散，有效控制借款集中的风险。
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-information.png')
+          .about-info-content
+            .about-info-content-information
+              .pull-left
+                h4 开发建设、维护情况
+                p 平台系统定期维护，实时跟踪服务器的健康状况，升级维护严格执行系统升级维护流程，确保变更请求、变更受理、变更审批、变更实施等各个环节可控。
+              .pull-right
+                img(src='/img/data_status.png')
+            .about-info-content-information
+              .pull-left
+                img(src='/img/information_safety.png')
+              .pull-right
+                h4 信息安全情况
+                p 网站和APP由自有专业技术团队开发，在信息安全和数据安全方面有着非常丰富的经验，拥有基于大数据的统一监控/告警/分析系统，能实时感知业务/应用/系统运行状态并及时反馈。在信息安全和数据安全方面有着非常丰富的经验，让您享受高级别的安全保障，确保交易数据安全。
+            .about-info-content-information
+              .pull-left
+                h4 数据存储、备份情况
+                p 采取各种合适的物理、电子和管理方面的措施来存储数据，有效避免重要信息被篡改以及删除。
+              .pull-right
+                img(src='/img/develop_status.png')
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-company.png')
+          .about-info-content
+            .about-info-content-company
+              .license(data-toggle="modal",data-target=".license-pic").pull-left
+                img(src='/img/business-license-hongshang.jpg')
+                p 营业执照
+              ul.company-info
+                li 红上金融信息服务（上海）有限公司是经上海市工商局批准设立的金融信息服务机构，注册资本5000万。
+                li 红小宝平台秉持“稳健、安全、专业”的发展理念，致力于为有投融资需求的小微企业主或个人提供安全、高效的互联网金融服务。
+                li 截至2017年11月，红小宝平台的服务已经覆盖全国18个省的43个城市，帮助了数十万名需要融资发展的小微企业主及个人用户。
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-management.png')
+          .about-info-content 
+            .about-info-content-staff
+              p 红上金融信息服务（上海）有限公司坚持把强化管理，防范风险作为公司的“基准线”，着重建立健全的风险管控机制和工作制度，严格遵守法律以及监管部门颁布的各项要求，结合公司实际情况，设立了董事会、监事会及高级管理层。
+              p 公司董事会、监事会依法独立运作，有效地履行各项职权和义务。高级管理层将秉承“同成长，共分享”的企业价值观，谨慎、勤勉地按照董事会决策开展经营管理工作。
+            span.red-border  
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-staff.png')
+          .about-info-content 
+            .about-info-content-staff
+              p 红小宝平台具备优秀的自主研发能力，引进了一大批高端人才。他们大多是来自金融、互联网、信息安全等领域的IT技术专家和经验丰富的管理人员。IT技术团队由产品，设计，开发，运维等多个子团队组成，为公司的平台架构、系统开发、大数据分析、分布式计算等提供了强大可靠的技术保障。
+            span.red-border   
+        .about-info-section
+          .about-info-header
+            img(src='/img/title-cooperate.png')
+          .about-info-content 
+            ul.about-info-content-cooperate
+              li
+                img(src='/img/partners-hengfeng-bank.png')
+                .cooperater-info
+                  h4 恒丰银行
+                  p 恒丰银行股份有限公司，是12家全国性股份制商业银行之一。目前，在全国设有18家一级分行，共306家分支机构；另外还发起设立了5家村镇银行。全国布局正在加速，大量分支行和子公司正在筹建开业，同时快速拓展海外业务和设立海外分支机构。截止2016年年底，恒丰银行总资产达1.2万亿，各方面实现了高速跨越式增长。恒丰银行先后跻身“亚洲银行竞争力排名30强”、“中国企业500强”、“全球银行1000强”，在英国《银行家》杂志发布的“2016年全球银行1000强”排名中，位列第143位，正在向世界一流银行大步迈进。
+              li
+                img(src='/img/partners-financial-auth.png')
+                .cooperater-info
+                  h4 中国金融认证公司
+                  p 中国金融认证中心（China Financial Certification Authority，简称CFCA）是经中国人民银行和国家信息安全管理机构批准成立的国家级权威安全认证机构，是国家重要的金融信息安全基础设施之一。在《中华人民共和国电子签名法》颁布后，CFCA成为首批获得电子认证服务许可的电子认证服务机构。
+              li
+                img(src='/img/partners-halfpenny.png')
+                .cooperater-info
+                  h4 中国小额信贷联盟
+                  p 中国小额信贷联盟，简称联盟，英文名称：China Association of Microfinance (CAM)，其前身是“中国小额信贷发展促进网络”，是中国小额信贷领域最早的全国性会员制协会组织。其引进并推动的普惠金融理念已经写入十八届三中全会决议，并成为国务院在金融改革领域的重点工作。联盟坚持农村金融领域实践，支持公益小额信贷机构发展，得到各方面赞赏。联盟率先在国内成立互联网P2P行业自律委员会，在普惠金融和小额信贷领域具有广泛的影响力。
+              li
+                img(src='/img/partners-meritdata.png')
+                .cooperater-info
+                  h4 美林数据
+                  p 美林数据技术股份有限公司（简称：美林数据，NEEQ：831546）是国内知名的工业大数据领军企业，重点面向智能电网、智能制造等工业领域企业客户，提供包括大数据产品与技术服务在内的大数据增值解决方案。作为“中国大数据企业50强”，公司积极携手广大优秀厂商及行业客户，共同推动国家工业大数据行业标准的制定，致力于利用大数据技术推动中国工业实现转型升级。
+              li
+                img(src='/img/partners-shcredit.png')
+                .cooperater-info
+                  h4 上海资信有限公司
+                  p 成立于1999年7月的上海资信有限公司是上海目前唯一一家融个人征信系统与企业征信系统为一体、既从事征信数据库建设又提供个人征信与企业征信服务的专业化机构。在公司发展过程中先后得到了两任国务院总理的亲切关怀 ，得到人民银行与上海市政府的大力支持。
+              li
+                img(src='/img/partners-netpay.png')
+                .cooperater-info
+                  h4 网易支付
+                  p 网易支付是网易公司为方便用户进行网上交易推出的安全、稳定、快捷的在线支付平台，为用户提供了多种方便的在线充值、交易管理、在线支付帐户管理、代收、提现等服务。
+  .modal.fade.license-pic(tabindex="-1",role="dialog",aria-labelledby="myLargeModalLabel")
+    .modal-dialog(role="document")
+      img(src='/img/business-license-hongshang.jpg')
+
+
+
+
+ 

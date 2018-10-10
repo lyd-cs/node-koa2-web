@@ -1,0 +1,15 @@
+extend about.announcement.pug
+
+block title
+  | 公告详情 -
+
+block content
+  - var _title = _.get(announceDetail, 'title') || ''
+  - var _time = _.get(announceDetail, 'createTime') || ''
+  - var _content = _.get(announceDetail, 'content') || ''
+  .about-announcement-detail
+    .section.case
+      .about-announcement-content
+        .sub-title #{_title}
+        .about-announcement-detail-container !{_content}
+      a.return(href='/about/announcement') < 返回列表 

@@ -1,0 +1,224 @@
+extend base
+
+block title
+  | 账户设置 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  - var _isUserSecure = _.get(userState, 'isAllPassed') - 0 || 0
+  - var _isTrusted = _.get(userState, 'isIdPassed') - 0 || 0
+  - var _isTradPwd = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _isMobilePassed = _.get(userState, 'isMobilePassed') - 0 || 0
+  - var _isUserHasBindCard = _.get(userState, 'hasBindCard', 0) - 0 || 0
+  - var _userMobile = _.get(userState, 'mobile') || ''
+  - var _userName = _.get(userState, 'username') || _.get(userState, 'realName') || _.get(user, 'name') || ''
+  - var _userIdCardNo = _.get(userState, 'idNo') || ''
+  - var _userLastTime = _.get(userState, 'lastLoginTime') - 0 || 0
+  - var _realName = _.get(userState, 'realName') || ''
+  - var _userBankCardId = _.get(userCard, 'cardId') || ''
+  - var _bankCode = _.get(userCard, 'bankCode') || ''
+  - var _bankName = _.get(userCard, 'bankType') || ''
+  - var _bankList = bankList
+  - var _bankItem = _bankList[_bankCode]
+  - var _bankSingleQuota = _.get(_bankItem, 'single') || 0
+  - var _bankDayQuota = _.get(_bankItem, 'day') || 0
+  - var _hasRiskVail = _.get(userState,'riskEvaluationScore')
+  - var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _hasInvite = _.get(userState, 'hasInvestCode') - 0 || 0
+  - var _inviteCode = _.get(userInviteInfo, 'code')
+  - var _inviteName = _.get(userInviteInfo, 'name') || '--'
+  - var _invitePhone = _.get(userInviteInfo, 'mobile') || ''
+  - var _isCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _isIdPassed = _.get(userState, 'isIdPassed') - 0 || 0
+  - var _managerName = _.get(userState, 'managername') || ''
+  - var _isUnbindBankcard = isEnableUnbind
+  - var _isUnbindBankcardReason = isEnableUnbindReason
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(userInviteInfo)}
+    .uc-title   
+      h4 账户信息
+    .uc-setting-info
+      .uc-setting-info-item.uc-setting-info-item-active
+        .item.item-first.item-title 存管账户
+        .item.item-sub-title.item-title 恒丰银行合作存管，资金交易透明规范
+        .item.item-title
+          if _isCreateAccount 
+            span.uc-setting-info-space #{UIHelper.safeRealname(_realName)}
+            span #{UIHelper.safeIdentity(_userIdCardNo)}
+          else 
+            | --
+        if _isCreateAccount
+          .item.item-title.item-done
+            | 已开通
+        else
+          .item.item-title
+            | 未开户 
+        .item.item-title 
+          if _isCreateAccount
+            a(href='/agreement/deposit', target='_blank') 查看存管协议
+          else
+            a(href='/deposit/createaccount') 去开户
+      .uc-setting-info-item
+        .item.item-first.item-title 用户名
+        .item.item-sub-title.item-title 用户唯一标识，保护隐私
+        .item.item-title #{_userName}
+        .item.item-done
+          | 已设置
+        .item.item-title --
+      //- .uc-setting-info-item
+      //-   .item.item-first.item-title 安全认证
+      //-   .item.item-sub-title.item-title 账户更安全理财更放心
+      //-   .item.item-title
+      //-     if !_isTrusted
+      //-       | --
+      //-     else  
+      //-       span.uc-setting-info-space #{UIHelper.safeRealname(_realName)}
+      //-       span #{UIHelper.safeIdentity(_userIdCardNo)}
+      //-   if _isTrusted
+      //-     .item.item-title.item-done
+      //-       i.fa.fa-check
+      //-       | 已设置
+      //-   else
+      //-     .item.item-title
+      //-       | 未实名  
+      //-   .item.item-title 
+      //-     if _isTrusted
+      //-       | --
+      //-     else
+      //-       a(href='/account/secure') 安全认证
+      .uc-setting-info-item.uc-setting-info-item-active
+        .item.item-first.item-title 绑定手机
+        .item.item-sub-title.item-title 账户信息变动通知，出借更安心
+        .item.item-title 
+          if _isMobilePassed
+            | #{UIHelper.safeMobile(_userMobile)}
+          else
+            | --
+        if _isMobilePassed    
+          .item.item-title.item-done
+            | 已设置
+        else
+          .item.item-title 未绑定 
+        .item.item-title
+          if _isMobilePassed
+            a(href='/account/mobile') 修改
+          else
+            | 联系客服绑定  
+      .uc-setting-info-item
+        .item.item-first.item-title 登录密码
+        if _userLastTime
+          .item.item-sub-title.item-title 上次登录时间 #{UIHelper.formatdate('YYYY-MM-DD HH:mm', _userLastTime)}
+        else
+          .item.item-sub-title.item-title 上次登录时间 --  
+        .item.item-title --
+        .item.item-title.item-done
+          | 已设置
+        .item.item-title
+          a(href='/account/password') 修改
+      .uc-setting-info-item.uc-setting-info-item-active
+        .item.item-first.item-title 交易密码
+        .item.item-sub-title.item-title 仅限平台交易使用，有效防止资金损失
+        .item.item-title --
+        if !_isCreateAccount || (_isCreateAccount && !_isCashPasswordPassed)
+          .item.item-title --
+        else  
+          .item.item-title.item-done
+            | 已设置
+        .item.item-title
+          if !_isCreateAccount || !_isIdPassed || !_isMobilePassed
+            a.J_tradpwd-createaccount-guide 设置交易密码
+          else if _isCreateAccount && !_isCashPasswordPassed
+            a(href='/deposit/createaccount') 设置交易密码
+          else
+            a(href='/account/trad/password') 修改
+      .uc-setting-info-item
+        .item.item-first.item-title 风险测评
+        .item.item-sub-title.item-title 对您的出借意向进行评估
+        .item.item-title --
+        if !_hasRiskVail
+          .item.item-title 未评估
+        else  
+          .item.item-title.item-done
+            span#risktype 
+        .item.item-title
+          if !_isCreateAccount || !_isIdPassed
+            a.J_riskvail-createaccount-guide 开始评估
+          else
+            a(href='/account/riskvail') #{_hasRiskVail ? '再次评估' : '开始评估'}
+      .uc-setting-info-item.uc-setting-info-item-active
+        .item.item-first.item-title 财富顾问
+        .item.item-sub-title.item-title 您在红小宝平台的专属的财富咨询顾问
+        .item.item-title #{_inviteName} #{_invitePhone} 
+        .item.item-title(class={'item-done': _inviteCode}) #{_inviteCode ? '已绑定' : '--'}
+        .item.item-title(title='财富经理专属邀请码')
+          if _inviteCode 
+            | #{_inviteCode}
+          else
+            a(href='/account/invite/code') 去设置
+    .uc-setting-bank  
+      if _isUserHasBindCard
+        .uc-title
+          h4 银行卡
+        .uc-bind-card
+          a.uc-bind-card-unbind-btn#J_unbind-bankcard-btn(href='javascript:;') 解绑
+          .uc-bind-card-logo.bank-icon(class='bank-icon-' + _bankCode)
+          .uc-bind-card-txt #{UIHelper.safeBank(_userBankCardId)}
+          .uc-bind-card-quota #{UIHelper.limitShow(_bankItem, true)}
+          .bank-largelogo(class='bank-largelogo-' + _bankCode)
+      else    
+        .uc-title 
+          h4 银行卡
+        if !_isCreateAccount || !_isIdPassed
+          a.J_riskvail-createaccount-guide.single-bind-card
+            i.fa.fa-plus
+            span 绑定银行卡
+        else if _isCreateAccount && !_isCashPasswordPassed
+          a(href='/deposit/createaccount').single-bind-card
+            i.fa.fa-plus
+            span 绑定银行卡
+        else
+          a(href='/account/bank/add').single-bind-card
+            i.fa.fa-plus
+            span 绑定银行卡  
+  #J_user-forbid-create-account
+  #J_send_modal.modal.fade.skipmodal(tabindex="-1" role="dialog")
+    .modal-dialog.uc-setting-unbind-modal
+      p.unbind-modal-info
+        if !_isCashPasswordPassed
+          | 为了您的账户安全，请完善存管账户信息后再进行解绑操作
+        else if _isUnbindBankcard
+          | 解绑银行卡后，将无法进行提现充值操作，是否确定要解绑
+        else 
+          | #{_isUnbindBankcardReason}
+      .unbind-modal-btn
+        if !_isCashPasswordPassed
+          a(data-dismiss="modal").unbind-modal-btn-close  取消
+          a(href='/deposit/createaccount').unbind-modal-btn-approve 确定  
+        else if _isUnbindBankcard
+          a(data-dismiss="modal").unbind-modal-btn-close  取消
+          a(href='/account/unbind').unbind-modal-btn-approve 确定
+        else
+          a(data-dismiss="modal").unbind-modal-btn-close 确定
+
+block foot-script
+  - var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') || 0
+  script.
+    var hasRiskVail = #{_hasRiskVail || false};
+    app.accountSetting.typeJuge(hasRiskVail);
+    app.modalShow.init({
+      isCreateAccount: #{_isCreateAccount},
+      //- isSettingTradPwd: _userIsSettingTradPwd,
+      isBindCard: #{_isUserHasBindCard},
+      isIdPassed: #{_isIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+    })
+    app.accountSetting.init({
+      isCreateAccount: #{_isCreateAccount},
+      isIdPassed: #{_isIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+      isBindCard: #{_isUserHasBindCard}
+    })

@@ -1,0 +1,102 @@
+extend base
+
+block title
+  | 518全民理财节
+
+block page-val
+  - var pageClass = 'landing-body landing-financing'
+
+block content
+  - var _dataList = _.get(raiseList, 'dataList')
+  .landing-financing-banner 
+    img(src='/img/mobile/landing-financing-banner.jpg')
+    img(src='/img/mobile/landing-financing-join.png')
+    .join-rate 全场加息0.5%
+    .join-btn.J_jump-to-app(data-path='/home/main') 立即加入
+  .landing-financing-increase
+    img.title(src='/img/mobile/landing-financing-title.png')
+    .tip 出借金额越高 加息收益越多
+    .landing-financing-product
+      .item
+        .plan-title 红利智投A 
+        .block.rate
+          .count 6.5%
+            span +1.0%
+          .intro 平均历史年化收益
+        .block.date
+          .limit 3-5个月
+          .intro 适用出借期限
+        .block.last
+          .join.J_jump-to-app(data-path='/plan/detail', data-productid=_dataList[0]) 立即加入
+      .item
+        .plan-title 红利智投B
+        .block.rate
+          .count 7.5%
+            span +1.0%
+          .intro 平均历史年化收益
+        .block.date
+          .limit 6-11个月
+          .intro 适用出借期限
+        .block.last
+          .join.J_jump-to-app(data-path='/plan/detail', data-productid=_dataList[1]) 立即加入
+      .item
+        .plan-title 红利智投C
+        .block.rate
+          .count 9.6%
+            span +1.0%
+          .intro 平均历史年化收益
+        .block.date
+          .limit 12-23个月
+          .intro 适用出借期限
+        .block.last
+          .join.J_jump-to-app(data-path='/plan/detail', data-productid=_dataList[2]) 立即加入
+      .item
+        .plan-title 红利智投D
+        .block.rate
+          .count 9.9%
+            span +1.0%
+          .intro 平均历史年化收益
+        .block.date
+          .limit 24-36个月
+          .intro 适用出借期限
+        .block.last
+          .join.J_jump-to-app(data-path='/plan/detail', data-productid=_dataList[3]) 立即加入
+    .landing-financing-month.landing-financing-product
+      img.line(src='/img/mobile/landing-financing-line.png')
+      img.line.line-right(src='/img/mobile/landing-financing-line.png')      
+      .item
+        .plan-title 红利智投C - 按月提取 
+        .block.rate
+          .count 9.0%
+            span +1.0%
+          .intro 平均历史年化收益
+        .block.date
+          .limit 12-36个月
+          .intro 适用出借期限
+        .block.last
+          .join.J_jump-to-app(data-path='/plan/detail', data-productid=_dataList[4]) 立即加入
+  .landing-financing-foot
+    img(src='/img/mobile/landing-financing-foot.png')
+    .foot-content
+      .foot-title 活动说明
+      p 1、活动时间：2018年5月17日至2018年5月31日；
+        br
+        | 2、活动产品：红利智投A、红利智投B、红利智投C、红利智投D，红利智投C-按月提取；
+        br
+        | 3、活动期间，用户成功加入活动产品，即可获得加息，最高加息1.0%；
+        br
+        | 4、举例说明
+        br
+        | 用户小红投资红利智投C150万元，享额外加息1.0%
+        br
+        | 预期额外收益：150万*1.0%/12*12=1.5万元
+        br
+        | 预期总收益：150万*（9.6%+1.0%）/12*12=15.9万元
+        br
+        | 5、对活动如有任何疑问，敬请咨询红小宝客服热线400-1552-888
+        br
+        | 6、本活动规则解释权归红小宝所有。
+      .foot-text 市场有风险 出借需谨慎
+block foot-script
+  script.
+    app.callApp.init();

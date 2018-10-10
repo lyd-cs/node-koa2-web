@@ -1,0 +1,72 @@
+extends base
+
+block title
+  | 注册 - 
+
+block header
+  .header.landing-signup-header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+      .service-tel 客服电话：400-1552-888
+
+block content
+  - var productDetail = [{title: '红利智投', rate: '7.0', months: '3', investMin: '1000'}, {title: '红利智投', rate: '10.8', months: '12', investMin: '1000'}]
+  - var _signupQuery = signupQuery || {}
+  - var _landingSignupFormButtonText = '领取红包'
+  .landing-signup
+    .signup-banner
+      include ./mod/landing.signup.form.pug
+    .section
+      .product
+        .product-title 精选产品
+        .product-detail
+          each item, idx in productDetail
+            .product-item(class={'product-item-last': idx==productDetail.length-1})
+              .product-item-title #{item.title}
+              .product-rate
+                p.rate #{item.rate}%
+                p 平均历史年化收益
+              .product-months
+                p.months #{item.months}
+                p 期限（月）
+              .product-invest
+                p.invest #{UIHelper.formatNumber(item.investMin)}
+                p 起投金额（元）
+    .product-safe
+      .section
+        .safe-title 安全可靠稳健合规
+        .safe-wrap
+          .safe-item.safe-item-bank
+            h4 银行存管
+            .description 用户资金由恒丰银行存管，平台不会触碰用户资金，更不会卷款跑路
+          .safe-item.safe-item-project
+            h4 优质项目
+            .description 联合央行征信、同盾反欺诈等第三方机构对融资人层层审核，确保上线项目优质可靠
+          .safe-item.safe-item-safeguard
+            h4 风险保障
+            .description 合作机构设立专项风险保障金账户，对每一笔借款提供还款保障
+          .safe-item.safe-item-standard
+            h4 规范运营
+            .description 中国小额信贷联盟成员、上海资信专委会成员
+    #J_icon-scroll-top.signup-guide 注册领取红包
+
+
+block footer
+  .footer.user-operate-footer
+    .container.landing-signup-footer-copyright
+      include ./mod/footer.copyright.pug
+block foot-script
+  script.
+    app.userSignup.init({
+      form: '#J_user-signup-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      captcha: '#J_graphicCode',
+      captchaimg: '#J_graphicCode_container',
+      trigger: '#J_verifycode',
+      captchaholder: '.J_form-group-graphicCode',
+      smscode: '#J_smscode',
+      signupSuccess: #{_isSignupSuccess || 0}
+    });
+    app.backTopAction.goTop();

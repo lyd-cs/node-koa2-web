@@ -1,0 +1,34 @@
+.about-audit
+  padding: 2rem 1rem
+  &-item
+    position: relative
+    margin-bottom: 1rem
+    padding: 1rem
+    background: #fff
+    border: 1px solid #F6F7FA
+    box-shadow: 0 0 10px 0 rgba(44,61,133, .1)
+    border-radius: 2px
+    &:before
+      position: absolute
+      top: 1.6rem
+      left: 0
+      content: ''
+      background: center center no-repeat #E8EFFF url(/img/mobile/about-audit-icon-annual.png)
+      background-size: 50% auto
+      width: 3.2rem
+      height: @width
+      border-radius: 0 8px 8px 0
+    &-header
+      color: $grey-color-dark
+      font-size: $font-size-large
+      padding: 1.2rem 0 2rem 3rem
+    &-footer
+      text-align: right
+      font-size: $font-size-small
+      color: $text-light
+  &-key-party
+    &:before
+      background-image: url(/img/mobile/about-audit-icon-target.png)
+  &-legal
+    &:before
+      background-image: url(/img/mobile/about-audit-icon-shield.png)

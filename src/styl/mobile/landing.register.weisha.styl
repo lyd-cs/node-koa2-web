@@ -1,0 +1,193 @@
+.landing-register-weisha
+  $landing-weisha-bg = #fae4d7
+  $landing-title-color = #000000
+  $landing-title-after-color = #E3B279
+  $landing-input-border = #DBDBDB
+  $button-countdown-bg = #CCC
+  $landing-tips-color = #9b9b9b
+  $landing-countdown-color = #E3B279
+  $landing-explain-color = #C9AA7D
+  $landing-after-bg = #FAE4D8
+  $landing-success-border = #E6E6E6
+  $landing-qrcode-border = #FFD799
+  $landing-text-color = #474659
+  background: $landing-weisha-bg
+  width: 100%
+  max-width: 640px
+  &-logo
+    width: 4rem
+    position: absolute
+    top: 0.3rem
+    left: 0.5rem
+  &-banner
+    position: relative
+    img
+      width: 100%
+      vertical-align: bottom
+  &-form
+    background: $white-color
+    padding: 1.25rem
+    border-radius: 4px
+    margin: 0 0.94rem 
+    .form-tips
+      font-size: 0.75rem
+      color: $landing-tips-color
+      padding-left: 1rem
+      margin: -0.63rem 0 0.63rem
+  &-input
+    border: 1px solid $landing-input-border
+    border-radius: 4px
+    padding: 0.63rem 1rem
+    width: 100%
+    height: 2.6rem
+    margin-bottom: 0.63rem
+    line-height: normal
+    outline: none
+    -webkit-appearance: none
+  &-submit
+    width: 100%
+    height: 2.6rem
+    font-size: 1.188rem
+    color: $white-color
+    border: none
+    border-radius: .25rem
+    margin-top: 0.6rem
+    background-image: linear-gradient(-180deg, #E3B279 0%, #D29F66 98%)
+  &-countdown
+    flex: 0 1 auto
+    width: 38%
+    height: 2.6rem
+    padding: 0
+    font-size: 1rem
+    line-height: 2.6rem
+    color: $white-color
+    background: $landing-countdown-color
+    border-radius: 4px
+    border: none
+    &[disabled]
+      background: $button-countdown-bg
+  &-smscode
+    width: 58%
+    margin-right: 2%
+  &-main
+    padding: 1.5rem 0.94rem 1.2rem
+  &-intro
+    border-radius: 4px
+    padding: 1.5rem 1.25rem
+    background: $white-color
+    &:nth-child(2)
+      margin: 1.5rem 0
+      .intro-iphone
+        margin-right: 0
+    img
+      width: 100%
+    .right
+      float: right
+    .intro-title
+      font-size: 1rem
+      color: $landing-title-color
+      letter-spacing: 0.5px
+      text-align: center
+      margin-bottom: 1.56rem
+      span
+        font-size: 1.19rem
+        z-index: 0
+        position: relative
+        &:before
+          content: ''
+          display: inline-block
+          width: 110%
+          height: 0.44rem
+          background: $landing-title-after-color
+          position: absolute
+          bottom: 0
+          left: -5%
+          z-index: -1
+    .intro-content
+      position: relative
+      &:after
+        content: ''
+        clear: both
+        display: block
+    .intro-iphone
+      width: 40%
+      margin-right: 10%
+    .intro-explain
+      display: inline-block
+      position: absolute
+      top: 50%
+      transform: translate(0, -50%)
+      img
+        width: 2.8rem
+        height: 2.8rem
+        vertical-align: middle
+        margin-right: 0.94rem
+      .item
+        color: $landing-explain-color
+        &:nth-child(2)
+          margin: 1.25rem 0
+  &-success
+    background-image: linear-gradient(-180deg, #F2CFB3 0%, #FAE4D8 44%, #F3D5BC 99%);
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    padding: 2rem 1.25rem
+    &-main
+      background: $white-color
+      border-radius: 4px
+      padding: 0 1.44rem
+      text-align: center
+      height: 100%
+      position: relative
+      &:after
+        width: 1.5rem
+        height: 1.5rem
+        content: ''
+        display: block
+        position: absolute
+        border-radius: 50%
+        background: $landing-after-bg
+        top: 40%
+        left: 0
+        transform: translate(-50%,-50%)
+      &:before
+        width: 1.5rem
+        height: 1.5rem
+        content: ''
+        display: block
+        position: absolute
+        border-radius: 50%
+        background: $landing-after-bg
+        top: 40%
+        right: 0
+        transform: translate(50%,-50%)
+    &-top
+      border-bottom: 1px dashed $landing-success-border
+      height: 40%
+      display: flex
+      justify-content: center
+      align-items: center
+      img
+        display: block
+        margin: 0 auto
+        &:first-child
+          width: 30%
+          padding-bottom: 1.3rem
+    &-bottom
+      display: flex
+      justify-content: center
+      align-items: center
+      height: 60%
+    &-qrcode
+      width: 100%
+      border: 4px solid  $landing-qrcode-border
+      margin: 0 auto 1rem
+    &-text
+      font-size: 1.13rem
+      line-height: 2rem
+      color: $landing-text-color
+  @media screen and (max-device-width: 340px)
+    .intro-iphone
+      margin-right: 4%

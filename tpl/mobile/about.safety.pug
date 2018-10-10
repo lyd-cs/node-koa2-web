@@ -1,0 +1,49 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+  
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  h3.about-top-title 银行存管
+  .about-gap.about-safety-desc
+    p 2017年8月，红小宝平台恒丰银行存管系统正式上线。恒丰银行存管系统上线后，按照监管部门的要求，将为红上的客户在红小宝平台上的交易提供集实名认证、支付结算、资金存管等多项功能于一体的金融服务，并对全交易流程进行核查，使借贷双方的债权关系清晰明确，保障用户资金安全。
+  .about-gap.about-safety-info
+    img(src='/img/mobile/about-safety-info-img.png')
+  .about-gap.about-safety-list
+    .about-gap.about-safety-wrap
+      h3 信息安全保障
+      dl
+        dt.about-safety-list-dev 开发建设、维护情况
+        dd 平台系统定期维护，实时跟踪服务器的健康状况，升级维护严格执行系统升级维护流程，确保变更请求、变更受理、变更审批、变更实施等各个环节可控。
+      dl
+        dt.about-safety-list-safeinfo 信息安全情况
+        dd 网站和APP由自有专业技术团队开发，在信息安全和数据安全方面有着非常丰富的经验，拥有基于大数据的统一监控/告警/分析系统，能实时感知业务/应用/系统运行状态并及时反馈。在信息安全和数据安全方面有着非常丰富的经验，让您享受高级别的安全保障，确保交易数据安全。
+      dl
+        dt.about-safety-list-bak 数据存储、备份情况
+        dd 采取各种合适的物理、电子和管理方面的措施来存储数据，有效避免重要信息被篡改以及删除。
+  h3.about-top-title 合作机构情况
+  .about-gap.about-safety-orgs
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-hf.png')
+      dd 恒丰银行
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-cfca.png')
+      dd 中国金融认证公司
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-xed.png')
+      dd 中国小额信贷联盟
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-meritdata.png')
+      dd 美林数据
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-cis.png')
+      dd 上海资信有限公司
+    dl
+      dt: img(src='/img/mobile/about-safe-logo-wy.png')
+      dd 网易支付        

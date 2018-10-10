@@ -1,0 +1,21 @@
+extend base
+
+block title
+  | 绑卡 |
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+  - var _url = reurl 
+block header
+  .header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+
+block content
+  .uc-bank-add-result
+    .section
+      img(src='/img/create-account-success.png')
+      p 绑卡成功 
+      h5 您已成功绑定银行卡，充值后即可购买产品
+      a(href=_url || '/account/setting') 确定

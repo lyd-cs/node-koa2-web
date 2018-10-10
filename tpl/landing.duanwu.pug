@@ -1,0 +1,123 @@
+extends base
+
+block title
+  | 端午投资豪礼相伴
+
+block head-style
+  link(rel="stylesheet", href=UIHelper.static_url('/css/landing.css'))
+
+block content
+  - var _rankList = rankList || []
+  - var _prizeList = [{termPayment: '累计投资5万', name: '100元抵扣红包', investAmount: 50000, itemIndex: 'last'}, {termPayment: '累计投资10万', name: '400元抵扣红包', investAmount: 100000, itemIndex: 'thrid'}, {termPayment: '累计投资50万', name: '多功能破壁榨汁机', value: '(价值1500元)', investAmount: 500000, itemIndex: 'second'}, {termPayment: '累计投资100万', name: '10g投资金条', value: '(价值3000元)', investAmount: 1000000, itemIndex: 'first'}]
+  - var _totalInvest = totalInvest || 0
+  - var _planIdList = _.get(raiseList, 'dataList', []) || []
+  .landing-duanwu
+    .landing-duanwu-banner
+    .section
+      .landing-duanwu-content
+        .landing-duanwu-top-spot
+          .landing-duanwu-active-header 龙虎榜首 豪送iPhoneX
+          .top-spot-body 活动期间投资红利智投12月期、24月期累计金额最高者额外获得iPhoneX（256G）一部
+          a(href="#product")
+            .top-spot-footer 立即投资
+        .landing-duanwu-active-prize
+          .landing-duanwu-active-header 累计投资送金条
+          .active-prize-body
+            .title 我的累计投资金额：#{UIHelper.formatNumber(_totalInvest)}元
+            each item, idx in _prizeList
+              - var _isReceivePrize = _totalInvest >= item.investAmount
+              .prize-item
+                .prize-item-header(class="prize-item-header-" + item.itemIndex) #{item.termPayment}
+                .prize-item-body 
+                  .prize-item-name #{item.name}
+                  .prize-item-value #{item.value}
+                  .prize-item-state(class={'prize-item-received': _isReceivePrize}) #{_isReceivePrize ? '已获得' : '未获得'}
+          .active-prize-footer 仅限红利智投12月期、24月期产品
+        .landing-duanwu-user-list
+          .landing-duanwu-user-list-content
+            .landing-duanwu-active-header 投资龙虎榜
+            .user-list-body
+              table
+                tr
+                  th 排名
+                  th 投资人
+                  th.item-total 累计投资金额(元)
+                if _rankList && _rankList.length
+                  each item, idx in _rankList
+                    - var _investUser = _.get(item, 'mobile') || ''
+                    - var _investAmount = _.get(item, 'investAmount') || ''
+                    tr
+                      td #{idx+1}
+                      td #{UIHelper.safeMobile(_investUser)}
+                      td #{UIHelper.formatNumber(_investAmount)}
+        .landing-duanwu-product-list#product
+          .product-list-header 开启投资之旅
+          .product-list-body
+            .product-item
+              .product-rate 
+                .rate 
+                  | 9.6
+                  span %
+                .desc 平均历史年化收益
+              .product-month
+                .month 12-23个月
+                .button
+                  if _planIdList && _planIdList.length
+                    a(href="/plan/" + _planIdList[0]) 立即加入
+                  else
+                    a(data-toggle='modal', data-target='#plan-tips') 立即加入
+            .product-item.product-item-last
+              .product-rate 
+                .rate 
+                  | 9.9
+                  span %
+                .desc 平均历史年化收益
+              .product-month
+                .month 24-36个月
+                .button.button-24
+                  if _planIdList && _planIdList.length
+                    a(href="/plan/" + _planIdList[1]) 立即加入
+                  else
+                    a(data-toggle='modal', data-target='#plan-tips') 立即加入
+            if !_planIdList.length
+              .modal.fade.landing-duanwu-tips-modal#plan-tips(tabindex='-1', role='dialog', aria-hidden='true' )
+                .modal-dialog(role="document")
+                  .modal-content 
+                    .modal-header
+                      button.close(type="button" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true") &times;
+                    .modal-body
+                      p 暂无可购买的产品
+    .landing-duanwu-active-desc
+      .active-desc-contetn
+        .active-title 活动说明
+        ol
+          li 1.活动时间：2018年6月15日00:00:00-2018年6月28日23:59:59；
+          li 2.本活动只限于投资12个月和24个月红利智投产品，其余产品不参与活动；
+          li 3.活动期间，用户累计投资达到指定金额，可获得对应奖励，每档奖励只可获得一次，所有奖品可叠加获得；
+            <br />
+            | 举例：用户A在活动期间，累计投资总额为100万元，活动结束后该用户可获得：（10g投资金条、多功能破壁榨汁机、400元抵扣红包、100元抵扣红包）作为奖励；
+          li 4.活动结束后，龙虎榜累计投资额最高的用户，除获得每档投资对应奖励外，还可额外获得iPhoneX（256G）一部；
+            <br />
+            | 注：活动结束后，如出现龙虎榜榜首累计投资额相同时，则以投资时间先后顺序为准，第一个达到最高投资额的用户，可获得iPhoneX（256G）奖励；
+          li 5.活动奖励发放规则：400元抵扣红包和100元抵扣红包，当达到投资额实时发放至账户内，所有实物奖励将在活动结束后7个工作日内进行发放；
+          li 6.对本活动如有任何疑问，敬请咨询红小宝客服热线：400-1552-888；
+          li 7.本活动最终解释权归红小宝官方所有；
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

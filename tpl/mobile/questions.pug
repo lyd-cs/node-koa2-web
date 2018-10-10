@@ -1,0 +1,251 @@
+extends base
+
+block title
+  | 常见问题
+
+block page-val
+  - var pageClass = 'questions-body'
+
+block content
+  - var dataList = {charge: [{questionTitle: '充值提现是否收费？', answerContent: '目前红小宝平台的用户进行资金充值、提现操作均不需要支付费用。'},{questionSummary: 'supportBank', questionTitle: '红小宝充值支持的银行卡及对应银行限额？'}, {questionTitle: '红小宝用户进行充值是否有金额限制？', answerContent: '红小宝用户最低1元起充，对上限金额没有限制。如您在充值金额超过1元依然遇到金额受限，可能与您的银行卡单笔转账额度（或单日转账额度）有关，请与您使用的银行卡发卡行进行确认。'}, {questionTitle: '提现后多久会到账？', answerContent: '当您提交提现申请后，红小宝平台将在1个工作日内进行处理，一般情况下1-2个工作日内到账。提现成功后红小宝平台将以短信的形式通知您。'}], account: [{questionTitle: '注册时提示手机号被注册怎么办？', answerContent: '首先，请确认您及家人是否曾经使用过该手机号在红小宝平台进行过注册。如果您确定该手机号注册过，可以在红小宝官网上通过找回密码，重置该账号的登录密码。'},{questionTitle: '为什么要进行存管开户？', answerContent: '2016年8月，银监会同工业和信息化部、公安部、国家互联网信息办公室等部室共同起草并发布了《网络借贷信息中介机构业务活动管理暂行办法》（以下简称《办法》），《办法》界定了网贷内涵，明确了网贷从业机构是以互联网为主要渠道的信息中介的法律地位。其中明确要求“网络借贷信息中介机构应当实行自身资金与出借人和借款人资金的隔离管理，并选择符合条件的银行业金融机构作为出借人与借款人的资金存管机构”。恒丰银行接受红小宝的委托，按照法律法规和合同约定，履行网络借贷专用账户的开立与销户、资金保管、资金清算、账务核对、信息披露等职责。恒丰银行确保红小宝用户资金和红小宝平台自有资金分账户管理，实现了各账户之间的完全隔离，对用户身份及交易授权进行认证。确保资金指令真实合法，完整记录红小宝平台交易信息，最终确保用户资金安全。'},{questionSummary: 'openFail', questionTitle: '恒丰存管失败如何解决？'},{questionTitle: '忘记登录密码怎么办？', answerContent: '如果您忘了登录密码，可以在登录页面，点击“忘记密码”按钮，通过手机验证码验证，重新设置密码。'},{questionTitle: '忘记交易密码怎么办？', answerContent: '进入“我的账户”，“账户设置”-“交易密码”-“修改交易密码”，通过手机验证码和身份证号码验证，修改交易密码。'},{questionTitle: '如何更改手机号？', answerContent: '进入“我的账户”，“账户设置”-“绑定手机”-“修改手机号”，通过身份证号和手机验证码验证，修改绑定手机号，如果原手机号已停用，请联系客服（400-1552-888）。'},{questionSummary: 'smscodeFail', questionTitle: '收不到短信验证码怎么办？'},{questionSummary: 'editBankId', questionTitle: '如何修改绑定的银行卡？'},{questionTitle: '红小宝如何保障出借人资金安全？', answerContent: '红小宝会从还款能力、信用历史、借款用途等多个方面对借款人进行严格审核与评估，通过严格的贷前审核以及完善的贷后管理来保障出借人的资金安全。'},{questionSummary: 'protectSecret', questionTitle: '红小宝如何保障用户隐私？'},{questionTitle: '电子合同有效吗？', answerContent: '我国新合同法第十一条规定: 书面形式合同是指合同书、信件和数据电文(包括电报、电传、传真、电子数据交换和电子邮件)等可以有形地表现所载内容的形式。因此电子合同属于书面形式的合同一种，是受到法律保护的。另外红小宝平台中的合同文本都由经济法律师起草的，保证了经过这个平台的交易是具备法律效力的。'},{questionSummary: 'riskReason', questionTitle: '为什么每个用户进行风险测评？'}],plan: [{questionTitle: '哪些用户可以红小宝平台参与出借？', answerContent: '年满18周岁，拥有中华人民共和国有效身份证件，且具有完全民事权利能力和民事行为能力，可以在红小宝网站上进行注册并开通恒丰银行存管专户，成为用户进行资金出借。'},{questionSummary: 'howInvest', questionTitle: '怎样进行出借?', answerContent: '请您按照以下步骤进行操作：1)在红小宝平台上进行注册；2)	点击开通恒丰银行存管账户，开通成功后会收到恒丰存管的短信提醒；3) 账户充值，充值成功后会收到恒丰存管的短信提醒；4)浏览红利智投、散标出借列表、债权转让列表，选择自己感兴趣的出借方式进行资金出借；5)按照网站操作提示完成风险承受能力测评；6)确认出借，出借成功。'},{questionTitle: '什么是红利智投？', answerContent: '红利智投全称："红利智能投标服务"是红小宝平台推出的，经用户授权系统本金自动循环出借的智能投标工具。经由系统为用户自动分散出借给满足资质的借款人，期间回款本息再次自动出借，当锁定期结束后用户可随时申请退出。'},{questionSummary: 'howJoin', questionTitle: '如何加入红利智投？', answerContent: '进入【红利智投】页面；在申请期内且红利智投可加入额度符合条件的情况下，选择任意一期可加入的红利智投，进入红利智投加入详情页后，在右侧输入框内输入您想要加入的金额，点击【立即加入】，最低加入金额及增加加入金额的规则以该期红利智投公示的信息为准；确认您的红利智投加入信息无误后，点击【确定】即加入成功。Tips：特别提醒加入红利智投时必须保证您的账户内资金足够，需要一次性支付清加入金额。'},{questionTitle: '红利智投的平均历史年化收益有多少？', answerContent: '红利智投目前有4种，锁定期分别为3个月、6个月、12个月、24个月，不同锁定期长度的红利智投平均历史年化收益不同，具体以当期红利智投公布的为准。红利智投收益目标值并非实际利息收益，您最终获得的实际利息收益可能与平均历史年化收益不一致。'},{questionTitle: '红利智投的利息收益处理方式？', answerContent: '<p>红利智投出借所获利息收益的处理方式：</p><p>收益再出借：即每笔借款利息自动再出借，用户会在锁定期满后一次性收到所有收益和本金。</p><p>另外，在红利智投收回本金后，债权转让所得资金及借款回款本息将不再进行自动出借，款项将回到主账户可用余额，用户可以通过其红小宝平台账户自行支配;</p><p>按月付息：即用户出借后每个月会收到利息，锁定期满后一次性返还本金。利息会回到主账户可用余额，用户可以通过红小宝平台账户自行支配提取，也可将利息操作再次出借。</p>'},{questionTitle: '红利智投退出方式？', answerContent: '<p>红利智投退出方式分两种：</p><p>锁定期内退出：用户须在锁定期到期日前15天内手动申请退出，则红利智投会在锁定期结束日当天退出，退出申请可以在退出日前（不含退出日）进行撤销。（若用户在退出日之前不申请退出将继续持有红利智投并享受收益）；</p><p>锁定期外（开放期）退出：用户在退出日当天及以后申请退出，会有5天的申请期，5天后为用户执行退出操作，目标收利率在锁定期内和锁定期外一致。</p>'},{questionTitle: '继续持有的红利智投目标收益率是否和锁定期内一致？', answerContent: '红利智投目标收益率在锁定期内和锁定期外（开放期）一致，暂不可变更。'},{questionTitle: '红利智投何时开始为我自动出借？', answerContent: '红利智投会根据用户加入的时间顺序进行投标，用户成功加入红利智投后，预计会在1-5个工作日内开始为用户自动匹配债权。'},{questionTitle: '红利智投费用？', answerContent: '<p>用户加入红利智投，红小宝平台不会收取额外的手续费。</p><p>可能产生的管理费用：</p><p>红利智投对应借款实际利息收入中，超过红利智投目标收益值以外的部分作为管理费用归红小宝平台所有，若实际收益不及目标收益值时，红小宝平台不收取管理费用。详情参见《红利智投服务协议》。</p>'}, {questionTitle: '红利智投目标收益率？', answerContent: '红利智投的目标收益率根据具体的锁定期不同存在差异，具体以红小宝平台公示及具体的服务协议约定为准。红小宝可能不定时调整红利智投目标收益率，具体请以平台实际发布的信息为准，历史收益不代表实际收益。'},{questionSummary: 'lockLimit',questionTitle: '锁定期有多久？'}, {questionTitle: '选择出借方式后是否可以提前收回本金？', answerContent: '加入红利智投暂不支持用户提前退出收回本金。若用户购买的是散标债权，在原始借款标的成标（标的进入还款中状态）90天以后即可发起债权转让。'},{questionTitle: '用户参加红利智投是否有金额限制？', answerContent: '对不同期限的红利智投，都是1000元起投，最大可加入上限会在每期红利智投的详情中展示。'}], loanTransfer: [{questionTitle: '什么是散标？', answerContent: '散标出借是红小宝平台推出的线上个人网络借贷撮合匹配及信息中介服务；出借人通过红小宝平台与借款人直接完成电子借贷协议的签署，并通过银行存管系统进行款项的划转；出借人通过等额本息的方式每月收取出借本金和收益。'},{questionSummary: 'loanTransferDesc', questionTitle: '什么是债权转让？'},{questionTitle: '散标收益？', answerContent: '散标收益区间11.4%—12.6%，具体收益由您所出借的借款标的利率确定。'}, {questionTitle: '购买债权转让收益？', answerContent: '债权转让收益区间11.4%—12.6%，具体收益由您所出借的转让债权利率确定。'}, {questionTitle: '用户选择散标出借是否需要支付费用？', answerContent: '目前红小宝平台用户出借散标无手续费。'},{questionSummary: 'manageAmount', questionTitle: '债权转让管理费？'}, {questionSummary: 'howEqualRate', questionTitle: '什么是等额本息？'}, {questionSummary: 'howCompute', questionTitle: '等额本息借款的收益该如何计算？'}, {questionTitle: '散标出借中的借款标的期限有多久？', answerContent:'12-48个月，具体期限由您所出借的借款标的的借款期限确定。'}, {questionTitle: '如何对散标进行出借？', answerContent: '登录红小宝平台，点击【散标出借】--【散标列表】，选择借款标的，输入金额，点击【确定】完成出借。'}, {questionSummary: 'delayLimit', questionTitle: '借款人逾期怎么办？'}, {questionTitle:'借款人提前还款怎么办？', answerContent: '借款人可以提前偿还借款，如果借款人提前偿还全部借款，不用再支付后续的利息及管理费用。用户将收到当期利息以及剩余本金。'}, {questionTitle: '出借散标是否有金额限制？', answerContent: '红小宝对出借人出借散标没有最大金额限制，100元起投，在剩余金额内用户均可出借。'}, {questionTitle: '出借散标后是否可以取消？', answerContent: '出借后不可以取消。若此标满标并放款后，您账户上的冻结金额自动将转入该标的借款人账户。若此标流标，则您账户上的冻结金额自动转为用户可用金额。'}, {questionTitle: '如何收取还款？', answerContent: '借款人在规定的还款时间内将钱充值到借款人在恒丰银行的存管专户，然后进行还款，所还款项将直接转入用户在恒丰银行的存管专户中，用户可以自行支配可用余额。'},{questionTitle: '债权转让条件？', answerContent: '<p>1)出借人在原始借款标的成标（标的进入还款中状态）90天以后后即可发起债权转让；</p><p>2)逾期中债权不可发起债权转让；</p><p>3)债权转让时，单个债权必须全额发起转让，不可拆分转让。</p>'},{questionTitle: '债权转让购买规则？', answerContent: '购买债权转让100元起投，100元递增，且剩余可投金额不能小于起投金额。'},{questionTitle: '债权转让可以撤销吗？', answerContent: '<p>1)已发起转让的债权，不可撤销；</p><p>2)未转出部分的债权依然会计算利息，该部分收益归债权转出人所有。</p>'},{questionTitle: '债权转让有次数限制吗？', answerContent: '原始借款标的成标（标的进入还款中状态）90天以后可随时发起债权转让，没有转让次数限制。'},{questionTitle: '是否可以购买自己转让的债权？', answerContent: '不可以购买自己转让的债权。'},{questionTitle: '成功购买债权转让后何时开始计息？', answerContent: '债权转让成交后，即刻开始计息，转让成交的当天利息归债权受让人所有。'},{questionTitle: '债权公允价值是如何计算的？', answerContent: '<p>1)转让时，当期还款未还：</p><p>债权公允价值=债权的待收本金+应收利息天数/30*当期利息; </p><p>当期利息=债权待收本金*月利率;</p><p>应收利息天数=成交日期-上期还款对应的还款日期;</p><p>（注：应收利息天数超过30天，按30天计算）。</p><p>2)转让时，当期还款已还：</p><p>债权公允价值=债权的待收本金-利息补偿天数/30*当期利率;</p><p>当期利息=债权待收本金*月利率;</p><p>利息补偿天数=成交日期所在期的应还款日期-成交日期;</p>'},{questionTitle: '如何债权转让？', answerContent: '出借人在“我的账户”--“散标债权资产”--“收益中”页面，对持有的债权点击“转让”按钮并验证交易密码后可发起债权转让；'},{questionTitle: '什么情况下购买债权会失败？', answerContent: '<p>1)在购买时债权被锁定。</p><p>2)在购买时债权的价值发生了变化。</p><p>3)购买时债权的状态发生了变化，如变为逾期债权、债权已被借款人还清等。</p><p>4)您的账户余额不足。</p>'}]}
+  .questions-container
+    .questions-tabs
+      .questions-tabs-item.J_questions-tabs-item(data-link='#charge').active 充值提现
+      .questions-tabs-item.J_questions-tabs-item(data-link='#account') 账户相关
+      .questions-tabs-item.J_questions-tabs-item(data-link='#plan') 红利智投
+      .questions-tabs-item.J_questions-tabs-item(data-link='#loanTransfer') 散标债权
+    - var charge = dataList.charge
+    - var account = dataList.account
+    - var plan = dataList.plan
+    - var loanTransfer = dataList.loanTransfer
+    .questions-content#charge.show
+      each item, idx in charge
+        - var _chargeTitle = _.get(item, 'questionTitle') || ''
+        - var _answerContent = _.get(item, 'answerContent') || ''
+        - var _chargeSummary = _.get(item, 'questionSummary') || ''
+        .questions-content-item
+          .questions-content-title(data-trigger=0, class=idx===0?'first-item': '').J_title #{_chargeTitle}
+            span.fa.fa-angle-down
+          .questions-content-detail.J_detail
+            if _chargeSummary === 'supportBank'
+              table
+                    thead
+                      tr
+                        th 银行
+                        th 单笔限额/单日限额
+                    tbody
+                      each code, idx in bankCodeList
+                        - var _bankInfo = bankTips[code]
+                        - var _bankName = _.get(_bankInfo, 'name') || ''
+                        - var _bankSingle = _.get(_bankInfo, 'single') || ''
+                        - var _bankDay = _.get(_bankInfo, 'day') || ''
+                        - var _quotaStatus = _.get(_bankInfo, 'quotaStatus')
+                        if _bankInfo
+                          tr 
+                            td #{_bankName}
+                            if _quotaStatus == 2
+                              td 银行系统维护中
+                            else
+                              td #{_bankSingle}/#{_bankDay}
+            else
+              p #{_answerContent}
+    .questions-content#account
+      each item, idx in account
+        - var _accountTitle = _.get(item, 'questionTitle') || ''
+        - var _answerContent = _.get(item, 'answerContent') || ''
+        - var _questionSummary = _.get(item, 'questionSummary') || ''
+        .questions-content-item
+          .questions-content-title(data-trigger=0, class=idx===0?'first-item': '').J_title #{_accountTitle}
+            span.fa.fa-angle-down
+          .questions-content-detail.J_detail 
+            if _questionSummary === 'openFail'
+              p 以下情况可能导致用户存管开户失败：
+              p （1）存管开户时，填写的银行卡四要素（姓名、身份证号码、银行卡号、银行预留手机号）有误；
+              p （2）银行预留手机号和银行卡不匹配；
+              p （3）用户在银行开卡未满一个月或者用户在近期进行过银行卡预留手机号变更，而恒丰银行并未进行用户信息及时更新；
+              p （4）用户使用的银行卡是否为借记卡，是否开通网上支付功能，恒丰开户暂不支持“借记卡和信用卡集于一体/信用卡/公积金联名卡/医保卡准贷记卡/贷记卡/准贷记卡”等类型银行卡；
+              p （5）若排除以上情况后仍开户失败，建议用户更换其他银行卡进行存管开户操作。
+              p 如有其它疑问请与客服联系:400-1552-888。
+              p.cue-text Tips：每个用户每天只能进行3次恒丰银行存管开户验证，如果三次均失败，则用户需等到第二天才可重新进行存管开户操作。
+            else if _questionSummary === 'smscodeFail'
+              p 请确认您是否开通了相应的短信通知功能；
+              p 短信收发过程中会存在延迟，收到的短信在5分钟内均有效，请耐心等待；
+              p 请确认手机是否安装短信拦截或过滤软件；
+              p 请确认手机是否能够正常接收短信（未处于停机或欠费状态）；
+              p 如果您使用的是Wifi网络，请切换至4G或移动网络；
+              p 如果以上都不能解决问题，您可以联系红小宝客服寻求帮助（400-1552-888）
+            else if _questionSummary === 'editBankId'
+              p 用户可登录官网或App在“账户设置”内通过验证身份证号码及交易密码自助解绑银行卡，再重新绑定新的银行卡。如果以上都不能解决问题，您可以联系红小宝客服寻求帮助（400-1552-888）。
+            else if _questionSummary === 'protectSecret'
+              p 红小宝团队成员在金融和互联网领域均有着丰富经验，其核心团队成员主要来大型国有商业银行、股份制银行等金融机构以及百度、京东、小米等国内外一流互联网企业，让您享受银行级别的安全保障。五层防火墙、入侵防范等数十种安全服务的保护措施，为您的数据提供7*24小时不间断的安全保障。
+              p 红小宝有严格的用户信息操作规范，从流程上确保用户隐私不被泄露。与第三方机构合作时，要求其遵守相关协议，保证用户隐私不受侵犯。红小宝不会将用户信息泄露给其他外部机构，除非出现一些情形：
+              ul.cue-text
+                li 征得用户事先同意而披露；
+                li 应国家法律法规等要求而披露；
+                li 应政府机关、司法检查机关及相关部门的要求而披露；
+                li 应相关监管机构的要求而披露；
+            else if _questionSummary === 'riskReason'
+              p 红小宝为保障每个用户的安全出借行为，在用户出借之前均会要求进行个人的风险承受能力测评，根据测评结果，平台会在用户加入红利智投时对应匹配在用户风险承受能力下的标的，用户投资标的、债权时也会推荐适合风险承受能力的标的和债权，具体说明如下：
+              ul.risk-reason-text
+                li 
+                  p 出借人分级制度说明
+                  p 红小宝平台跟用户风险评估问卷回答结果，将用户分成了3个等级，每个等级名称及对应分数如下：
+                  p 保守型：得分 &lt;= 14分
+                  p 稳健型：得分为15-36分
+                  p 积极型：得分 &gt;= 37分	
+                li 
+                  p 出借人风险等级保护措施
+                  ol
+                    li 
+                      p 投资标的限制
+                      p 在用户进行出借时，系统会根据标的信用等级判断是否符合用户风险等级，如超过用户风险等级时，系统会在出借页面增加风险提示“我同意向超出我风险承受能力的标的出借资金”需用户主动勾选已知风险后，则可进行出借行为，如不勾选，则无法进行出借。
+                      h3.rule_title 具体对应规则：
+                      p 标的等级：红小宝平台会对所有已审核标的，根据借款人综合情况为其评定风险等级。标的一共有5个等级，依次为：AA、A、B、C、D。
+                      p 用户风险等级：红小宝平台跟用户风险评估问卷回答结果，将用户分成了3个等级，保守型、稳健型、积极型。
+                      p 用户风险等级与可投散标风险等级对应关系：
+                      p 保守型：AA、A
+                      p 稳健型：AA、A、B
+                      p 积极型：AA、A、B、C、D
+                    li 
+                      p 出借金额限制
+                      p 根据用户风险等级，不同类型用户进行出借金额限制，当用户出借金额超出对应等级的限制时，系统会在出借页面增加风险提示“我同意向超出我风险承受能力的标的出借资金”需用户主动勾选已知风险后，则可进行出借行为，如不勾选，则无法进行出借。对应出借金额限制如下：
+                      p 保守型：当前出借金额 &lt;= 200万元
+                      p 稳健型：当前出借金额 &gt; 200万元，&lt;= 500万元
+                      p 积极型：当前出借金额 &gt; 500万元，&lt;= 1000万元
+            else                                      
+              p #{_answerContent}
+    .questions-content#plan
+      each item, idx in plan
+        - var _planTitle = _.get(item, 'questionTitle') || ''
+        - var _answerContent = _.get(item, 'answerContent') || ''
+        - var _questionSummary = _.get(item, 'questionSummary') || ''
+        .questions-content-item
+          .questions-content-title(data-trigger=0, class=idx===0?'first-item': '').J_title #{_planTitle}
+            span.fa.fa-angle-down
+          .questions-content-detail.J_detail 
+            if _questionSummary === 'howInvest'
+              p 请您按照以下步骤进行操作：
+              p 1)在红小宝平台上进行注册；
+              p 2)点击开通恒丰银行存管账户，开通成功后会收到恒丰存管的短信提醒；
+              p 3)账户充值，充值成功后会收到恒丰存管的短信提醒；
+              p 4)浏览红利智投、散标出借列表、债权转让列表，选择自己感兴趣的出借方式进行资金出借；
+              p 5)按照网站操作提示完成风险承受能力测评；
+              p 6)确认出借，出借成功。
+            else if _questionSummary === 'howJoin'
+              p 进入【红利智投】页面；在申请期内且红利智投可加入额度符合条件的情况下，选择任意一期可加入的红利智投，进入红利智投加入详情页后，在右侧输入框内输入您想要加入的金额，点击【立即加入】，最低加入金额及增加加入金额的规则以该期红利智投公示的信息为准；确认您的红利智投加入信息无误后，点击【确定】即加入成功。
+              p.cue-text Tips：特别提醒加入红利智投时必须保证您的账户内资金足够，需要一次性支付清加入金额。
+            else if _questionSummary === 'lockLimit'
+              p 红利智投
+              p.cue-text 红利智投主要有4种，锁定期分别为3个月、6个月、12个月、24个月。红利智投锁定期结束后可以继续持有。
+              p 散标投资
+              p.cue-text 借款期限12-48个月。
+              p 购买转让的债权
+              p.cue-text 借款期限12-48个月。
+            else
+              p
+                != _answerContent
+    .questions-content#loanTransfer
+      each item, idx in loanTransfer
+        - var _loanTitle = _.get(item, 'questionTitle') || ''
+        - var _answerContent = _.get(item, 'answerContent') || ''
+        - var _questionSummary = _.get(item, 'questionSummary') || ''
+        .questions-content-item
+          .questions-content-title(data-trigger=0, class=idx===0?'first-item': '').J_title #{_loanTitle}
+            span.fa.fa-angle-down
+          .questions-content-detail.J_detail 
+            if _questionSummary === 'manageAmount'
+              p 债权转让管理费为用户发起债权转让时向债权转出人收取的一种费用，目前平台转让管理费率为0.5%，红小宝可能不定时调整转让管理费率，具体转让管理费率以债权转让页面显示为准。
+              p 转让管理费金额=债权转让成交金额*转让管理费率。
+              p 债权转让管理费由债权转出人承担，债权受让人不承担任何费用，未成交的债权转让不产生费用。
+              p.cue-text Tips：加入红利智投的用户在申请退出时，发起的债权转让将不收取转让管理费。
+            else if _questionSummary === 'loanTransferDesc'
+              p 出借人在出借资金满一定期限后，因流动性需要，通过红小宝“债权转让”专区将债权挂出且与受让人签订债权转让协议，将所持有的债权转让给受让人的操作。
+              p.cue-text Tips: 红小宝平台不承诺转出时间。
+            else if _questionSummary === 'howEqualRate'
+              p 等额本息还款法是一种被广泛采用的还款方式。还款期内，借款人每月按相等的金额偿还借款本息，其中每月利息按上月结算剩余本金计算，并逐月结清，借款人每月还款额中的本金比重逐月递增、利息比重逐月递减。具体计算公式如下：
+              p 借款金额100,000.00元，期限6个月，预期年化收益率8.5%,则借款人还款计划如下：
+              table
+                thead
+                  tr
+                    th 期数
+                    th 每月还款额
+                    th 应还本金
+                    th 应还利息
+                    th 剩余本金
+                tbody
+                  tr
+                    td 1
+                    td 17,082.29
+                    td 16,373.96
+                    td 708.33
+                    td 83,626.04
+                  tr
+                    td 2
+                    td 17,082.29
+                    td 16,489.94
+                    td 592.35
+                    td 67,136.10
+                  tr
+                    td 3
+                    td 17,082.29
+                    td 16,606.74
+                    td 475.55
+                    td 50,529.36
+                  tr
+                    td 4
+                    td 17,082.29
+                    td 16,724.37
+                    td 357.92
+                    td 33,804.99
+                  tr
+                    td 5
+                    td 17,082.29
+                    td 16,842.15
+                    td 239.45
+                    td 16,962.15
+                  tr
+                    td 6
+                    td 17,082.30
+                    td 16,962.15
+                    td 120.15
+                    td 0.00
+              p.cue-text 注：为了将收益最大化，您可将每期收回的资金循环出借。
+            else if _questionSummary === 'howCompute'
+              p 等额本息还款法是一种被广泛采用的还款方式。在还款期内，每月偿还同等数额的借款(包括本金和利息)。借款人每月还款额中的本金比重逐月递增、利息比重逐月递减。具体计算公式如下：
+              img.formula(src='/img/app-formula.png')
+              p P: 每月还款额
+              p A: 借款本金
+              p b: 月利率
+              p n: 还款总期数
+              p 因计算中存在四舍五入，最后一期还款金额与之前略有不同。
+            else if _questionSummary === 'delayLimit'
+              p 自逾期开始之后，正常利息停止计算。按照下面公式计算罚息：
+              img(src='/img/app-overdue.png')
+              p 
+                img(src='/img/app-total.png')
+                | ：罚息总额
+              p 
+                img(src='/img/app-principal.png')
+                | ：逾期本息
+              p
+                img(src='/img/app-rate.png')
+                | ：对应罚息利率
+              p 
+                img(src='/img/app-delay.png')
+                | ：逾期
+              table
+                tr 
+                  th 逾期天数
+                  td 1-30天
+                  td 31天以上
+                tr
+                  th 罚息利率
+                  td 0.05%
+                  td 0.1%
+              p.cue-text 红小宝有一套完善的催收机制，通过电话短信提醒、上门拜访、法律诉讼等多种方式，将尽最大努力让平台的借款人及时还款。延迟还款的借款人需按约定交纳罚息和违约金。
+            else
+              p
+                != _answerContent
+block foot-script
+  script.
+    app.questions.init();

@@ -1,0 +1,37 @@
+extend base
+
+block title
+  | 快捷充值 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+  
+block content
+  - var isResult = _.get(session, 'chargeInfo.isResult') || 0
+  - var isInHand = _.get(session, 'chargeInfo.isInHand') || 0
+  - var orderAmount = _.get(session, 'chargeInfo.orderAmount') || 0
+  - var orderMessage = _.get(session, 'chargeInfo.orderMessage') || ''
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 快捷充值
+    .uc-recharge-result
+      if isResult
+        .result-title-img
+          img(src='/img/buy-result-success.png')
+        h2 充值成功
+        .buy-result-desc 您已成功充值#{UIHelper.formatNumber(orderAmount, 2)}元
+        a(href='/plan').btn.btn-basic 去出借
+      else if isInHand
+        .result-title-img
+          img(src='/img/buy-connect-timeout.png')
+        h2 恒丰银行处理中
+        .buy-result-desc #{orderMessage}
+        a(href='/account').btn.btn-basic 查看我的账户
+      else
+        .result-title-img
+          img(src='/img/buy-result-error.png')
+        h2 充值失败
+        a(href='/account').btn.btn-basic 查看账户  
+    .uc-warm-tips
+      include ./mod/account.warn.prompt.pug

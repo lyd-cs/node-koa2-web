@@ -1,0 +1,215 @@
+extend base
+
+block title
+  | 红利智投资产 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))   
+  
+block content
+  //- - var item = {'id': 1, 'title': '消费货款', 'rate': 13.68, 'duration': 12, 'cash': 32400, 'progress': 40, 'status': 2}
+  //- var recodeList = [{'id': 2, 'amount': 1000, 'time': '2017-05-06', 'status': 2}, {'id': 3006, 'amount': 1000, 'time': '2017-05-06', 'status': 2}]
+  //- var planDetail = {'name': '消费货款', 'amount': 1000, 'expectedRate': 4.5, 'earnAmount': 2000, 'registerTime': 1500452131000, 'endLockingTime': 1503130531000, 'status': '2', 'type': 'EXIT_PLAN', 'cashType': '2', 'totalInterest': 100, 'redProgressLeft': 1000, 'exitWay': '提前退出'}
+  - var _productName = _.get(planDetail, 'name') || ''
+  - var _productAmout = _.get(planDetail, 'amount', 0) - 0 || 0
+  - var _productRate = _.get(planDetail, 'expectedRate') || ''
+  - var _productEarnAmount = _.get(planDetail, 'earnAmount', 0) - 0 || 0
+  - var _productJoinTime = _.get(planDetail, 'registerTime', 0) - 0
+  - var _productOutTime = _.get(planDetail, 'endLockingTime', 0) - 0
+  - var _productStatus = _.get(planDetail, 'status') || ''
+  - var _productType = _.get(planDetail, 'type') || ''
+  - var _productCashType = _.get(planDetail, 'cashType') || ''
+  - var _productTotalInterest = _.get(planDetail, 'totalInterest') - 0 || 0
+  - var _productCashDrawDay = _.get(planDetail, 'cashDrawDay') - 0 || 0
+  //- var _userEarnAmount = _.get(planDetail, 'earnAmount') - 0 || 0
+  - var _userEarnProgress = (_productEarnAmount/_productTotalInterest)*100
+  - var _productRedProgressLeft = _.get(planDetail, 'redProgressLeft', 0) - 0 || 0
+  - var _productExitWay = _.get(planDetail, 'exitWay') || ''
+  - var _lockTime = _.get(planDetail, 'lockPeriod') - 0 || 0
+  - var _planId = _.get(planDetail, 'id') - 0 || 0
+  - var _quitStatus = _.get(planDetail, 'quitStatus') || ''
+  - var _quitDate = _.get(planDetail, 'quitDate') - 0
+  - var _repealDate = _.get(planDetail, 'repealDate') - 0
+  - var _FinancePlanStatus = _.get(planDetail, 'financePlanStatus', '')
+  - var _productCalmPeriod = _.get(planDetail, 'inCoolingOffPeriod')
+  - var _calmPeriodTime = _.get(planDetail, 'coolingOffPeriod') - 0
+  - var _productNovice = _.get(planDetail, 'novice', 0) - 0
+  - var _productLockDays = _.get(planDetail, 'lockDays', 0) - 0
+  - var _productBaseInterestRate = _.get(planDetail, 'baseInterestRate', 0) - 0
+  - var _productSubsidyInterestRate = _.get(planDetail, 'subsidyInterestRate', 0) - 0
+  - var _productExpectedSubsidyInterestAmount = _.get(planDetail, 'expectedSubsidyInterestAmount', 0) - 0
+  - var _productSubsidyInterest = _.get(planDetail, 'subsidyInterest', 0) - 0
+
+  - var _now = _now || Date.now()
+  - var _state = UIHelper.parsePlanDetailStatus(_productType)
+  - var _buttonClick = _quitStatus == 'STAY_QUIT' ? 'disabled' : false
+  - var doing = _state.HOLD_PLAN
+  - var outing = _state.EXITING_PLAN
+  - var done = _state.EXIT_PLAN
+  include ./mod/account.nav.pug
+  .section#J_plan-exit
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(planDetail)}
+    .plan-detail-header.product-detail-header
+      .item-header.item-account-header
+        .item-title
+          h3 #{_productName}
+            a(href='/plan/'+_planId) 详情
+          if hasAgreementFile
+            a.J_agreement-download(href='/account/plan/'+planId+'/agreement')
+              if  _contractId >= 8
+                |  《红利智投服务协议》
+              else
+                |  《红利计划服务协议》
+          else
+            a() 协议签章中...
+        if doing && _productStatus === 'PURCHASE_END'
+          .item-line
+        else if doing && _productStatus === 'PURCHASEING'
+          .item-line.item-purchaseing
+        else if doing && _productStatus === 'REDEMPTION_PERIOD'
+          .item-line.item-opening
+        else if done
+          .item-line.item-done
+        else
+          .item-line.item-outing
+        .item-intro.pure-g.item-account-intro
+          dl.pure-u-1-3.item-intro-first
+            dd #{UIHelper.formatNumber(_productAmout)}
+            dt 加入金额(元)
+          dl.pure-u-1-3
+            dd
+              if _productNovice
+                | #{UIHelper.formatNumber(_productBaseInterestRate, 1)}%
+                span.icon-question-circle(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>计划按照" + UIHelper.formatNumber(_productBaseInterestRate, 1) + "%计息，"+ UIHelper.formatNumber(_productSubsidyInterestRate, 1) + "%加息收益（预计" + UIHelper.formatNumber(_productSubsidyInterest, 2) + "元）将在计划退出时发放至您的账户</span>")
+              else
+                if _productRate
+                  | #{_productRate}
+                  span.item-unit %
+                else
+                  | --
+            dt 平均历史年化收益
+          dl.pure-u-1-3.item-intro-last
+            dd.recive-money #{UIHelper.formatNumber(_productEarnAmount, 2)}
+            dt 已获收益(元)
+          dl.pure-u-1-3
+            if _lockTime
+              dd #{_lockTime}
+              dt 锁定期限(月)
+            else if _productLockDays
+              dd #{_productLockDays}
+                dt 锁定期限(天)
+        if doing
+          .item-propertys.pure-g
+            dl
+              dt 处理方式：#{UIHelper.parsePlanCashType(_productCashType)}
+            dl
+              dt 加入时间：#{UIHelper.formatdate('YYYY-MM-DD', _productJoinTime)}
+            dl
+              dt 锁定期结束日：#{UIHelper.formatdate('YYYY-MM-DD', _productOutTime)}
+            if _productCashType == 'HXB'
+              dl
+                dt 收益提取日：每月#{_productCashDrawDay}日
+                  span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content='收益会按月返回到账户内，如当月无此提取日，则当月最后一天为提取日。')  
+            if _productCashType != 'HXB' && _quitStatus == 'ANNUL_QUIT'
+              dl
+                dt 退出时间：#{UIHelper.formatdate('YYYY-MM-DD', _quitDate)}
+          if _productCashType == 'HXB' && _quitStatus == 'ANNUL_QUIT'
+            .item-propertys.pure-g
+              dl
+                dt 退出时间：#{UIHelper.formatdate('YYYY-MM-DD', _quitDate)}
+        else if outing 
+          .item-propertys.pure-g    
+            dl
+              dt 加入时间： #{UIHelper.formatdate('YYYY-MM-DD', _productJoinTime)}
+            dl
+              dt 待转让债权金额：#{UIHelper.formatNumber(_productRedProgressLeft, 2)}     
+        else if done
+          .item-propertys.pure-g    
+            dl
+              dt 加入时间： #{UIHelper.formatdate('YYYY-MM-DD', _productJoinTime)}
+            dl
+              dt 退出时间： 
+                if _FinancePlanStatus == 'OLD' 
+                  | #{UIHelper.formatdate('YYYY-MM-DD', _productOutTime)}
+                else if _quitDate
+                  | #{UIHelper.formatdate('YYYY-MM-DD', _quitDate)}
+                else
+                  | #{UIHelper.formatdate('YYYY-MM-DD', _productJoinTime)}
+            dl 
+              dt 退出途径： #{_productExitWay}  
+      .item-body
+        include ./mod/account.plan.detail.buy.pug
+    .uc-panel.uc-invest-loan
+      if doing && ( _productStatus === 'PURCHASEING' || _productStatus === 'PURCHASE_END' )
+        - var _isAccountLoan = true
+      h4 
+        | 出借记录
+        span 共#{totalCount}笔
+      if !loanInvestList || loanInvestList.length == 0
+        include ./mod/nothing.data.pug
+      else  
+        table(cellspacing='0', cellpadding='0', width='100%').uc-product-list
+          thead
+            tr
+              th 标的ID
+              th 加入金额(元)
+              if doing
+                th 出借时间
+              else if outing
+                //- th 年利率
+                th 待转出金额(元)
+              else if done
+                //- th 年利率
+                th 回收金额(元)
+              th 状态
+              th 合同
+              th  
+          tbody#J_loan-list-wrap
+            each item, idx in loanInvestList
+              - var _loanId = _.get(item, 'loanId') - 0 || 0
+              - var _loanAmount = _.get(item, 'amount') - 0 || 0
+              - var _loanLendTime = _.get(item, 'lendTime') - 0 || 0
+              - var _loanStatus = _.get(item, 'status') || 'OPEN'
+              - var _state = UIHelper.parseLoanStatusName(_loanStatus)
+              - var _loanRecoveryAmount = _.get(item, 'recoveryAmount') - 0 || 0
+              - var _loanRecoveryInterest = _.get(item, 'recoveryInterest') - 0 || 0
+              - var _loanRollOutleft = _.get(item, 'rollOutleft') - 0 || 0
+              - var _loanFinancePlanSubpointId = _.get(item, 'financePlanSubpointId') - 0 || 0
+              - var _loanTranfer = _.get(item, 'tranfer') - 0 || 0
+              - var _hasAgreementFile = _.get(item, 'hasFile') || false
+              - var _agreementFilePath = _.get(item, 'filePath') || ''
+              tr.uc-tab-item.J_uc-tab-item
+                td
+                  a(href='/loan/' + _loanId) #{_loanId}
+                td #{UIHelper.formatNumber(_loanAmount, 2)}
+                if doing
+                  td #{UIHelper.formatdate('YYYY-MM-DD', _loanLendTime)}
+                else if outing
+                  //- td #{UIHelper.formatNumber(_productRate, 2)}%
+                  td #{UIHelper.formatNumber(_loanRollOutleft, 2)}
+                else if done
+                  //- td #{UIHelper.formatNumber(_productRate, 2)}%
+                  td #{UIHelper.formatNumber(_loanRecoveryAmount, 2)}
+                td #{item.statusText}
+                td
+                  if _hasAgreementFile
+                    a(href='/account/loan/'+ _loanId +'/agreement') 合同
+                  else
+                    a() 签章中
+                td 
+                  if _loanTranfer  
+                    a.J_dropdown.release(data-loanid=item.loanId, data-derail=0, data-subpointid=_loanFinancePlanSubpointId, data-prime=0)
+      include ./mod/pagination.pug
+  .modal.fade#J_plan-exit-modal.uc-plandetail(tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel")
+
+block foot-script
+  script.
+    app.accountListDropdown.init();
+    app.accountPlanDetail.init({
+      planId: #{_planId},
+      calmPeriodTime: #{_calmPeriodTime}
+    });
+    var percent = (#{_productEarnAmount}/#{_productTotalInterest})*100
+    $('.bar-process').css('width',percent+'%')

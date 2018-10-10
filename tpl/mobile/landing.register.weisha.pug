@@ -1,0 +1,96 @@
+extends base
+
+block title
+  | 注册红小宝
+
+block page-val
+  - var pageClass = 'landing-register-body'
+
+block content
+  .landing-register-weisha#J_landing-wrap
+    .landing-register-weisha-banner
+      img(src='/img/mobile/landing-register-weisha-banner.jpg')
+      .landing-register-weisha-logo
+        img.landing-register-weisha-logo(src='/img/mobile/landing-register-weisha-logo.png')
+    form.landing-register-weisha-form#J_register-form(method='post')
+      #J_form-control-mobile.form-mobile
+        .form-control.form-control-mobile
+          input#J_mobile.landing-register-weisha-input(type="text", name="mobile", placeholder="请输入手机号", autocomplete='off', minlength='11', maxlength='11')
+      #J_form-control-register.form-sms-password.hide
+        .form-tips 验证码发送至：
+          span.J_form-tips
+        .form-control.form-control-smscode
+          input#J_smscode.landing-register-weisha-smscode.landing-register-weisha-input(type="text", name="smscode", placeholder="请输入验证码", autocomplete='off', maxlength='6')
+          button(type='button')#J_verifycode.landing-register-weisha-countdown 获取验证码
+        .form-control.form-control-password
+          input#J_password.landing-register-weisha-input(type="password", name="password", placeholder="请设置登录密码，8-20位字母+数字", autocomplete='off', maxlength='20')
+      input(type="hidden", name="inviteSerial", value=inviteSerial)
+      input(type="hidden", name="action", value='carnival')
+      input(type='hidden', name='_csrf', value=csrf)
+      input(type='hidden', name='utmSource', value='wsxy')
+      button#J_btn-invite-submit.landing-register-weisha-submit.J_landing-register-weisha-submit(type='submit') 立即注册
+      #J_signup_error_container.landing-register-toast-notify
+    .landing-register-weisha-main
+      .landing-register-weisha-intro
+        .intro-title 
+          span 资金存管
+          | - 恒丰银行、强强联合
+        .intro-content
+          img.intro-iphone(src='/img/mobile/landing-register-weisha-depository.png')
+          .intro-explain
+            .item
+              img(src='/img/mobile/landing-register-weisha-specialty.png')
+              | 透明更专业
+            .item
+              img(src='/img/mobile/landing-register-weisha-ensure.png')
+              | 资金有保障
+            .item
+              img(src='/img/mobile/landing-register-weisha-legal.png')
+              | 合法更合规
+      .landing-register-weisha-intro
+        .intro-title 
+          span 红利智投
+          | - 智能分散、期限灵活
+        .intro-content
+          .intro-explain
+            .item
+              img(src='/img/mobile/landing-register-weisha-whole.png')
+              | 整存整取
+            .item
+              img(src='/img/mobile/landing-register-weisha-circulate.png')
+              | 循环出借
+            .item
+              img(src='/img/mobile/landing-register-weisha-income.png')
+              | 收益更可观
+          img.intro-iphone.right(src='/img/mobile/landing-register-weisha-plan.png')
+      .landing-register-weisha-intro
+        .intro-title
+          span 散标债权
+          | - 百元起投、月月收钱
+        .intro-content
+          img.intro-iphone(src='/img/mobile/landing-register-weisha-loan.png')
+          .intro-explain
+            .item
+              img(src='/img/mobile/landing-register-weisha-real.png')
+              | 真实借款
+            .item
+              img(src='/img/mobile/landing-register-weisha-nimble.png')
+              | 出借灵活
+            .item
+              img(src='/img/mobile/landing-register-weisha-month.png')
+              | 月享收益
+  .landing-register-weisha-success#J_landing-signup-result.hide
+    .landing-register-weisha-success-main
+      .landing-register-weisha-success-top
+        .landing-register-weisha-success-prosit
+          img(src='/img/mobile/landing-register-weisha-success.png')
+          img(src='/img/mobile/landing-register-weisha-title.png')    
+      .landing-register-weisha-success-bottom
+        .landing-register-weisha-success-download
+          img.landing-register-weisha-success-qrcode(src='/img/mobile/landing-register-weisha-qrcode.png')
+          .landing-register-weisha-success-text 扫描二维码
+            br
+            | 立即下载红小宝APP
+block foot-script
+  script.
+    app.landingWeishaRegister.init();

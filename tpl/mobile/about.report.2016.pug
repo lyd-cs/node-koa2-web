@@ -1,0 +1,41 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-annals#J_about-annals
+    .section
+      img(src='/img/mobile/about-annals-2016-index.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender-performance.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender-sum.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender-gender.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender-area.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-lender-amount.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-borrower.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-borrower-gender.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-borrower-trade.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-borrower-area.png')
+    .section
+      img(src='/img/mobile/about-annals-2016-borrower-purpose.png')
+    .section.about-annals-sixteen-last
+      img(src='/img/mobile/about-annals-2016-last-bottom.png')
+  .about-annals-sixteen-navigation
+
+block foot-script
+  script.
+    $('#J_about-annals').fullpage();

@@ -1,0 +1,85 @@
+if dataList && dataList.length
+  table(cellspacing='0', cellpadding='0').uc-product-list.small-table
+    if loanType == 'FINISH_LOAN'
+      thead
+        tr
+          th 购买人
+          th 成交金额
+          th 服务费
+          th 转让时间
+          th 合同
+      tbody
+        each item, idx in dataList
+          - var _loanAmount = _.get(item, 'amount') - 0 || 0;
+          - var _loanCreateTime = _.get(item, 'createTime') - 0 || 0
+          - var _loanFee = _.get(item, 'fee') - 0 || 0
+          - var _loanUserName = _.get(item, 'userName') || ''
+          - var _transferLogId = _.get(item, 'transferLogId') - 0 || 0
+          - var _hasAgreementFile = _.get(item, 'hasFile') || false
+          - var _agreementFilePath = _.get(item, 'filePath') || ''
+          tr
+            td #{UIHelper.safeUserName(_loanUserName)}
+            td #{UIHelper.formatNumber(_loanAmount, 2)}
+            td #{UIHelper.formatNumber(_loanFee, 2)}
+            td #{UIHelper.formatdate('YYYY-MM-DD hh:mm', _loanCreateTime)}
+            td
+              if _hasAgreementFile
+                a(href='/account/transfer/'+ _transferLogId +'/agreement') 合同
+              else
+                a 签章中
+    else if loanType == 'REPAYING_LOAN'
+      thead
+        tr
+          th 交易金额(元)
+          th 待收本金(元)
+          th 公允利息(元)
+          th 剩余期数(月)
+          th 转入时间
+          th 合同
+      tbody
+        each item, idx in dataList
+          - var _loanAmout = _.get(item, 'amout') - 0 || 0
+          - var _loanPrincipal = _.get(item, 'principal') - 0 || 0
+          - var _loanInterest = _.get(item, 'interest') - 0 || 0
+          - var _loanLeftMonths = _.get(item, 'leftMonths') - 0 || 0
+          - var _loanCreateTime = _.get(item, 'createTime') - 0 || 0
+          - var _transferLogId = _.get(item, 'transferLogId') - 0 || 0
+          - var _hasAgreementFile = _.get(item, 'hasFile') || false
+          - var _agreementFilePath = _.get(item, 'filePath') || ''
+          tr
+            td #{UIHelper.formatNumber(_loanAmout, 2)}
+            td #{UIHelper.formatNumber(_loanPrincipal, 2)}
+            td #{UIHelper.formatNumber(_loanInterest, 2)}
+            td #{_loanLeftMonths}
+            td #{UIHelper.formatdate('YYYY-MM-DD', _loanCreateTime)}
+            td
+              if _hasAgreementFile
+                a(href='/account/transfer/'+ _transferLogId +'/agreement') 合同
+              else
+                a 签章中
+    else       
+      thead
+        tr  
+          th 购买人
+          th 成交金额
+          th 成交时间
+          th 合同
+      tbody
+        each item, idx in dataList
+          - var _planAmount = _.get(item, 'amount') - 0 || 0
+          - var _planUserName = _.get(item, 'userName') || ''
+          - var _planCreateTime = _.get(item, 'createTime') - 0 || 0
+          - var _transferLogId = _.get(item, 'transferLogId') - 0 || 0
+          - var _hasAgreementFile = _.get(item, 'hasFile') || false
+          - var _agreementFilePath = _.get(item, 'filePath') || ''
+          tr
+            td #{UIHelper.safeUserName(_planUserName)}
+            td #{UIHelper.formatNumber(_planAmount, 2)}
+            td #{UIHelper.formatdate('YYYY-MM-DD', _planCreateTime)}
+            td
+              if _hasAgreementFile
+                a(href='/account/transfer/'+ _transferLogId +'/agreement') 合同
+              else
+                a 签章中
+else
+  include ./nothing.data.pug

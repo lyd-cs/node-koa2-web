@@ -1,0 +1,13 @@
+#J_user-signup-success-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModlLabel')
+  .modal-dialog.modal-signup-success
+    .modal-content
+      .modal-header
+        button.close.close-button(data-dismiss="modal", aria-label="Close")
+      .modal-body.modal-signup-success-body
+        h3 注册成功
+        p.user-platform-number 您的平台账户号为：#{username}
+        img(src='/img/signup-success.png')
+        p 红小宝平台现已与恒丰银行开展存管合作
+      .modal-footer
+        a(href='/deposit/createaccount') 立即开通恒丰银行存管账户
+      

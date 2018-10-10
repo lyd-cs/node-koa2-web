@@ -1,0 +1,27 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-audit
+    .about-audit-list
+      .about-audit-item.about-audit-annual
+        .about-audit-item-header 年度审计报告
+        .about-audit-item-footer 审计完成后披露
+      .about-audit-item.about-audit-key-party
+        .about-audit-item-header 重点环节审计结果
+        .about-audit-item-footer 审计完成后披露
+      .about-audit-item.about-audit-legal
+        .about-audit-item-header 合规性审查报告
+        .about-audit-item-footer 审计完成后披露
+
+block foot-script
+  script.
+    app.scrollPosition.init();

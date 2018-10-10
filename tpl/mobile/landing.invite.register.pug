@@ -1,0 +1,121 @@
+extends base
+
+block title
+  | 帮我拆开这个红包，礼金分你一半
+
+block page-val
+  - var pageClass = 'landing-register-body'
+block content
+  .landing-redpackage#J_landing-redpackage
+    .landing-redpackage-content
+      img(src='/img/mobile/invite-redpackage.png')
+      if inviteRealname
+        .landing-redpackage-user-info
+          .landing-redpackage-name #{inviteRealname}
+          p 正在红小宝出借
+      p.landing-redpackage-desc.J_landing-redpackage-desc “帮我拆开这个红包，礼金分你一半”
+
+      .landing-redpackage-open.J_landing-redpackage-open-logo
+
+    img(src='/img/mobile/invite-footer-bg.png').landing-redpackage-footer
+  .landing-register#J_landing-register
+    .landing-register-header
+      .landing-register-header-poster
+        p.poster-desc.J_poster-desc 感谢你帮我拆开红包，送你一份好礼!
+        .redpackage-amount
+          span &yen;
+          | 500
+
+      form#J_invite_register-form.landing-register-form(method='post')
+        #J_form-control-mobile
+          .form-control.form-control-mobile
+            input#J_mobile.landing-register-mobile-input.landing-register-input(type="text", name="mobile", placeholder="输入手机号", autocomplete='off', minlength='11', maxlength='11')
+        #J_form-control-register
+          .form-tips.J_form-tips 验证码发送至：
+          .form-control.form-control-smscode
+            input#J_smscode.landing-register-smscode-input.landing-register-input(type="text", name="smscode", placeholder="输入短信验证码", autocomplete='off', maxlength='6')
+            label.landing-register-countdown#J_verifycode 发送验证码
+          .form-control.form-control-password
+            input#J_password.landing-register-password-input.landing-register-input(type="password", name="password", placeholder="设置密码，8-20位数字+字母", autocomplete='off', maxlength='20')
+        input(type="hidden", name="inviteSerial", value=inviteSerial)
+        input(type="hidden", name="utmSource", value=utmSource)
+        input(type="hidden", name="userId", value=userId)
+        input(type="hidden", name="action", value='inviteRegister')
+        input(type='hidden', name='_csrf', value=csrf)
+        button#J_btn-invite-submit.landing-register-submit(type='submit') 领取红包
+
+      #J_landing-register-form-download.landing-register-form
+        .landing-register-input.landing-register-download 下载红小宝APP，查看红包
+        button#J_landing-register-download.landing-register-submit 立即下载
+      .landing-register-wavy
+
+    .landing-register-product
+      .landing-register-product-item
+        h4.product-item-title 红利智投
+        .product-item-desc
+          .product-item-earnings
+            span 7.0
+              small %
+            p 平均历史年化收益
+          .product-item-investment-horizon
+            span 3
+              small 个月
+            p 锁定期
+          .product-item-min-amount
+            span 1000
+              small 元
+            p 起投金额
+      .landing-register-product-item
+        h4.product-item-title 红利智投
+        .product-item-desc
+          .product-item-earnings
+            span 10.8
+              small %
+            p 平均历史年化收益
+          .product-item-investment-horizon
+            span 12
+              small 个月
+            p 锁定期
+          .product-item-min-amount
+            span 1000
+              small 元
+            p 起投金额
+
+    .landing-register-investment-security
+      .landing-register-investment-security-title
+      .landing-register-investment-security-body
+        .investment-security-item
+          h4.investment-security-item-title 恒丰银行资金存管
+          .investment-security-item-desc
+            p  用户资金由恒丰银行存管，
+              br
+              | 平台接触不到用户资金，不可能卷款跑路
+          .investment-security-item-deposit-poster
+        .investment-security-item
+          h4.investment-security-item-title 四重风控审核，精选优质资产
+          .investment-security-item-desc
+            p 平台与同盾反欺诈、美林大数据、
+              br
+              | 上海资信等第三方合作，标准化审核流程，确保
+              br
+              | 每个上线项目优质可靠
+          .investment-security-item-audit-poster
+        .investment-security-item
+          h4.investment-security-item-title 智能分散，降低出借风险
+          .investment-security-item-desc
+            p 用户只需要买入，后台系统自动将出借资金小
+              br
+              | 额分到多个项目中，有效降低单一借款人违约的风险
+          .investment-security-item-smart-poster
+
+    .landing-register-footer
+    .landing-register-toast-notify#J_invite-register-error-container
+
+block foot-script
+  script.
+    app.landingInvite.init();
+    app.util.wx.init({
+      title: '帮我拆开这个红包，礼金分你一半',
+      desc: '我在红小宝投资收益还不错，邀请你来体验，拆开红包，千元礼金和我平分',
+      imgUrl: '/img/mobile/invite-logo.png'
+    });

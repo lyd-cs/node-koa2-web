@@ -1,0 +1,48 @@
+extend base
+
+block title
+  | 我的消息 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+  
+block content
+  //-
+     var dataList = [{'id': 0, 'title': '购车项目', 'content': '购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容购车项目内容', 'status': 0, 'times': 1492676907000}, {'id': 1, 'title': '购车项目2', 'content': '购车项目内容2', 'status': 0, 'times': 1492676514000}, {'id': 2, 'title': '购车项目3', 'content': '购车项目内容3', 'status': 1, 'times': 1492676514000}]
+  include ./mod/account.nav.pug
+  .section.uc-setting#J_account-message
+    .uc-title
+      h4 消息
+    if dataList && dataList.length
+      #J_message-list.uc-message-list
+        each item,idx in dataList
+          - var _accountMessageId = _.get(item, 'id') - 0 || 0
+          - var _accountMessageContent = _.get(item, 'content') || ''
+          - var _accountMessageDate = _.get(item, 'date') || ''
+          - var _accountMessageTitle = _.get(item, 'title') || ''
+          - var _accountMessageIsRead = _.get(item, 'status') - 0 || 0
+          .list-item(class={'unread':!_accountMessageIsRead})
+            .uc-message-wrap.J_message-header
+              if _accountMessageIsRead
+                label.icon-simulate-checkbox.icon-simulate-checkbox-disabled
+                  input.J_item-checkbox(type='checkbox', name='msgcheck', disabled= !!_accountMessageIsRead)
+              else
+                label.icon-simulate-checkbox.icon-simulate-checkbox-uncheck
+                  input.J_item-checkbox(type='checkbox', name='msgcheck', disabled= !!_accountMessageIsRead)
+              .uc-message-content
+                .J_message-title.message-title(data-msgid=_accountMessageId, data-init= _accountMessageIsRead ? 1 : 0)
+                  | #{_accountMessageTitle}
+                  span.pull-right #{_accountMessageDate}
+                .J_message-content.item-content!=_accountMessageContent
+        .uc-select-all
+          label.icon-simulate-checkbox.icon-simulate-checkbox-uncheck    
+            input(type='checkbox', name='msgcheckall').J_selected-all.uc-items-checkbox
+          label 全选
+          button.J_uc-readed-btn.uc-readed-btn.uc-readed-btn-disabled(type='button') 标为已读
+      include ./mod/pagination.pug
+    else
+      include ./mod/nothing.data.pug
+
+block foot-script
+  script.
+    app.accountMessage.init()

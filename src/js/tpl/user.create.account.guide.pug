@@ -1,0 +1,12 @@
+#J_user-create-account-guide-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModlLabel')
+  .modal-dialog.modal-create-account-guide
+    .modal-content
+      .modal-header
+        button.close.close-button.create-account-guide-close(data-dismiss="modal", aria-label="Close")
+      .modal-body.modal-forbid-create-account-body.create-account-guide-body
+        h3 红小宝 &amp; 恒丰银行
+        p 个人账户升级为恒丰银行存管账户
+        img(src='/img/create-account-guide.png')
+        p.create-account-guide-desc 为了更好的保障您的资金安全，请先开通恒丰银行存管账户，完成后即可进行充值、提现、出借等操作
+      .modal-footer
+        a(href='/deposit/createaccount') 开通存管账户

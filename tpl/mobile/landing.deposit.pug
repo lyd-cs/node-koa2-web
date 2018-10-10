@@ -1,0 +1,79 @@
+extend base
+
+block title
+  | 恒丰银行存管上线
+
+block page-val
+  - var pageClass = 'landing-body'
+
+block content
+  - var _isCreatAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  .landing-container
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(isLogin)}
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(_isCreatAccount)}
+    .landing-deposit-section.landing-deposit-banner
+      img(src='/img/deposit-banner.png')
+    .landing-deposit-section
+      h3.landing-deposit-title 图解银行存管
+      p 银行存管是由银行管理资金，平台管理交易，做到资金与交易的分离，使得平台无法直接接触资金，避免平台客户资金被直接挪用。
+      img(src='/img/deposit-note.png')
+    .landing-deposit-section
+      h3.landing-deposit-title 无数努力只为这一步
+      p 根据2016年8月24日由银监会、工信部、公安部、网信办联合公布的《网络借贷信息中介机构业务活动管理暂行办法》，要求互联网金融平台需与银行业对接，对平台资金进行银行存管，将平台和资金进行隔离，用来保障用户的资金安全。
+      p 红小宝一直积极响应监管要求，红小宝用实际行动在合规上做出自己的承诺。此次竑翀网络与恒丰银行签订存管协议，为红小宝用户提供优质安全的服务奠定了良好基础，同时也是红上在合规之路上持续健康发展的新起点，红小宝用实际行动在合规上做出自己的承诺。
+    .landing-deposit-section
+      h3.landing-deposit-title 存管优势
+      .landing-deposit-advantage-box.adv-trade
+        h4 资金交易更规范
+        p 恒丰银行根据合同及用户发出的交易指令，会对整个交易过程进行管理并记录用户资金流水，交易真实可查。
+      .landing-deposit-advantage-box.adv-safe
+        h4 用户资金安全隔离
+        p 恒丰银行资金存管，用户在银行需开设独立账户，平台资金与用户资金账户分离，平台无法接触用户资金，全部由存管银行对资金进行管理。
+      .landing-deposit-advantage-box.adv-pure
+        h4 用户交易更透明
+        p 真实的借款信息，红小宝所有资金交易，恒丰银行存管系统均会对借贷关系进行校验，保障每笔资金真实交易。
+      .landing-deposit-advantage-box.adv-update
+        h4 资金安全再升级
+        p 用户在资金使用中，除系统级保障账户安全，账户信息由存管银行管理，资金交易均由用户授权银行操作执行。
+    .landing-deposit-section
+      h3.landing-deposit-title 红小宝&恒丰银行
+      h4.landing-deposit-subtitle 账户、存管、支付、清算系统对接完成
+      .landing-deposit-process
+        if isLogin
+          .landing-deposit-process-part
+            img(src='/img/deposit-register-act.png')
+            span 注册
+          .landing-deposit-process-arrow-act 
+        else
+          .landing-deposit-process-part
+            img(src='/img/deposit-register-none.png')
+            span 注册
+          .landing-deposit-process-arrow-gray
+        if _isCreatAccount   
+          .landing-deposit-process-part
+            img(src='/img/deposit-account-act.png')
+            span 开户
+          .landing-deposit-process-arrow-act 
+          .landing-deposit-process-part
+            img(src='/img/deposit-invest-act.png')
+            span 出借
+        else   
+          .landing-deposit-process-part
+            img(src='/img/deposit-account-none.png')
+            span 开户
+          .landing-deposit-process-arrow-gray  
+          .landing-deposit-process-part
+            img(src='/img/deposit-invest-none.png')
+            span 出借
+      if isLogin && _isCreatAccount
+        span.J_jumpToApp(data-path='/home/plan_fragment').landing-deposit-btn  去加入
+      else if  isLogin && !_isCreatAccount
+        span.J_jumpToApp(data-path='/home/EscrowActivity').landing-deposit-btn  去开户
+      else if !isLogin
+        span.J_jumpToApp(data-path='/account/register').landing-deposit-btn  去注册
+
+block foot-script
+  script.
+    app.callApp.init();
+          

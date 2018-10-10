@@ -1,0 +1,51 @@
+extend base
+
+block title
+  | 银行存管 - 
+
+block content
+  - var _userIsLogin = isLogin 
+  - var _userIsCreateEscrowAcc = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsInvestPlan = _.get(userState, 'hasEverInvest') - 0 || 0
+  - var _userIsInvestLoan = _.get(userState, 'hasEverInvestLoan') - 0 || 0
+  .landing-depository.landing-depository-wrap
+    .landing-depository-banner
+    .landing-depository-graph
+      h2 图解银行存管
+      .content 银行存管是由银行管理资金，平台管理交易，做到资金与交易的分离，使得平台无法直接接触资金，避免平台客户资金被直接挪用。
+      img(src='/img/depository-diagram.png')
+    .landing-depository-superior
+      h2 无数的努力只为这一步
+      .content 根据2016年8月24日由银监会、工信部、公安部、网信办联合公布的《网络借贷信息中介机构业务活动管理暂行办法》，要求互联网金融平台需与银行业对接，对平台资金进行银行存管，将平台和资金进行隔离，用来保障用户的资金安全。
+      .content.verse-second 红小宝一直积极响应监管要求，红小宝用实际行动在合规上做出自己的承诺。此次竑翀网络与恒丰银行签订存管协议——此次红小宝平台与恒丰银行签订存管协议，为红小宝用户提供优质安全的服务奠定了良好基础，同时也是红上在合规之路上持续健康发展的新起点——同时也是红小宝在合规之路上持续健康发展的新起点，红小宝用实际行动在合规上做出自己的承诺。
+      h2 存管优势
+      .dominant
+        .dominant-detail.norm
+          .title 资金交易更规范
+          .explain 恒丰银行根据合同及用户发出的交易指令，会对整个交易过程进行管理并记录用户资金流水，交易真实可查。
+        .dominant-detail.insulate
+          .title 用户资金安全隔离
+          .explain 恒丰银行资金存管，用户在银行需开设独立账户，平台资金与用户资金账户分离，平台无法接触用户资金，全部由存管银行对资金进行管理。
+        .dominant-detail.upgrade
+          .title 资金安全再升级
+          .explain 用户在资金使用中，除系统级保障账户安全，账户信息由存管银行管理，资金交易均由用户授权银行操作执行。
+        .dominant-detail.transparent
+          .title 用户交易更透明
+          .explain 真实的借款信息，红小宝所有资金交易，恒丰银行存管系统均会对借贷关系进行校验，保障每笔资金真实交易。
+    .landing-depository-bank
+      h2 红小宝&amp;恒丰银行
+      .finish 账户、存管、支付、清算系统对接完成
+      .landing-depository-bank-invest
+        .invest-body
+          .invest-body-item.invest-body-register(class={'invest-body-register-complete': _userIsLogin}) 
+            span 注册
+          .invest-body-item.invest-body-dredge(class={'invest-body-dredge-complete': _userIsCreateEscrowAcc})
+            span 开户
+          .invest-body-item.invest-body-buy(class={'invest-body-buy-complete': _userIsInvestPlan || _userIsInvestLoan})
+            span 出借
+          if !_userIsLogin
+            a(href='/signup') 立即注册
+          else if !_userIsCreateEscrowAcc
+            a(href='/deposit/createaccount') 立即开户
+          else
+            a(href='/plan') 去加入             

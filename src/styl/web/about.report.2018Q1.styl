@@ -1,0 +1,131 @@
+.about-2018Q1
+  $eightreport-time-color = #4751D4
+  $records-content-color = #868DF0
+  min-width: $container-width
+  background: $white-color
+  .explain
+    &-achievement
+      background: url('/img/about-eightreport-achievement-bg.png') no-repeat bottom center
+      height: 568px
+    &-achievement-Q1
+      background: url('/img/about-eightreport-achievement-q1-bg.png') no-repeat bottom center
+      height: 453px
+    &-lender-age
+      background: url('/img/about-eightreport-leader-age.png') no-repeat bottom center
+      height: 532px
+    &-lender-sex
+      background: url('/img/about-eightreport-leader-sex.png') no-repeat bottom center
+      height: 366px
+    &-lender-area
+      background: url('/img/about-eightreport-leader-area.png') no-repeat bottom center
+      height: 457px
+    &-lender-nice
+      background: url('/img/about-eightreport-leader-nice.png') no-repeat bottom center
+      height: 360px
+    &-lender-loan-amount
+      background: url('/img/about-eightreport-leader-loan-amount.png') no-repeat bottom center
+      height: 588px
+    &-lender-loan-user
+      background: url('/img/about-eightreport-leader-loan-user.png') no-repeat bottom center
+      height: 640px
+    &-borrow-sex
+      background: url('/img/about-eightreport-borrow-sex.png') no-repeat bottom center
+      height: 322px
+    &-borrow-work
+      background: url('/img/about-eightreport-borrow-work.png') no-repeat bottom center
+      height: 741px
+    &-borrow-area
+      background: url('/img/about-eightreport-borrow-area.png') no-repeat bottom center
+      height: 417px
+    &-borrow-use
+      background: url('/img/about-eightreport-borrow-use.png') no-repeat bottom center
+      height: 334px
+    &-info
+      margin-top: 90px
+  &-qrcodes
+    background: url('/img/about-eightreport-qrcodes-bg.png') no-repeat bottom center
+    height: 445px
+    overflow: hidden
+    margin-top: 46px
+    .qrcodes-content
+      width: 400px
+      margin: 200px auto 0
+      clearfix()
+    .qrcode-wrap
+      width: 160px 
+      height: 160px
+      p   
+        font-size: $font-size-large
+        color: $white-color
+        width: 160px
+        text-align: center
+        margin-top: 16px
+    .app-qrcode
+      float: left
+    .weixin-qrcode
+      float: right
+  &-title
+    min-width: $container-width
+    overflow: hidden
+    height: 370px
+    background: url('/img/about-eightreport-banner.png') no-repeat top center
+  &-compliance
+    .report-title
+      margin-bottom: 40px
+    .compliance
+      &-records
+        margin: 0 auto
+        width: 60%
+        .first:after
+          content: ''
+          display: block
+          width: 20px
+          height: 5px
+          background: $white-color
+          position: absolute
+          top: 0
+          left: -6px
+      &-records-time
+        text-align: left
+        display: inline-block
+        color: $eightreport-time-color
+        font-size: $font-size-large
+        vertical-align: top
+        width: 110px
+      &-records-content
+        text-align: left
+        display: inline-block
+        font-size: $font-size-middle
+        color: $grey-color-dark
+        line-height: 28px
+        border-left: 1px dashed $eightreport-time-color
+        position: relative
+        padding-left: 30px
+        height: 112px
+        &:before
+          content: ''
+          display: block
+          width: 10px
+          height: 10px
+          border-radius: 50%
+          background: $records-content-color
+          position: absolute
+          top: 6px
+          left: -6px
+    p
+      margin:2px 0
+  &-content
+    margin-top: 10px
+    min-width: $container-width
+    .report-title
+      font-size: $font-size-h1
+      color: $eightreport-time-color
+      text-align: center
+      padding-top: 84px
+      &:after
+        content: ''
+        display: block
+        width: 200px
+        margin: 0 auto
+        height: 10px
+        background: url('/img/about-eightreport-title-line.png') no-repeat top center

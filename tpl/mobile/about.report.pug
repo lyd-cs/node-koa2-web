@@ -1,0 +1,26 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+  
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  h3.about-top-title 2018年一季度运营报告 
+  .about-gap.about-report-list
+    a(href='/about/report/2018Q1'): img(src='/img/mobile/about-report-18-0622.png')
+  h3.about-top-title 2017年运营报告
+  .about-gap.about-report-list
+    a(href='/about/report/2017'): img(src='/img/mobile/about-report-17.png')
+  h3.about-top-title 2016年运营报告
+  .about-gap.about-report-list
+    a(href='/about/report/2016'): img(src='/img/mobile/about-report-16.png')
+  .about-report-bottom
+
+block foot-script
+  script.
+    app.scrollPosition.init();

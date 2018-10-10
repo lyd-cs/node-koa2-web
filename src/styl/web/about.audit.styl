@@ -1,0 +1,51 @@
+.about-audit
+  padding: 20px 0 40px
+  &-container
+    background: $white-color
+  &-header
+    height: 200px
+    background: url('/img/about-audit-title-bg-0522.jpg') center center no-repeat
+  &-title
+    margin: 0 auto
+    text-indent: -9999em
+  &-body
+    padding: 80px 0 140px
+  &-list
+    padding: 0 60px
+  &-item
+    position: relative
+    margin: 0 40px 0
+    padding: 80px 30px 30px
+    background: #fff
+    border: 1px solid #F6F7FA
+    box-shadow: 0 0 10px 0 rgba(44,61,133, .1)
+    border-radius: 8px
+    transition: box-shadow .4s
+    cursor: pointer
+    &:hover
+      box-shadow: 0 0 20px 0 rgba(44,61,133, .1)
+    &:before
+      position: absolute
+      top: 0
+      left: 30px
+      content: ''
+      background: center center no-repeat #E8EFFF url(/img/about-audit-icon-annual.png)
+      width: 60px
+      height: @width
+      border-radius(0 0 8px 8px)
+      //border-bottom-right-radius: 8px
+      //border-bottom-left-radius: 8px
+    &-header
+      color: $grey-color-dark
+      font-size: $font-size-large
+      padding: 16px 0 100px
+    &-footer
+      color: $grey-color-lighter
+      background: left center no-repeat url(/img/about-audit-icon-clock.png)
+      text-indent: 18px
+  &-key-party
+    &:before
+      background-image: url(/img/about-audit-icon-target.png)
+  &-legal
+    &:before
+      background-image: url(/img/about-audit-icon-shield.png)

@@ -1,0 +1,41 @@
+extend base
+
+block title
+  | 登录 | 
+  
+block content
+  .user-forgot
+    .section.forget-case
+      .user-forget-step1
+        h2.user-forgot-title 找回登录密码
+        .user-forgot-step
+          .user-forgot-substep.user-forgot-finish
+            .step-number 
+              span 1
+            .instr 验证手机号码
+          .user-forgot-substep.user-forgot-finish
+            .step-number 
+              span 2
+            .instr 设置新密码
+          .user-forgot-substep.user-forgot-finish
+            if isSuccess
+              .step-number 
+                span 3
+              .instr 修改成功
+            else
+              i.fa.fa-circle-thin.fa-1x.circle
+              | 修改成功
+        .user-forgot-step3-warp
+          if isSuccess
+            .forgot-result
+              .result
+                img(src='/img/white_check.png')
+              span 登录密码修改成功
+            a.forgot-finish(href='/login') 确定
+          else
+            .forgot-result
+              .result.error
+                i.fa.fa-times.error-font
+              span 登录密码修改失败
+            p 请稍后重试
+            a.forgot-finish(href='/login' ) 确定

@@ -1,0 +1,114 @@
+extends base
+
+block title
+  | 端午投资豪礼相伴
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/mobile.landing.css'))
+
+block content
+  .landing-duanwu
+    - var _accountAmount = investAmount - 0 || 0
+    - var _investList = investList || []
+    - var _isLogin = isLogin || false
+    img.landing-duanwu-banner(src="/img/mobile/landing-duanwu-banner.png", alt="")
+    .landing-duanwu-content
+      .landing-duanwu-content-item
+        .item-title 龙虎榜首 豪送iPhoneX
+        img.item-iphonex(src="/img/mobile/landing-duanwu-iphonex.png", alt="")
+        p.item-desc 活动期间投资红利智投12月期、24月期<br>
+          | 累计金额最高者额外获得iPhoneX（256G）一部
+        a.item-btn(href='#product') 立即投资
+      .landing-duanwu-content-item
+        .item-title 累计投资送金条
+        p.item-amount 我的累计投资金额：#{UIHelper.formatNumber(_accountAmount)}元
+        .landing-duanwu-content-prize
+          dl
+            dt.prize-100
+            dd 100元抵扣红包
+            dd.prize-none(class={'hide': _isLogin && _accountAmount >= 50000}) 未获得
+            dd.prize-has(class={'hide': !_isLogin || (_isLogin && (_accountAmount < 50000))}) 已获得
+          dl
+            dt.prize-400
+            dd 400元抵扣红包
+            dd.prize-none(class={'hide': _isLogin && _accountAmount >= 100000}) 未获得
+            dd.prize-has(class={'hide': !_isLogin || (_isLogin && (_accountAmount < 100000))}) 已获得
+          dl
+            dt.prize-juicer
+            dd 多功能破壁榨汁机<br>（价值1500元）
+            dd.prize-none(class={'hide': _isLogin && _accountAmount >= 500000}) 未获得
+            dd.prize-has(class={'hide': !_isLogin || (_isLogin && (_accountAmount < 500000))}) 已获得
+          dl
+            dt.prize-gold
+            dd 10g投资金条<br>（价值3000元）
+            dd.prize-none(class={'hide': _isLogin && _accountAmount >= 1000000}) 未获得
+            dd.prize-has(class={'hide': !_isLogin || (_isLogin && (_accountAmount < 1000000))}) 已获得
+        p.item-tips 仅限红利智投12月期、24月期产品
+      .landing-duanwu-content-rank-head
+      .landing-duanwu-content-item.landing-duanwu-content-rank
+        .item-title 投资龙虎榜
+        table
+          thead
+            tr 
+              th 排名
+              th 投资人
+              th.item-total 累计投资金额(元)
+          tbody
+            if _investList.length
+              each item, index in _investList
+                tr 
+                  td #{index+1}
+                  td #{UIHelper.safeMobile(item.mobile)}
+                  td #{UIHelper.formatNumber(item.investAmount)}
+      .landing-duanwu-content-product#product
+        .landing-duanwu-content-item
+          - var _dataList = _.get(raiseList, 'dataList', []) || []
+          .item-title.item-product-title 开启投资之旅
+          a.J_jump-to-app.item-product(data-path='/plan/detail', data-productid=_dataList[0])
+            dl 
+              dt 9.6
+                span %
+              dd 平均历史年化收益
+            dl 
+              dt.product-period 12-23个月
+              dd.item-product-btn 立即加入
+          a.J_jump-to-app.item-product.item-product-second(data-path='/plan/detail', data-productid=_dataList[1])
+            dl 
+              dt 9.9
+                span %
+              dd 平均历史年化收益
+            dl 
+              dt.product-period 24-36个月
+              dd.item-product-btn.btn-join 立即加入
+    .landing-duanwu-activity
+      img.activity-head(src="/img/mobile/landing-duanwu-intro-bg.png", alt="")
+      h1 活动规则
+      ul 
+        li 1、活动时间：2018年6月15日00:00:00-2018年6月28日23:59:59；
+        li 2、本活动只限于投资12个月和24个月红利智投产品，其余产品不参与活动；
+        li 3、活动期间，用户累计投资达到指定金额，可获得对应奖励，每档奖励只可获得一次，所有奖品可叠加获得；<br>
+          | 举例：用户A在活动期间，累计投资总额为100万元，活动结束后该用户可获得：（10g投资金条、多功能破壁榨汁机、400元抵扣红包、100元抵扣红包）作为奖励；
+        li 4、活动结束后，龙虎榜累计投资额最高的用户，除获得每档投资对应奖励外，还可额外获得iPhoneX(256G)一部；<br>
+          | 注：活动结束后，如出现龙虎榜榜首累计投资额相同时，则以投资时间先后顺序为准，第一个达到最高投资额的用户，可获得iPhoneX(256G)奖励；
+        li 5、活动奖励发放规则：400元抵扣红包和100元抵扣红包，当达到投资额实时发放至账户内，所有实物奖励将在活动结束后7个工作日内进行发放；
+        li 6、对本活动如有任何疑问，敬请咨询红小宝客服热线：400-1552-888；
+        li 7、本活动最终解释权归红小宝官方所有；
+block foot-script
+  script.
+    $('.J_jump-to-app').on('click', function(){
+      var _productId = $(this).data('productid') || '';
+      var _path = $(this).data('path');
+      if(_productId){
+        var bridge = app.util.webviewBridge;
+        bridge.callHandler('startPage', {
+          path: _path,
+          productId: _productId
+        });
+      }else{
+        app.interactive.showMessage({
+          type: 'toast',
+          message: '暂无可购买产品'
+        });
+      }
+    })
+    

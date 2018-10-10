@@ -1,0 +1,40 @@
+extend base
+
+block title
+  | 劳动致富，悦享理财
+
+block page-val
+  - var pageClass = 'landing-body landing-raise'
+
+block content
+  - var _dataList = _.get(raiseList, 'dataList')
+  .landing-raise-wrap.landing-raise-banner: img(src='/img/mobile/landing-raise-banner.png')
+  img(src='/img/mobile/landing-raise-title.png')
+  img(src='/img/mobile/landing-raise-join.png').J_jump-to-app(data-path='/home/main')
+  img(src='/img/mobile/landing-raise-title-enjoy.png').landing-raise-enjoy
+  .landing-raise-wrap
+    img(src='/img/mobile/landing-raise-list-title-one.png').landing-raise-list-title
+    .landing-raise-wrap.landing-raise-list
+      img(src='/img/mobile/landing-raise-one-one.png', data-path='/plan/detail', data-productid=_dataList[0]).J_jump-to-app.landing-raise-list-first
+      img(src='/img/mobile/landing-raise-one-two.png', data-path='/plan/detail', data-productid=_dataList[1]).J_jump-to-app
+      img(src='/img/mobile/landing-raise-one-three.png', data-path='/plan/detail', data-productid=_dataList[2]).J_jump-to-app.landing-raise-list-last
+  .landing-raise-wrap
+    img(src='/img/mobile/landing-raise-list-title-two.png').landing-raise-list-title
+    .landing-raise-wrap.landing-raise-list
+      img(src='/img/mobile/landing-raise-two-one.png', data-path='/plan/detail', data-productid=_dataList[3]).J_jump-to-app.landing-raise-list-first
+      img(src='/img/mobile/landing-raise-two-two.png', data-path='/plan/detail', data-productid=_dataList[4]).J_jump-to-app
+      img(src='/img/mobile/landing-raise-two-three.png', data-path='/plan/detail', data-productid=_dataList[5]).J_jump-to-app.landing-raise-list-last    
+  .landing-raise-wrap
+    img(src='/img/mobile/landing-raise-list-title-three.png').landing-raise-list-title
+    .landing-raise-wrap.landing-raise-list
+      img(src='/img/mobile/landing-raise-three-one.png', data-path='/plan/detail', data-productid=_dataList[6]).J_jump-to-app.landing-raise-list-first
+      img(src='/img/mobile/landing-raise-three-two.png', data-path='/plan/detail', data-productid=_dataList[7]).J_jump-to-app
+      img(src='/img/mobile/landing-raise-three-three.png', data-path='/plan/detail', data-productid=_dataList[8]).J_jump-to-app.landing-raise-list-last    
+  img(src='/img/mobile/landing-raise-rule-title.png').landing-raise-rule-title
+  .landing-raise-wrap.landing-raise-footer
+    img(src='/img/mobile/landing-raise-rules.png')
+  .landing-raise-wrap.landing-raise-tips 市场有风险，出借需谨慎  
+
+block foot-script
+  script.
+    app.callApp.init();

@@ -1,0 +1,60 @@
+extend base
+
+block title
+  | 实名认证 -
+  
+block content
+  - var _query = query || {}
+
+  .user-signup-realname
+    .section.user-signup-realname-container
+      .user-signup-realname-header
+        img(src='/img/register-success-icon.png')
+        h3 注册成功
+        span 
+          | 为了您的账户安全，建议您进行安全认证。超过
+          strong 91%
+          |的用户进行此操作。
+      .user-signup-realname-body
+        if errors
+          .singup-errors.alert-danger
+            include ./mod/error.pug
+        form#J_user-signup-realname-form.realname-form.form-horizontal(method='post', action='/signup/name')
+          .form-group
+            label.control-label.realname-control-label(for='userName') 姓名
+            .control-content
+              input#userName.username.form-control(type='text', placeholder='真实姓名', name='username', value=_query.name, autocomplete='off')
+              .help-inline
+          .form-group
+            label.control-label.realname-control-label(for='identityCard') 身份证号
+            .control-content
+              input#identityCard.username.form-control(type='text', placeholder='18位身份证号码', name='identityCard', maxlength='18', value=_query.idNo, autocomplete='off')
+              .help-inline
+          .form-group
+            label.control-label.realname-control-label(for='password') 交易密码
+            .control-content
+              input#password.form-control(type='password', placeholder='8-20位数字+字母', name='password', maxlength='20', value='', autocomplete='off')
+              .help-inline
+          .form-group
+            label.control-label.realname-control-label(for='confirmPassword') 重复密码
+            .control-content
+              input#confirmPassword.form-control(type='password', placeholder='重置交易密码', name='confirmPassword', maxlength='20', value='', autocomplete='off')
+              .help-inline
+          .form-group
+            label.control-label.realname-control-label
+            .control-content
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='utmSource', value= utmSource )
+              button.btn.btn-basic.realname-confirm-btn(type='submit') 完成认证
+          .form-group
+            label.control-label.realname-control-label
+            .control-content.realname-agree-wrapper
+              input#serviceAgree.col-sm-1(type='checkbox', name='serviceAgree', checked).realname-service-agree
+              label.control-label.realname-control-label(for='serviceAgree')
+                | 我已阅读并同意
+                a(href='/agreement/realname', target='_blank', rel='nofollow').realname-agree-link 《红小宝认证服务协议》
+              a.realname-link-home(href='/')  已知风险，暂不认证 >
+              
+block foot-script
+  script.
+    app.userSignupRealname.init();

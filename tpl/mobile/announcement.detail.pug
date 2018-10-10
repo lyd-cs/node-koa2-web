@@ -1,0 +1,15 @@
+extend base
+
+block title
+  | 公告详情
+
+block content
+  if announceDetail
+    - var _title = _.get(announceDetail, 'title') || ''
+    - var _time = _.get(announceDetail, 'date') || ''
+    - var _content = _.get(announceDetail, 'content') || ''
+    .announcement-container
+      .announcement-title #{_title}
+      .announcement-time #{UIHelper.formatdate('YYYY-MM-DD', _time)}
+      .announcement-detail-container !{_content}
+

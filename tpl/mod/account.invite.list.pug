@@ -1,0 +1,26 @@
+if dataList && dataList.length
+  .invite-list-title
+    .item.item-mobile 邀请好友
+    .item.item-name 好友姓名
+    .item.item-time 注册时间
+    .item.item-award 我的奖励
+  each item,idx in dataList
+    - var _couponAmount = _.get(item, 'couponAmount') - 0 || 0
+    - var _couponCount = _.get(item, 'couponCount') - 0 || 0
+    - var _directlyAmount = _.get(item, 'directlyCashBackAmount') - 0 || 0
+    - var _indirectAmount = _.get(item, 'indirectCashBackAmount') - 0 || 0
+    .invite-list-body(class={'item-spac': idx%2 !== 0})
+      .item.item-mobile #{UIHelper.safeMobile(item.invitedUserPhoneNo)}
+      .item.item-name 
+        | #{item.invitedRealName? UIHelper.safeRealname(item.invitedRealName): '未实名'}
+      .item.item-time #{UIHelper.formatdate('YYYY-MM-DD', item.registTime)}
+      .item.item-award
+        if _couponAmount && _couponCount
+          | #{UIHelper.formatNumber(_couponAmount, 2)}元优惠券（#{_couponCount}张）
+        if _directlyAmount
+          span #{UIHelper.formatNumber(_directlyAmount, 2)}元好友出借奖励
+        if _indirectAmount
+          span #{UIHelper.formatNumber(_indirectAmount, 2)}元间接奖励
+  include ./pager.ajax.pug      
+else
+  include ./nothing.data.pug

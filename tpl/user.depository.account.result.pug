@@ -1,0 +1,24 @@
+//- extend base
+
+//- block title
+//-   | 存管开户 |
+
+//- block header
+//-   .header
+//-     .section
+//-       .header-logo
+//-         a(href='/'): img(src='/img/logo.png')
+
+//- block content
+- var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+.user-deposit-result
+  if !_isCreateAccount
+    img(src='/img/create-account-success.png')
+    p 开户成功
+    h5 您已开通恒丰银行存管账户，充值后即可购买产品
+    a(href='/account/quickpay') 去充值
+    a(href='/') 先逛逛
+  else
+    img(src='/img/create-account-success.png')
+    p 信息完善成功
+    a(href='/account/setting') 确定

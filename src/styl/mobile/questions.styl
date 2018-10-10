@@ -1,0 +1,102 @@
+.questions
+  $question-red = #F55155
+  $question-bg = #F5F5F9
+  $detail-bg = #FAFAFC
+  $titile-border = #DDDDDD
+  $angle-color = #9B9B9B
+  &-body
+    padding: 0
+    margin: 0 auto
+    background: $question-bg
+  &-container
+    width: auto
+  &-tabs
+    display: flex
+    background: $white-color
+    border-bottom: 0.07rem solid $question-bg
+    &-item
+      flex: 1
+      color: $text-color
+      text-align: center
+      font-size: 0.96rem
+      padding: 1rem 0
+      position: relative
+    .active
+      &:after
+        width: 4rem
+        border-bottom: 0.07rem solid $question-red
+        content: ''
+        display: block
+        margin: 0 auto -1.07rem
+        height: 1.07rem
+        bottom: -0.07rem
+  &-content
+    background: $white-color
+    display: none
+    &.show
+      display: block
+    .first-item
+      border: none
+    &-item
+      height: auto
+    &-title
+      margin: 0 1rem 
+      padding: 1.25rem 0
+      border-top: 0.07rem solid $titile-border
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      position: relative
+      padding-right: 1.3rem
+      .fa
+        position: absolute
+        right: 0.3rem
+        color: $angle-color
+        font-size: $font-size-huge
+        transition: transform 0.3s linear
+      .rotate
+        transform: rotate(-180deg);  
+    &-detail
+      padding: 0 1rem  
+      background: $detail-bg
+      overflow: hidden
+      display: none
+      h4 
+        margin-bottom: 0
+        margin-top: 1rem
+        font-size: $font-size-small 
+      p
+        margin:0
+        padding: 0.5rem 0 1rem
+        font-size: $font-size-small 
+        color: $link-gray-color
+      .small-text
+        font-size: $font-size-tiny
+        color: $gray-txt-black 
+      .risk-reason-text
+        margin: 0
+        padding: 0 1rem
+        p
+          padding: .2rem 0 .4rem
+      .rule_title
+        font-weight: 600
+        font-size: $font-size-small
+      .risk-survey
+        text-align: justify
+      table
+        width: 100%
+        text-align: center
+        border: 1px solid $text-color
+        border-collapse: collapse
+        td,
+        th
+          border: 1px solid $text-color
+          font-size: $font-size-small 
+      .formula
+        width: 7rem
+      .overdue
+        width: 14rem
+      .explain
+        width: 2rem
+      .rate
+        width: 1rem

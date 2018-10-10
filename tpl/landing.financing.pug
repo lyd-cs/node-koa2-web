@@ -1,0 +1,75 @@
+extends base
+block title
+  |  518 理财狂欢节 - 
+
+block content
+  - var _dataList = _.get(raiseList, 'dataList')
+  .landing-container.landing-finance
+    .landing-finance-banner
+      h2 全场加息0.5%
+      a(href='/plan', target='_blank') 立即加入
+    .section.landing-finance-title
+      img(src='/img/landing-finance-title.png')
+      p 出借金额越高 加息收益越多
+    .section.landing-finance-product
+      .item
+        .title 红利智投A
+        .date 适用出借3-5个月
+        img(src='/img/landing-finance-plan-line.png')
+        .rate 6.5
+          span %+1.0%
+        .tip 平均历史年化收益
+        a(href='/plan/' + _dataList[0], target='_blank') 立即加入
+      .item
+        .title 红利智投B
+        .date 适用出借6-11个月
+        img(src='/img/landing-finance-plan-line.png')
+        .rate 7.5
+          span %+1.0%
+        .tip 平均历史年化收益
+        a(href='/plan/' + _dataList[1], target='_blank') 立即加入
+      .item
+        .title 红利智投C
+        .date 适用出借12-23个月
+        img(src='/img/landing-finance-plan-line.png')
+        .rate 9.6
+          span %+1.0%
+        .tip 平均历史年化收益
+        a(href='/plan/' + _dataList[2], target='_blank') 立即加入
+      .item.last
+        .title 红利智投D
+        .date 适用出借24-36个月
+        img(src='/img/landing-finance-plan-line.png')
+        .rate 9.9
+          span %+1.0%
+        .tip 平均历史年化收益
+        a(href='/plan/' + _dataList[3], target='_blank') 立即加入
+    .section.landing-finance-month
+      .landing-finance-month-title
+        dl
+          p.plan-name 红利智投C
+          p 按月提取
+        dl
+          dt.plan-rate 9.0
+           span %+1.0%
+          dd 平均历史年化收益
+        dl
+          dt.plan-month 
+           span.plan-month-nums  12-36个月
+          dd.plan-month-desc 适用出借期限
+        dl
+          a(href='/plan/' + _dataList[4], target='_blank').plan-state-btn 立即加入
+    .section.landing-finance-instruction
+      h2 活动说明
+      .landing-finance-rule
+        ol
+          li 活动时间：2018年5月17日至2018年5月31日
+          li 活动产品：红利智投A、红利智投B、红利智投C、红利智投D、红利智投C-按月提取
+          li 活动期间，用户成功加入活动产品，即可获得加息。最高加息1.0%
+          li 举例说明
+          p 用户小红投资红利智投C150万元，享额外加息1.0%
+          p 预期额外收益：150万*1.0%/12*12=1.5万元
+          p 预期总收益：150万*（9.6%+1.0%）/12*12=15.9万元
+          li 对活动如有任何疑问，敬请咨询红小宝客服热线400-1552-888
+          li 本活动规则解释权归红小宝所有。
+      p.tips 市场有风险 出借需谨慎

@@ -1,0 +1,21 @@
+extend base
+
+block title
+  | 京东卡 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))
+
+block content
+  - var _recommendList = planList
+  .landing-jdcard-active
+    .loading-banner
+    .jdcard-list
+    .red-packet-list
+    .product-list
+      .product-title 精选产品 红利智投
+      include ./mod/plan.recommend.pug
+    .platform-qualification
+      .platform-title 平台资质
+      include ./mod/landing.platform.qualification.pug
+    

@@ -1,0 +1,23 @@
+extend base
+
+block title
+  | 红上动态 -
+  
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  .about-dynamic
+    .section.case
+      .about-info-subject-infor  
+        h3.about-info-title 红上动态
+        .about-dynamic-list
+          each item,idx in newsList
+            - var _newsId = _.get(item, 'id') - 0 || 0
+            - var _newsTitle = _.get(item, 'title') || ''
+            - var _newsImgSrc = _.get(item, 'img') || ''
+            - var _newsSummary = _.get(item, 'summary') || ''
+            a.dynamic-item(href='/about/news/' + _newsId)
+              img(src= _newsImgSrc)
+              p.heading #{_newsTitle}
+              p.describe #{_newsSummary}

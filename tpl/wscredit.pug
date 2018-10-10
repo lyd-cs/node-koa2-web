@@ -1,0 +1,92 @@
+extend base
+
+block title
+  | 我要借款 -
+
+block content
+  - var android_download_address = 'http://app.mi.com/details?id=hoomsun.com.body&ref=search'
+  .wscredit
+    .wscredit-banner
+    .section.wscredit-content
+      .wscredit-wrap.wscredit-download-head
+        .wscredit-desc-word.wscredit-left
+          h3.wscredit-desc-title 
+            | 微沙信用，聚沙成塔
+          p.wscredit-desc-text
+            span 极速申请  
+            span 智能匹配  
+            span.last-text 快速评估 
+          .wscredit-download-head-wrap
+            img.wscredit-download-head-qrcode.wscredit-left(src='/img/app-download-qrcode.png')
+            .download-tips-info.head-tips 现仅支持Android用户下载
+            .wscredit-download-head-btns.wscredit-right
+              a.app-head-android(href=android_download_address, target='_blank')
+                i.wscredit-icon.icon-android
+                .app-btns-text
+                  p Android
+                  p.app-btn-largetext 手机下载
+              a.app-head-ios(href='javascript:;')
+                i.wscredit-icon.icon-apple
+                .app-btns-text
+                  p iOS 
+                  p.app-btn-largetext 敬请期待
+        .wscredit-download-head-img.wscredit-right
+      .wscredit-step
+        .wscredit-wrap.wscredit-apply
+          .wscredit-desc-word.wscredit-step-word.wscredit-right
+            .wscredit-wrap-icon.apply-icon
+            h3.wscredit-desc-title 
+              | 直通平台，极速申请
+            p.wscredit-desc-text.step-desc-text
+              span 一步注册   
+              span 三步申请   
+              span.last-text 快速评估
+          .wscredit-desc-img.wscredit-apply-img.wscredit-left
+        .wscredit-wrap.wscredit-agency
+          .wscredit-desc-word.wscredit-step-word.wscredit-left
+            .wscredit-wrap-icon.agency-icon
+            h3.wscredit-desc-title 
+              | 授信，有信即有钱
+            p.wscredit-desc-text.step-desc-text
+              span 信用卡
+              span 淘宝
+              span 芝麻信用分 
+              span.last-text 征信报告   
+          .wscredit-desc-img.wscredit-agency-img.wscredit-right
+        .wscredit-wrap.wscredit-withdraw
+          .wscredit-desc-word.wscredit-step-word.wscredit-right
+            .wscredit-wrap-icon.withdraw-icon
+            h3.wscredit-desc-title 
+              | 提取金额
+            p.wscredit-desc-text.step-desc-text
+              span.last-text 提取金额用到您生活所需   
+          .wscredit-desc-img.wscredit-withdraw-img.wscredit-left
+        .wscredit-wrap.wscredit-repay
+          .wscredit-desc-word.wscredit-step-word.wscredit-left
+            .wscredit-wrap-icon.repay-icon
+            h3.wscredit-desc-title 
+              | 按时还款
+            p.wscredit-desc-text.step-desc-text
+              span.last-text 借款人每月按时还款 
+          .wscredit-desc-img.wscredit-repay-img.wscredit-right
+        .wscredit-wrap.wscredit-download-footer
+      .wscredit-footer
+        h3.footer-title 微沙信用，成就简单生活
+        .wscredit-footer-download-wrap
+            img.wscredit-footer-download-qrcode.wscredit-left(src='/img/app-download-footer-qrcode.png')
+            .download-tips-info 现仅支持Android用户下载
+            .wscredit-download-footer-btns.wscredit-right
+              a.app-footer-android(href=android_download_address, target='_blank')
+                i.wscredit-icon.icon-footer-android
+                .app-btns-text
+                  p Android
+                  p.app-btn-largetext 手机下载
+              a.app-footer-ios(href='javascript:;')
+                i.wscredit-icon.icon-footer-apple
+                .app-btns-text
+                  p iOS 
+                  p.app-btn-largetext 敬请期待
+
+block foot-script
+  script.
+    app.guideProfit.init();

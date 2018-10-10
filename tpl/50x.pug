@@ -1,0 +1,12 @@
+extend error_base
+
+block content
+  h1.header
+    a(href='/' class='logo')
+      img(src='/img/logo.png' alt=site_name)
+    | - 500
+  .content
+    strong 很抱歉，服务器发生错误，暂时无法访问。
+    p 我们正在努力修复中，请您耐心等待，稍后再试。
+    .text-right
+      a.back(href='/') 返回首页

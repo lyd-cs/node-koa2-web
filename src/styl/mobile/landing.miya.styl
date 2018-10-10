@@ -1,0 +1,196 @@
+.landing-miya
+  $landing-bg-color = #FF758F
+  $landing-join-btn = #FF556C
+  $landing-plan-title = #FFE98C
+  $landing-plan-rate = #FF415C
+  $landing-plan-desc = #9C9596
+  $landing-active-bg = #FB819B
+  background: $landing-bg-color
+  padding-top: 1.375rem
+  padding-bottom: 1rem
+  max-width: 640px
+  img
+    max-width: 100%
+  &-plan
+    &-title
+      width: 70%
+      margin: 0 auto 2.41rem
+      img
+        width: 100%
+      .plan-desc
+        color: $white-color
+        font-size: .875rem
+        text-align: center
+        margin-top: .344rem
+    &-item
+      width: 100%
+      position: relative
+      padding: .813rem 1.8rem 1.3rem
+      background: url('/img/mobile/landing-miya-plan-bg.png') no-repeat center center 
+      background-size: 100% 100%
+      clearfix()
+      .item
+        &-index 
+          width: 3.72rem
+          height: 3.72rem
+          position: absolute
+          top: -.55rem
+          left: 1.1rem
+        &-header
+          font-size: 1.125rem
+          line-height: 2rem
+          color: $landing-plan-title
+          margin-left: 3.8rem
+        &-body
+          background: $white-color
+          margin: 1rem auto 1.25rem
+          text-align: center
+          padding: 1.125rem 0
+          border-radius: .3rem
+          clearfix()
+        &-body-rate
+          width: 60%
+          float: left 
+          position: relative
+          &-active
+            width:37%
+          .item-exclusive
+            display: inline-block
+            padding: 0 0.6rem
+            font-size: $font-size-tiny
+            border: 1px solid $landing-plan-rate
+            border-radius: 1rem 1rem 1rem 0
+            color: $landing-plan-rate
+            position: absolute
+            right: -0.5rem
+            top: -0.5rem
+            line-height: 1.4rem
+            height: 1.4rem    
+          .item-miya
+            right: -2rem       
+        &-body-month
+          width: 40%
+          float: left
+          .item-income
+            margin-top: 1.3rem
+          .item-desc
+            margin-top: .6rem
+          &-active
+            width: 29%
+            margin-left: 1rem
+        &-body-join
+          width: 26%
+          float: left
+          padding-top: 1.6rem
+          a
+            width: 4.18rem
+            height: 1.68rem
+            display: inline-block
+            border-radius: .125rem
+            font-size: .875rem
+            line-height: 1.68rem
+            color: $white-color
+            background: $landing-join-btn
+        &-rate
+          font-size: $font-size-giant
+          color: $landing-plan-rate
+          font-weight: bold
+          margin-top: 0.5rem
+          margin-left: .5rem
+          span 
+            font-size: $font-size-large
+        &-desc
+          font-size: .75rem
+          color: $landing-plan-desc
+          margin-top: .44rem
+        &-example
+          width: 55%
+          vertical-align: middle
+        &-picture
+          width: 40%
+          margin-left: 4%
+          vertical-align: middle
+    &-desc
+      font-size: .8125rem
+      color: $white-color
+      background: url('/img/mobile/landing-miya-plan-desc-bg.png') no-repeat center top
+      background-size: 100% 100%
+      position: relative
+      top: -.6rem
+      height: 5.313rem
+      padding-top: .7rem
+      text-align: center
+      margin-bottom: 2.25rem
+      span 
+        color: $landing-plan-title
+      .plan-desc-money
+        display: inline-block
+        vertical-align: middle
+        width: 5.407rem
+        height: 4.313rem
+      .one
+        background: url('/img/mobile/landing-miya-plan-desc-money-one.png') no-repeat center top
+        background-size: 100% 100%
+      .two
+        background: url('/img/mobile/landing-miya-plan-desc-money-two.png') no-repeat center top
+        background-size: 100% 100%
+      .five
+        background: url('/img/mobile/landing-miya-plan-desc-money-five.png') no-repeat center top
+        background-size: 100% 100%
+      .new
+        background: url('/img/mobile/landing-miya-plan-desc-money-new.png') no-repeat center top
+        background-size: 100% 100%
+      .plan-desc-text
+        display: inline-block
+        vertical-align: middle
+        text-align: left
+        p    
+          margin: 0
+  &-divide
+    text-align: center
+    margin: 2.5rem auto
+    img
+      width: 90%
+  &-active
+      padding: 0 1.2rem 4rem
+  &-active-desc
+    background: $landing-active-bg
+    padding: 1.125rem .8rem
+    font-size: .8125rem
+    color: $white-color
+    border-radius: 0.32rem
+    .desc-title
+      text-align: center
+    ol
+      padding-left: .92rem
+      margin-bottom: 0
+      td
+        width: 10%
+  &-signup-button
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 3.0625rem
+    background: linear-gradient(-180deg, #FFF36C 0%, #FFC125 100%);
+    a
+      display: block
+      width: 100%
+      height: 100%
+      padding-top: 1rem
+    img
+      width: 12.3rem
+      height: 1rem
+      display: block
+      margin: auto
+  &-modal
+    .riskvail-modal-btn-confirm
+      width: 100%
+  &-first-invest-top
+    margin: 2rem auto 2.5rem
+    text-align: center
+    z-index: 900
+    img
+      width: 92%
+  &-divide-alone
+    margin: -1.5rem auto 0
+

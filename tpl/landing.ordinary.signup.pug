@@ -1,0 +1,60 @@
+extends base
+
+block title
+  | 注册 - 
+
+block header
+  .header.landing-signup-header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+      .service-tel 客服电话：400-1552-888
+    
+block content
+  - var _signupQuery = signupQuery || {}
+  - var _recommendList = [{lockPeriod: 1,expectedRate: '6.8'},{lockPeriod: 6,expectedRate: '7.5'},{lockPeriod: 12,expectedRate: '9.6'}, {lockPeriod: 24,expectedRate: '9.9'}]
+  - var _landingSignupFormButtonText = '立即注册'
+  .landing-ordinary-signup
+    .signup-banner
+      include ./mod/landing.signup.form.pug
+    .landing-ordinary-signup-content
+      .landing-signup-product
+        .product-content
+          .product-title
+          .sub-title 锁定期结束可随时退出，退出前持续享受收益
+          include ./mod/landing.plan.pug
+      .landing-signup-platform
+        .platform-item.platform-guarantee 三级等保评测
+        .platform-item.platform-deposit 恒丰银行资金存管
+          .detail(data-toggle='modal', data-target='#platform-deposit') 查看详情
+          .modal.fade#platform-deposit(tabindex='-1', role='dialog', aria-hidden='true' )
+            .modal-dialog(role="document")
+              img(src='/img/hongshang-protocol-01.jpg')
+              img(src='/img/hongshang-protocol-02.jpg')
+        .platform-item.platform-signup 2亿元注册资本
+          .detail(data-toggle='modal', data-target='#signup-capital') 查看详情
+          .modal.fade#signup-capital(tabindex='-1', role='dialog', aria-hidden='true' )
+            .modal-dialog(role="document")
+              img(src='/img/about-company-license.jpg')
+        .platform-item.platform-credit 中国小额信贷联盟
+      .landing-signup-button
+        #J_icon-scroll-top.landing-ordinary-signup-button 立即注册
+block footer
+  .footer.user-operate-footer
+    .container.landing-signup-footer-copyright
+      include ./mod/footer.copyright.pug
+
+block foot-script
+  script.
+    app.userSignup.init({
+      form: '#J_user-signup-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      captcha: '#J_graphicCode',
+      captchaimg: '#J_graphicCode_container',
+      trigger: '#J_verifycode',
+      captchaholder: '.J_form-group-graphicCode',
+      smscode: '#J_smscode',
+      signupSuccess: #{_isSignupSuccess || 0},
+    });
+    app.backTopAction.goTop();

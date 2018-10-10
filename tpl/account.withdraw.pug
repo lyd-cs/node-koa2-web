@@ -1,0 +1,62 @@
+extend base
+
+block title
+  | 提现 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  //- var banklist = [{id: '0102', name: '中国工商银行'}, {id: '0103', name: '中国农业银行'}, {id: '0104', name: '中国银行'}, {id: '0105', name: '中国建设银行'}, {id: '0301', name: '交通银行'}, {id: '0302', name: '中信银行'}, {id: '0303', name: '中国光大银行'}, {id: '0304', name: '华夏银行'}, {id: '0305', name: '中国民生银行'}, {id: '0306', name: '广东发展银行'}, {id: '0307', name: '平安银行股份有限公司'}, {id: '0308', name: '招商银行'}, {id: '0309', name: '兴业银行'}, {id: '0310', name: '上海浦东发展银行'}, {id: '0403', name: '中国邮政储蓄银行股份有限公司'}, {id: '0000', name: '银联'}]
+  - var _bankTips = UIHelper.bankTips
+  - var _query = query || {}
+  - var _mobile = _.get(userState, 'mobile') || ''
+  - var _isBindCard = bindCard || 0
+  - var pageErrors = UIHelper.arr2obj(errors) || {}
+  - var _userHasBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _userBankCardId = _.get(userCard, 'cardId') || ''
+  - var _bankCode = _.get(userCard, 'bankCode') || ''
+  - var _bankType = _.get(userCard, 'bankType') || ''
+  - var _realName = _.get(userState, 'realName') || ''
+  - var _bankItem = _bankTips[_bankCode]
+  - var _bankSingleQuota = _.get(_bankItem, 'single') || 0
+  - var _bankDayQuota = _.get(_bankItem, 'day') || 0
+  - var _now = _now || Date.now()
+  - var _step = step || 'nextStep'
+  - var citylist = UIHelper.city;
+  - var _accountwithdrawCount = accountwithdrawCount - 0 || 0;
+  include ./mod/account.nav.pug
+  .section.uc-setting.uc-withdraw-box
+    .uc-title
+      h4 提现
+      if !isResult
+        if _accountwithdrawCount
+          .uc-withdraw-record
+            img(src='/img/withdraw-voice.png')
+            a(href='/account/withdraw/list') 您有
+              span #{_accountwithdrawCount}
+              | 笔提现正在处理中 &gt;
+        else
+          a.uc-skip(href='/account/withdraw/list') 提现记录 &gt;
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(_bankItem)}
+    .uc-withdraw
+      include ./mod/account.withdraw.pug
+    .uc-warm-tips
+      h5 温馨提示：
+      ol
+        li 提现免手续费。
+        li 受第三方支付因素影响，预计到账时间为1-2个工作日，双休日和法定节假日不计入在内，只支持同卡进出。
+        li 请您注意核对银行卡开户信息与实名认证信息保持一致，否则可能导致提现失败。 
+        li 禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
+        li 如果提现金额没有及时到账，请联系客服：400-1552-888。
+
+block foot-script
+  script.
+    app.withdraw.init({
+      form: '#J_withdraw-form',
+      smscode: '#J_verifycode',
+      trigger: '#J_withdraw-btn',
+      input: '#J_withdraw-amount',
+      userBalance: #{accountAvailableBalance - 0 || 0}
+    });

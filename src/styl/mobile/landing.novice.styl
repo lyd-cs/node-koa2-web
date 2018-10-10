@@ -1,0 +1,258 @@
+.landing-novice
+  $register-span-left-btn-color = #FD9F46
+  $register-span-right-btn-color = #FF672B
+  $newbie-main-bg-color = #ff942e
+  $newbie-content-bg-color = #fff0c7 
+  $newbie-text-title-color = #FF6A0F
+  $newbie-safe-btn = #fdf0ff
+  $newbie-hengfeng-btn = #fff5eb
+  $newbie-safe-text-color = #B062CE
+  &-banner
+    padding: 0
+    overflow: hidden
+    line-height: 0
+    z-index: 0
+    img
+      width: 100%
+  &-main
+    background: $newbie-main-bg-color
+    padding-bottom: .936rem
+    z-index: 2
+    position: relative
+  &-content
+    position: relative
+    margin: 0 .625rem
+    padding: 0 .25rem
+    padding-bottom: 3.125rem
+    background: $newbie-content-bg-color
+    .title-top
+      margin-top: 1.6rem
+    &:after
+      content: ''
+      position: absolute
+      display: block
+      width: 104%
+      height: 2.219rem
+      top: -1.64rem
+      left: -2%
+      z-index: -1
+      background: url('/img/landing-newbie-mask.png') no-repeat top center
+      background-size: cover
+  &-title
+    font-size: 1.25rem
+    line-height: 1.25rem
+    color: $newbie-text-title-color
+    text-align: center
+    margin: 0
+    margin-bottom: 1.094rem 
+    padding: 0.5% 0 1.5% 0
+    &:before
+    &:after
+      content: ''
+      width: .782rem
+      display: inline-block
+      height: .313rem
+      background: url('/img/landing-newbie-title-right.png') center center no-repeat
+      background-size: contain
+      margin: 1% 2.9%
+    &:before
+      background: url('/img/landing-newbie-title-left.png') center center no-repeat
+      background-size: contain
+  &-product
+    position: relative
+    img
+      width: 100%
+    dl 
+      position: absolute
+      top: 2rem
+      &:nth-child(even)
+        left: 2rem
+      &:nth-child(odd)
+        right: 1.9rem
+      dt 
+        color: $newbie-text-title-color
+        font-size: 2.313rem
+        line-height: 2.313rem
+        text-align: center
+      dd
+        font-size: .75rem
+        color: $gray-txt-black 
+        margin: 0
+        text-align: center
+        margin-top: .6rem
+    &-rate-subsid
+      font-size: 1.375rem
+      line-height: 1.375rem
+  &-product-btns
+    position: absolute
+    bottom: 2.1rem
+    left: .906rem
+    right: .906rem
+  &-product-btn
+    display: inline-block
+    height: 3.375rem
+    width: 100%
+    margin: 0 auto
+    line-height: 3rem
+    text-align: center
+    color: $white-color
+    background: url('/img/landing-newbie-product-btn.png') center center no-repeat
+    background-size: 100% 100%
+    &:hover
+      color: $white-color
+  &-choose
+    position: relative
+    a
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0 
+      z-index: 99
+    img
+      width: 100%
+    .hengfeng-btn
+      background: $newbie-hengfeng-btn
+      color: $newbie-text-title-color
+      &:before
+        content: ''
+        position: absolute
+        left: 0
+        top: -0.5rem
+        width: 3.625rem
+        height: 3.625rem
+        display: inline-block
+        background: url('/img/landing-newbie-choose-btn-hengfeng.png') center center no-repeat
+        background-size: contain
+    .safe-btn
+      background: $newbie-safe-btn
+      color: $newbie-safe-text-color
+      &:before
+        content: ''
+        display: inline-block
+        position: absolute
+        left: 0
+        top: -0.5rem
+        width: 3.625rem
+        height: 3.625rem
+        background: url('/img/landing-newbie-choose-btn-safe.png') center center no-repeat
+        background-size: contain
+  &-choose-btn
+    position: absolute
+    top: 50%
+    margin-top: -1.5rem
+    height: 2.5rem
+    line-height: 2.5rem
+    font-size: 1.063rem
+    display: block
+    border-radius: 1.2rem
+    z-index: 5
+    text-align: center
+    padding-left: 2rem
+    right: 1.875rem
+    left: 1.875rem
+    letter-spacing: 1px
+  &-finance
+    clearfix()
+    text-align: center
+    margin-right: .936rem
+    .novice-finance
+      &-item
+        width: 7.188rem
+        height: 5rem
+        position: relative
+        background: url('/img/landing-newbie-finance-icon.png') no-repeat 0 0
+        background-size: 17.875rem 11.641rem
+        span
+          color: $text-color 
+          font-size: .813rem
+          display: block
+          margin-top: 5.6rem
+          text-align: center
+          letter-spacing: .16rem
+      &-register
+        float: left
+        width: 6rem
+        background-position: 0 0
+        &:after
+          content: ''
+          width: .9375rem
+          display: inline-block
+          height: 1rem
+          background: url('/img/landing-newbie-finance-arrow-gray.png') center center no-repeat
+          background-size: contain
+          top: 2rem
+          position: absolute
+          right: -28%
+        &-complete
+          background-position: 0 -5.625rem
+          &:after
+            background: url('/img/landing-newbie-finance-arrow.png') center center no-repeat
+            background-size: contain
+      &-invest
+        float: right
+        width: 5.219rem
+        background-position: -11rem 0
+        span
+          padding-left: 1rem
+        &-complete
+          background-position: -11rem -5.625rem
+      &-secure
+        display: inline-block
+        width: 4.3125rem
+        background-position: -6.516rem -.3rem
+        &:after
+          content: ''
+          width: .9375rem
+          display: inline-block
+          height: 1rem
+          background: url('/img/landing-newbie-finance-arrow-gray.png') center center no-repeat
+          background-size: contain
+          top: 2rem
+          position: absolute
+          right: -58%
+        &-complete
+          background-position: -6.516rem -5.925rem
+          &:after
+            background: url('/img/landing-newbie-finance-arrow.png') center center no-repeat
+            background-size: contain
+  &-btns
+    text-align: center
+  &-btn
+    display: inline-block
+    height: 2.7rem
+    width: 86%
+    color: $white-color 
+    line-height: 2.7rem
+    font-size: 1rem
+    text-align: center
+    background: linear-gradient(left, $register-span-left-btn-color, $register-span-right-btn-color)
+    margin-top: 3.5rem
+    border-radius: 0.25rem
+  &-desc
+    color: $white-color 
+    margin: 0 .625rem
+    &-title
+      font-size: 0.813rem
+      line-height: 1.188rem
+      font-weight: 600
+      margin-top: 1.25rem
+      margin-bottom: .6rem
+    p
+      font-size: .813rem
+      line-height: 1.4rem
+      margin: 0
+    .dest-indent
+      padding-left: 2em
+    .desc-num
+      display: inline-block
+      width: 1rem
+      height: 1rem
+      border-radius: 50%
+      border: 1px solid $white-color
+      text-align: center
+      line-height: .8rem
+      font-size: .7rem
+      margin-right: .3rem
+      vertical-align: middle
+

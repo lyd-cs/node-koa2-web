@@ -1,0 +1,59 @@
+.tab
+  &-section
+    background: $white-color
+    margin: 0 0 38px
+  &-bar
+    background: $white-color
+    margin: 0
+    font-size: 0
+    padding: 0
+    li
+      list-style: none
+      display: inline-block
+      text-align: center
+      margin-left: 0
+      position: relative
+      padding: 0 30px
+      &:after
+        content: ''
+        width: 2px
+        height: 16px
+        display: inline-block
+        background: $french-grey-color
+        position: absolute
+        right: 0
+        top: 24px
+    .last-tabs
+      &:after
+        content: ''
+        width: 0    
+    a
+      width: 100%
+      padding: 0 20px
+      color: $gray-txt-black
+      display: inline-block
+      font-size: $font-size-middle
+      background : none
+      line-height: 60px
+      &:hover
+        color: $text-color
+        cursor: pointer    
+    .active
+      a
+        border-bottom: 2px solid $buy-botton-color
+        color: $text-color
+        background-color: $white-color
+    li.item-nav-product
+      border-left: 0
+  &-loan-transfer-bar
+    height: 59px
+    border-bottom: 1px solid #d8d8d8
+    margin-bottom: 20px
+    a
+      display: inline-block
+      height: 59px
+  &-card
+    margin-top: -1px
+    border-top: 1px solid #d8d8d8
+    overflow: hidden
+    padding: 30px

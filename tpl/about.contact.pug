@@ -1,0 +1,35 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/lib/baidu.api.css') )
+  
+block subnav
+  include ./mod/sub.nav.pug    
+
+block content
+  .about-contact
+    .section
+      .about-contact-title
+        h3 联系我们
+        p Contact Us
+      .about-info-subject-infor.about-contact-infor
+        .map-nav
+          img(src='/img/about-contract-180209.png')
+        .about-contact-us-content
+          dl.contact-address
+            dt.contact-item 红上金融信息服务（上海）有限公司
+            dd.content-item-body 公司地址：
+            dd 上海市嘉定区南翔镇银翔路799号21楼04室
+            dd.content-item-body 投诉建议：
+            dd co_hxb@hongxiaobao.cn
+            dd.content-item-body 客服电话：
+            dd 400-1552-888
+          .contact-barcode
+            img(src='/img/hoomxbwx.png', alt='红小宝微信')
+            .contact-barcode-title 官方微信公众号   
+
+block foot-script
+  //- script(src= '//api.map.baidu.com/api?key=&v=1.3&services=true')

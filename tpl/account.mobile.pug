@@ -1,0 +1,43 @@
+extend base
+
+block title
+  | 绑定手机 - 账户设置 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  - var _query = query || {}
+  - var _userName = _.get(userState, 'realName') || _.get(userState, 'username')
+  - var _mobile = _.get(userState, 'mobile') || ''
+  - var _userIsIdentity = _.get(userState, 'isAllPassed') - 0 || 0
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0 || 0
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 修改手机号
+    //-
+      textarea.info(style='width:100%;height:100px') error = #{JSON.stringify(query)}
+    .uc-mobile-setting
+      include ./mod/account.mobile.pug
+
+block foot-script
+  script.
+    var _isIdentity = #{_userIsIdentity}
+    var _mobile = #{_mobile}
+    var _step = '#{step}'
+    if(_step === 'identity')
+      app.accountEditMobile.init({
+        form: '#J_mobile-form',
+        trigger: '#J_verifycode',
+        input: '#J_identity',
+        smscode: '#J_smscode',
+        idIdentity: _isIdentity,
+        mobile: _mobile
+      });
+    else if(_step === 'newmobile')
+      app.accountNewMobile.init({
+        form: '#J_mobile-form',
+        mobile: '#J_mobile',
+        trigger: '#J_verifycode'
+      }) 

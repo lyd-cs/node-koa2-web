@@ -1,0 +1,86 @@
+- var _errorState = UIHelper.parseProductErrorCode(errorCode)
+- var _isAmountShort = _errorState.amount_short
+- var _isSaleFinish = _errorState.sale_finish
+- var _isUnSecurityCertificate = _errorState.not_security_certificate
+- var _isDebtProcessed = _errorState.debt_processed
+- var _isChargeProcessed = _errorState.charge_processed
+- var transferInfo = buyInfo || {}
+- var _isTransfer = isTransfer - 0 || 0
+- var _transferAmount = _.get(transferInfo, 'buyAmount') - 0 || 0
+- var _transferPrincipal = _.get(transferInfo, 'principal') - 0 || 0
+- var _transferInterest = _.get(transferInfo, 'interest') - 0 || 0
+- var _transferIsRepayed = _.get(transferInfo, 'isRepayed') || 0
+- var _transferNextRepayDate = _.get(transferInfo, 'nextRepayDate') - 0 || 0
+- var _userType = _.get(userState, 'inviteRole') || ''
+- var _isShowInviteFriend = _.get(userState, 'isShowInviteFriend')
+
+if !isSuccess
+  if _isAmountShort
+    .result-title-img
+      img(src='/img/buy-result-banlance.png')
+    h2 余额不足
+    .buy-result-desc 当前账户可用余额不足，请前往充值页面进行充值
+    a(href='/account/quickpay').btn.btn-basic.buy-result-btn 去充值
+  else if _isSaleFinish
+    .result-title-img
+      img(src='/img/buy-result-salesout.png')
+    h2 已售罄
+    if isTransfer  
+      a(href='/transfer').btn.btn-basic.buy-result-btn 确定
+    else  
+      a(href='/loan').btn.btn-basic.buy-result-btn 确定
+  else if _isUnSecurityCertificate
+    h2
+      span 您尚未进行实名认证，请联系客服
+      h5 客服电话400-1552-888
+    a(href='/loan/'+ loanId).btn.btn-basic.buy-result-btn 确定
+  else if _isDebtProcessed
+    .result-title-img
+      img(src='/img/connect_timeout.png')
+    h2 恒丰银行处理中
+    .buy-result-desc 请稍后前往用户中心查看出借记录
+    a(href='/account/loan').btn.btn-basic.buy-result-btn 查看出借记录
+  else if _isChargeProcessed
+    .result-title-img
+      img(src='/img/connect_timeout.png')
+    h2 恒丰银行处理中
+    .buy-result-desc 请稍后前往用户中心查看充值记录
+    a(href='/account').btn.btn-basic.buy-result-btn 查看充值记录
+  else 
+    .result-title-img
+      img(src='/img/buy-result-error.png')
+    h2 出借失败
+    .buy-result-desc #{errorMessage}
+    if isTransfer
+      a(href='/transfer/'+ transferId).btn.btn-basic.buy-result-btn 确定
+    else    
+      a(href='/loan/'+ loanId).btn.btn-basic.buy-result-btn 确定
+else
+  .result-title-img
+    img(src='/img/buy-result-success.png')
+  h2 出借成功
+  if _isTransfer
+    dl.result-info-list
+      dt 下个还款日
+      dd #{UIHelper.formatdate('YYYY-MM-DD', _transferNextRepayDate)}
+    dl
+      dt 出借金额
+      dd #{UIHelper.formatNumber(_transferAmount, 2)}元
+    dl
+      dt 实际买入本金
+      dd #{UIHelper.formatNumber(_transferPrincipal, 2)}元
+    dl
+      dt 公允利息
+      dd #{UIHelper.formatNumber(_transferInterest, 2)}元
+    if _transferIsRepayed
+      h5.result-info-intro 公允利息：当期已还时，债权人将多收利息进行补偿，均放入出借本金
+    else
+      h5.result-info-intro 公允利息：您垫付的转让人持有天利息，还款人将会在下个还款日予以返还
+    a.btn.btn-basic.buy-result-btn(href='/account/loan') 查看我的出借
+  else
+    h5 放款前系统将会冻结您的出借资金，放款成功后开始计息
+    a(href='/account/loan').btn.btn-basic.buy-result-btn 确定 
+  if _userType != 'SALES' && _isShowInviteFriend !== '0'
+    a(href='/account/invite')
+      img.invite-banner(src='/img/invest-invite-banner.png')  
+     

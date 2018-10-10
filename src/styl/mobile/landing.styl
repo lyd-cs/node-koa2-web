@@ -1,0 +1,1776 @@
+.landing
+  $title-number = #09B7EC
+  $orange-color = #fca243
+  $time-line = #1799E5
+  $time-line-light = #ACE0FF
+  $time-line-gray = #2A2A2A
+  $deposit-adv-blue = #7BB0FF
+  $deposit-adv-red = #EC6F6F
+  $btn-bg = #F55155
+  $trust-bg = #f4f4f4
+  $trust-blue = #0d345f
+  $trust-border = #ebd6b2
+  $invite-redpackage  = #ffdca2
+  $security-item-desc = #8f5925
+  $security-item-border = #e8d0c2
+  $register-form-bg = #d64949
+  $redpackage-amount = #f76832
+  $register-submit-color = #c1382c
+  $register-submit-bg = #fed899
+  $countdown-border = #ddcec0
+  $register-input-text-color = #8f5925
+  $register-input-placeholder-color = #ddcec0
+  $register-span-left-btn-color = #FD9F46
+  $register-span-right-btn-color = #FF672B
+  $deposit-bg-top-color = #fdc750
+  $deposit-bg-bottom-color = #fe7632
+  $deposit-text-color = #343434
+  $deposit-word-color = #666666
+  $newbie-main-bg-color = #ff942e
+  $newbie-content-bg-color = #fff0c7 
+  $newbie-text-title-color = #FF6A0F
+  $newbie-safe-btn = #fdf0ff
+  $newbie-hengfeng-btn = #fff5eb
+  $newbie-safe-text-color = #B062CE
+  $redpackage-amount-font = 2.125rem
+  $product-item-desc-font = 1.5rem
+  $redpackage-amount-font = 2.875rem
+  $redpackage-name-font = 1.25rem
+  &-body
+    padding: 0
+    margin: 0 auto
+  &-container
+    margin: 0 auto
+    padding: 0
+    overflow: hidden
+  &-newedition
+    &-section
+      margin-bottom: 3rem
+      padding: 0 1.2rem
+    &-banner
+      width: 100%;
+      padding: 0
+      img
+        width: 100%
+    &-title
+      background: url('/img/newbegin-title-1.png')  center center no-repeat
+      background-size: contain
+      max-width: 21rem
+      height: 2.35rem
+      line-height: 2.35rem
+      margin: 0 auto 2rem
+      font-size: $font-size-large
+      font-weight: normal
+      color: $white-color
+      position: relative
+      text-align: center
+      padding-left: 1rem
+      &.title-secure
+        background-image: url('/img/newbegin-title-2.png')
+      &.title-reasonable
+        background-image: url('/img/newbegin-title-3.png')
+      &.title-future
+        background-image: url('/img/newbegin-title-4.png')
+    &-profession
+      h4
+        font-size: $font-size-base
+        margin-bottom: 0.62rem
+        line-height: 1.3rem
+      img
+        width: 1.3rem
+        margin-right: 0.5rem
+        vertical-align: text-bottom
+      p
+        font-size: $font-size-small
+        color: $link-gray-color
+        padding-left: 1.87rem
+        margin: 0
+    &-secure
+      &-content
+        position: relative
+        &:before
+          content: ''
+          display: inline-block
+          height: 0.8rem
+          width: 0.8rem
+          background: url('/img/newbegin-round-s.png') center center no-repeat
+          background-size: contain
+          position: absolute
+          left: -0.4rem
+          top: 0.25rem
+        &:after
+          content: ''
+          height: 100%
+          border-right: 0.063rem solid $orange-color
+          position: absolute
+          right: 0
+          top: 0.4rem
+        &:nth-child(even)
+          margin-right: 50%
+          padding-right: 0.87rem
+          h4
+            text-align: right
+          img
+            margin-left: 0.5rem
+          &:before
+            right: -0.4rem
+            left: auto
+        &:nth-child(odd)
+          margin-left: 50%
+          padding-left: 0.87rem
+          img
+            float: left
+            margin-right: 0.5rem
+          &:after
+            right: auto
+            left: -0.062rem
+        &:last-child
+          &:after
+            display: none
+        h4
+          font-size: $font-size-base
+          margin-bottom: 0.62rem
+          line-height: 1.3rem
+          margin-top: 0
+        img
+          height: 1.3rem
+          width: 1.3rem
+          vertical-align: text-bottom
+        p
+          font-size: $font-size-small
+          color: $link-gray-color
+          margin: 0
+          padding-bottom: 1rem
+    &-reasonable
+      p
+        font-size: $font-size-small
+        color: $link-gray-color
+        margin-bottom: 2rem
+      img
+        width: 100%
+    &-future
+      &-content
+        margin-bottom: 2.5rem
+        h4
+          font-size: $font-size-base
+          margin-bottom: 1.8rem
+          &:before
+            content: ''
+            display: inline-block
+            height: 1rem
+            width: 1rem
+            background: url('/img/newbegin-round-b.png')
+            background-size: contain
+            margin-right: 0.8rem
+            margin-bottom: -0.1rem
+        img
+          width: 100%
+        p
+          font-size: $font-size-tiny
+          color: $link-gray-color
+          margin-top: 2rem
+        .online
+          text-align: center
+          display: block
+          font-size: $font-size-small
+          color: $link-gray-color
+          margin-top: 1rem
+        .time-line
+          margin-left: 2rem
+          list-style: none
+          padding-left: 1rem
+          position: relative
+          &:before
+            content: ''
+            display: block
+            height: 96%
+            width: 0.12rem
+            background: $time-line-light
+            position: absolute
+            left: 0
+            top: 2%
+          li
+            margin-bottom: 1.5rem
+            font-weight: normal
+            color: $time-line
+            font-size: $font-size-small
+            position: relative
+            &:before
+              content: ''
+              height: 0.75rem
+              width: 0.75rem
+              display: inline-block
+              background: url('/img/newbegin-round-blue.png')
+              background-size: contain
+              position: absolute
+              left: -1.35rem
+              top: 0.3rem
+          span
+            color: $link-gray-color
+            margin-left: 0.7rem
+  &-deposit
+    &-section
+      padding: 0 1rem
+      margin-bottom: 3rem
+      overflow: hidden
+      img
+        width: 100%
+      p
+        font-size: $font-size-small
+        color: $link-gray-color
+        margin-bottom: 1.5rem
+    &-banner
+      padding: 0
+    &-title
+      font-size: $font-size-base
+      margin-bottom: 1.87rem
+      text-align: center
+      &:before
+      &:after
+        content: ''
+        width: 3.75rem
+        display: inline-block
+        height: 1rem
+        background: url('/img/deposit-title-left.png') bottom center no-repeat
+        background-size: contain
+        margin:0 0.3rem
+      &:after
+        background: url('/img/deposit-title-right.png') bottom center no-repeat
+        background-size: contain
+    &-advantage-box
+      display: block
+      float: left
+      width: 49%
+      height: 13rem
+      margin-right: 2%
+      margin-bottom: 0.62rem
+      background-size: 100% 100%
+      background-repeat: no-repeat
+      padding: 0 1rem
+      h4
+        height: 1.4rem
+        line-height: 1.4rem
+        max-width: 8.25rem
+        margin: 1rem auto 0.6rem
+        color: $white-color
+        font-size: $font-size-small
+        text-align: center
+        font-weight: normal
+        border-radius: 0.2rem
+      p
+        font-size: $font-size-tiny
+        color: $link-gray-color
+      &:nth-child(odd)
+        margin-right: 0
+      &.adv-trade
+        background-image: url('/img/deposit-adv-1.png')
+        h4
+          background-color: $deposit-adv-blue
+      &.adv-safe
+        background-image: url('/img/deposit-adv-2.png')
+        h4
+          background-color: $deposit-adv-red
+      &.adv-pure
+        background-image: url('/img/deposit-adv-4.png')
+        h4
+          background-color: $deposit-adv-red
+      &.adv-update
+        background-image: url('/img/deposit-adv-3.png')
+        h4
+          background-color: $deposit-adv-blue
+    &-subtitle
+      font-size: $font-size-small
+      color: $link-gray-color
+      text-align: center
+      margin-top: -1.8rem
+      font-weight: normal
+    &-process
+      display: flex
+      margin-top: 2rem
+      &-part
+        flex:1
+        img
+          width: 100%
+        span
+          display: block
+          text-align: center
+          font-size: $font-size-small
+          color: $link-gray-color
+      &-arrow-act
+      &-arrow-gray
+        height: 0.75rem
+        width: 0.75rem
+        background: url('/img/deposit-arrow-act.png')  no-repeat
+        background-size: contain
+        margin-top: 12%
+      &-arrow-gray
+        background-image: url('/img/deposit-arrow-dis.png')
+    &-btn
+      display: block
+      height: 2.5rem
+      width: 100%
+      color: $white-color
+      line-height: 2.5rem
+      font-size: $font-size-base
+      text-align: center
+      background: $btn-bg
+      margin-top: 2.5rem
+      border-radius: 0.25rem
+  &-trust
+    &-container
+      background: $trust-bg
+    &-banner
+      margin-bottom: 1.5rem
+      img
+        width: 100%
+    &-content
+      padding: 0 0.62rem
+      overflow: hidden
+      background: url('/img/trust-bg.png') center bottom no-repeat
+      background-size: contain
+    &-title
+      font-size: $font-size-base
+      color: $trust-blue
+      margin: 0
+      text-align: center
+      font-weight: normal
+    &-process
+      width: 100%
+      margin: 1.5rem 0 1.75rem
+      padding: 0 0.75rem
+    &-advantage
+      margin-bottom: 1.87rem
+      h4
+        font-weight: normal
+        font-size: $font-size-small
+        color: $trust-blue
+        margin-bottom: 0.5rem
+        &:before
+          content: ''
+          height: 0.62rem
+          width: 0.62rem
+          display: inline-block
+          background: url('/img/trust-triangle.png') center center no-repeat
+          background-size: contain
+          margin-right: 0.3rem
+      p
+        font-size: $font-size-tiny
+        color: $link-gray-color
+        margin: 0
+        padding: 0 0.85rem
+    &-riskmanage
+      padding: 0 0.85rem 2rem
+      margin: 3rem 0 4rem
+      background: $white-color
+      border: 0.07rem solid  $trust-border
+      position: relative
+      &-title
+        color: $trust-blue
+        font-size: $font-size-base
+        line-height: 2rem
+        height: 2rem
+        width: 12.5rem
+        padding-right: 0.65rem
+        background: url('/img/trust-content-title.png') center center no-repeat
+        background-size: contain
+        font-weight: normal
+        text-align: center
+        position: absolute
+        left: 50%
+        margin-left: -6.25rem
+        top: -1.12rem
+      h4
+        font-size: $font-size-small
+        color: $trust-blue
+        font-weight: normal
+        margin-top: 1.87rem
+        margin-bottom: 0.5rem
+      p
+        font-size: $font-size-tiny
+        color: $link-gray-color
+        margin: 0
+  &-redpackage
+    max-width: 640px
+    position: relative
+    margin: 0 auto
+    width: 100%
+    height: 100%
+    background: url("/img/mobile/invite-bg.png") left top repeat
+    background-size: 112px 173px
+    color: $invite-redpackage
+    text-align: center
+    &-content
+      position: absolute
+      left: 50%
+      top: 45%
+      transform: translate3d(-50%,-50%,0)
+      img
+        width: 288px
+      p
+        margin-top: 0.625rem
+        text-align: center
+    &-user-info
+      position: absolute
+      left: 0
+      top: 15%
+      height: 20%
+      width: 100%
+      font-size: 0
+      p
+        position: absolute
+        left: 0
+        bottom: 0.75rem
+        width: 100%
+        font-size: $font-size-small
+    &-name
+      font-size: $redpackage-name-font
+      font-weight: 700
+    &-desc
+      position: absolute
+      left: 0
+      top: 36%
+      width: 100%
+      font-size: $font-size-base
+      font-weight: 700
+    &-open
+      position:absolute
+      left: 50%
+      top: 66%
+      transform: translate3d(-50%,-50%,0)
+      width: 71px
+      height: 71px
+      background: url('/img/mobile/invite-open-rotate.png') no-repeat
+      background-position: 0 0
+      background-size: 426px 71px
+      overflow hidden
+      &.open-rotate
+        animation: open-rotate 0.6s steps(6, end) infinite
+    &-footer
+      position: absolute
+      left: 0
+      bottom: -6px
+      width: 100%
+      background-image: linear-gradient(0deg, #d64036 0%, #f24a3f 100%)
+      background-repeat: no-repeat
+      background-position: center center
+  &-register
+    display: none
+    &-body
+      width: 100%
+      max-width: 640px
+      padding: 0
+      margin: 0 auto
+      height: 100%
+      min-height: 100%
+    &-header
+      width: 100%
+    &-header-poster
+      height: 212px
+      background: url("/img/mobile/register-header-poster.png") center center no-repeat
+      background-size: cover
+      .poster-desc
+        margin: 0 0 20px
+        padding: 69px 0 0
+        font-size: $font-size-base
+        color: $security-item-desc
+        text-align: center
+      .redpackage-amount
+        font-size $redpackage-amount-font
+        color: $redpackage-amount
+        text-align: center
+        line-height: 1
+        span
+          font-size: $redpackage-amount-font
+          margin-right: 5px
+    &-form
+      width: 100%
+      min-height: 190px
+      padding-top: 25px;
+      margin-top: -1px
+      text-align: center
+      background-color: $register-form-bg
+      .form-tips
+        margin: -25px 0 15px
+        font-size $font-size-small
+        color: $btn-primary-color
+      .form-control
+        position: relative
+        &:before
+          display: inline-block
+          content: ''
+          width: 19px
+          height: 20px
+          position: absolute
+          left: 50%
+          top: 37px
+          transform: translate3d(-134px,-24px,0)
+        &-mobile:before
+          background: url("/img/mobile/register-mobile-icon.png") center center no-repeat
+          background-size: contain
+        &-smscode:before
+          background: url("/img/mobile/register-smscode-icon.png") center center no-repeat
+          background-size: contain
+        &-password:before
+          background: url("/img/mobile/register-password-icon.png") center center no-repeat
+          background-size: contain
+    &-countdown
+      display: inline-block
+      position: absolute
+      right: 50%
+      top: 0
+      width: 92px
+      margin: 14px 0 18px
+      transform: translate3d(142px,0,0)
+      min-width: 82px
+      padding-left: 5px
+      font-size: $font-size-small
+      border-left: 1px solid $countdown-border
+      color: $register-input-text-color
+    &-input
+      width: 293px
+      height: 45px
+      padding: 10px
+      margin: 0 auto 30px
+      border: 0
+      border-radius: 2px
+      text-indent: 46px
+      vertical-align: middle
+      font-size: $font-size-base
+      line-height: normal
+      color: $register-input-text-color
+      &::-webkit-input-placeholder
+        color: $register-input-placeholder-color
+    &-download
+      text-indent: 0
+      font-size: $font-size-large
+      color: $btn-primary-color
+    &-smscode-input
+      margin-bottom: 10px
+    &-submit
+      width: 293px
+      height: 45px
+      margin: 0 auto 40px
+      border: 0
+      border-radius: 2px
+      background-color: $register-submit-bg
+      font-size: $font-size-huge
+      color: $register-submit-color
+    &-wavy
+      height: 70px
+      margin-top: -1px
+      background: url("/img/mobile/register-header-poster-wavy.png") center center
+      background-size: cover
+    &-product
+      padding: 62px 22px 22px
+      margin: auto
+      background: url("/img/mobile/register-product-title.png") center top no-repeat
+      background-size: 222px 32.5px
+      &-item
+        position: relative
+        left: 0
+        top: 0
+        width: 330px
+        height: 140px
+        max-width: 100%
+        margin: 0 auto 20px
+        padding: 10px 9px
+        box-shadow: 0 0 12px 0 rgba(172, 101, 32, 0.24)
+        border-radius: 2px
+        .product-item-title
+          position: absolute
+          width: 125px
+          height: 25px
+          left: 50%
+          margin-top: -10px
+          margin-left: -(@width/2)
+          text-align: center
+          font-size: $font-size-base
+          line-height: @height
+          font-weight: 500
+          letter-spacing: 0.5px
+          color: $btn-primary-color
+          background: url("/img/mobile/register-product-title-bg.png") center top no-repeat
+          background-size: cover
+        .product-item-desc
+          display: flex
+          width: 100%
+          height: 100%
+          padding-top: 43px
+          border: 1px solid $security-item-border
+          border-radius: 2px
+          text-align: center
+          span
+            font-size: $product-item-desc-font
+          p, small
+            font-size: $font-size-tiny
+        .product-item
+          &-earnings, &-investment-horizon, &-min-amount
+            flex: 1
+          &-earnings, &-investment-horizon
+            position: relative
+            &:before
+              position: absolute
+              content: ' '
+              display: block
+              width: 1px
+              height: 42px
+              right: 0
+              top: 12px
+              background: $security-item-border
+              z-index: 100
+          &-earnings
+            flex: 1 1 20px
+            span, small
+              color: $up-color
+    &-investment-security
+      padding: 60px 22px 22px
+      margin: auto
+      padding-top: 30px
+      &-title
+        width: 100%
+        height: 62px
+        background: url("/img/mobile/register-investment-security-title.png") center top no-repeat
+        background-size: 222px 32px
+      &-body
+        padding: 10px
+        width: 330px
+        max-width: 100%
+        margin: auto
+        margin-bottom: 10px
+        box-shadow: 0 0 12px 0 rgba(172, 101, 32, 0.24)
+        border-radius: 2px
+        .investment-security-item
+          height: 100%
+          margin-bottom: 10px
+          border: 1px solid $security-item-border
+          border-radius: 2px
+          text-align: center
+          &:nth-child(3)
+            margin-bottom: 0
+          &-title
+            margin: 15px 0
+            text-align: center
+            font-size: $font-size-large
+            font-weight: 500
+            letter-spacing: 0.5px
+          &-desc
+            font-size: $font-size-tiny
+            color: $security-item-desc
+            p
+              margin: 0
+              line-height: 15px
+          &-deposit-poster
+            height: 183.5px
+            margin: 6.5px auto 3px
+            background: url("/img/mobile/register-bank-deposit.png") center center no-repeat
+            background-size: 306.5px 183.5px
+          &-audit-poster
+            width: 208px
+            height: 217px
+            margin: 11px auto 21px
+            background: url("/img/mobile/register-risk-management.png") center center no-repeat
+            background-size: @width @height
+          &-smart-poster
+            width: 223px
+            height: 154px
+            margin: 36px auto 40px
+            background: url("/img/mobile/register-smart-disperse.png") center center no-repeat
+            background-size: @width @height
+    &-footer
+      height: 70px
+      background: url("/img/mobile/invite-footer-bg.png") center center
+      background-size: cover
+    &-toast-notify
+      transition: opacity 0.5s ease-in
+      z-index: 1000
+      position: absolute
+      left: 50%
+      top: 100px
+      max-width: 250px
+      transform: translate(-50%, -50%)
+      border-radius: 3px
+      background: $text-color
+      opacity: 0
+      text-align: center
+      span
+        display: inline-block
+        padding: 1rem
+        min-width: 200px
+        word-wrap: break-word
+        word-break: normal
+        color: $btn-primary-color
+        font-size: $font-size-base
+        line-height: 1.2rem
+      &.toast-hide
+        opacity: 0
+      &.toast-show
+        opacity: 0.9
+    &-show
+      display: block
+    &-jdcard
+      $jdcard-download-text-color = #B6634F
+      $register-plan-rate = #FF413C
+      $jdcard-footer-copyright = #BE7D73
+      background: #FFE9D7
+      &-header
+        position: relative
+      &-poster
+        width: 100%
+      &-form
+        position: absolute
+        top: 58%
+        left: 0
+        width 100%
+        text-align: center
+        .form-mobile
+          margin: 2.5rem auto 0.625rem
+        .form-sms-password
+          .form-tips
+            margin: 0 auto
+            padding-left: 1rem
+            width 19.4rem
+            color: $white-color
+            font-size: $font-size-tiny
+            text-align: left
+            line-height: 2rem
+          .form-control-smscode
+            display: flex
+            width 19.4rem
+            margin: 0 auto
+            justify-content: space-between
+          .landing-register-jdcard-form-smscode
+            width: 12.5rem
+            margin-left: 0
+      &-countdown
+        flex: 0 1 auto
+        width: 6.25rem
+        height: 2.7rem
+        padding: 0
+        font-size: $font-size-base
+        line-height: 2.75rem
+        color: $white-color
+        background-image: linear-gradient(-179deg, #FF8059 0%, #FF413C 100%)
+        border-radius: 0.25rem
+        border: none
+        &[disabled]
+          background: $text-light
+      &-input
+        margin: 0 auto 1.25rem
+        padding-left: 1rem
+        width 19.4rem
+        height 2.7rem
+        border: none
+        border-radius: 0.19rem
+        line-height: normal
+      &-submit
+        width 19.4rem
+        height 2.75rem
+        font-size: $font-size-large 
+        color: $white-color
+        background-image: linear-gradient(-179deg, #FF8059 0%, #FF413C 100%)
+        border: none
+        border-radius: 0.19rem
+      &-body
+        &-title
+          height: 4.625rem
+          margin: -1.3rem auto 1.2rem
+      &-plan
+        margin-top: 1.2rem
+        &-title
+          background: url('/img/mobile/landing-register-jdcard-plan.png')  center center no-repeat
+          background-size: 19.81rem 2.31rem
+        &-body
+          display: flex
+          flex-wrap: wrap
+          justify-content: space-around
+          margin-top: 1.5rem
+        .landing-register-jdcard-item
+          width: 40%
+          height: 8.07rem
+          margin-bottom: 2.2rem
+          text-align: center
+          box-shadow: 0 0 12px 0 rgba(172,101,32,0.24)
+          border-radius: 2px
+          background: $white-color
+          &-title
+            width: 5.1rem
+            height: 1.563rem
+            margin: 0 auto
+            font-weight: normal
+            line-height: 1.563rem 
+            color: $white-color
+            background: url('/img/mobile/landing-register-jacard-item-title.png') no-repeat center center
+            background-size: 5.1rem 1.563rem
+          span
+            display: block
+            font-size: $font-size-tiny
+            color: $text-gray 
+          .rate
+            padding-top: 1.5rem
+            color: $register-plan-rate
+            font-size: $font-size-huge
+            font-weight: bold
+      &-envelope
+        &-title
+          margin: 1.8rem auto -.063rem
+          background: url('/img/mobile/landing-register-jdcard-title-envelope.png')  center center no-repeat
+          background-size: 19.156rem 1.563rem
+        &-body
+          margin-top: 1rem
+          img
+            width: 100%
+      &-welfare
+        &-title
+          margin: 1.8rem auto -.063rem
+          background: url('/img/mobile/landing-register-jdcard-title-welfare.png')  center center no-repeat
+          background-size: 16.875rem 1.5625rem
+        &-body
+          padding: 0 1.4rem 0
+          margin-top: 1.5rem
+          &-littleCard
+            display: flex
+            justify-content: space-between
+            .item
+              width: 30%
+            img
+              width: 100%
+          &-bigCard
+            display: flex
+            justify-content: space-between
+            margin-top: .5rem
+            .item
+              width: 48%
+            img
+              width: 100%
+      &-platform
+        &-title
+          margin: 0 auto 0.5rem
+          background: url('/img/mobile/landing-register-jdcard-platform.png')  center center no-repeat
+          background-size: 10.718rem 1.563rem
+        &-body
+          display: flex
+          justify-content: space-around
+          .jdcard-platform-item
+            padding-top: 5.218rem
+            width: 5.218rem
+            font-size: $font-size-tiny
+            text-align: center
+            background-size: 5.218rem 5.218rem
+            background-position: center top
+            background-repeat: no-repeat
+          .jdcard-platform-bank
+            background-image: url('/img/mobile/landing-register-jdcard-icon-bank.png')
+          .jdcard-platform-registered-fund
+            background-image: url('/img/mobile/landing-register-jdcard-icon-registered-fund.png')
+          .jdcard-platform-secure
+            background-image: url('/img/mobile/landing-register-jdcard-icon-secure-0531.png')
+          .jdcard-platform-alliance
+            background-image: url('/img/mobile/landing-register-jdcard-icon-alliance.png')
+      &-receive
+        display: block
+        width: 21rem
+        height: 2.6rem
+        margin: 2.4rem auto 1.8rem
+        font-size: 1rem
+        line-height: 2.6rem
+        text-align: center
+        color: $white-color
+        background-image: linear-gradient(135deg, #FF8359 0%, #FF413C 100%)
+        border-radius: 4px
+        border: none
+      &-footer
+        padding-bottom: 1.5rem
+        font-size: $font-size-tiny
+        text-align: center
+        color: $jdcard-footer-copyright
+      &-success
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        font-size: $font-size-base
+        color: $jdcard-download-text-color
+        text-align: center
+        background-color: $white-color
+        &-poster
+          width: 100%
+        &-download
+          position: relative
+          z-index: 10
+          width: 18.5rem
+          height: 2.75rem
+          margin-top: 5rem
+          font-size: $font-size-large
+          color: $white-color
+          background-image: linear-gradient(-179deg, #FF8059 0%, #FF413C 100%)
+          border-radius: 0.25rem
+          border: none
+        // #J_verifycode[disabled]
+        //   background: #999
+        &-footer-poster
+          position: absolute
+          left: 0
+          bottom: 0
+          width: 100%
+        .landing-register-jdcard-footer
+          position: absolute
+          left: 0
+          bottom: 0
+          padding-bottom: 1rem
+          width: 100%
+  &-carnival
+    $bg-color = #ffe8d0
+    $item-border-color = #eddacd
+    $item-line = #e9d2ba
+    $rate-color = #ff7b4e
+    $amount-color = #52350b
+    $amount-title-color = #8f5920
+    $footer-title-color = #dec4a8
+    $footer-backtop-bg = #f0544c
+    $form-bg-color = #999999
+    background: $bg-color
+    .hide
+      display: none
+    img
+      margin: 0
+      width: 100%
+      display: block
+      vertical-align: bottom
+    .form-control
+      background: none
+    .propoganda-register
+      .form-control
+        background: $white-color
+        border: none
+        outline: none
+        &::-webkit-input-placeholder
+          color: $form-bg-color
+      button:disabled
+        background: $gray-txt-black
+    &-content
+      background: $white-color
+      margin: 4rem 1rem 2rem
+      padding: 1rem
+      border-radius: .5rem
+      box-shadow: 0 0 12px 0 rgba(172, 101, 32, 0.24)
+      position: relative
+      &-title
+        text-align: center
+        margin-top: -2.3rem
+        img
+          width: 246px
+          display: inline-block
+      .item
+        border: 1px solid $item-border-color
+        margin: 2.2rem 0
+        //padding: 0 1.4rem 2.2rem
+        padding-bottom: 2.2rem
+        position: relative
+        text-align: center
+        &-header
+          text-align: center
+          margin-bottom: 1.4rem
+          img
+            width: 125px
+            display: inline-block
+        &-body
+          display: flex
+        h4
+          position: absolute
+          top: 0
+        &-rate
+          flex: 1
+          position: relative
+          &:after
+            position: absolute
+            content: ' '
+            display: block
+            width: 1px
+            height: 42px
+            right: 0
+            top: 12px
+            background: #e8d0c2
+            z-index: 100
+          &-top
+            color: $rate-color
+            font-size: $font-size-large
+            font-weight: 700
+            b
+              font-size: 0.68rem
+            &-first
+              font-size: $font-size-giant 
+          &-footer
+            color: $amount-title-color
+            font-size: $font-size-small    
+        &-amount
+          flex: 1
+          &-header
+            color: $amount-color
+            font-size: $font-size-giant
+            b
+              font-size: 0.68rem
+          &-footer
+            color: $amount-title-color
+            font-size: $font-size-small
+      &-bottom
+        text-align: center
+        margin-top: -1.5rem
+        color: $item-border-color
+        font-size: $font-size-small 
+    &-item
+      width: 100%
+      box-shadow: none
+    &-footer
+      &-title
+        text-align: center
+        color: $footer-title-color
+        margin: .7rem 0
+    &-backtop
+      width: 80%
+      background: $footer-backtop-bg
+      font-size: $font-size-tiny
+      color: $white-color
+      text-align: center
+      padding: .5rem 0
+      margin: 3.6rem auto 2rem
+      border-radius: .4rem
+      display: block
+      img
+        width: 28px
+        display: inline-block
+        vertical-align: middle
+        margin-top: -2px
+        margin-right: 1rem
+      &:visited, &:hover, &:focus
+        color: $white-color  
+    &-result-txt
+      text-align: center
+      color: $text-color
+      font-size: $font-size-large
+      margin-top: 3rem
+    &-result
+      padding-bottom: 1.6rem
+    &-backtop
+      line-height: 2.5rem
+      font-size: $font-size-large
+
+  &-luxury
+    $luxury-title-color = #52350f
+    $luxury-text-color = #8f5925
+    $luxury-btn-disabled-bg = #c9c9c9
+    $luxury-content-bg = #fff1e5
+    $luxury-dl-border = #e7d0c2
+    $luxury-result-bg = #fffcf9
+    $luxury-result-btn = #613412
+    $luxury-result-text = #985a23
+    $luxury-footer = #fffee4
+    $luxury-footer-bg = #a82c34
+    $luxury-footer-mid = #d9453a
+    $luxury-footer-light = #ee5651
+    $luxury-register-rate = #D43A20
+    $luxury-btn-shadow-color = #c75f1b
+    img
+      margin: 0
+      width: 100%
+      display: block
+      vertical-align: bottom
+    .propoganda-register
+      .form-control
+        background: $white-color
+        border: none
+        outline: none
+        color: $text-color 
+        vertical-align: middle
+        line-height: normal
+        &::-webkit-input-placeholder
+          color: $gray-txt-black 
+      .error-label-container
+        color: $white-color
+      .form-submit-button
+        box-shadow: 0 -0.2rem 0.3rem $luxury-btn-shadow-color inset 
+        font-weight: bold
+        height: 3.06rem
+        line-height: 2.8rem
+      .verifycode-button
+        font-weight: bold
+      button:disabled
+        background: $luxury-btn-disabled-bg
+        box-shadow: none
+    &-content
+      position: relative
+      background-color: $luxury-content-bg
+    &-form
+      width: 100%
+      position: absolute
+      top: 0
+    &-wrap
+      width: 100%
+      padding: 0.05rem 1rem
+      .wrap-title
+        width: 13.88rem
+        height: 2.03rem
+        margin: 0.97rem auto 1.88rem
+      .item-product
+        height: 9rem
+        margin: 1.5rem auto 0
+        box-shadow: 0rem 0rem 2rem 0rem rgba(171, 101, 35, 0.24)
+        background-color: $white-color
+        padding-top: 0.6rem
+        position: relative
+        img
+          width: 8rem
+          height: 1.5rem
+          position: absolute
+          top: -0.1rem
+          left: 30.5%
+        &-title
+          text-align: center
+          color: $white-color
+          font-size: $font-size-base
+          position: absolute
+          top: 0
+          left: 40.5%
+
+        &-detail
+          height: 7.8rem
+          border-radius: 4px
+          margin: 0 0.7rem
+          padding-top: 1.28rem
+          border: 1px solid rgba(231, 208, 194, 0.8)
+          dl
+            position: relative
+            display: inline-block
+            width: 30%
+            text-align: center
+            &:after
+              content: ''
+              width: 1px
+              height: 2.5rem
+              border-right: 1px solid $luxury-dl-border
+              position: absolute
+              right: -0.2rem
+              top: 0.7rem
+            &:last-child
+              &:after
+                border: 0
+            &:first-child
+              width: 34%
+          dt
+            font-size: 1.5rem
+            color: $luxury-title-color
+            span
+              font-size: $font-size-small
+          dd
+            color: $luxury-text-color
+            margin: 0.5rem 0 0 0
+            font-size: $font-size-tiny
+          .profit-year
+            color: $luxury-register-rate
+
+      .item-invest-title
+        margin-top: 3.13rem
+      .item-invest-content
+        margin: 0 auto 2.72rem
+        box-shadow: 0rem 0rem 2rem 0rem rgba(171, 101, 35, 0.24)
+        background-color: $white-color
+        text-align: center
+        padding: 0.63rem 0
+        h1
+          font-size: $font-size-large
+          color: $luxury-title-color
+          line-height: 1.31rem
+          letter-spacing: 1px
+          font-weight: normal
+          margin:  0 0 0.94rem
+        p
+          font-size: $font-size-tiny
+          font-weight: normal
+          line-height: 0.94rem
+          letter-spacing: 0px
+          color: $luxury-text-color
+          margin: 0
+        .item
+          border-radius: 4px
+          border: solid 1px rgba(231, 208, 194, 0.8)
+          margin: 0.63rem 0.7rem
+          padding:  1rem 0.5rem
+        .item-invest-deposit
+          margin-top: 0
+          &-image
+            max-width:100%
+            margin: 0.44rem auto 0.69rem
+        .item-invest-risk-image
+          max-width:100%
+          margin: 0.69rem auto 1.31rem
+        .item-invest-disperse
+          margin-bottom: 0
+          &-image
+            max-width:100%
+            margin: 2.25rem auto 1.91rem
+
+    &-result
+      height: 100%
+      background-color: $luxury-result-bg
+      position: relative
+      img
+        max-width: 100%
+      .logo
+        width: 3.56rem
+        height: 1.31rem
+        position: absolute
+        top: 0.4rem
+        left: 0.8rem
+      .result-download
+        position: absolute
+        width: 100%
+        bottom: 10%
+        text-align: center
+        a
+          display: block
+          margin: 0 auto 2.25rem
+          width: 15.87rem
+          height: 3.08rem
+          color: $luxury-result-btn
+          font-size: $font-size-base
+          line-height: 2.5rem
+          background: url('/img/mobile/landing-luxury-result-btn.png') center center no-repeat
+          background-size: 15.87rem
+        p
+          font-size: $font-size-base
+          font-stretch: normal
+          line-height: 1.25rem
+          letter-spacing: 1px
+          color: $luxury-result-text
+        .item-large
+          font-size: $font-size-large
+          margin-top: 1rem
+      .result-left-bg
+        width: 3.62rem
+        height: 3.9rem
+        position: absolute
+        bottom: 0
+        left: -1.3rem
+      .result-right-bg
+        width: 1.5rem
+        height: 1.5rem
+        position: absolute
+        bottom: 0
+        right: 0
+      &-height
+        height: 100%
+        background-color: $luxury-result-bg
+    &-footer
+      color: $luxury-footer
+      background-image: linear-gradient(0deg, $luxury-footer-bg 0%, $luxury-footer-mid 100%), linear-gradient($luxury-footer-light, $luxury-footer-light);
+      a
+        color: $luxury-footer
+  &-depository
+    &-main
+      background: linear-gradient(top, $deposit-bg-top-color, $deposit-bg-bottom-color)
+      padding-bottom: .625rem
+    &-wrap
+      position:relative
+      .banks-depository
+        position: absolute
+        top: 4.6rem
+        p
+          margin-left: .125rem
+      img
+        width: 100%
+      .doing-top
+        margin-top: .5rem
+    &-content
+      position: relative
+      margin: 0 .625rem
+      padding-bottom: 3.125rem
+      background: $white-color 
+      z-index: 1
+      &:after
+        content: ''
+        position: absolute
+        display: block
+        width: 100%
+        height: .4rem
+        top: -.4rem
+        left: 0
+        right: 0
+        z-index: 2
+        background: url('/img/landing-depository-mask.png') no-repeat center center
+        background-size: 100% 100%
+      p
+        font-size: .9375rem
+        color: $deposit-word-color
+        line-height: 1.3rem
+        padding: .4687rem .9375rem
+        margin: 0 auto
+      .depository-advantage
+        padding-bottom: 0
+      .deposit-advantage
+        overflow: hidden
+        position: relative
+        margin: .8rem
+      .advantage-depositiry
+        position: absolute
+        top: 44%
+        left: 26%
+        z-index: -1
+      .advantage-ul
+        list-style: none
+        padding: 0
+        margin: 0 auto
+        clearfix()
+      .advantage-li
+        width: 49%
+        height: 12.96875rem
+        position: relative
+        margin-right: 2%
+        float: left
+        background: url('/img/landing-depository-advantage-box.png') no-repeat center center
+        background-size: 100% 100%
+        margin-top: 1.875rem
+        &:nth-child(even)
+          margin-right: 0
+        .advantage-title
+          color: $white-color 
+          font-size: .9375rem
+          padding-top: 2rem
+          text-align: center
+        .advantage-wrap
+          position: absolute
+          top: 4.75rem
+          left: .41rem
+          right: .41rem
+          bottom: .41rem
+          background: $white-color 
+          height: 7.59375rem
+        .advantage-detail
+          font-size: .8125rem
+          position: absolute
+          top: 50%
+          transform: translateY(-50%)
+          line-height: 1.0625rem
+          padding: 6%
+    &-group
+      padding-top: 1.718rem
+      padding-bottom: .9375rem
+      padding-left: .75rem
+      padding-right: .75rem
+    &-title
+      font-size: 1.125rem
+      line-height: 1.0625rem
+      color: $deposit-text-color
+      text-align: center
+      margin: 0
+      padding: 1.8rem 0
+      &:before
+      &:after
+        content: ''
+        width: 2.5rem
+        display: inline-block
+        height: 1rem
+        background: url('/img/landing-depository-title.png') bottom center no-repeat
+        background-size: contain
+        margin: 0 1rem
+      &:before
+        background: url('/img/landing-depository-title-left.png') bottom center no-repeat
+        background-size: contain
+    &-btns
+      text-align: center
+    &-btn
+      display: inline-block
+      height: 2.5rem
+      width: 94%
+      color: $white-color 
+      line-height: 2.5rem
+      font-size: 1rem
+      text-align: center
+      background: linear-gradient(left, $register-span-left-btn-color, $register-span-right-btn-color)
+      margin-top: 2.5rem
+      border-radius: 0.25rem
+    &-banner
+      padding: 0
+      overflow: hidden
+      line-height: 0
+      img
+        width: 100%
+  &-register-give
+    $landing-register-bg = #f2e6f6
+    $landing-register-result-bg =  #f9fafc
+    $landing-register-btn-color = #9859d1
+    $landing-register-shadow-color = #682ba1
+    $landing-register-btn-result-color = #fccf43
+    $landing-register-gradual-top = #e1433f
+    $landing-register-gradual-center = #8544bd
+    $landing-register-gradual-bottom = #65b1c8
+    $landing-register-top-bg = #f76f73
+    $landing-register-bottom-bg = #bb7fcf
+    $landing-register-line-color = #e8d0c2
+    $landing-register-li-top = #52350F
+    $landing-register-li-bottom = #A02C5D
+    $landing-register-li-rate = #D43A20
+    $landing-register-li-purple = #6538b4
+    $landing-register-h4-color = #2e2553
+    $landing-register-p-color = #846ccc
+    height: 100%
+    img
+      margin: 0
+      max-width: 100%
+      display: block
+      vertical-align: bottom
+    &-height
+      height: 100%
+    &-result
+      background: $landing-register-result-bg
+      position: relative
+      height: 100%
+    &-backtop
+      width: 82%
+      background: $landing-register-btn-color
+      height: 2.8rem
+      text-align: center
+      font-size: $font-size-base
+      line-height: 2.8rem
+      border-radius: 1.4rem
+      color: $white-color  
+      position: absolute
+      left: 9%
+      bottom: 23%
+      z-index: 1
+      &:visited, &:hover, &:focus
+        color: $white-color 
+    .result-bottom
+      position: absolute
+      bottom: 0
+    &-main
+      background: $landing-register-bg
+    &-content
+      position: relative
+    .propoganda-register
+      position: absolute
+      width: 100%
+      margin-top: 0.5rem
+      .form-control
+        background: $white-color
+        border: none
+        outline: none
+        vertical-align: middle
+        line-height: normal
+        &::-webkit-input-placeholder
+          color: $gray-txt-black 
+      .form-submit-button
+        border-radius: 1.25rem
+      .error-label-container
+        color: rgba(0,0,0,0.6)
+      .btn-purple
+        background: $landing-register-btn-color
+        box-shadow: 0 -0.2rem 0.1rem $landing-register-shadow-color inset 
+      button:disabled
+        background: $gray-txt-black
+        box-shadow: none
+    &-body
+      padding: .25rem .5rem .5rem .5rem 
+      &-top
+        background: linear-gradient(to bottom, $landing-register-gradual-top ,$landing-register-gradual-center)
+        border-radius: .625rem
+        text-align: center
+        padding: .625rem
+        .title
+          font-size: $font-size-large
+          color: $white-color
+          margin-bottom: .625rem
+        .item
+          background: $white-color
+          border-radius: 0.69rem
+          padding: .625rem .5rem
+          margin-bottom: .5rem
+          &:last-child
+            margin-bottom: 0
+          &-content
+            border: 1px solid $landing-register-gradual-top
+            border-radius: .125rem
+            text-align: center
+            padding: 0
+          &-title
+            color: $white-color
+            width: 5.4rem
+            margin: 0 auto
+            background: $landing-register-top-bg
+            padding: .25rem 1rem
+            font-size: $font-size-tiny
+            border-bottom-left-radius: 0.5rem
+            border-bottom-right-radius: 0.5rem
+          &-body
+            display: flex
+            padding: 1rem 0  
+          &-list
+            flex: 1
+            width: 33%
+            position: relative
+            &:after
+              position: absolute
+              content: ' '
+              display: block
+              width: 1px
+              height: 2.25rem
+              right: 0
+              top: 12px
+              background: $landing-register-line-color
+              z-index: 100
+            &:last-child
+              &:after
+                width: 0
+            &-header
+              color: $landing-register-li-top
+              font-size: 1.5rem
+              margin-bottom: 1rem
+              span
+                font-size: $font-size-tiny
+                font-weight: bold
+            &-footer
+              color: $landing-register-li-bottom
+              font-size: $font-size-tiny
+          &-rate
+            .item-list-header
+              color: $landing-register-li-rate
+        .item-bottom
+          .item-content
+            border: 1px solid $landing-register-gradual-center
+          .item-title
+            background: $landing-register-bottom-bg
+          .item-list-footer
+            color: $landing-register-li-purple
+      &-bottom
+        background: linear-gradient(to bottom, $landing-register-gradual-center , $landing-register-gradual-bottom)
+        border-radius: .625rem
+        text-align: center
+        padding: .625rem
+        margin-top: 0.68rem
+        .title
+          font-size: $font-size-large
+          color: $white-color
+          margin-bottom: .625rem
+        .item
+          background: $white-color
+          border-radius: 0.69rem
+          padding: .625rem
+          margin-bottom: .5rem
+          &:last-child
+            margin-bottom: 0
+          &-content
+            border: 1px solid $landing-register-gradual-center
+            border-radius: .125rem
+            text-align: center
+            padding: 1rem .5rem 0.5rem
+          h4
+            font-size: $font-size-large
+            padding: 0
+            margin: 0
+            color: $landing-register-h4-color
+          p
+            color: $landing-register-p-color
+            font-size: $font-size-tiny
+    &-footer
+      color: $white-color
+      background: $landing-register-gradual-bottom
+      a
+        color: $white-color
+  &-footer  
+    text-align: center  
+    padding: 0 0.5rem 0.44rem
+    p
+      font-size: 0.625rem
+      margin: 0
+      padding-top: 0.625rem
+    .record 
+      font-size: 0.625rem
+      margin-bottom: 0.625rem
+    h4
+      padding: 0
+      margin: 0
+      font-size: 1rem
+      font-weight: normal
+  &-raise
+    $raise-bg = #2B2D39
+    $raise-line-color = #EBEBEB
+    $raise-rule-color = #6C717F
+    background: $raise-bg
+    img
+      width: 100%
+      display: block
+    &-wrap
+      padding: 0 1rem
+    &-banner
+      padding-bottom: 1rem
+    &-enjoy
+      padding-top: 1rem  
+    &-list
+      background: $white-color
+      border-bottom-left-radius: 10px
+      border-bottom-right-radius: 10px
+      img
+        padding: 1.4rem 0
+        border-bottom: 1px solid $raise-line-color
+      .landing-raise-list-first
+        padding-top: .4
+      .landing-raise-list-last
+        border: none
+      &-title
+        padding-top: 2.4rem
+    &-rule
+      &-title
+        padding: 2.6rem 0 1.2rem
+    &-footer
+      padding-bottom: 2rem
+    &-tips
+      text-align: center 
+      color: $raise-rule-color
+      padding: 0 0 30px
+      font-size: $font-size-small
+  &-financing
+    $financing-rate-color = #6829D2
+    $financing-join-top-color = #F99C54
+    $financing-join-bottom-color = #FAB784
+    $financing-tip-color = #7975DD 
+    $financing-foot-color = #F5E3FF
+    $financing-border-color = #6829D2
+    $financing-item-border = #F5F5F9
+    $financing-red-color = #F55151
+    $financing-intro-color = #9295A2
+    $financing-limit-color = #555555
+    &-banner
+      position: relative
+      .join-rate
+        color: $financing-rate-color
+        font-size: $font-size-giant 
+        text-align: center
+        position: absolute
+        width: 100%
+        bottom: 6.5rem
+        font-weight: 700
+      .join-btn
+        width: 70%
+        height: 2.6rem
+        color: $white-color
+        text-align: center
+        line-height: 2.6rem
+        background-image: linear-gradient(0deg, $financing-join-top-color 0%, $financing-join-bottom-color 96%)
+        border-radius: 2px
+        position: absolute
+        bottom: 3rem
+        left: 15%
+    &-increase
+      padding: 2rem 1rem
+      .title
+        width: 70%
+        margin: 0 auto
+      .tip
+        color: $financing-tip-color
+        text-align: center
+        margin: 1rem 0 2rem
+        font-size: $font-size-small
+    &-month
+      margin-top: 1.25rem
+      position: relative
+      .line
+        position: absolute
+        width: 0.5rem
+        top: -2.2rem
+      .line-right
+        right: 1.2rem
+    &-foot
+      color: $financing-foot-color
+      position: relative
+      img
+        position: absolute
+        z-index: 0
+      .foot-title
+        color: $white-color
+        margin-bottom: 1rem
+        text-align: center
+        padding-top: 2rem
+      .foot-content
+        position: relative
+        z-index: 2
+      .foot-text
+        color: rgba(245,227,255,0.60)
+        font-size: $font-size-tiny
+        margin-top: 1rem
+        text-align: center
+      p
+        line-height: $font-size-huge
+        font-size: $font-size-small 
+        padding: 0 1rem
+    &-product
+      border: 4px solid $financing-border-color
+      border-radius: 10px
+      padding: 0.6rem 1.2rem
+      .item
+        padding: 1.25rem 0 1.25rem 
+        border-bottom: 1px solid $financing-item-border
+        &:last-child
+          border: none
+      .plan-title 
+        margin-bottom: 0.6rem
+        font-size: $font-size-small
+      .count
+        color: $financing-red-color
+        font-size: $font-size-giant
+        font-weight: 700
+      .limit
+        color: $financing-limit-color
+        font-size: 1rem
+        margin-bottom: 2px
+      span
+        font-size: $font-size-small 
+      .intro
+        color: $financing-intro-color
+        font-size: $font-size-tiny
+      .block
+        display: inline-block
+        vertical-align: bottom
+      .last
+        margin-right: 0
+        width: 25%
+        text-align: right
+      .rate
+        width: 40%
+      .date
+        width: 30%
+        text-align: center
+      .join
+        display: inline-block
+        width: 5rem
+        height: 2rem
+        text-align: center
+        line-height: 2rem
+        color: $white-color
+        background: $financing-red-color
+        font-size: 0.875rem
+        border-radius: 4px
+        margin-bottom: 0.5rem
+    img
+      width: 100%
+      display: block
+
+@media screen and (max-device-height: 640px)
+  .landing-register-give, .landing-luxury-form
+    .propoganda-register
+      .form-submit
+        margin-top: 2rem
+@media screen and (max-device-width: 340px)
+  .landing-financing-banner
+    .join-rate
+      font-size: 1rem
+  .landing-financing-foot
+    background: #8845f7
+    padding-bottom: 0.8rem
+  .landing-financing-product 
+    .limit
+      font-size: 0.8rem
+    .count
+      font-size: 1rem
+    .join
+      width: 4rem
+      font-size: 0.6rem
+

@@ -1,0 +1,35 @@
+
+if couponList && couponList.length
+  .J_coupon-more-item.coupon-more-item
+    .J_coupon-item.coupon-item.coupon-not-use(data-id='0', data-disabled='1') 不使用优惠券
+    each item, idx in couponList
+      - var _couponType = _.get(item, 'couponType') || ''
+      - var _status = UIHelper.parseCouponStatus(_couponType)
+      - var _deduction = _status.discount
+      - var _moneyOff = _status.money_off
+      - var _expireTime = _.get(item, 'expireTime') || ''
+      - var _remainDays = UIHelper.parseCouponOverdueTime(_expireTime)
+      - var _dicountRate = _.get(item, 'dicountRate') || 0
+      - var _moneyOffAmount = _.get(item, 'derateAmount') || 0
+      - var _minInvestAmount = _.get(item, 'allowDerateInvest') || 0
+      - var _maxDiscountAmount = _.get(item, 'maxDiscountAmount') || 0
+      - var _valueActual = _.get(item, 'valueActual') || 0
+      - var _couponId = _.get(item, 'id') || ''
+      - var _discountMinInvestAmount = _.get(item, 'minInvestAmount') || 0
+      .J_coupon-item.coupon-item(data-id=_couponId, class=_valueActual ? '': 'coupon-disabled', data-disabled=_valueActual ? '1' : '0', class={'coupon-active': bestCouponId==_couponId || couponActive==_couponId}) #{UIHelper.parseCouponType(_couponType)}：
+        if _deduction
+          | #{_dicountRate}%抵扣，最高抵扣#{_maxDiscountAmount}元
+          if _discountMinInvestAmount && !_valueActual
+           | ，单笔出借满#{_discountMinInvestAmount}元可用
+        if _moneyOff
+          | 满#{_minInvestAmount}元减#{_moneyOffAmount}元
+        if _remainDays
+          if _remainDays == '0'
+            |  （今天过期）
+          else
+            |  （#{_remainDays}天后过期）
+        if _valueActual
+          span.coupon-amount -#{UIHelper.formatNumber(_valueActual, 2)}
+            span.coupon-amount-unit 元
+        else
+          span.coupon-unavailable 不可用

@@ -1,0 +1,5 @@
+- var _filter = query.filter || 0
+ul.nav.nav-tabs
+  each val, index in {1:'收益中('+ _productDoingCount +')', 2:'投标中('+ _productBiddingCount +')', 3:'转让中('+ _productTransferCount +')', 4:'已结清('+ _productDoneCount +')'}
+    li(class={'active': _filter==index})
+      a(href='?filter='+index)= val

@@ -1,0 +1,42 @@
+extend base
+
+block title
+  | 购买结果 - 
+  
+block content
+  - var transferInfo = _.get(session, 'buyInfo') || {}
+  - var _isTransfer = _.get(session, 'isTransfer') || 0
+  - var _transferAmount = _.get(transferInfo, 'buyAmount') - 0 || 0
+  - var _transferPrincipal = _.get(transferInfo, 'principal') - 0 || 0
+  - var _transferInterest = _.get(transferInfo, 'interest') - 0 || 0
+  - var _transferIsRepayed = _.get(transferInfo, 'isRepayed') || 0
+  .section.buy-result
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(transferInfo)}
+    .result-title-img
+      img(src='/img/buy-result-success.png')
+    h2 出借成功
+    if _isTransfer
+      dl.result-info-list
+        dt 下个还款日
+        dd #{UIHelper.formatNumber(_transferAmount, 2)}
+      dl
+        dt 出借金额
+        dd #{UIHelper.formatNumber(_transferAmount, 2)}(元)
+      dl
+        dt 实际买入本金
+        dd #{UIHelper.formatNumber(_transferPrincipal, 2)}(元)
+      dl
+        dt 公允利息
+        dd #{UIHelper.formatNumber(_transferInterest, 2)}(元)
+      if _transferIsRepayed
+        h5.result-info-intro 公允利息：当期已还时，债权人将多收利息进行补偿，均放入出借本金
+      else
+        h5.result-info-intro 公允利息：您垫付的转让人持有天利息，还款人将会在下个还款日予以返还
+      a.btn.btn-basic.buy-result-btn(href='/account/loan') 查看我的出借
+    else
+      img(src='/img/buy-successed.png')
+      h2
+        span 出借成功！
+      h5 放款前系统将会冻结您的出借资金，放款成功后开始计息
+      a(href='/account/loan').btn.btn-basic.buy-result-btn 确定

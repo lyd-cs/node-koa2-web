@@ -1,0 +1,63 @@
+if dataList && dataList.length != 0
+  .coupon-list
+    each item, idx in dataList
+      - var _couponType = _.get(item, 'couponType') || ''
+      - var _state = UIHelper.parseCouponStatus(_couponType)
+      - var _deduction = _state.discount
+      - var _moneyOff = _state.money_off
+      - var _couponStatus = _.get(item, 'status')
+      - var _couponState = UIHelper.parseCouponState(_couponStatus)
+      - var _couponAvailable = _couponState.available
+      - var _couponUsed = _couponState.used
+      - var _couponDisabled = _couponState.disabled
+      - var _activeTime = _.get(item, 'activeTime') || ''
+      - var _expireTime = _.get(item, 'expireTime') || ''
+      - var _couponUsedProduct = _.get(item, 'businessName') || ''
+      - var _maxDiscountAmount = _.get(item, 'maxDiscountAmount') || 0
+      - var _dicountRate = _.get(item, 'dicountRate') || 0
+      - var _couponDescripe = _.get(item, 'tag') || ''
+      - var _moneyOffAmount = _.get(item, 'derateAmount') - 0 || 0
+      - var _minInvestAmount = _.get(item, 'allowDerateInvest') || 0
+      - var _allowBusinessCategory = _.get(item, 'allowBusinessCategory') || ''
+      - var _discountMinInvestAmount = _.get(item, 'minInvestAmount') || 0
+      - var _userType = _.get(userState, 'inviteRole', '')
+      .coupon-item(class = ((idx+1)%3 == 1) ? 'coupon-left' : '', class={'coupon-deduction': _deduction && _couponAvailable}, class={'coupon-moneyoff': _moneyOff && _couponAvailable}, class={'coupon-used': _couponUsed || _couponDisabled})
+        .item-header 
+          | #{UIHelper.parseCouponType(_couponType)}
+          .coupon-title #{_couponDescripe}
+        .item-body
+          .coupon-duration 有效期至#{UIHelper.formatdate('YYYY/MM/DD', _expireTime)}
+          .coupon-rate
+            if _deduction
+              | #{_dicountRate}
+              span %
+            if _moneyOff
+              | #{_moneyOffAmount}
+              span 元
+          .coupon-use-condition
+            if _deduction
+              if _discountMinInvestAmount
+                | 满#{UIHelper.formatNumber(_discountMinInvestAmount, 0)}元使用，
+              else
+                | 出借金额#{_dicountRate}%抵扣，
+              | 最高#{_maxDiscountAmount}元
+            if _moneyOff
+              | 满#{UIHelper.formatNumber(_minInvestAmount, 0)}元可以使用
+          if _couponAvailable
+            .coupon-product #{UIHelper.parseCouponAvaliableUseProduct(_allowBusinessCategory)}
+            .coupon-use
+              a(href='/plan') 立即使用
+          if _couponUsed
+            if _couponUsedProduct
+              .coupon-product 出借#{_couponUsedProduct}使用
+            .coupon-use.coupon-invalid
+              p 已使用
+          if _couponDisabled
+            .coupon-product #{UIHelper.parseCouponAvaliableUseProduct(_allowBusinessCategory)}
+            .coupon-use.coupon-invalid
+              p 已过期
+  include ./pager.ajax.pug
+else
+  include ./nothing.data.pug
+  if _userType != 'SALES'
+    a.get-coupon(href='/account/invite') 去获取 &gt;

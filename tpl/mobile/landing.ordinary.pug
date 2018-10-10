@@ -1,0 +1,70 @@
+extends base
+
+block title
+  | 注册领好礼
+
+block page-val
+  - var pageClass = 'propoganda-body landing-luxury-result-height'
+
+block content
+  .landing-ordinary#J_wrap
+    .landing-ordinary-signup
+      img(src='/img/mobile/landing-jdcard-signup-bg.png')
+      .landing-ordinary-signup-form
+        .propoganda-page.propoganda-register
+          - var _mobileIconUrl = '/img/propoganda-register-luxury-mobile.png'
+          - var _smscodeIconUrl = '/img/propoganda-register-luxury-smscode.png'
+          - var _passwordIconUrl = '/img/propoganda-register-luxury-password.png'
+          - var _btnColor = 'btn-lighter'
+          - var _submitBtnTxt = '立即注册'
+          include ./mod/register.form.nocode.pug
+    .landing-ordinary-signup-wrap
+      .landing-ordinary-signup-wrap-product
+        h1.landing-invested-gift-title 精选产品·红利智投
+          span.sub-title 锁定期结束可随时退出，退出前持续享受收益
+        .landing-ordinary-signup-wrap-product-content
+          if recommendPlanList.length
+            each item in recommendPlanList
+              .item-product 
+                h4 #{item.lockPeriod}月期
+                dl 
+                  dt #{item.expectedRate}%
+                  dd 平均历史年化收益
+          
+      .landing-ordinary-signup-wrap-platform
+        h1.landing-invested-gift-title 平台资质
+        .landing-ordinary-signup-wrap-platform-content
+          .item-platform
+            p 恒丰银行
+            p 资金存管
+          .item-platform
+            p 2亿元
+            p 注册资本
+          .item-platform
+            p 三级
+            p 等保测评
+          .item-platform
+            p 中国小额
+            p 信贷联盟
+        a.signup-button(href='#') 立即注册
+        span.activity-desc *本活动最终解释权归红小宝所有
+
+  .landing-ordinary-signup-success.hide#J_result
+    img(src='/img/mobile/landing-jdcard-signup-success.png').landing-ordinary-signup-success-image
+    p.J_android 立即下载红小宝！
+    p.J_ios 前往红小宝官网(www.hoomxb.com)立享9.6%年化收益！
+    button.J_android.landing-ordinary-signup-success-download 下载红小宝APP
+    img(src='/img/mobile/landing-register-jdcard-success-footer-poster.png').landing-ordinary-signup-success-footer-image
+    .landing-ordinary-signup-success-footer *本次活动最终解释权归红小宝所有
+
+block foot-script
+  script.
+    app.landingOrdinary.init({
+      form: '#J_user-register-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      trigger: '#J_verifycode',
+      smscode: '#J_smscode',
+      noCaptcha: true
+    });
+      

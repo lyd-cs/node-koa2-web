@@ -1,0 +1,45 @@
+.nav
+  $red-active-color = #F55151
+  $nav-border-grey-color = #f2f2f2
+  &-tabs
+    border-bottom: 2px solid $nav-border-grey-color
+    li
+      margin-bottom: -2px
+      width: 180px
+      text-align: center
+      font-size: $font-size-middle
+      padding: 0 25px
+      &:after
+        content: ''
+        height: 16px
+        width: 2px
+        background: $border-color
+        position: absolute
+        right: 0
+        top: 20px
+      &:last-child 
+        &:after
+          width: 0 
+      a
+        color: $gray-txt-black
+        padding: 0
+        position: relative
+        border: none
+        line-height: 58px
+        background: none
+        &:hover
+        &:focus
+          background: none
+          border: none
+          color: $gray-txt-light 
+      &.active
+        a
+        a:hover
+        a:focus
+          background: none
+          border: none
+          color: $gray-txt-light
+          border-bottom: 2px solid $red-active-color
+      &:hover
+        a
+          color: $gray-txt-light

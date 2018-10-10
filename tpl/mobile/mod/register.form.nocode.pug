@@ -1,0 +1,28 @@
+form#J_user-register-form.register-form(method='post', onsubmit='return false')
+  .form-group
+    .user-register-icon
+      img.mobile(src=_mobileIconUrl)
+    .control-content
+      input#J_mobile.form-control(type='text', name='mobile', placeholder='请输入您常用手机号', minlength='11', maxlength='11',  autocomplete='off')
+  .form-group
+    .user-register-icon
+      img.password(src=_passwordIconUrl)
+    .control-content
+      input#password.form-control(type='password', name='password', value='', autocomplete='off', placeholder='需设置8-20位数字+字母组合', maxlength='20')
+  .form-group.form-group-smscode
+    .user-register-icon
+      img.smscode(src=_smscodeIconUrl)
+    .control-content
+      input#J_smscode.control-smscode.form-control(type='text', name='smscode', placeholder='请输入短信验证码', autocomplete='off', maxlength='6').sms-help-inline
+    button#J_verifycode.btn.verifycode-button(type='button', tabindex='-1', class=_btnColor ? _btnColor : '') 获取验证码
+  .form-group.signup-form-btn.form-submit
+    input(type='hidden', name='_csrf', value=csrf)
+    input(type='hidden', name='action', value='carnival')
+    input(type='hidden', name='utmSource', value=utmSource)
+    .error-submit-container
+    #J_signup-error-label-container.error-label-container
+    button#J_btn-submit.form-submit-button(type='submit', data-init = 0, class=_btnColor ? _btnColor : '') 
+      if _submitBtnTxt
+        | #{_submitBtnTxt}
+      else
+        | 领取红包

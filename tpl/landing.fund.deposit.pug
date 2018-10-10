@@ -1,0 +1,46 @@
+extends base
+block title
+  | 恒丰银行存管 -
+
+block content
+  - var _isLogin = isLogin
+  .landing-deposit
+    .landing-deposit-banner
+    .landing-deposit-content
+      .landing-deposit-diagram
+        .section
+          h3 图解银行存管
+          p 银行存管是由银行管理资金，平台管理交易，做到资金与交易的分离，使得平台无法直接接触资金，避免平台客户资金被直接挪用。
+          img.diagram-image(src='/img/landing-deposit-diagram.png')
+          img.diagram-image-bg(src='/img/landing-deposit-diagram-bg.png')
+      .landing-deposit-why
+        .section
+          img(src='/img/landing-deposit-why.png')
+          .section-content
+            h3 为什么做银行存管
+            p 根据2016年8月24日由银监会，工信部，公安部，网信办联合公布的《网络借贷信息中介机构业务活动管理暂行办法》，要求互联网金融平台需与银行对接，对平台资金进行银行存管，保障用户资金安全。
+            p.section-content-second 红小宝平台积极对接银行存管，将保障用户资金安全放在首位，同时也是红上在合规之路上的持续健康发展的新起点，红小宝用实际行动在合规之路上做出自己的承诺。
+
+      .landing-deposit-advantage
+        .section
+          img(src='/img/landing-deposit-advantage-bg.png')
+          h3 存管优势
+          .landing-deposit-advantage-content
+            .item
+              h4 资金交易更规范
+              p 恒丰银行根据合同及用户发出的交易指令，会对整个过程进行管理并记录资金交易流水，交易真实可查。
+            .item
+              h4 用户资金有效隔离
+              p 恒丰银行资金存管，用户在银行需开设独立账户，平台资金与用户资金账户分离，平台无法接触用户资金。
+            .item
+              h4 资金账户保障升级
+              p 用户在资金使用中，账户信息由存管银行进行管理，资金交易均由用户授权银行操作执行。
+            .item.item-last
+              h4 用户交易更透明
+              p 真实的借款信息，红小宝所有资金交易，恒丰银行存管系统均会对借贷关系进行校验，保障每笔资金真实交易。
+          if _isLogin
+            a(href='/plan') 立即加入
+          else
+            a(href='/signup') 立即注册
+
+block foot-script

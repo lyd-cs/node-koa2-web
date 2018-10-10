@@ -1,0 +1,52 @@
+extends base
+block title
+  | 劳动致富，悦享理财 - 
+
+block content
+  - var _dataList = _.get(raiseList, 'dataList')
+  .landing-container.landing-raise
+    .section.landing-raise-banner: img(src='/img/landing-raise-banner.png')
+    .landing-raise-title: img(src='/img/landing-raise-title.png')
+    .section.landing-raise-join
+      a(href='/plan', target='_blank'): img(src='/img/landing-raise-join.png')
+    .section.landing-raise-enjoy: img(src='/img/landing-raise-enjoy.png')
+    .section.landing-raise-list: img(src='/img/landing-raise-list-one-title.png')
+    .section.landing-raise-product
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[0], target='_blank'): img(src='/img/landing-raise-list-one-one.png')
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[1], target='_blank'): img(src='/img/landing-raise-list-one-two.png')
+      .landing-raise-product-item.landing-raise-product-last
+        a(href='/plan/' + _dataList[2], target='_blank'): img(src='/img/landing-raise-list-one-three.png')
+    .section.landing-raise-list: img(src='/img/landing-raise-list-two-title.png')
+    .section.landing-raise-product
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[3], target='_blank'): img(src='/img/landing-raise-list-two-one.png')
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[4], target='_blank'): img(src='/img/landing-raise-list-two-two.png')
+      .landing-raise-product-item.landing-raise-product-last
+        a(href='/plan/' + _dataList[5], target='_blank'): img(src='/img/landing-raise-list-two-three.png')
+    .section.landing-raise-list: img(src='/img/landing-raise-list-three-title.png')
+    .section.landing-raise-product
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[6], target='_blank'): img(src='/img/landing-raise-list-three-one.png')
+      .landing-raise-product-item
+        a(href='/plan/' + _dataList[7], target='_blank'): img(src='/img/landing-raise-list-three-two.png')
+      .landing-raise-product-item.landing-raise-product-last
+        a(href='/plan/' + _dataList[8], target='_blank'): img(src='/img/landing-raise-list-three-three.png')
+    .section.landing-raise-rule
+      img(src='/img/landing-raise-rule-title.png').landing-raise-rule-title
+      ol
+        li 活动时间：2018年4月19日至2018年5月8日
+        li 活动产品：红利智投-6个月、红利智投-12个月、红利智投-24个月
+        li 活动期间，用户成功加入活动产品，即可获得加息。出借期限越长，单笔出借金额越高，加息越高，最高加息1.5%
+        li 举例说明
+        p Tips1：用户小红投资红利智投-12个月150万元，享额外加息1.0%
+        p 预期额外收益：150万*1.0%/12*12=1.5万元
+        p 预期总收益：150万*（9.6%+1.0%）/12*12=15.9万元
+        p Tips2：用户小宝投资红利智投-24个月400万元，享额外加息1.5%
+        p 预期额外收益：400万*1.5%/12*24=12万元
+        p 预期总收益：400万*（9.9%+1.5%）/12*24=91.2万元
+        li 对活动如有任何疑问，敬请咨询红小宝客服热线400-1552-888
+        li 本活动规则解释权归红小宝所有。
+    .section.landing-raise-tips 市场有风险，出借需谨慎

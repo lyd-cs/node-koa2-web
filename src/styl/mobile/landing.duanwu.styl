@@ -1,0 +1,212 @@
+.landing-duanwu
+  $landing-duanwu-bg = #21ae82
+  $landing-duanwu-text = #444444
+  $landing-duanwu-prize-none = rgba(33,174,130,0.5)
+  $landing-duanwu-rank-bg = #e8f6f2
+  $landing-duanwu-product-border = #ffb041
+  $landing-duanwu-product-btn = #ff9416
+  $landing-duanwu-product-btn2 = #ff3b29
+  $landing-duanwu-activity-bg = #21c290
+  $landing-duanwu-activity-color = #1b553c
+
+  width: 100%
+  max-width: 640px
+  &-banner
+    margin: 0
+    max-width: 100%
+    display: block
+  &-content
+    padding: 2rem
+    background: $landing-duanwu-bg
+    &-item 
+      background-color: $white-color
+      border-radius: 0.313rem
+      padding-bottom: 1.5rem
+      margin-bottom: 2.5rem
+      .item-title
+        font-size: 0.875rem
+        color: $white-color
+        margin: 0 auto
+        height: 1.44rem
+        line-height: 1.44rem
+        text-align: center
+        background: url('/img/mobile/landing-duanwu-title-bg.png') no-repeat center top
+        background-size: contain
+      .item-iphonex 
+        display: block
+        width: 9.81rem
+        height: 6.84rem
+        margin: 1.5rem auto 1rem
+      .item-desc
+        font-size: 0.75rem
+        color: $text-color
+        text-align: center
+      .item-btn 
+        display: block
+        width: 80%
+        font-size: 0.875rem
+        color: $white-color
+        text-align: center
+        margin: 1.5rem auto 0
+        height: 2rem
+        line-height: 2rem
+        background-color: $landing-duanwu-bg
+        border-radius: 0.313rem
+      .item-amount
+        color: $landing-duanwu-text
+        font-size: 0.813rem
+        text-align: center
+      .item-tips
+        color: $gray-txt-black
+        font-size: 0.75rem
+        text-align: center
+      table 
+        text-align: center
+        font-size: 0.813rem
+        margin-top: 1rem
+        width: 100%
+        padding: 0 0.8rem
+      thead 
+        color: $landing-duanwu-bg
+      th
+        font-weight: normal
+      .item-total
+        width: 48%
+      tbody 
+        color: $landing-duanwu-text
+        margin-top: 1rem
+      tr 
+        line-height: 1.56rem
+
+    &-prize
+      display: flex
+      justify-content: space-around
+      flex-wrap: wrap
+      dl
+        width: 50%
+        text-align: center
+        margin-top: 0
+      .prize-gold
+        background: url('/img/mobile/landing-duanwu-prize-gold.png') no-repeat center top
+        background-size: 8rem 5.47rem
+      .prize-juicer 
+        background: url('/img/mobile/landing-duanwu-prize-juicer.png') no-repeat center top
+        background-size: 8rem 5.47rem
+      .prize-400
+        background: url('/img/mobile/landing-duanwu-prize-400.png') no-repeat center top
+        background-size: 8rem 5.47rem
+      .prize-100
+        background: url('/img/mobile/landing-duanwu-prize-100.png') no-repeat center top
+        background-size: 8rem 5.47rem
+      dt
+        height: 5.47rem
+      dd 
+        margin-left: 0
+        font-size: 0.813rem
+        color: $landing-duanwu-text
+      .prize-none
+        font-size: 0.75rem
+        color: $landing-duanwu-prize-none
+      .prize-has
+        font-size: 0.75rem
+        color: $landing-duanwu-bg
+    &-rank 
+      background-color: $landing-duanwu-rank-bg
+      border-radius: 0 0 0.313rem 0.313rem
+      position: relative
+      top: -0.313rem
+      margin: 0 auto
+      width: 96.5%
+      .item-title
+        position: relative
+      &:before
+        width: 100%
+        height: 0.3rem
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        background-image: linear-gradient( rgba(7,113,89,0.4) 0%, $landing-duanwu-rank-bg 100%)
+      &-head 
+        width: 100%
+        height: 0.625rem
+        top: 0
+        left: 0
+        background: url('/img/mobile/landing-duanwu-rank-title.png') no-repeat center top
+        background-size: 100% 100%
+    &-product
+      padding-top: 2.5rem
+      .item-product-title
+        background: url('/img/mobile/landing-duanwu-product-title.png') no-repeat center top
+        background-size: contain
+      .item-product 
+        display: block
+        width: 88%
+        margin: 2rem auto 0
+        padding: 0 0.5rem
+        display: flex
+        justify-content: space-around
+        flex-wrap: wrap
+        background-image: linear-gradient( #ffc000 0%, #ff9416 100%)
+        border-radius: 0.313rem
+      .item-product-second
+        background-image: linear-gradient( #ff7f10 0%, #ff3b29 100%)
+      dl 
+        &:first-child 
+          width: 52%
+          position: relative
+          &:before
+            content: ''
+            width: 2px
+            height: 4rem
+            background-color: rgba(255,255,255,0.2)
+            position: absolute
+            right: 0
+            top: 0
+          dt 
+            font-weight: bold
+            font-size: 2rem
+          span 
+            font-size: 0.94rem
+          dd 
+            font-size: 0.75rem
+            color: rgba(255,255,255,0.7)
+
+      dt 
+        font-size: 0.75rem 
+        color: $white-color
+      dd 
+        margin-left: 0
+      .item-product-btn
+        display: block
+        height: 1.44rem
+        border-radius: 1.44rem
+        line-height: 1.44rem
+        background: $white-color
+        font-size: 0.875rem
+        color: $landing-duanwu-product-btn
+        padding: 0 1rem
+      .btn-join
+        color: $landing-duanwu-product-btn2
+      .product-period 
+        text-align: center
+        line-height: 2.1rem
+  &-activity
+    background-color: $landing-duanwu-activity-bg
+    color: $landing-duanwu-activity-color
+    padding-bottom: 2rem
+    .activity-head 
+      width: 100%
+    h1 
+      font-size: 0.94rem
+      margin-top: 0
+      text-align: center
+      font-weight: normal
+    ul 
+      padding: 0 2rem
+      font-size: 0.813rem
+    li 
+      list-style: none
+      line-height: 1.4rem
+      
+

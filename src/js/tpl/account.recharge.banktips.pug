@@ -1,0 +1,54 @@
+- var _bankTips = {'0102': {'name': '工商银行', 'single': '300', 'day': '300', 'netPassSingle': '500', 'netPassDay': '1000', 'certificateSingle': '50000', 'certificateDay': '50000', 'generUkeySingle': '500000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '5000000', 'smscodeSingle': '', 'smscodeDay': ''},'0104': {'name': '中国银行', 'single': '50000', 'day': '300', 'netPassSingle': '500', 'netPassDay': '1000', 'certificateSingle': '50000', 'certificateDay': '50000', 'generUkeySingle': '500000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '5000000', 'smscodeSingle': '50000', 'smscodeDay': '50000'},'0105': {'name': '建设银行', 'single': '500', 'day': '500', 'netPassSingle': '5000', 'netPassDay': '5000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '50000', 'generUkeyDay': '100000', 'nextUkeySingle': '500000', 'nextUkeyDay': '500000', 'smscodeSingle': '', 'smscodeDay': ''},'0301': {'name': '交通银行', 'single': '', 'day': '', 'netPassSingle': '5000', 'netPassDay': '5000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '1000000', 'generUkeyDay': '1000000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0103': {'name': '农业银行', 'single': '', 'day': '', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '500000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '5000000', 'smscodeSingle': '', 'smscodeDay': ''},'0403': {'name': '邮储银行', 'single': '', 'day': '', 'netPassSingle': '200000', 'netPassDay': '200000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '2000000', 'generUkeyDay': '2000000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '20000', 'smscodeDay': '20000'},'0308': {'name': '招商银行', 'single': '5000', 'day': '5000', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '无限额', 'generUkeyDay': '无限额', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0302': {'name': '中信银行', 'single': '', 'day': '', 'netPassSingle': '1000', 'netPassDay': '5000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '无限额', 'generUkeyDay': '无限额', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0310': {'name': '浦发银行', 'single': '', 'day': '', 'netPassSingle': '10000', 'netPassDay': '200000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '无限额', 'generUkeyDay': '无限额', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0309': {'name': '兴业银行', 'single': '', 'day': '', 'netPassSingle': '5000', 'netPassDay': '5000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '1000000', 'generUkeyDay': '1000000', 'nextUkeySingle': '1000000', 'nextUkeyDay': '1000000', 'smscodeSingle': '5000', 'smscodeDay': '5000'},'0305': {'name': '民生银行', 'single': '', 'day': '', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '500000', 'generUkeyDay': '500000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '5000', 'smscodeDay': '5000'},'0303': {'name': '光大银行', 'single': '', 'day': '', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '500000', 'certificateDay': '1000000', 'generUkeySingle': '500000', 'generUkeyDay': '500000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '20000', 'smscodeDay': '20000'},'0307': {'name': '平安银行', 'single': '', 'day': '', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '50000', 'generUkeyDay': '50000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0304': {'name': '华夏银行', 'single': '', 'day': '', 'netPassSingle': '', 'netPassDay': '', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '500000', 'generUkeyDay': '500000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''},'0306': {'name': '广发银行', 'single': '', 'day': '', 'netPassSingle': '50000', 'netPassDay': '50000', 'certificateSingle': '', 'certificateDay': '', 'generUkeySingle': '1000000', 'generUkeyDay': '1000000', 'nextUkeySingle': '', 'nextUkeyDay': '', 'smscodeSingle': '', 'smscodeDay': ''}}
+- var bankCardIdx = bankId
+- var bankTipsData = _bankTips[bankCardIdx]
+- var name = bankTipsData.name || ''
+- var single = bankTipsData.single || ''
+- var day = bankTipsData.day || ''
+- var netPassSingle = bankTipsData.netPassSingle || ''
+- var netPassDay = bankTipsData.netPassDay || ''
+- var certificateSingle = bankTipsData.certificateSingle || ''
+- var certificateDay = bankTipsData.certificateDay || ''
+- var generUkeySingle = bankTipsData.generUkeySingle || ''
+- var generUkeyDay = bankTipsData.generUkeyDay || ''
+- var nextUkeySingle = bankTipsData.nextUkeySingle || ''
+- var nextUkeyDay = bankTipsData.nextUkeyDay || ''
+- var smscodeSingle = bankTipsData.smscodeSingle || ''
+- var smscodeDay = bankTipsData.smscodeDay || ''
+h4 【#{name}】限额表
+table.banktips(cellspacing='0', cellpadding='0', width='100%')
+  thead
+    tr
+      th 单笔限额
+      th 每日限额
+      th 必要条件
+  tbody
+    if single && day
+      tr
+        td #{single}元
+        td #{day}元
+        td 静态存量密码
+    if netPassSingle && netPassDay
+      tr
+        td #{netPassSingle}元
+        td #{netPassDay}元
+        td 口令卡
+    if certificateSingle && certificateDay
+      tr
+        td #{certificateSingle}元
+        td #{certificateDay}元
+        td 电子密码器/数字证书
+    if generUkeySingle && generUkeyDay
+      tr
+        td #{generUkeySingle}元
+        td #{generUkeyDay}元
+        td 一代UKEY
+    if nextUkeySingle && nextUkeyDay
+      tr
+        td #{nextUkeySingle}元
+        td #{nextUkeyDay}元
+        td 二代UKEY
+    if smscodeSingle && smscodeDay
+      tr
+        td #{smscodeSingle}元
+        td #{smscodeDay}元
+        td 短信

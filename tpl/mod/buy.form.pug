@@ -1,0 +1,75 @@
+if _isFromPlan
+  - var _action = '/plan/'+_planDetailProductId
+if _isFromLoan
+  - var _action = '/loan/'+ _loanId
+if _isTransfer
+  - var _action = '/transfer/' + _transferId
+
+form#J_buy-form(action=_action, method='post').product-buy-form
+  input(type='hidden', name='_csrf', value=csrf)
+  input(type='hidden', name='risktype', value=_riskType)
+  if _isTransfer && _transferLastMoney < 200
+    input(type='hidden', name='amount', value=_transferLastMoney)
+  .form-group.item-title
+    if _isFromPlan
+      | 预期收益：
+      span#J_earnings_tips.income 0.00元
+      if _productNovice
+        span.icon-question-circle.J_icon-question-circle.hide(data-trigger="hover", data-toggle="popover",data-placement="top", data-content="<span>加息部分将在计划退出时返还至您的账户。</span>")
+  .form-group.form-ipt-box
+    if _isFromPlan
+      input#J_ipt(type='text', autocomplete='off', name='amount', placeholder=(_userIsFirstBuy ? _planDetailMinAmount : _planDetailIncreasing)+'元起投,'+_planDetailIncreasing+'元递增', maxlength='9').product-invest-input.form-control.product-invest-plan
+      span.in-money.money-plan 元
+    if _isFromLoan
+      input#J_ipt(type='text', autocomplete='off', name='amount', placeholder=_productDetailInvestLimit +'元起投,'+ _productDetailInvestLimit +'元递增', maxlength='9').product-invest-input.form-control.product-invest-transfer
+      span.in-money 元
+    if _isTransfer
+      input#J_ipt(type='text', autocomplete='off', name='amount', placeholder=_productDetailInvestLimit +'元起投,'+ _productDetailInvestLimit +'元递增', maxlength='9').product-invest-input.form-control.product-invest-transfer
+      a.product-invest-buy 购买全部
+      span.in-money.money-trans 元
+      span.in-money.vertical-line | 
+    .product-buy-validate
+  .form-group
+    if _isFromPlan
+      if _isWaitOpen
+        button.btn-buy-forbid.btn-basic(type='button', disabled) #{UIHelper.formatdate('MM月DD日 HH:mm', _startTime)}开售
+      if _isCountDown
+        button.btn-buy-forbid.btn-basic(type='button', disabled)
+          include ./count-down.pug
+      if _isBidding
+        if _productNovice
+          if isLogin && !_isNewBie
+            button.J_plan-buy-btn.btn-basic(type='submit', disabled) 立即加入
+          else 
+            if _userIsFirstBuy
+              button.J_plan-buy-btn.btn-basic(type='submit') 立即加入
+            else
+              button.btn-basic(type='button', disabled) 暂不支持重复购买
+        else 
+          button.J_plan-buy-btn.btn-basic(type='submit') 立即加入
+    if _isFromLoan
+      if _isWaitOpen
+        button.btn-buy-forbid.btn-basic(type='button', disabled) 等待投标
+      if _isBidding
+        button.btn-basic(type='submit') 立即投标
+      if _isPreSales
+        button.btn-buy-forbid.btn-basic(type='button', disabled) 预售
+    if _isTransfer
+      if _isBidding
+        button.btn-basic(type='submit') 出借
+      if _isPresales
+        button.btn-buy-forbid.btn-basic(type='button', disabled) 等待购买
+  if isLogin && couponUsedTotal && !_productNovice
+    p 
+      span.coupon-icon 
+      if _couponType === 'MONEY_OFF'
+        | #{couponUsedTotal === 1?'可用优惠券':'推荐'}：单笔出借满
+        span.coupon-amount #{_couponAllowDerateInvest}
+        | 减
+        span.coupon-amount #{_couponDerateAmount}
+      else
+        | #{couponUsedTotal === 1?'可用优惠券':'推荐'}：
+        span.coupon-amount #{_couponDicountRate}%
+        | 抵扣券，最高抵扣
+        span.coupon-amount #{_couponMaxDiscountAmount}
+      | 元

@@ -1,0 +1,23 @@
+
+.modal.fade.modal-bank-list(tabindex='-1', role='dialog', aria-labelledby='myModlLabel', data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .close-button
+      .modal-body
+        each code, idx in list
+          //- - var _active = (idx == 0)
+          - var item = data[code]
+          if item
+            .modal-bank-item
+              .bank-simplelogo(class='bank-simplelogo-' + code)
+              p.bank-item-name #{item.name}
+              p.bank-item-limit 
+                if item.quotaStatus == '2'
+                  | 限额：银行系统维护中
+                else
+                  if item.single
+                    | 单笔#{item.single} 
+                  if item.day
+                    | 单日#{item.day}
+              input.J_bank-code(type='hidden', name='key', value=code)

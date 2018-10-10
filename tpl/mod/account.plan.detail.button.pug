@@ -1,0 +1,5 @@
+if _FinancePlanStatus === 'NEW' && _quitStatus === 'ANNUL_QUIT'
+  button#J_plan-exit-cancle 撤销退出
+  div.tip #{UIHelper.formatdate('YYYY-MM-DD', _repealDate)}(不含)前可撤销
+else if _FinancePlanStatus === 'NEW'
+  button(disabled= _buttonClick)#J_plan-exit-can 可退出 

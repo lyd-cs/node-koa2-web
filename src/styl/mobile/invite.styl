@@ -1,0 +1,234 @@
+.invite
+  $invite-header-color= #8656ba
+  $invite-detail-bg   = #fff8fe
+  $invite-detail-text = #666666
+  $invite-footer-color = #ffffff
+  $invite-footer-btn-bg = #472aa1
+  $invite-activity-rules-bg = #94679e
+  $invite-seller-text = #fee5c4
+  $invite-seller-color = #130f1a
+  &-container
+    background: $invite-detail-bg
+    img
+      width: 100%
+      min-height: 288px
+  &-list
+    .item
+      position: relative
+    img
+      min-height: 200px
+    &-equally
+    &-again
+    &-example
+    &-reward
+    &-text
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 35%
+      text-align: center
+      font-size: 0.8125rem
+    h3
+      font-size: 1.2rem
+      color: $invite-header-color
+      margin-bottom: .5rem
+    p
+      text-align: center
+      margin: 0
+      color: $invite-detail-text
+    &-example
+      top: 12%
+      text-align: center
+      padding: 0 8% 0 10.5%
+      width: 100%
+      h3
+        margin: 2% 0 3%
+        text-align: center
+    &-text
+      padding: 10% 8% 0 10.5%
+      text-align: left
+    &-reward
+      top: 1rem
+      text-align: left
+      padding: 0 10%
+      width: 100%
+      .invite-reward, .invite-coupon
+        margin-top: 20%
+        margin-bottom: 1.5rem
+        padding: 0 4%
+        font-size: 1rem
+        clearfix()
+      .invite-coupon
+        margin-top: 1.5rem
+      .invite-desc
+        float: left
+      .invite-num
+        float: right
+      span
+        color: $invite-header-color
+        margin-right: 0.3125rem
+  &-text
+      margin-top: .4rem
+  &-record
+    position: absolute
+    right: 14%
+    bottom: 14%
+    padding: 0
+    z-index: 10
+    color: $invite-header-color
+    &:after
+      display: inline-block
+      content: ''
+      position: absolute
+      right: -1.25rem
+      top: 0.25rem
+      width: 0.8rem
+      height: 0.8rem
+      border-right: 1px solid $invite-header-color
+      border-top: 1px solid $invite-header-color
+      transform: rotate(45deg)
+  &-activity-rules
+    position: relative
+    padding-bottom: 3rem
+    font-size: 0
+    img
+      min-height: 37px
+    &-list
+      padding: 1rem
+      position: relative
+      top: -1px
+      width: 100%
+      color: $invite-footer-color
+      background: $invite-activity-rules-bg
+      h3
+        margin: 0
+        font-size: 0.9375rem
+        text-align: center
+      .item
+        position: relative
+        padding-left 30px
+        margin-top: 0.5rem
+        font-size: 0.812rem
+        line-height: 1.125rem
+        color: $invite-footer-color
+        list-style-type:none
+        span
+          position: absolute
+          left: 0
+          top: 0
+          display: inline-block
+          content: ''
+          width: 1.1rem
+          height: 1.1rem
+          background: $invite-footer-color
+          color: $invite-header-color
+          border-radius: 50%
+          line-height: 1.1rem
+          text-align: center
+  &-footer
+    position: fixed
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 3.125rem
+    font-size: 1rem
+    text-align: center
+    z-index: 100
+    color: $invite-footer-color
+    line-height: 3.125rem
+    background: $invite-footer-btn-bg
+  &-toast-notify
+    transition: opacity 0.5s ease-in
+    z-index: 1000
+    position: fixed
+    left: 50%
+    top: 50%
+    min-width: 250px
+    transform: translate(-50%, -50%)
+    border-radius: 3px
+    background: $text-color
+    opacity: 0
+    text-align: center
+    color: $btn-primary-color
+    font-size: $font-size-base
+    line-height: 1.5rem
+    padding: 10px
+    &.toast-hide
+      opacity: 0
+    &.toast-show
+      opacity: 0.9
+  &-seller
+    &-container
+      position: relative
+      padding-bottom: 80px
+      font-size: 0
+      text-align: center
+      &-img
+        width: 100%
+        min-height: 165px
+      h2 
+        position: absolute
+        top: 30px
+        width: 100%
+        line-height: 28px
+        text-align: center
+        font-size: $font-size-huge 
+        font-weight: 500
+        color: $invite-seller-text
+      &-ornamental
+        position: relative
+        .triangle-small
+          position: absolute
+          left: 15%
+          top: 40px
+          width: 29px
+          height: 36px
+          background: url('/img/mobile/invite-seller-triangle1.png') no-repeat
+          background-size: contain
+        .triangle1-middle
+          position: absolute
+          right: 6%
+          top: 100px
+          width: 42px
+          height: 40px
+          background: url('/img/mobile/invite-seller-triangle2.png') no-repeat
+          background-size: contain
+        .triangle1-large
+          position: absolute
+          left: 6%
+          top: 180px
+          width: 56px
+          height: 46px
+          background: url('/img/mobile/invite-seller-triangle3.png') no-repeat
+          background-size: contain
+        h4 
+          margin: 12% 0 3%
+          font-size: $font-size-base
+          text-align: center
+          color: $invite-seller-color
+        .seller-qrcode
+          position: absolute
+          left: 50%
+          margin-left: -85px
+          width: 170px
+          height: 170px
+          border: 1px solid rgba(19, 15, 26, 0.12)
+        .staff
+          width: 235px
+          height: 35px
+          margin: 230px auto 0
+          font-size: $font-size-base
+          line-height: 35px
+          border: 1px solid $invite-seller-color
+          border-radius: 4px
+          color: $invite-seller-color
+    &-share
+      position: fixed
+      left: 0
+      bottom: 0
+      width: 100%
+      height: 50px
+      background-color: $invite-seller-color
+      line-height: 50px
+      text-align: center
+      color: $invite-seller-text

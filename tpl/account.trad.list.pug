@@ -1,0 +1,104 @@
+extend base
+
+block title
+  | 交易记录 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+  
+block content
+  //- var dataList = [{'id': 0, 'time': '2017-05-12 09:12', 'type': 0, 'amount': 1200, 'fund': 900, 'content': 'aaa'}, {'id': 0, 'time': '2017-05-12 09:12', 'type': 0, 'amount': 1200, 'fund': 900, 'content': 'aaa'}]
+  - var _query = query || {}
+  - var _filter = query.filter || 'all'
+  - var _start = query.start ? UIHelper.formatdate('YYYY-MM-DD', query.start) : null
+  - var _end = query.end ? UIHelper.formatdate('YYYY-MM-DD', query.end) : null
+  - var _queryDate = query.date || _start || 'all'
+  - var fundDict = []
+  - var _now = _now || Date.now()
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title.uc-trad-title
+      h4 交易记录
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(query)}
+    .uc-trad-header
+      dl.uc-trad-header-date
+        dt 交易时间
+        dd
+          if !_filter
+            a(href='?date=all&start=&end=', class={active: _queryDate == 'all'}) 全部
+            a(href='?date=0&start='+ UIHelper.moment().subtract(30, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now), class={active: _queryDate == 0}) 最近一个月
+            a(href='?date=1&start='+ UIHelper.moment().subtract(90, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now), class={active: _queryDate == 1}) 三个月内
+            a(href='?date=2&start='+ UIHelper.moment().subtract(180, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now), class={active: _queryDate == 2}) 六个月内
+          else if _filter && (!_start || _start)
+            a(href='?date=all&start=&end=&'+'filter='+ _filter , class={active: _queryDate == 'all'}) 全部
+            a(href='?date=0&start='+ UIHelper.moment().subtract(30, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now)+'&'+'filter='+ _filter , class={active: _queryDate == 0}) 最近一个月
+            a(href='?date=1&start='+ UIHelper.moment().subtract(90, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now)+'&'+'filter='+ _filter , class={active: _queryDate == 1}) 三个月内
+            a(href='?date=2&start='+ UIHelper.moment().subtract(180, 'days').format('YYYY-MM-DD') +'&end='+ UIHelper.formatdate('YYYY-MM-DD', _now)+'&'+'filter='+ _filter , class={active: _queryDate == 2}) 六个月内
+          form(method='get').form-time
+            .form-group
+              label 从
+              input.form-date.J_datepicker(type='text', name='start', value=_start, placeholder='请选择开始时间')
+            .form-group
+              label 到
+              input.form-date.J_datepicker(type='text', name='end', value= _end, placeholder='请选择结束时间')    
+            .form-group
+              if _filter
+                input(type='hidden', name='filter', value=_filter)
+              button.btn-basic.btn-trad-search(type='submit') 搜索
+      dl.uc-trad-header-type
+        dt 交易类型
+        dd
+          if _start && (!_filter || _filter)
+            a(href='?date='+ _queryDate +'&start='+ _start +'&end='+_end+'&filter=', class={active: _filter == 'all'}) 全部
+            a(href='?date='+ _queryDate +'&start='+_start+'&end='+_end+'&filter=0', class={active: _filter == 0}) 充值
+            a(href='?date='+ _queryDate +'&start='+_start+'&end='+_end+'&filter=1', class={active: _filter == 1}) 提现
+            a(href='?date='+ _queryDate +'&start='+_start+'&end='+_end+'&filter=2', class={active: _filter == 2}) 散标债权
+            a(href='?date='+ _queryDate +'&start='+_start+'&end='+_end+'&filter=3', class={active: _filter == 3}) 红利智投
+          else if !_start
+            a(href='?filter=all', class={active: _filter == 'all'}) 全部
+            a(href='?filter=0', class={active: _filter == 0}) 充值
+            a(href='?filter=1', class={active: _filter == 1}) 提现
+            a(href='?filter=2', class={active: _filter == 2}) 散标债权
+            a(href='?filter=3', class={active: _filter == 3}) 红利智投
+    .uc-trad-body
+      if dataList && dataList.length
+        table(cellspacing='0', cellpadding='0', width='100%')    
+          thead
+            tr
+              th.text-left 交易时间
+              th 交易类型
+              th 交易金额(元)
+              th 账户余额(元)
+          tbody
+            each item, idx in dataList
+              - var _tradTime = _.get(item, 'time') - 0 || 0
+              - var _tradNotes = _.get(item, 'notes') || ''
+              - var _tradType = _.get(item, 'pointType') || ''
+              - var _tradIsPlus = _.get(item, 'isPlus') || false
+              - var _tradIncome = _.get(item, 'income') - 0 || 0
+              - var _tradPay = _.get(item, 'pay') - 0 || 0
+              - var _userBanlance = _.get(item, 'balance') - 0 || 0
+              - var _productLoanId = _.get(item, 'loanId') - 0 || 0
+              - var _productFinancePlanId = _.get(item, 'financePlanId') - 0 || 0
+              - var _productLoanTitle = _.get(item, 'loanTitle') || ''
+              - var _productPlanName = _.get(item, 'financePlanName') || ''
+              - var _productPointType = _.get(item, 'pointDisplayType') || ''
+              tr
+                td.text-left #{UIHelper.formatdate('YYYY-MM-DD HH:mm:ss', _tradTime)}
+                td #{_productPointType}   
+                td
+                  if _tradPay
+                    span.item-minus -#{UIHelper.formatNumber(_tradPay, 2)}
+                  else
+                    span.item-plus +#{UIHelper.formatNumber(_tradIncome, 2)}
+                  if _productLoanId
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<a href=/loan/" + _productLoanId+">"+"散标 ["+_productLoanId+"] -- "+_tradNotes+"</a>")  
+                  else if _productFinancePlanId
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<a href=/plan/" + _productFinancePlanId+">"+"红利智投 ["+_productPlanName+"] -- "+_tradNotes+"</a>")  
+                  else if _tradNotes
+                    span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content=_tradNotes)  
+                td #{UIHelper.formatNumber(_userBanlance, 2)}
+        include ./mod/pagination.pug
+      else  
+        include ./mod/nothing.data.pug

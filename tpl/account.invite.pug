@@ -1,0 +1,111 @@
+extend base
+
+block title
+  | 邀请好友 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+
+block content
+  - var _userId = _.get(userState, 'userId') - 0 || 0
+  - var _userIsCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0
+  - var _inviteNumber = _.get(inviteDetailData, 'inviteNumber') - 0 || 0
+  - var _cashBackAmount = _.get(inviteDetailData, 'cashBackAmount') - 0 || 0
+  - var _couponNumber = _.get(inviteDetailData, 'couponNumber') - 0 || 0
+  include ./mod/account.nav.pug
+  .section.uc-invite
+    if errors
+      include ./mod/error.pug
+    .uc-invite-banner
+      img(src='/img/invite-banner.png')
+      a(href='/landing/invite') 活动详情 &gt;&gt;
+      .invite-count
+        | 您已成功邀请
+        span #{_inviteNumber}
+        | 人，赚取了
+        span #{UIHelper.formatNumber(_cashBackAmount, 2)}
+        | 元，一共获得
+        span #{_couponNumber}
+        | 张优惠券。
+    .uc-invite-method
+      .uc-title
+        h4 邀请方式
+      .uc-invite-method-item
+        .uc-invite-method-body
+          if _userIsCreateAccount
+            .wx-share
+              #J_wx-qrcode.invite-wx-share.invite-icon
+              .wx-invite-box
+                img.invite-top(src='/img/invite-top.png')
+                .wx-invite-head 微信分享
+                .wx-invite-body
+                  img.invite-qrcode(src='/qrcode/invitepc/'+_userId)
+                .wx-invite-text 这是您的专属邀请链接，打开微信扫码后，点击右上角“发送给朋友”或“分享到朋友圈”即可完成分享。
+          else
+            .invite-wx-share.invite-icon.J_charge-createaccount-guide
+        .uc-invite-method-header 微信
+      .uc-invite-method-item
+        .uc-invite-method-body
+          if _userIsCreateAccount
+            .invite-qq-share.invite-icon#J_qq-friend
+          else 
+            .invite-qq-share.invite-icon.J_charge-createaccount-guide
+        .uc-invite-method-header QQ
+      .uc-invite-method-item
+        .uc-invite-method-body
+          if _userIsCreateAccount
+            .invite-qqzone-share.invite-icon#J_qq-zone
+          else
+            .invite-qqzone-share.invite-icon.J_charge-createaccount-guide
+        .uc-invite-method-header QQ空间
+      .uc-invite-method-item
+        .uc-invite-method-body
+          if _userIsCreateAccount
+            .interlink.J_interlink
+              .invite-interlink-share.invite-icon
+              .interlink-invite-box
+                img.invite-top(src='/img/invite-top.png')
+                .interlink-invite-head 邀请链接
+                .interlink-invite-body
+                  .interlink-invite-line
+                    input#J_interlink-val(type='text')
+                    button.btn-basic#J_copy-btn 复制链接
+                  .J_copy-success.copy-text
+                    img(src='/img/invite-copy-success.png')
+                    span 复制成功！
+          else
+            .J_charge-createaccount-guide.invite-interlink-share.invite-icon
+        .uc-invite-method-header 邀请链接
+    .uc-invite-list#J_invite-list
+      .uc-title
+        h4 邀请记录
+      .invite-list.J_invite-list-body
+        include ./mod/account.invite.list.pug
+    .uc-invite-explain
+      .uc-title
+        h4 活动说明
+      include ./mod/invite.instruction.pug
+
+block foot-script
+  script.
+    var userId = #{_userId}
+    app.accountInviteList.init();
+    app.accountShare.init({
+      shareInfo: {
+        title: '帮我拆开这个红包，礼金分你一半',
+        summary: '我在红小宝投资收益还不错，邀请你来体验，拆开红包，千元礼金和我平分',
+        pics: location.protocol+'//'+location.host+'/img/invite-logo.png',
+        style: '201',
+        width: '120',
+        height: '120'
+      },
+      userId: userId
+    });
+    app.modalShow.init({
+      isLogin: 1,
+      isCreateAccount: #{_userIsCreateAccount},
+      isSettingTradPwd: 1,
+      isBindCard: 1,
+      isIdPassed: 1,
+      isMobilePassed: 1,
+    })

@@ -1,0 +1,56 @@
+extends base
+
+block title
+  | 蜜芽用户理财专场
+
+block page-val
+  - var pageClass = 'body-me'
+
+block content
+  - var _utmSource = utmSource
+  - var _promotion = _.get(userState, 'promotion', '')
+  - var _isMiyaActiveUser = isLogin && _promotion && _promotion.startsWith('Group5')
+  if _isMiyaActiveUser
+    .landing-miya
+      if planList && planList.length
+        .landing-miya
+          - var _isLogin = islogin
+          .landing-miya-banner
+            img(src='/img/mobile/landing-miya-title-0530.png')
+          include ./mod/landing.miya.active.pug
+  else
+    .riskvail-modal-wrap.J_riskvail-modal-wrap#J_riskvail-test-result.landing-miya-modal
+      .riskvail-modal
+        .riskvail-modal-info 
+          p 本次活动仅限蜜芽用户专享
+            span.J_risktype.risktype
+        .riskvail-modal-btnbox 
+          button(data-type='retry').J_riskvail-modal-btn-retry.riskvail-modal-btn-confirm 确认
+
+block foot-script
+  - var error = _.get(errors, '[0]') || {};
+  - var _promotion = _.get(userState, 'promotion', '')
+  - var _isNotMiyaActiveUser = !_promotion || _promotion.indexOf('Group5') === -1
+  - var _isEscrow = _.get(userState, 'isCreateEscrowAcc') || 0
+  if !isLogin
+    script.
+      app.interactive.openAppPage({
+        path: '/account/login'
+      });
+  else 
+    script.
+      var _isNotMiyaActiveUser = #{_isNotMiyaActiveUser}
+      var _isEscrow = #{_isEscrow}
+      $(window).on('load', function(){
+        $('html, body').scrollTop(0)
+      })
+      app.miyaActive.init({
+        isNotMiyaActiveUser: _isNotMiyaActiveUser,
+        isEscrow: _isEscrow 
+      });
+      app.callApp.init();
+
+
+
+
+

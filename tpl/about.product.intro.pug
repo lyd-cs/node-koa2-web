@@ -1,0 +1,90 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  .about-product
+    .section.case
+      .about-product-title
+        h3 产品介绍
+        p Product Introduction
+      .about-product-intro
+        h4 散标出借
+        .about-product-intro-loan.clearfix
+          p “散标出借”是红小宝平台推出的线上个人网络借贷撮合匹配及信息中介服务；
+          p 借款人通过红小宝平台的审核后，方可在红小宝平台上发布借款信息，出借人可通过红小宝平台与借款人完成电子借贷协议的签署，并通过银行存管系统进行款项的划转；
+          p 出借人通过等额本息的方式每月收取投资本金和收益。
+          img(src='/img/about-product-loan.png')
+          ul.about-product-intro-desc
+            li 起投金额：
+              span 100
+              | 元
+            li 还款期限：
+              span 12、18、24、36、48
+              | 个月
+            li 还款方式：
+              span.item-repay 等额本息
+            li 平台收费标准：
+              a(data-toggle='modal', data-target='#loan-fees') 资费详情
+            li.item-last 协议模板：
+              a(href='/agreement/loan', target='_blank') 《借款协议》
+              a(href='/agreement/transfer', target='_blank') 《债权转让及受让协议》
+          .modal.fade#loan-fees(tabindex='-1', role='dialog', aria-hidden='true' )
+            .modal-dialog
+              .modal-content
+                .modal-body
+                  p.fee-detail-title 资费详情
+                  table
+                    thead
+                      tr
+                        th.type(colspan='2') 业务类型
+                        th 收费标准
+                    tbody
+                      tr
+                        td(colspan='2') 注册
+                        td 免费
+                      tr
+                        td(colspan='2') 开户
+                        td 免费
+                      tr
+                        td(rowspan='3') 投标
+                        td 散标
+                        td 免费
+                      tr
+                        td 债权
+                        td 免费
+                      tr
+                        td 红利智投
+                        td
+                          p 加入红利智投免费，退出时收取超过目标值部分利息作为红利智投当期管理费用计提
+                      tr
+                        td(colspan='2') 充值
+                        td 免费
+                      tr
+                        td(colspan='2') 提现
+                        td 免费
+                      tr
+                        td(colspan='2') 借款年利率
+                        td 11.4%~12.6%
+                      tr
+                        td(colspan='2') 借款综合成本
+                        td 22.96%~35.82%
+        h4 红利智能投标服务
+        .about-product-intro-plan.clearfix
+          p "红利智能投标服务"：出借人授权红小宝平台为其寻找相匹配的借款标的进行小额分散投标；在红利智投自动投标服务的锁定期结束后，出借人可申请将持有的债权进行转让。
+          img(src='/img/about-product-new-plan.png')
+          ul.about-product-intro-desc.plan-desc
+            li 起投金额：
+              span 1000
+              | 元
+            li 锁定期限：
+              span 3、6、12、24
+              | 个月
+            li 退出方式：
+              span.item-repay 到期后用户手动退出
+            li.item-last 协议模板：
+              a(href='/agreement/plan', target='_blank') 《红利智投服务协议》

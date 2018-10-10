@@ -1,0 +1,16 @@
+.modal-header
+  .uc-title
+    h4 请输入兑换码兑换优惠券
+    button.J_close-button.close.close-button(data-dismiss="modal", aria-label="Close")
+.modal-body
+  form#J_coupon-exchange-form.coupon-exchange-form(method='post')
+    .form-group
+      input.J_coupon-code(type="text", maxlength=4)
+      | - 
+      input.J_coupon-code(type="text", maxlength=4)
+      | -
+      input.J_coupon-code(type="text", maxlength=4)
+      | -
+      input.J_coupon-code(type="text", maxlength=4)
+      .J_error-tips.error-tips
+    button#J_submit-btn.btn-basic.control-btn(type='button') 兑换优惠券

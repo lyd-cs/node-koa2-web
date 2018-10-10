@@ -1,0 +1,33 @@
+extends base
+
+block title
+  | 专属邀请
+
+block page-val
+  - var pageClass = 'propoganda-body'
+
+block content
+  .propoganda-get-qrcode
+      .propoganda-header-poster
+        .propoganda-header-poster-icon
+          img.logo(src='/img/propoganda-logo.png')
+      form#J_qrcode-form.propoganda-get-qrcode-form(method='post')
+        input.propoganda-get-qrcode-input(type="text", name="staffId", placeholder="请输入您的邀请码" required)
+        input(type='hidden', name='_csrf', value=csrf)
+        .help-inline
+        if errors
+          include ./mod/error.pug
+        button.propoganda-get-qrcode-btn(type='submit') 生成
+        
+      p.propoganda-get-qrcode-tip 温馨提示：
+      p.propoganda-get-qrcode-tip * 请输入您的邀请码，生成你的专属邀请链接。
+      p.propoganda-get-qrcode-tip * 好友通过您分享的邀请链接注册成功后即为您的专属客户。
+
+block foot-script
+  script.
+    app.util.wx.init({
+      title: '红小宝销售专用链接',
+      link: '/landing/invite',
+      desc: '红小宝销售链接，生成二维码即可分享给用户了解红小宝',
+      imgUrl: '/img/mobile/logo-wx.jpg'
+    });

@@ -1,0 +1,28 @@
+extend base
+
+block title
+  | 网站公告 - 
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  .about-announcement
+    .section.case
+      //- var announcement = [{'id': 1, 'title': '关于清明节放假提现手续暂停办理通知', 'date': '2017-5-12'},{'id': 2, 'title': '关于清明节放假提现手续暂停办理通知', 'date': '2017-5-12'},{'id': 3, 'title': '关于清明节放假提现手续暂停办理通知', 'date': '2017-5-12'},{'id': 4, 'title': '关于清明节放假提现手续暂停办理通知', 'date': '2017-5-12'}]
+      .about-announcement-title
+        h3 网站公告
+        p Site Notice
+      .about-info-subject-infor.about-contact-infor
+        .about-announcement-container
+          if !announcement
+            include ./mod/nothing.data.pug
+          else
+            each item, idx in announcement
+              - var _aboutusAnnounceTitle = _.get(item, 'title') || ''
+              - var _aboutusAnnounceTime = _.get(item, 'date', 0) - 0 || 0
+              .about-announcement-items(class = ((idx+1)%2 == 0) ? 'odd' : 'even') 
+                img(src='/img/about-announcement-volume.png')
+                a.announcement-link(href='/about/announcement/' + item.id).item #{_aboutusAnnounceTitle}
+                span.date #{UIHelper.formatdate('YYYY-MM-DD', _aboutusAnnounceTime)}
+        include ./mod/pagination.pug

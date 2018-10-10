@@ -1,0 +1,58 @@
+extend base
+
+block title
+  | 找回登录密码 | 
+  
+block content
+  - var _query = query || {}
+  .user-forgot
+    .section.forget-case
+      .user-forget-step1
+        .user-forgot-title 找回登录密码
+        .user-forgot-step
+          .user-forgot-substep.user-forgot-finish
+            .step-number 
+              span 1
+            .instr 验证手机号码
+          .user-forgot-substep
+            .step-number 
+              span 2
+            .instr 设置新密码
+          .user-forgot-substep            
+            .step-number 
+              span 3
+            .instr 修改成功
+        if errors
+          .user-forgot-step-errors.alert-danger
+            include ./mod/error.pug
+        .user-forgot-step1-warp
+          form#J_forgot-step.user.forgot-step1(method='post')
+            .form-group
+              p.entry-item 手机号码
+              input.J_forgot-input#J_mobile.form-control.forgot-input.forgot-tel(type='text', name='mobile', autocomplete='off', placeholder='请输入手机号', value=_query.mobile, minlength='11', maxlength='11')
+            .form-group#J_captcha-holder
+              p.entry-item 验证码
+              input.J_forgot-input.form-control.forgot-input#J_captcha(type='text', name='captcha', autocomplete='off', placeholder='请输入右图中的验证码', maxlength='4', minlength='4')
+              //img.img-validate(src='/img/validate.png') 
+              img#J_captcha-img.J_captcha-refresh.captcha-img.img-validate(src='/captcha?_='+Math.random().toString().substr(2,6), data-target='#J_captcha-img', data-src='/captcha', alt='看不清，点击刷新')
+              .helper-line.J_helper-line
+              //-
+                a.J_captcha-refresh.captcha-img-text(href='#', tabindex='-1', data-target='#J_captcha-img') 换一张
+            .form-group
+              p.entry-item 手机验证码
+              //input.form-control.forgot-input(type='text', name='smsCode', placeholder='请输入手机验证码', maxlength='6')
+              input#J_smscode.J_forgot-input.control-smscode.form-control.forgot-input(type='text', name='smscode', autocomplete='off', minlength='6', maxlength='6', placeholder='手机验证码', value=_query.smsCode)
+              button.tel-validate#J_verifycode(type='button', tabindex='-1') 发送验证码
+            .form-group
+              input(type='hidden', name='_csrf', value=csrf)
+              input(type='hidden', name='action', value='telephone')
+              button#J_forgot-button.btn-basic.btn-block.login-button.login-btn.next-btn(type='submit') 下一步
+block foot-script
+  script.
+    app.loginForgotStep.init({
+      form: '#J_forgot-step',
+      mobile: '#J_mobile',
+      trigger: '#J_verifycode'
+    })
+    
+          

@@ -1,0 +1,76 @@
+extend base
+
+block title
+  | APP下载 -
+
+block header
+
+block content
+  .app
+    .section.app-section
+      .app-logo
+        a(href='/'): img(src='/img/app-logo.png')
+      .app-body
+        h2.app-body-title 人生增值，触手可及
+        img.app-body-qrCode(src='/img/app-download-qr.png')
+        a.app-ios(href=iphoneDownloadUrl, target='_blank')
+          i.fa.fa-apple
+          p.app-btn-text
+            span Download on the
+            span.app-btn-largetext App Store
+        a.app-android(href=androidDownloadUrl)
+          i.fa.fa-android
+          p.app-btn-text
+            span Download on the
+            span.app-btn-largetext Android
+      .app-mobile
+
+  .app-escrow
+    .section.app-section
+      img(src='/img/app-escrow.png').app-section-avatar
+      .app-section-body
+        .app-section-title 资金存管
+          span — —恒丰银行、强强联合
+        .app-section-item.app-escrow-safe 透明更专业
+        .app-section-item.app-escrow-fund 资金有保障
+        .app-section-item.app-escrow-legal 合法更合规
+
+  .app-plan
+    .section.app-section
+      img(src='/img/app-plan-0525.png').app-section-avatar
+      .app-section-body
+        .app-section-title 红利智投
+          span — —智能分散、期限灵活
+        .app-section-item.app-plan-access 整存整取
+        .app-section-item.app-plan-lend 循环出借
+        .app-section-item.app-plan-earnings 收益更可观
+
+  .app-loan
+    .section.app-section
+      .app-section-body
+        .app-section-title 散标债权
+          span — —百元起投、月月收钱
+        .app-section-item.app-loan-lend 真实借款
+        .app-section-item.app-loan-invest 出借灵活
+        .app-section-item.app-loan-earnings 月享收益
+      img(src='/img/app-loan-0525.png').app-section-avatar
+
+  .app-otherdownload
+    .section.app-section
+      img(src='/img/app-download-qr.png')
+      .app-otherdownload-btn
+        a.app-ios(href=iphoneDownloadUrl, target='_blank')
+          i.fa.fa-apple
+          p.app-btn-text
+            span Download on the
+            span.app-btn-largetext App Store
+        a.app-android(href=androidDownloadUrl)
+          i.fa.fa-android
+          p.app-btn-text
+            span Download on the
+            span.app-btn-largetext Android
+
+block footer
+  .app-footer
+    .section
+      include ./mod/footer.copyright.pug

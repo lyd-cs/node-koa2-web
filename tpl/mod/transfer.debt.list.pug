@@ -1,0 +1,20 @@
+if dataList && dataList.length != 0
+  table(cellpadding='0', cellspacing='0', width='100%')
+    thead
+      tr
+        th 序号
+        th 债权人
+        th 待收本金(元)
+    tbody
+      each item, idx in dataList
+        - var _userId = _.get(userState, 'userId') - 0 || 0
+        - var _transferDetailUserId = _.get(item, 'userId') - 0 || 0
+        - var _transferDetailUserName = _.get(item, 'userName', '')
+        - var _transferDetailLoanAmount = _.get(item, 'principal') || 0
+        - var _transferDetailIsPlan = _.get(item, 'isPlan') - 0 || 0
+        tr
+          td #{dataList.length - idx}
+          td #{_userId === _transferDetailUserId ? _transferDetailUserName.toLowerCase() : UIHelper.safeUserName(_transferDetailUserName)}
+          td #{UIHelper.formatNumber(_transferDetailLoanAmount, 2)}
+else
+  include ./nothing.data.pug  

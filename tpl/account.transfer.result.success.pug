@@ -1,0 +1,14 @@
+extend base
+
+block title
+  | 转让结果 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+  
+block content
+  .section.buy-result
+    img(src='/img/buy-successed.png')
+    h2
+      span 转让申请已受理
+    a.btn.btn-basic.buy-result-btn(href='/account/loan') 返回  

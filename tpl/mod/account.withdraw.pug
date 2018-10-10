@@ -1,0 +1,64 @@
+if errors
+  .alert-danger
+    include ./error.pug
+if !isResult
+  if _step == 'nextStep'
+    form.form-horizontal.uc-form.uc-withdraw-form#J_withdraw-form(method='post')
+      .form-group
+        label.control-label 可用金额
+        .uc-mobile-form-title.uc-banlance-title #{UIHelper.formatNumber(accountAvailableBalance, 2)}元
+      .form-group
+        label.control-label 银行卡
+        .uc-bind-card
+          .uc-bind-card-logo.bank-icon(class='bank-icon-' + _bankCode)
+          .uc-bind-card-txt #{UIHelper.safeBank(_userBankCardId)}
+          //- .uc-bind-card-quota #{UIHelper.limitShow(_bankItem, true)}
+          .bank-largelogo(class='bank-largelogo-' + _bankCode)
+          .uc-bind-card-time 预计到账时间1-2个工作日
+      .form-group
+        label.control-label 提现金额
+        .control-content.uc-withdraw-cash
+          input#J_withdraw-amount.form-control.charge-amount(class= pageErrors.amount ? 'form-errors' : '', type='text', name='amount', maxlength='11', autocomplete='off', placeholder='提现金额最少1元', value=_query.amt)
+          span 元
+      .form-group.form-group-button
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='step', value='nextStep')
+          button.btn.btn-basic.charge-btn#J_withdraw-btn(type='submit') 下一步
+  else if _step == 'confirm'
+    form.form-horizontal.uc-form.uc-withdraw-form#J_withdraw-form(method='post')
+      .form-group
+        label.control-label 提现金额
+        .uc-mobile-form-title.uc-banlance-title #{UIHelper.formatNumber(amount, 2)}元
+      .form-group
+        label.control-label 手机号
+        .uc-mobile-form-title #{UIHelper.safeMobile(_mobile)}
+      .form-group
+        label.control-label 短信验证码
+        .control-content
+          input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='smscode',  placeholder='请输入您获取到的短信验证码', value=_query.smscode, data-mobile=_mobile, data-amount=amount, maxLength='6')
+          button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+        .help-inline
+      .form-group.form-group-button    
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='bankno', value=_bankCode)
+          input(type='hidden', name='cardid', value=_userBankCardId)
+          input(type='hidden', name='step', value='confirm')
+          input(type='hidden', name='amount', value=amount)
+          button.btn.btn-basic.charge-btn#J_withdraw-btn(type='submit') 确认提现
+else
+  .uc-withdraw-result
+    if isSuccess
+      h4.uc-withdraw-success
+        i.fa.fa-check-circle
+        | 提现申请已受理
+      .uc-withdraw-tips 成功申请提现
+        span #{amount}元 
+        | ,预计#{UIHelper.formatdate('YYYY-MM-DD', accountWithDrawTime)}到账。
+      a(href='/account').btn.btn-basic.withdraw-success 查看账户
+    else
+      h4.uc-withdraw-error
+        i.fa.fa-exclamation-circle
+        | 提现失败
+      a(href='/account').btn.btn-basic.withdraw-success 查看账户      

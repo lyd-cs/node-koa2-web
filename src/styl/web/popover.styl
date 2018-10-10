@@ -1,0 +1,29 @@
+.popover
+  $pop-border-color = #73A3FF
+  $pop-gray-color = #666
+  $pop-arrow-color = #3277f9
+  $pop-border = #F8F8FB
+  border: 1px solid $pop-border
+  border-radius: 4px
+  color: $pop-gray-color
+  word-wrap: break-word
+  background: $pop-border
+  .popover-content
+    padding: 3px 8px
+    p
+      padding: 0
+  .popover-borrow
+    margin-bottom: 10px    
+  &.right > .arrow    
+    border-right-color: $pop-border
+    left: -12px
+    border-width: 6px
+    margin-top: -7px;
+    &:after
+      border-right-color: $pop-border
+  &.top > .arrow
+    border-top-color: $pop-border
+    border-width: 6px
+    margin-left: -6px
+    &:after
+      border-top-color: $pop-border

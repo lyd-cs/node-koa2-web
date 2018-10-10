@@ -1,0 +1,127 @@
+.uc-mobile-header
+  .item(class= step === 'cash' || step  === 'withdraw' || step === 'result' ? 'active' : '')
+    i.fa.fa-circle-o
+    | 申请提现
+  .item(class= step  === 'withdraw' || step === 'result' ? 'active' : '')
+    i.fa.fa-circle-o
+    | 确认信息
+  .item(class= step === 'result' ? 'active' : '')
+    i.fa.fa-circle-o
+    | 申请成功    
+.uc-mobile-body
+  if errors
+    .alert-danger
+      include ./error.pug
+  if step === 'cash'
+    form#J_withdraw-form.form-horizontal.uc-form(method='post')
+      .form-group
+        label.control-label 可用余额
+        .uc-mobile-form-title #{UIHelper.formatNumber(accountAvailableBalance, 2)}元
+      .form-group
+        label.control-label 提现金额
+        .control-content
+          input#J_amount.form-control(class= pageErrors.amount ? 'form-errors' : '', autocomplete='off', type='text', name='amount', placeholder='提现金额不得小于1元', value=_query.amount, onkeyup="if(isNaN(value))execCommand('undo')", onafterpaste="if(isNaN(value))execCommand('undo')")        
+        .help-inline.error-msg.uc-withdraw-error-msg
+          if pageErrors.amount
+            .fa.fa-times-circle
+            span.error #{pageErrors.amount}
+      .form-group
+        label.control-label 提现手续费
+        .uc-mobile-form-title 免手续费
+      .form-group
+        label.control-label 预计到账时间
+        .uc-mobile-form-title #{UIHelper.formatdate('YYYY-MM-DD', accountWithdrawTime)}(T+2工作日)
+      .form-group.form-group-button
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='step', value='cash')
+          button#J_withdraw-btn.btn.btn-basic.btn-secure-submit(type='submit') 下一步
+  else if step === 'withdraw'
+    if _userHasBindCard
+      form#J_withdraw-form.form-horizontal.uc-form(method='post')
+        .form-group
+          label.control-label 提现金额
+          .uc-mobile-form-title #{amount}元
+        .form-group
+          label.control-label 所属银行
+          .uc-mobile-form-title 
+            span.bank-logo-img(class='bank-logo-' + _bankCode)
+            | #{_bankType}(尾号#{_userBankCardId.slice(-4)})
+        .form-group
+          label.control-label 交易密码
+          .control-content
+            input#J_pay-password.form-control(class= pageErrors.paypassword ? 'form-errors' : '', type='password', autocomplete='off', name='paypassword')
+          if pageErrors.paypassword
+            .help-inline.error-msg
+              .fa.fa-times-circle
+              span.error #{pageErrors.paypassword}    
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='step', value='withdraw')
+            input(type='hidden', name='amount', value=amount)
+            input(type='hidden', name='bank', value=_userBankCardId)
+            button.btn.btn-basic.btn-secure-submit(type='submit') 提现
+    else
+      form#J_withdraw-form.form-horizontal.uc-form(method='post')
+        .form-group
+          label.control-label 提现金额
+          .uc-mobile-form-title #{amount}元
+        .form-group
+          label.control-label 银行卡号
+          .control-content
+            input#J_bankid.form-control(type='text', minlength='7', maxlength='27', name='bank', autocomplete='off', placeholder='请输入银行卡号', value=_query.accntno ? _query.accntno : _userBankCardId, ime-mode='disabled',onkeydown="if(event.keyCode==13)event.keyCode=9",onKeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false")  
+        .form-group
+          label.control-label 所属银行
+          .control-content.control-select
+            select#J_bankno.form-control(name='bankno')
+              each bank,idx in banklist
+                option(value=bank.id, selected = (_query.bankno || _bankCode) ===bank.id ? true : false)= bank.name
+            .help-inline
+        //-
+          .form-group
+            label.control-label 开户地
+            .control-content.control-select
+              select#J_city.form-control(name='city')
+                each item,idx in citylist
+                  option(value=item.id)= item.name
+              .help-inline
+        //-
+          .form-group
+            label.control-label 开户行
+            .control-content
+              select#J_bankname.form-control(name='bankname')
+              .help-inline
+        .form-group
+          label.control-label 持卡人
+          .uc-mobile-form-title #{_realName}
+        .form-group
+          label.control-label 交易密码
+          .control-content
+            input#J_pay-password.form-control(type='password', autocomplete='off', name='paypassword')
+          if pageErrors.paypassword
+            .help-inline.error-msg
+              .fa.fa-times-circle
+              span.error #{pageErrors.paypassword}  
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='step', value='withdraw')
+            input(type='hidden', name='city', value='1000')  
+            input(type='hidden', name='amount', value=amount)
+            button.btn.btn-basic.btn-secure-submit(type='submit') 提现
+  else if step === 'result'
+    .uc-withdraw-result
+      if isResult
+        h4.uc-withdraw-success
+          i.fa.fa-check-circle
+          | 提现申请已受理
+        .uc-withdraw-tips 成功申请提现
+          span #{amount}元
+          | ,预计#{UIHelper.formatdate('YYYY-MM-DD', accountWithdrawTime)}到账~
+        a(href='/account').btn.btn-basic.withdraw-success 查看账户
+      else
+        h4.uc-withdraw-error
+          i.fa.fa-exclamation-circle
+          | 提现失败
+        a(href='/account').btn.btn-basic.withdraw-success 查看账户

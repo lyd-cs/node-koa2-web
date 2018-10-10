@@ -1,0 +1,349 @@
+.home
+  $base-blue-color-bg = #546ba9
+  $font-color = #aab5d1
+  $loan-border-color = #eaeaea
+  $plan-border-color = #f0f0f0
+  $plan-rate-color = #f69907
+  $plan-view-link-bg = #477dc5
+  $announce-border-color = #f3f3f3
+  $home-user-earn-color = #ff7800
+  $guide-rate-color = #F65050
+  $loan-state-bg-color = #FF9C00
+  $plan-active-color = #F4585B
+  $loan-list-color = #F9F9F9
+  $_firstHeight = 300px
+  $guide-year-size = 36px
+  $_novice-rate-color = #F55151
+  $grey-color-lighter = #999999
+  &-first
+    $_pd = 70px
+    position: relative
+    min-width: $container-width
+    width: 100%
+    height: $_firstHeight
+    &-slider
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      width: 100%
+      min-width: $container-width
+      height: $_firstHeight
+      overflow: hidden
+    .slider
+      &-content
+        position: absolute
+        width: 100%
+        height: $_firstHeight
+        .carousel-indicators
+          bottom: 0
+        li
+          margin: 1px 4px
+          width 8px
+          height 8px
+        .active
+          width 8px
+          height 8px
+        .item
+          width: 100%
+          height: $_firstHeight
+          background: center top no-repeat
+          a
+            display: block
+            width: 100%
+            height: 100%
+      &-item
+        width: 100%
+        display: inline-block
+        vertical-align: top
+        a
+          display: block
+          height: $_firstHeight
+  &-product
+    margin-bottom: 40px
+    position: relative
+    margin-top: 40px
+    &-header
+      padding: 20px 0
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px
+      clearfix()
+      h4
+        padding-left: 10px
+        border-left: 3px solid $guide-rate-color
+        float: left
+        margin: 0
+        font-size: $font-size-h3
+      a
+        color: $loan-state-bg-color
+        float: right
+      span
+        color: $gray-txt-black
+        display: inline-block
+        vertical-align: middle
+        margin-left: 20px
+        font-size: $font-size-base
+    &-body
+      background: $white-color
+      padding: 20px
+      .col-title
+        padding-left: 20px
+        width: 20%
+        text-align: left
+        span
+          display: inline-block
+          text-align: center
+          width: 70px
+          height: 30px
+      .col-bidding-state
+        text-align: center
+        width: 17.5%
+        span
+          display: inline-block
+          text-align: center
+          width: 70px
+          height: 30px
+      .col-bidding-amount
+        width: 15%
+      .col-progress
+        width: 19%
+      .col-tender
+        text-align: center
+        padding-left: 60px
+      th
+        font-weight: normal
+        text-align: center
+        color: $gray-txt-black
+        line-height: 40px
+      td
+        text-align: center
+        line-height: 60px
+        border-top: 1px solid $loan-border-color
+      .item
+        &-spac
+          td
+            background: $white-color
+        &-rate
+          color: $base-red-color
+        &-progress
+          width: 140px
+        &-loan-list
+          height: 60px
+          &:hover
+            td
+              background-color: $loan-list-color
+          &:hover .bidding-status
+            color: $white-color
+            background-color: $guide-rate-color
+      a:hover
+        color: $gray-txt-light
+      .progress
+        width: 80px
+        height: 4px
+        margin: 29px 2px 10px 79px;
+        float: left
+        &-bar
+          background: $guide-rate-color
+      .percent
+        width: 35px
+      .bidding-status
+        width: 60px
+        height: 30px
+        line-height: 30px
+        text-align: center
+        display: inline-block
+        border-radius: 3px
+        color: $guide-rate-color
+        &:hover
+          color: $white-color
+          background-color: $loan-state-bg-color
+      &-header
+        clearfix()
+        h4
+          float: left
+          padding: 16px 15px 8px
+          font-size: $font-size-h3
+          color: $grey-color
+        .home-plan-recommend-title
+          background: url('/img/plan-recommend-title-bg.png') no-repeat 0 0
+        .home-plan-month-recommend-title
+          background: url('/img/plan-month-recommend-title-bg.png') no-repeat 0 0
+        a
+          float: right
+          margin-top: 30px
+          color: $loan-state-bg-color
+          &:hover
+            color: $loan-state-bg-color
+  &-loan-body
+    padding: 20px 0
+  &-plan-recommend
+  &-month-recommend
+    padding: 10px 0
+    background: transparent
+    clearfix()
+  &-summary
+    min-width: $container-width
+    background: $white-color
+    padding: 30px 0
+    clearfix()
+    dl
+      width: 25%
+      float: left
+      margin: 0
+      text-align: center
+    .home-summary-last
+      margin-right: 0
+    dt
+      font-size: $font-size-h4
+      font-weight: normal
+      margin: 10px 0
+      position: relative
+    dd
+      font-size: $font-size-h6
+      color: $gray-txt-black
+  &-announce
+    padding: 12px 0
+    background: $white-color
+    min-width: 1100px
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+    clearfix()
+    &-title
+      float: left
+      padding-left: 15px
+      position: relative
+      &:before
+        content: ''
+        width: 15px
+        height: 15px
+        position: absolute
+        top: 2px
+        left: 0
+        background: url('/img/message-bell.png') center center no-repeat
+      a
+        margin: 0 10px
+      span
+        color: $gray-txt-black
+    &-more
+      float: right
+      color: $loan-state-bg-color
+      &:hover
+        color: $loan-state-bg-color
+    &-header
+      overflow: hidden
+    &-body
+      margin-top: 30px
+    &-hide
+      display: none
+  &-guide
+    width: 250px
+    min-height: 300px
+    position: absolute
+    // z-index: 20
+    top: 0
+    left: 50%
+    padding: 0 30px
+    margin-left: ($container-width / 2 - @width)
+    background: #ededed
+    background-color: rgba(255,255,255, .8)
+    border: 1px solid rgba(255,255,255, .8)
+    text-align: center
+    &-header
+      color: $gray-txt-light
+      margin: 0 8px 10px
+      font-size: $font-size-h6
+    &-year-rate
+      color: $guide-rate-color
+      font-size: $guide-year-size
+      line-height: 48px
+    &-body
+      font-size: 16px
+      margin-top: 60px
+      p
+        margin: 0
+      .no-account
+        a
+          color: $loan-state-bg-color
+    .btn-guide
+      display: block
+      margin: 40px 0 1em
+      height: 40px
+      line-height: 40px
+      color: $white-color
+      border-radius($border-radius-base)
+      font-size: $font-size-base
+    .btn-orange
+      background-color: $guide-rate-color
+    .btn-teal
+      background-color: $blue-active-color
+    h4
+      color: $guide-rate-color
+      font-size: $font-size-giant
+      margin-top: 10px
+    p
+      margin-top: 20px
+      color: $gray-txt-black
+      font-size: $font-size-base
+  &-novice
+    margin-top: 40px
+    .section
+      clearfix()
+    &-special
+      float: left
+      width: 280px
+      height: 200px
+    &-detail
+      float: left
+      width: 820px
+      height: 200px
+      padding: 30px 20px 0 0
+      text-align: center
+      background: url('/img/home-novice-right-bg.png') center center no-repeat
+      clearfix()
+      img
+        margin: 0 auto 30px
+      dl
+        float: left
+        position: relative
+        width: 24%
+        text-align: center
+        dt
+          font-size: $font-size-h1
+          color: $grey-color-dark
+          font-weight: normal
+        dd
+          color: $grey-color-lighter
+        &:after
+          content: ''
+          width: 1px
+          height: 51px
+          border-right: 1px solid rgba(245, 81, 81, 0.2)
+          position: absolute
+          top: 19px
+          right: 0
+      .item-last
+        width: 22%
+        &:after
+          border: 0
+      .item-first
+        width: 26%
+      .item-mid
+        width: 22%
+      a
+        display: inline-block
+        width: 200px
+        height: 44px
+        line-height: 44px
+        text-align: center
+        border-radius: 4px
+        background-color: $_novice-rate-color
+        color: $white-color
+        font-size: $font-size-large
+        margin-top: 20px
+      &-content
+        .item-base-rate
+          font-size: $font-size-h1
+          color: $_novice-rate-color
+          letter-spacing: 0
+        .item-subsidy-rate
+          font-size: $font-size-large
+          color: $_novice-rate-color

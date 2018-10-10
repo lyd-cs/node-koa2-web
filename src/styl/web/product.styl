@@ -1,0 +1,785 @@
+.product
+  $light-gray = #f6faff
+  $buy-gray-text = #bcbec0
+  $agreement-link-color = #73A3FF
+  $-buy-botton-color = #F55151
+  $-item-propertys-color = #FF933C 
+  $-btn-other-color =  #73ADFF
+  $grey-color = #666666
+  $buy-confirm-border = #ebebeb
+  $buy-confirm-exit-bg = #fff5eb
+  $buy-confirm-exit-color = #FFA338
+  &-detail-header
+    margin: 20px auto
+    height: 330px
+    position: relative
+    clearfix()
+    .item
+      &-header
+        width: 690px
+        height: 330px
+        padding: 30px 50px
+        float: left
+        background: $white-color
+        border-radius(2px)
+        .item-title
+          padding: 10px 0 26px 6px
+          clearfix()
+        .wait-transfer
+          margin:-30px 0 0
+        .item-line
+          height: 1px
+          position: absolute
+          width: 95.45%
+          background: url('/img/plandetail-line-bidding.png')
+        .item-purchaseing
+          background: url('/img/plandetail-line-purchaseing.png')
+        .item-opening
+          background: url('/img/plandetail-line-opening.png')
+        .item-done
+          background: $border-color-light
+        .item-outing
+          background: url('/img/plandetail-line-outing.png')
+      &-body
+        top: 91px
+        right: 0
+        width: 200px
+        height: 240px
+        position: absolute
+      &-bidding-status
+        width: 160px
+        height: 160px
+      &-title
+        h3
+          font-size: $font-size-slightly
+          float: left
+          margin: 0
+          a
+            font-size: $font-size-base
+            margin-top: 8px
+            margin-left: 8px
+        a
+          float: right
+          color: $agreement-link-color
+      &-intro
+        margin-top: 30px
+        margin-bottom: 20px
+        clearfix()
+        dl
+          float: left
+          text-align: left
+          width: 39%
+        .item-intro-first
+          text-align: left
+        .item-intro-last
+          width: 22%
+          .small
+            font-size: $font-size-huge
+        .item-rate
+          color: $buy-botton-color   
+        .item-base-rate
+        .item-subsidy
+          font-size: $font-size-h1  
+        .item-exrate
+          font-size: $font-size-huge
+        dt
+          font-size: $font-size-base
+          color: $gray-txt-black
+          font-weight: normal
+          line-height: 1
+        dd
+          font-size: $font-size-h1
+          &.recive-money
+            color: $-buy-botton-color
+          span
+            font-size: $font-size-h4
+      &-account-intro
+        dl
+          width: 25%
+      &-propertys
+        clearfix()
+        dl
+          float: left
+          text-align: center
+          padding: 0 14px
+          height: 24px
+          border-radius: 100px
+          border:1px solid $-item-propertys-color
+          margin-right: 17px
+          letter-spacing: 0
+          font-size: $font-size-h6
+        dt
+          color: $-item-propertys-color
+          line-height: 23px
+          font-weight: normal
+        dd
+          float: left
+        progress($-item-propertys-color, 60px, 4px)
+        .progress
+          margin: 8px 0 3px
+          display: inline-block
+      &-product-progress
+        margin-left: 10px
+    .btn-buy-submit
+      width: 100%
+      height: 48px
+      line-height: 48px
+      a
+        color: $white-color
+    .btn-grey
+      background: #DEDEDE
+      color: $white-color
+  &-detail-buy
+    width: 400px
+    height: 330px
+    margin-left: 700px
+    padding: 40px 50px
+    background: $white-color
+    border-radius(2px)
+    dl
+      width: 100%
+      float: left
+      a
+        color: $-btn-other-color
+    dt
+      height: 35px
+      width: 40%
+      color: $buy-gray-text
+      font-size: $font-size-h5
+      font-weight: normal
+      line-height: 16px
+      float: left
+    dd
+      width: 60%
+      font-size: $font-size-huge
+      line-height: 18px
+      float: left
+    .item-recharge
+      float: right
+      color: $-btn-other-color
+      font-size: $font-size-h5
+      float: right
+      cursor: pointer  
+    .item-login
+      font-size: $font-size-h5
+    &-bg
+      width: 400px
+      height: 330px
+      background: $white-color
+      padding: 20px
+      margin-left: 702px
+      .item-done 
+        text-align: center
+        font-size: $font-size-h4 
+        opacity: .99
+        margin: 5px 0 5px
+      .item-time
+        text-align: center
+        margin-top: -10px
+        opacity: .7
+      .btn-other
+        width: 100%
+        height: 40px
+        background: $white-color
+        color: $-btn-other-color
+        line-height: 28px
+        font-size: $font-size-middle
+        margin-top: 5px
+      .done-space
+        padding-top: 17px
+    &-status
+      width: 360px
+      height: 290px
+      padding: 30px
+      color: $white-color
+      position: relative
+      &:before
+        content: ''
+        width: 145px
+        height: 145px
+        background: url('/img/circle-shift.png') no-repeat
+        display: inline-block
+        margin-left: 77px
+      h3
+        text-align: center
+        padding: 10px 0
+        margin: -97px 0 67px 0
+      .full-scale
+        margin-top: -105px
+      .text-sentence
+        text-align: center  
+        font-size: $font-size-h6
+        margin: 10px 0 -17px 0
+        opacity: .7
+      dl
+        float: left
+        text-align: center
+      dt
+        width: 148px
+        text-align: right
+        font-size: $font-size-large
+        font-weight: normal
+        opacity: .7
+        display: inline-block
+        padding-right: 15px 
+      dd
+        width: 148px
+        text-align: left
+        font-size: $font-size-large
+        display: inline-block
+        padding-left: 15px
+      .intro-item-fullWidth
+        width: 100%
+        margin-top: 18px
+      .intro-item-halfWidth
+        width: 100%
+      .intro-item-halfWidth-noBorder
+        width: 100%
+    .coupon-icon
+      display: inline-block
+      width: 25px
+      height: 15px
+      background: url('/img/product-detail-coupon.png') no-repeat
+      margin-right: 10px
+      vertical-align: -2px
+    .coupon-amount
+      color: $-buy-botton-color
+  &-buy-form
+    $forbid-btn-bg-color = #d8d8d8
+    $item-title-color = #002121
+    $vertical-line-color = #DFDFDF
+    padding-top: 70px
+    .item-title
+      color: $item-title-color
+      font-size: $font-size-h5
+      position: absolute
+      margin-top: 35px
+      width: 300px
+      .income
+        color: $buy-botton-color
+    .form-group
+      margin-bottom: 4px
+    .form-ipt-box
+      height: 135px
+      .product-invest-input
+        height: 44px
+        width: 100%
+        line-height: 44px
+        padding: 0 12px
+      .product-invest-plan
+        position: relative
+        top: 20px
+      .product-invest-buy
+        position: absolute
+        top: 162px
+        right: 63px
+        cursor: pointer
+        display: inline-block
+        color: $agreement-link-color
+      .in-money
+        float: right 
+        margin: -32px 10px 0 0 
+      .money-plan
+        margin-top: -22px
+        position: relative
+        z-index: 1
+        top: 10px
+      .money-trans
+        margin-right: 94px
+      .vertical-line
+        margin: -37px 79px 0 0
+        font-size: $font-size-huge
+        color: $vertical-line-color
+    .btn-buy-submit
+      width: 100%
+      height: 44px
+      line-height: 44px
+      background-color: $buy-botton-color
+    .btn-buy-forbid
+      width: 100%
+      height: 48px
+      line-height: 30px
+  &-buy-validate
+    color: $up-color
+    margin-top: 32px
+  &-buy-confirm
+    $buy-blue-linghter= #f6f9ff
+    $buy-confirm-line = #e9ecf2
+    $buy-confirm-small-bg = #D7ABAB
+    $buy-confirm-border = #FEF0F0
+    $coupon-default-bg = #FEEDED
+    $buy-confirm-info-border = #FDD8D8
+    _bgp()
+      background-position: arguments
+    $code = '0160' '0150' '0210' '0220' '5006' '5002' '0201' '5007' '5004' '5003' '5012' '5000' '5001' '5008' '5010' '5009' '5005' '0170' '5011' '5013' '1114' '0250' '5186'
+    background: $white-color
+    margin: 20px auto 40px
+    padding: 40px
+    position: relative
+    h3
+      text-align: left
+      border-left: 3px solid $-buy-botton-color
+      padding-left: 10px
+      position: relative
+      margin: 0 0 40px 0 
+      font-size: $font-size-h4
+    &-case
+      &:before
+        content: ''
+        display: inline-block
+        position: absolute
+        top: 86px
+        left: 70px
+        width: 960px
+        height: 20px
+        background: url('/img/affirm-bg.png') no-repeat
+        background-size: 100% 100%
+    &-box
+      width: 900px
+      margin: 0 auto
+      padding: 30px
+      background: $white-color
+      border: 1px solid $buy-confirm-border
+      box-shadow:  0 2px 8px 1px $buy-confirm-border
+      position: relative
+      overflow: hidden
+      margin-bottom: 80px
+    &-box-plan
+      width: 900px
+      margin: 0 auto
+      padding: 0px
+      background: $white-color
+      border: none
+      box-shadow:  none
+      position: relative
+      overflow: visible
+      margin-bottom: 80px
+    .product-info-confirm
+      width: 914px
+      margin-left: -7px
+      background: url('/img/bill-bg.png')
+      padding: 30px
+    .product-detail
+      overflow: hidden
+      border-bottom: 2px dashed $border-color-light
+    .product-coupon-content
+      padding: 0 30px 30px 30px
+      clearfix()
+      border: 1px solid $buy-confirm-info-border
+      border-top: none
+      box-shadow: 0px 0px 0px $buy-confirm-border, 2px 2px 3px $buy-confirm-border, 2px 2px 3px $buy-confirm-border, -2px 2px 3px $buy-confirm-border
+    .coupon
+      &-title
+        font-size: $font-size-h4
+        margin: 5px auto 20px 0
+      &-icon
+        vertical-align: middle
+        display: inline-block
+        margin-left: 10px
+        width: 25px
+        height: 18px
+        background: url('/img/buy-confirm-coupon-icon.png') no-repeat
+      &-exchange
+        float: right
+        font-size: $font-size-base
+        line-height: 25px
+        color: $agreement-link-color
+        cursor: pointer
+      &-list
+        clearfix()
+        padding-bottom: 16px
+        border-bottom: dashed 2px $border-color-light
+        .coupon-active
+          background: $coupon-default-bg
+      &-best
+        line-height: 50px
+        padding: 0 10px
+        clearfix()
+        background: $coupon-default-bg
+        border: none
+      &-more
+        text-align: right
+        color: $agreement-link-color
+        font-size: $font-size-base
+        margin: 15px auto 17px
+        &-btn
+          clearfix()
+        .more
+          cursor: pointer
+          float: right
+        i
+          margin-left: 5px
+        &-item
+          clearfix()
+      &-item
+        line-height: 50px
+        cursor: pointer
+        padding: 0 10px
+        border-top: solid 1px $border-color
+      &-default-display
+        line-height: 50px
+        padding: 0 10px
+        clearfix()
+        background: $coupon-default-bg
+        border-top: none
+      &-not-use
+        border-top: none
+      &-amount
+        float: right
+        color: $buy-botton-color
+        &-unit
+          color: $grey-color-dark
+          margin-left: 5px
+      &-unavailable
+        float: right
+      &-disabled
+        color: $gray-txt-black
+    .hide
+      display: none
+    .exit-way
+      background: $buy-confirm-exit-bg
+      color: $buy-confirm-exit-color
+      height: 30px
+      line-height: 30px
+      clear: both
+      padding-left: 10px
+      margin-bottom: 24px
+    h4
+      text-align: center
+      margin-bottom: 50px
+    .item-list
+      float: left
+      width: 20%
+      text-align: center
+      position: relative
+      padding-bottom: 30px
+      &:after
+        content: ''
+        position: absolute
+        right: 0
+        top: 50%
+        margin-top: -45px
+        height: 40px
+        width: 1px
+        background: $border-color-light
+      &.item-loan
+        width: 25%
+      &.item-transfer
+        width: 25%
+    .item-list-last
+      &:after
+        display: none    
+    .item-title
+      color: $gray-txt-black
+      font-size: $font-size-middle
+      margin-bottom: 20px
+    .item-content
+      font-size: $font-size-middle
+      color: $grey-color-dark
+    .pay-amount 
+      color: $gray-txt-black
+      font-size: $font-size-middle
+      margin-top: 30px
+      float: right
+      span
+        font-size: $font-size-huge
+        color:  $-buy-botton-color
+        margin-left: 20px  
+    .principal
+      color: $gray-txt-black
+    .invite-banner
+      position: relative
+      left: -40px
+      bottom: -25px
+    &-trade
+      margin-top: 40px
+      .trade-text 
+        display: inline-block
+        trxt-align: right
+        margin-left: 280px
+      .trade-password
+        width: 300px
+        height: 40px
+        line-height: 40px
+        padding: 0 15px
+        margin-left: 20px
+        border-radius(4px)
+        display: inline-block
+      .trade-error
+        display: inline-block
+      .trade-forgot
+        padding-top: 10px
+        width: 300px
+        margin-left: 360px
+        float: left
+        color: $-buy-botton-color
+        a
+          float: right
+          color: $-btn-other-color
+      ul
+        padding: 0
+        display: inline-block
+        list-style: none
+    &-check
+      margin: 10px 0 30px 100px
+      input[type='checkbox']
+        width: 12px
+        height: 12px
+        margin: -1px 6px 0 0
+        vertical-align: middle
+      label
+        font-weight: normal
+    &-link
+      color: $-btn-other-color
+      font-weight: normal
+      &:hover
+      &:focus
+        color: $-btn-other-color
+        outline: none
+    .buy-confirm-wrapper
+      width: 900px
+      margin: 0 auto
+    .btn-buy-confirm
+      width: 300px
+      height: 40px
+      line-height: 40px
+      border-radius(4px)
+      margin: 10px 0 15px  100px
+      display: block
+    .loading-status
+      color: transparent
+      background: $-buy-botton-color center center no-repeat
+      background-image: url('/img/create-account-btn-loading.gif')
+    .icon-balance
+      background: url('/img/buy-balance.png') center center no-repeat
+    .pay-money 
+      color: $-buy-botton-color
+      font-size: $font-size-middle
+    .bank-logo
+      // background-size: 30px auto
+      background: url('/img/bank_logo_small.png') no-repeat -2px 0
+    for code, index in $code
+      .buy-bank-logo-{code}
+        _bgp(-2px, (-46*index)px)
+    .item-buy
+      &-form
+        border-bottom: 1px solid $buy-confirm-border
+        padding: 16px 0
+      &-way
+        display: inline-block
+        font-size: $font-size-middle
+        margin-right: 70px 
+        line-height: 30px;
+      &-icon
+        height: 30px
+        width: 30px 
+        display: inline-block 
+        vertical-align: bottom
+        margin-right: 20px
+      &-amount
+        display: inline-block
+        font-size: $font-size-middle
+        color: $grey-color
+      &-info
+        display: inline-block
+        float: right
+        color: $grey-color
+    .form-group
+      margin-top: 40px
+      margin-bottom: 0
+      position: relative
+    .form-label 
+      font-size: $font-size-middle
+      display: inline-block
+      font-weight: normal
+      width: 100px
+    .form-control
+      display: inline-block
+      width: 153px
+      height: 40px
+      margin-right: 20px
+      &.password
+        width: 214px
+    .btn-sms
+      height: 40px
+      width: 120px 
+      color: $white-color
+      line-height: 40px
+      text-align: center
+      border: none
+      border-radius: 4px
+      background: $-item-propertys-color
+      &:disabled
+        background: $buy-gray-text
+    .phone-number
+      display: none
+      position: absolute
+      left: 105px
+      height: 16px
+      line-height: 1
+      color: $gray-txt-black
+      margin-top: 4px
+      margin-bottom: 3px
+    .voice-verifycode
+      left: 110px
+      position: absolute
+      bottom: -19px
+    .havenocard 
+      color: $-buy-botton-color
+      text-align: left
+      margin-bottom: 20px
+      font-size: $font-size-middle
+    .bind-card
+      height: 150px
+      width: 300px
+      border-radius: 8px
+      margin-bottom: 30px
+      box-shadow: 0 0 3px $grey-color
+      background: url('/img/bind-bank-card.png') center center no-repeat
+    .single-bind-card
+      font-size: $font-size-h4 
+      padding-top: 80px
+      text-align: center
+      color: $grey-color
+      display: block
+      height: 100%
+      width: 100%
+      background: url('/img/buy-add-card.png') center no-repeat
+      background-position-y: 30px
+    .error-info
+      color: $-buy-botton-color
+      margin-left: 105px
+      height: 16px
+      margin-top: 20px
+    .error-msg
+      left: 100px;
+      top: 62px;
+    .params-err
+      margin-right: 20px  
+    .forgget-password
+      color: $agreement-link-color 
+  &-settle-status
+    background: url('/img/status-settle.png') no-repeat
+  &-doing-status
+    background: url('/img/status-incoming.png') no-repeat
+  &-biddingdone-status
+    background: url('/img/status-fulled.png') no-repeat
+  &-failed-status
+    background: url('/img/status-flowed.png') no-repeat
+    &:before
+      margin: 37px 0 0 77px
+  &-credit-status
+    background: url('/img/status-credit.png') no-repeat
+    &:before
+      margin: 37px 0 0 77px
+  &-wait-invest-status
+    background: url('/img/status-wait-invest.png') no-repeat
+    &:before
+      margin: 37px 0 0 77px
+  &-done-status
+    background: url('/img/status-flowed.png') no-repeat
+  &-exiting-status
+    background: url('/img/status-flowing.png') no-repeat
+  &-account-buy-confirm
+    $buy-blue-linghter= #f6f9ff
+    $buy-confirm-line = #e9ecf2
+    $buy-confirm-small-bg = #D7ABAB
+    $buy-confirm-border = #FEF0F0
+    background: $white-color
+    margin: 20px auto 40px
+    padding: 40px
+    position: relative
+    h3
+      text-align: left
+      border-left: 3px solid $-buy-botton-color
+      padding-left: 10px
+      position: relative
+      margin: 0 0 70px 0 
+      font-size: $font-size-h4
+    &-case
+      &:before
+        content: ''
+        display: inline-block
+        position: absolute
+        top: 116px
+        left: 228px
+        width: 644px
+        height: 20px
+        background: url('/img/affirm-bg.png') no-repeat
+    &-box
+      width: 600px
+      margin: 0 auto
+      padding: 30px
+      background: $white-color
+      border: 1px solid $buy-confirm-border
+      box-shadow:  0 2px 8px 1px $buy-confirm-border
+      position: relative
+      .item-list
+        clearfix()
+      .item-title
+        width: 212px
+        color: $gray-txt-black
+        font-size: $font-size-middle
+        float: left
+        text-align: right
+        line-height: 52px
+      .item-content
+        margin-left: 212px
+        padding-left: 50px
+        line-height: 52px
+        font-size: $font-size-middle
+        color: $grey-color-dark
+      .principal
+        color: $gray-txt-black
+    &-trade
+      margin-top: 40px
+      .trade-text 
+        display: inline-block
+        trxt-align: right
+        margin-left: 280px
+      .trade-password
+        width: 300px
+        height: 40px
+        line-height: 40px
+        padding: 0 15px
+        margin-left: 20px
+        border-radius(4px)
+        display: inline-block
+      .trade-error
+        display: inline-block
+      .trade-forgot
+        padding-top: 10px
+        width: 300px
+        margin-left: 360px
+        float: left
+        color: $-buy-botton-color
+        a
+          float: right
+          color: $-btn-other-color
+      ul
+        padding: 0
+        display: inline-block
+        list-style: none
+    &-check
+      margin: 10px auto 0
+      text-align: center
+      input[type='checkbox']
+        width: 12px
+        height: 12px
+        margin: -1px 6px 0 0
+        vertical-align: middle
+      label
+        font-weight: normal
+    &-link
+      color: $-btn-other-color
+      font-weight: normal
+    .buy-confirm-wrapper
+      width: 560px
+      margin: 0 auto
+      .btn-buy-confirm
+        width: 300px
+        height: 40px
+        line-height: 40px
+        border-radius(4px)
+        margin: 60px auto 0
+        display: block  

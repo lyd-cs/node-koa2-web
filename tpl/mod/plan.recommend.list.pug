@@ -1,0 +1,50 @@
+//-
+  textarea(style="width: 100%; height: 100px") #{JSON.stringify(_recommendList)}
+if !_recommendList || _recommendList.length == 0
+  include ./nothing.data.pug
+else
+  each item, idx in _recommendList
+    - var _productStatus = _.get(item, 'unifyStatus', '0')
+    - var _state = UIHelper.parsePlanStatus(_productStatus)
+    - var countDown = _state.wait_reserve
+    - var waitopen = _state.wait_open
+    //- - var waitopen = true
+    - var binding = _state.opening
+    - var bindingdone = _state.open_full
+    - var doing = _state.period_locking
+    - var done = _state.period_closed
+    - var _planBeginSellingTime = _.get(item, 'beginSellingTime') - 0
+    - var _planYieldRate = _.get(item, 'expectedRate', 0) - 0
+    - var _planBaseRate = _.get(item, 'baseInterestRate', 0) - 0
+    - var _planDuration = _.get(item, 'lockPeriod', 0) - 0
+    - var _planProductId = _.get(item, 'id', 0) - 0
+    - var _planActiveYearRate = _.get(item, 'extraInterestRate', 0) - 0
+    - var _planActiveCopywriter = _.get(item, 'tag', '')
+    - var _startTime = _.get(item, 'beginSellingTime', 0) - 0 || 0
+    - var _now = _now || Date.now()
+    .plan-recommend-item(class ={'plan-recommend-item-last': idx == 2})
+      h5
+        i.fa.fa-clock-o
+        | #{_planDuration}个月
+      //-
+        if _planActiveCopywriter
+          .plan-recommend-item-active #{_planActiveCopywriter}
+      if _planActiveYearRate
+        .plan-recommend-item-rate
+          | #{UIHelper.formatNumber(_planBaseRate, 1)}
+          span %
+            | +#{UIHelper.formatNumber(_planActiveYearRate, 1)}%
+      else
+        .plan-recommend-item-rate
+          | #{UIHelper.formatNumber(_planYieldRate, 1)}
+          span %
+      .plan-recommend-item-rate-title 平均历史年化收益
+      a(href='/plan/' + _planProductId).btn.btn-basic.btn-block
+        if waitopen 
+          | #{UIHelper.formatdate('MM月DD日 HH:mm', _planBeginSellingTime)}开售
+        else if countDown
+          include ./count-down.pug
+        else if binding
+          | 立即加入
+        else
+          | 查看详情

@@ -1,0 +1,50 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-annals#J_about-annals
+    .section.about-annals-index.active
+      img(src='/img/mobile/about-annal-index.png')
+    .section.about-annals-intro
+      img(src='/img/mobile/about-annal-intro.png')
+    .section
+      img(src='/img/mobile/about-annal-performance.png')
+    .section
+      img(src='/img/mobile/about-annal-performance1.png')
+    .section
+      img(src='/img/mobile/about-annal-lender.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-age.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-gender.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-area.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-preference.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-sum.png')
+    .section
+      img(src='/img/mobile/about-annal-lender-user.png')
+    .section
+      img(src='/img/mobile/about-annal-borrower.png')
+    .section
+      img(src='/img/mobile/about-annal-borrower-gender.png')
+    .section
+      img(src='/img/mobile/about-annal-borrower-trade.png')
+    .section
+      img(src='/img/mobile/about-annal-borrower-area.png')
+    .section
+      img(src='/img/mobile/about-annal-borrower-purpose.png')
+    .section.about-annals-last
+      img(src='/img/mobile/about-annal-last.png')
+  .about-annals-navigation
+
+
+block foot-script
+  script.
+    $('#J_about-annals').fullpage();

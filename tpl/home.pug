@@ -1,0 +1,227 @@
+extend base
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))
+
+block content
+  //- var loanDataList = [{'loanId': 100, 'title': '标的标题', 'interest': 8, 'months': 6, 'amount': 1200, 'finishedRatio': 60, 'status': 2}, {'loanId': 100, 'title': '标的标题', 'interest': 8, 'months': 6, 'amount': 1200, 'finishedRatio': 3, 'status': 2}]
+  //- var planDataList = [{'productId': 10, 'productDuration': 3, 'productRate': 7}, {'productId': 10, 'productDuration': 6, 'productRate': 7}, {'productId': 10, 'productDuration': 12, 'productRate': 7}]
+  //- var bannerList = [{'start': 1494208800000, 'color': '#111f29', 'image': '/img/home-banner.jpg', 'end': 1507428000000, 'url': '/'}, {'start': 1494208800000, 'color': '#111f29', 'image': '/img/home-banner.jpg', 'end': 1507428000000, 'url': '/'}]
+  - var _homeAnnounceTitle = _.get(homeAnnounce, 'title') || ''
+  - var _homeAnnounceTime = _.get(homeAnnounce, 'date', 0) - 0 || 0
+  - var _homeAnnounceId = _.get(homeAnnounce, 'id') || 0
+  - var _homeAnnounceContent = _.get(homeAnnounce, 'content') || ''
+  - var _userTotalEarn = _.get(userEarns, 'totalEarning') - 0 || 0
+  - var _homeGuideYearRate = homeGuideYearRate - 0 || 0
+  - var _homeSliderList = bannerList
+  - var _now = _now || Date.now()
+  - var _isNewBie = _.get(userState, 'isNewbie', 0) - 0
+  .home-first
+    if !_homeSliderList || _homeSliderList.length == 0
+      include ./mod/nothing.data.pug
+    else
+      .home-first-slider
+        .slider-content
+          .carousel.slide#J_carousel-generic(data-ride="carousel")
+            ol.carousel-indicators
+              - var _homeSliderActive = 1
+              - var _idx = 0
+              each item,idx in _homeSliderList
+                - var _start = _.get(item, 'start', 0) - 0 || 0
+                - var _end = _.get(item, 'end', 0) - 0 || 0
+                if (_start < _now) && ( !_end || _now < _end)
+                  li(class={active: _homeSliderActive}, data-target="#J_carousel-generic", data-slide-to=_idx)
+                  - _homeSliderActive = 0
+                  - _idx++
+            .carousel-inner(role="listbox")
+              - var _homeSliderActive = 1
+              each item,idx in _homeSliderList
+                - var _bannerImage = _.get(item, 'image')
+                - var _bgcolor = ''
+                - var _start = _.get(item, 'start', 0) - 0 || 0
+                - var _end = _.get(item, 'end', 0) - 0 || 0
+                if item.color
+                  - _bgcolor = 'background-color:' + item.color
+                if (_start < _now) && ( !_end || _now < _end)
+                  if _homeSliderActive
+                    .item.active(data-title=item.title,style='background-image:url('+ _bannerImage + ');'+_bgcolor+'', data-origin=_bannerImage)
+                      a(href=item.url, target='_blank', rel='nofollow')
+                  else
+                    .item(style= _bgcolor, data-origin= _bannerImage)
+                      a(href=item.url, target='_blank', rel='nofollow')
+                  - _homeSliderActive = 0
+    .home-guide
+      .home-guide-body
+        if isLogin
+          .home-user-earn
+            p.home-guide-header 累计收益(元)
+            h4 #{UIHelper.formatNumber(_userTotalEarn < 0? 0: _userTotalEarn, 2)}
+          a.btn-guide.btn-orange(href='/account') 我的账户
+        else
+          .home-guide-header 红小宝平均历史年化收益约
+          .home-guide-year-rate #{_homeGuideYearRate}%
+          a.btn-guide.btn-orange(href='/signup') 注册
+          p.no-account 已有账号？去
+            a(href='/login') 登录
+  if homeAnnounce
+    .home-announce
+      .section
+        //-
+          textarea(style="width: 100%; height: 100px") #{JSON.stringify(userEarns)}
+        .home-announce-header
+          .home-announce-title
+            a(href='javascript:void(0);')#J_announce #{_homeAnnounceTitle}
+            span #{UIHelper.formatdate('YYYY-MM-DD', _homeAnnounceTime)}
+          a(href='/about/announcement').home-announce-more 查看更多&gt;&gt;
+        #J_announce-body.home-announce-body.home-announce-hide !{_homeAnnounceContent}
+  .home-summary
+    .section
+      dl.home-summary-trans
+        img(src='/img/home-bank-icon.png')
+        dt 银行存管
+        dd 资金交易更透明
+      dl.home-summary-strength
+        img(src='/img/home-money-icon.png')
+        dt 合规运营
+        dd 真诚透明稳健规范
+      dl.home-summary-funds
+        img(src='/img/home-invest-icon.png')
+        dt 债权优质
+        dd 严格筛选 多维把控
+      dl.home-summary-secure.home-summary-last
+        img(src='/img/home-safe-icon.png')
+        dt 数据安全
+        dd 多重加密 云端防护
+  if (!isLogin || _isNewBie) && homeFeatureNovice
+    .home-novice
+      - var _productBaseInterestRate =  _.get(homeFeatureNovice, 'baseInterestRate', 0) - 0
+      - var _productSubsidyInterestRate =  _.get(homeFeatureNovice, 'subsidyInterestRate', 0) - 0
+      - var _productLockDays = _.get(homeFeatureNovice, 'lockDays', 0) - 0
+      - var _productLockPeriod = _.get(homeFeatureNovice, 'lockPeriod', 0) - 0
+      - var _productMinRegisterAmount = _.get(homeFeatureNovice, 'minRegisterAmount', 0) - 0
+      - var _productId = _.get(homeFeatureNovice, 'id', 0) - 0
+      - var _planDetailStatus = _.get(homeFeatureNovice, 'unifyStatus', 0) - 0 || 0
+      - var _state = UIHelper.parsePlanStatus(_planDetailStatus)
+      - var _isWaitOpen = _state.wait_open
+      - var _isCountDown = _state.wait_reserve
+      - var _isBidding = _state.opening
+      - var _isBiddingdone = _state.open_full
+      - var _isDoing = _state.period_locking
+      - var _isDone = _state.period_closed
+      - var _isExiting = _state.period_exiting
+      - var _startTime = _.get(homeFeatureNovice, 'beginSellingTime', 0) - 0
+      .section
+        .home-novice-special
+          a(href='/landing/novice', target='_blank')
+            img(src='/img/home-novice-left.png')
+        .home-novice-detail
+          img(src='/img/home-novice-title.png')
+          .home-novice-detail-content
+            dl.item-first
+              dt
+                span.item-base-rate #{UIHelper.formatNumber(_productBaseInterestRate, 1)}
+                span.item-subsidy-rate %+#{UIHelper.formatNumber(_productSubsidyInterestRate, 1)}%
+              dd 平均历史年化收益
+            dl.item-mid
+              if _productLockDays
+                dt #{_productLockDays}
+                dd 锁定期(天)
+              else if _productLockPeriod
+                dt #{_productLockPeriod}
+                dd 锁定期(月)
+            dl.item-last
+              dt #{_productMinRegisterAmount}
+              dd 起投金额(元)
+            if _isWaitOpen
+              a(href='/plan/'+_productId) #{UIHelper.formatdate('MM月DD日 HH:mm', _startTime)}开售
+            if _isCountDown
+              a(href='/plan/'+_productId)
+                include ./mod/count-down.pug
+            if _isBidding
+              a(href='/plan/'+_productId) 立即加入
+            if _isBiddingdone
+              a(href='/plan/'+_productId) 销售结束
+            if _isDoing
+              a(href='/plan/'+_productId) 收益中
+            if _isDone
+              a(href='/plan/'+_productId) 已退出
+            if _isExiting
+              a(href='/plan/'+_productId) 退出中
+  .section
+    .home-product.home-plan-list
+      .home-product-header.home-plan-header
+        h4 红利智投
+          span 智能分散 期限灵活
+      .home-product-body.home-plan-recommend
+        .home-product-body-header
+          h4.home-plan-recommend-title 收益复投
+          a(href='/plan').home-announce-more 查看更多&gt;&gt;
+        -var _recommendList = homePlanRecommend
+        include ./mod/plan.recommend.pug
+      .home-product-body.home-month-recommend
+        .home-product-body-header
+          h4.home-plan-month-recommend-title 按月提取收益
+          a(href='/plan').home-announce-more 查看更多&gt;&gt;
+        -var _monthlyPaymentsRecommendList = monthlyPaymentsRecommend
+        include ./mod/plan.month.recommend.pug
+    .home-product.home-loan-list
+      .home-product-header.home-loan-header
+        h4 散标出借
+          span 等额本息 每月收益
+        a(href='/loan') 查看更多&gt;&gt;
+      .home-product-body.home-loan-body
+        //-
+          textarea(style="width: 100%; height: 100px") #{JSON.stringify(homeLoanList)}
+        if !homeLoanList || homeLoanList.length == 0
+          include ./mod/nothing.data.pug
+        else  
+          .loan-list
+            .header-line
+              span.header-item.col-title 标的名称
+              span.header-item 年利率
+              span.header-item 期限(月)
+              span.header-item 标的金额(元)
+              span.header-item.col-progress 投标进度
+              span.header-item.col-bidding-state 状态
+            .loan-list-content
+              each item,idx in homeLoanList
+                - var _loanId = _.get(item, 'loanId', 0) - 0 || 0
+                - var _loanListTitle = _.get(item, 'title') || ''
+                - var _loanListYearRate = _.get(item, 'interest', 0) - 0 || 0
+                - var _loanListDuration = _.get(item, 'months', 0) - 0 || 0
+                - var _loanListAmount = _.get(item, 'amount', 0) - 0 || 0
+                - var _loanListProgress = _.get(item, 'finishedRatio', 0) -0 || 0
+                - var _loanProgress = UIHelper.productProgress(_loanListProgress)
+                - var _loanListStatus = _.get(item, 'status') || ''
+                - var _state = UIHelper.parseLoanStatus(_loanListStatus)
+                - var _isBidding = _state.open
+                - var _isBiddingdone = _state.ready || _state.first_ready
+                - var _isDoing = _state.in_progress
+                - var odd = ((idx+1) % 2 == 0)
+                a(href='/loan/' + _loanId).item-list
+                  .item-cell #{_loanListTitle}
+                  .item-cell.rate #{UIHelper.formatNumber(_loanListYearRate, 2)}%
+                  .item-cell #{_loanListDuration}
+                  .item-cell #{UIHelper.formatNumber(_loanListAmount)}
+                  .item-cell
+                    span.percent #{_loanProgress}%
+                    +progress(_loanProgress)
+                  .item-cell
+                    //-
+                      textarea(style="width: 100%; height: 100px") #{JSON.stringify(_state)}
+                    if _isBidding
+                      .bidding-status.item-bidding-link 投标
+                    else if _isBiddingdone
+                      .item-biddingdone-link 已满标
+                    else if _isDoing
+                      .item-doing-link 收益中
+  #J_signup-success
+
+block foot-script
+  - var _isSignup = isSignupSuccess || 0;
+  - var _username = _.get(userState, 'username') || ''
+  script.
+    app.home.init({
+      signupSuccess: #{_isSignup},
+      username: !{JSON.stringify(_username)}
+    });

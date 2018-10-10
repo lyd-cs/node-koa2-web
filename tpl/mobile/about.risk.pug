@@ -1,0 +1,75 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+  
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  h3.about-top-title 风控管理架构
+  img.about-gap.about-risk-desc-img(src='/img/mobile/about-risk-desc-img.png')
+  h3.about-top-title 风险评估流程
+  .about-gap.about-risk-assess
+    dl
+      dt: img(src='/img/mobile/about-risk-apply-for.png')
+      dd
+        h3 客户申请
+        p 借款人申请借款
+    dl
+      dt: img(src='/img/mobile/about-risk-anti-fraud.png')
+      dd
+        h3 反欺诈调查
+        p 核实申请人工作信息、联系人真实性
+    dl
+      dt.about-risk-assess-long: img(src='/img/mobile/about-risk-synthesize.png')
+      dd
+        h3 综合核查
+        p 身份、银行流水、经营证明、房产资料等
+    dl
+      dt: img(src='/img/mobile/about-risk-credit-investigation.png')
+      dd
+        h3 征信报告核查
+        p 征信状况、负债情况、还款情况
+    dl
+      dt.about-risk-assess-last: img(src='/img/mobile/about-risk-credit-report.png')
+      dd
+        h3 信用评估
+        p 依据银行征信评估报告，评估借款申请人还款情况、信用状况等
+  h3.about-top-title 风险预警管理情况
+  .about-gap.about-risk-wrap
+    .about-risk-list.about-risk-info
+      h4 信息披露
+      p 借款用途、信用状况等，全方位信息透明公开；
+    .about-risk-list.about-risk-monitor.about-risk-list-norap
+      h4 异常监测
+      p 系统实时监控异常情况，发现异常自动报警；
+    .about-risk-list.about-risk-early
+      h4 风险预警
+      p 每月监测还息或还本情况，T-1提醒还款，逾期15天以上的列入重点关注名单，提起风险预警；
+    .about-risk-list.about-risk-visit.about-risk-list-norap
+      h4 定期回访
+      p 还款管理系统、定期核查；回访、额度重估等等。
+  h3.about-top-title 催收方式
+  .about-gap.about-risk-method
+    dl
+      dt 逾期前
+      dd: img(src='/img/mobile/about-risk-flow-round.png')
+      dd 
+        p 预警电话
+        p 短信提醒
+    dl.about-risk-method-stage
+      dt 逾期初
+      dd: img(src='/img/mobile/about-risk-flow-round.png')
+      dd 
+        p 电话催收
+    dl.about-risk-method-last
+      dt 严重逾期
+      dd: img(src='/img/mobile/about-risk-flow-round.png')
+      dd 
+        p 移交合作律所催缴
+        p 拉入信用黑名单
+        p 报送网络金融征信系统

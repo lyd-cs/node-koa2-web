@@ -1,0 +1,96 @@
+extend base
+
+block title
+  | 存管开户 | 
+
+block header
+  - var _isCreateEscrowAcc = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  .header
+    .section
+      .header-logo
+        a(href='/'): img(src='/img/logo.png')
+        span.header-title #{_isCreateEscrowAcc ? '完善存管账户信息' : '存管开户'}
+
+block content
+  //-
+    - var _bankList = [{bankname: '中国银行', bankcode: '0000'}, {bankname: '中国工商银行', bankcode: '0102'}, {bankname: '中国农业银行', bankcode: '0103'}, {bankname: '中国银行', bankcode: '0104'}, {bankname: '中国建设银行', bankcode: '0105'}, {bankname: '交通银行', bankcode: '0301'}, {bankname: '中信银行', bankcode: '0302'}, {bankname: '中国光大银行', bankcode: '0303'}, {bankname: '华夏银行', bankcode: '0304'}, {bankname: '中国民生银行', bankcode: '0305'}, {bankname: '广东发展银行', bankcode: '0306'}, {bankname: '平安银行股份有限公司', bankcode: '0307'}, {bankname: '招商银行', bankcode: '0308'}, {bankname: '兴业银行', bankcode: '0309'}, {bankname: '上海浦东发展银行', bankcode: '0310'}, {bankname: '中国邮政储蓄银行股份有限公司', bankcode: '0403'} ]
+  - var _bankList = bankTips
+  - var _query = query || {};
+  - var _isIdPassed = _.get(userState, 'isIdPassed') - 0
+  - var _userRealName =  _.get(userState, 'realName')
+  - var _userIdNo = _.get(userState, 'idNo')
+  - var _isBindCard = _.get(userState, 'hasBindCard') - 0
+  - var _bankCode = _.get(userBank, 'bankCode') || _query.bankCode || ''
+  - var _bankItem = _bankList[_bankCode]
+  - var _bankType = _.get(userBank, 'bankType') || _.get(_bankItem, 'name') || ''
+  - var _bindCardId = _.get(userBank, 'cardId')
+  - var _bankPreMobile = _.get(userBank, 'mobile')
+  - var _isCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 ||0
+  - var userid = _.get(userState, 'userId')
+  - var _bankSingleLimit = _.get(_defaultBank, 'single')
+  - var _bankDayLimit = _.get(defaultBank, 'day')
+  .user-deposit
+    .section#J_create-account-section
+      if !_isCreateAccount
+        img.hengfeng-logo(src='/img/hengfeng-logo.png')
+        p.user-deposit-title 开通恒丰银行存管账户，实现资金与平台安全隔离
+      form#J_user-createaccount-form.user-createaccount-form(method='POST')
+        .user-deposit-item
+          p.user-deposit-item-title 实名信息
+          .realname-item
+            .form-group
+              label 姓名
+              input.form-control(type='text', name='username', placeholder='请输入您的真实姓名', disabled=(_isIdPassed) ? true : false, value=(_isIdPassed) ? UIHelper.safeRealname(_userRealName) : (_query.name || ''))
+            .form-group
+              label 身份证号 
+              input.form-control(type='text', name='identityCard', placeholder='请输入您的身份证号', maxlength='18', minlength='18', disabled=(_isIdPassed) ? true : false, value=(_isIdPassed) ? UIHelper.safeIdentity(_userIdNo) : (_query.idNo || ''))
+        .user-deposit-item
+          p.user-deposit-item-title 绑定银行卡
+          .bind-bankcard
+            .form-group
+              label 银行卡号
+              input.form-control#J_bank-number(tyrp='text', name='banknumber', placeholder='请输入银行卡号', disabled=(_isBindCard) ? true : false, data-passed=_isBindCard ? 1 : 0, value=(_isBindCard == 1) ? _bindCardId : (_query.cardNumber || ''))
+              #J_bank-card-error.bank-card-error
+            .form-group
+              label 银行名称
+              if _isBindCard
+                .selected-bank #{_bankType}
+                  .selected-bank-logo(class='selected-bank-logo-' + _bankCode)
+              else
+                .J_show-bank-list.select-bank(class=_bankType ? 'select-bank-' + _bankCode : '')
+                  input#J_bank-name.form-control.show-bank-name(type='text', readonly, name='bankname', placeholder='输入卡号后会智能识别银行', value=_bankType || '', autocomplete='off')
+                input#J_bank-code(type='hidden', name='bankcode', value=_bankCode)
+                .bank-card-limit.J_bank-card-limit
+                  if _bankCode
+                    #{UIHelper.limitShow(_bankItem, false)}
+                a#J_show-bank-list 查看银行限额
+              #J_bank-list
+            .form-group
+              label 银行预留手机号
+              input.form-control(type='text', name='mobile', placeholder='请输入银行预留手机号', disabled=!!_bankPreMobile, maxlength='11', value=_bankPreMobile ? UIHelper.safeMobile(_bankPreMobile) : (_query.mobileNumInBank || ''))
+        .user-deposit-item
+          p.user-deposit-item-title 设置交易密码
+          .trade-password-setting
+            .form-group
+              label 交易密码
+              input.form-control#J_trad-password(type='password', autocomplete='new-password', name='tradpwd', minlength='6', maxlength='6', placeholder='设置6位数字密码', value='')
+        .form-group
+          input(type='hidden', name='_csrf', value=csrf)
+          .errors#J_errors
+          button#J_submit-btn.btn-basic.btn.form-button-control(type='button') 提交
+        input(type='checkbox', checked)
+        span 我已阅读并同意
+        a(href='/agreement/deposit', target='_blank') 《恒丰银行股份有限公司杭州分行网络交易资金账户三方协议》、
+        a(href='/agreement/license', target='_blank') 《红小宝平台授权协议》
+
+block foot-script
+  script.
+    app.createAccount.init({
+      bankTips: !{JSON.stringify(bankTips)},
+      bankCodeList: !{JSON.stringify(bankCodeList)},
+      isIdPassed: #{_isIdPassed},
+      isBindCard: #{_bindCardId || false}
+    });
+    app.accountSelectBank.selectedBank();
+
+

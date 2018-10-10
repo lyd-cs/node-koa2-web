@@ -1,0 +1,58 @@
+if _userAvailableBalance >= (_payable ? _payable : _buyResultBidAmount)
+  .item-buy-form
+    .item-buy-way
+      span.item-buy-icon.icon-balance
+      | 账户余额
+    .item-buy-amount 可用金额 #{UIHelper.formatNumber(_userAvailableBalance, 2)} 元
+    .item-buy-info 支付 
+      if _payable
+        span.pay-money #{UIHelper.formatNumber(_payable, 2)}
+      else 
+        span.pay-money #{UIHelper.formatNumber(_buyResultBidAmount, 2)}
+      | 元
+  .form-group
+    label.form-label 交易密码
+    input(name='buyType',type='hidden',value='BALANCE')
+    input#J_tradepassword(name='password', type='password', maxlength='6', autocomplete='off').form-control.password
+    a(href='/account/trad/password', target='_blank').forgget-password 忘记密码?
+if _userAvailableBalance < (_payable ? _payable : _buyResultBidAmount) && _isUserHasBindCard
+  .item-buy-form
+    .item-buy-way
+      span.item-buy-icon.icon-balance
+      | 账户余额
+    .item-buy-amount 可用金额 #{UIHelper.formatNumber(_userAvailableBalance, 2)}
+      | 元
+    .item-buy-info 支付 
+      span.pay-money #{UIHelper.formatNumber(_userAvailableBalance, 2)}
+      | 元
+  .item-buy-form
+    .item-buy-way
+      span.item-buy-icon.bank-logo(class='buy-bank-logo-' + _bankCode)
+      | #{_bankName}
+    .item-buy-amount #{_userBankCardId}
+    .item-buy-info 账户余额不足，还需支付 
+      if _payable
+        span.pay-money #{UIHelper.formatNumber(_payable -_userAvailableBalance, 2)}
+        | 元  
+      else
+        span.pay-money #{UIHelper.formatNumber(_buyResultBidAmount-_userAvailableBalance, 2)}
+        |  元  
+  .form-group
+    label.form-label 短信验证码
+    input(name='buyType', type='hidden', value='RECHARGE')
+    if _payable
+      input(name='smsCode', data-amount=_payable - _userAvailableBalance, type='text', maxlength='6', autocomplete='off')#J_smscode.form-control
+    else
+      input(name='smsCode', data-amount=_buyResultBidAmount - _userAvailableBalance, type='text', maxlength='6', autocomplete='off')#J_smscode.form-control
+    button.J_getcode-btn#J_getcode-btn(type='button', data-phone=_bankMobile, data-action='smscode').btn-sms 获取验证码
+    if _bankMobile
+      p.phone-number.J_phone-number 短信验证码已发送至 #{_bankMobile}
+      //- p.phone-number.J_phone-voice 请留意接听#{_bankMobile}上的来电
+    //- .user-voice
+    //-   .voice-verifycode(data-reveal='0') 若您未收到验证码，请
+    //-     button.J_getcode-btn#J_voice-verifycode(type='button', data-action='voice') 点此获取语音验证码
+if _userAvailableBalance < (_payable ? _payable : _buyResultBidAmount) && !_isUserHasBindCard
+  h4.havenocard  账户可用余额不足, 请绑卡后重试
+  .bind-card 
+    a(href='/account/bank/add').single-bind-card 绑定银行卡
+    

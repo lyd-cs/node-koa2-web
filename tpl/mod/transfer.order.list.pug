@@ -1,0 +1,26 @@
+if dataList && dataList.length != 0
+  table(cellpadding='0', cellspacing='0', width='100%')
+    thead
+      tr
+        th 债权出售人
+        th 债权购买人
+        th 交易金额(元)
+        th 转让时间
+    tbody
+      each item, idx in dataList
+        - var _userId = _.get(userState, 'userId') - 0 || 0
+        - var _transferSellId = _.get(item, 'fromUserId') - 0 || 0
+        - var _transferSellName = _.get(item, 'fromUserName', '')
+        - var _transferSellOfPlan = _.get(item, 'fromUserIdOfPlan') - 0 || 0
+        - var _transferBuyId = _.get(item, 'toUserId') - 0 || 0
+        - var _transferBuyName = _.get(item, 'toUserName', '')
+        - var _transferBuyOfPlan = _.get(item, 'toUserIdOfPlan') - 0 || 0 
+        - var _transferAmount = _.get(item, 'amount') || 0
+        - var _transferTime = _.get(item, 'createTime') - 0 || 0
+        tr
+          td #{_userId === _transferSellId ? _transferSellName.toLowerCase() : UIHelper.safeUserName(_transferSellName)}
+          td #{_userId === _transferBuyId ? _transferBuyName.toLowerCase() : UIHelper.safeUserName(_transferBuyName)}
+          td #{UIHelper.formatNumber(_transferAmount, 2)}
+          td #{UIHelper.formatdate('YYYY-MM-DD HH:mm', _transferTime)}
+else
+  include ./nothing.data.pug  

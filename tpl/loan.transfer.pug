@@ -1,0 +1,57 @@
+extend base
+
+block title
+  | 债权转让 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+  
+block content
+  //-
+    - var dataList = [{id: 1, title: '装修房子', rate: 12, duration: 24, remain: 13, transCash: 2234.50, remainCash: 350.33, status: 1}, {id: 2, title: '装修房子a', rate: 7.03, duration: 24, remain: 8, transCash: 6384.50, remainCash: 86.33, status: 2}]
+  .transfer
+    .transfer-banner
+    .section.transfer-list
+      ul.tab-bar.tab-loan-transfer-bar
+        li.item-nav-loan
+          a(href='/loan') 散标出借
+        li.last-tabs.active
+          a(href='/transfer') 债权转让  
+      if dataList && dataList.length
+        .transfer-wrap
+          .item-list.item-title
+            span.item-name 名称
+            span.item-rate.item-both.item-rate-title 年利率
+            span.item-duration.item-both 剩余期限
+            span.item-amount.item-both 初始转让金额（元）
+            span.item-balance.item-both 剩余金额（元）
+            span.item-status.item-both 状态
+          .transfer-list-body
+            each item, idx in dataList
+              - var _transferTitle = _.get(item, 'title') || ''
+              - var _transfetRate = _.get(item, 'interest') - 0 || 0
+              - var _transferDuration = _.get(item, 'loanMonths') - 0 || 0
+              - var _transferRemainTime = _.get(item, 'leftMonths') - 0 || 0
+              - var _transCash = _.get(item, 'initTransAmount') - 0 || 0
+              - var _remainCash = _.get(item, 'leftTransAmount') - 0 || 0
+              - var _productId = _.get(item, 'transferId') - 0 || 0
+              - var _productStatus = _.get(item, 'status') || ''
+              - var _state = UIHelper.parseTransferStatus(_productStatus)
+              - var _isTransfering = _state.transfering
+              - var _isTransfered = _state.transfered
+              //- - var _productStatus = 'TRANSFERED'
+              a(href='/transfer/' + _productId, class={'item-list-last-row': idx === dataList.length-1}).item-list
+                span.item-name #{_transferTitle}
+                span.item-rate.item-rate-value.item-both #{UIHelper.formatNumber(_transfetRate, 2)}%
+                span.item-duration.item-both #{_transferRemainTime}/#{_transferDuration}
+                span.item-amount.item-both #{UIHelper.formatNumber(_transCash, 2)}
+                span.item-balance.item-both #{UIHelper.formatNumber(_remainCash, 2)}
+                span.item-status.item-both
+                  if _isTransfering
+                    span.item-transit.item-transit-hover 转让中
+                  else if _isTransfered
+                    span.item-transit 已完成
+      else
+        include ./mod/nothing.data.pug
+    include ./mod/pagination.pug
+

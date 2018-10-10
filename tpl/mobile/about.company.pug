@@ -1,0 +1,132 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  .about-company
+    .about-company-info
+      img(src='/img/about-company-banner.png')
+      p 红小宝是红上金融信息服务（上海）有限公司旗下的网络借贷信息服务平台，总部位于国际金融中心上海，注册资金20000万，公司秉承“稳健、安全、专业”的发展理念，依托健全的风控体系和云计算、大数据技术，通过金融产品创新、服务模式创新、技术创新，为有投融资需求的中小微企业主和个人提供安全、高效的互联网金融服务。
+    .about-company-title
+      h4 工商信息
+    .about-company-commerce
+      img#J_about-company-commerce(src='/img/about-company-license.jpg')
+      p 企业全称：红上金融信息服务（上海）有限公司
+        br 
+        | 企业简称：红上金融
+        br 
+        | 法人代表：徐东
+        br 
+        | 实际控制人：何源
+        br 
+        | 注册地址：上海市嘉定区银翔路655号B区1158室
+        br 
+        | 注册/实缴资本：20000/20000万元
+        br 
+        | 经营地址：上海市嘉定区南翔镇银翔路799号21楼04室
+        br 
+        | 经营状态：在营
+    .about-company-title
+      h4 组织架构
+    .about-company-cture
+      img(src='/img/about-company-cture.png')
+    .about-company-title
+      h4 股东信息
+    .about-company-partner
+      dl
+        dt 西安胤信基金管理有限公司
+        dd 股份占比：60%
+      dl
+        dt 西安鲲镁资产管理有限公司
+        dd 股份占比：30%
+      dl
+        dt 深圳市前海千意智合十三期投资合伙企业（有限合伙）
+        dd 股份占比：10%
+    .about-company-title
+      h4 管理团队
+    .about-company-partner
+      .person-partner
+        .name 徐东
+        .position 执行董事  首席风控官
+        .info 中国零售信贷行业精耕十余年，服务中国平安、人人友信期间，在零售信贷领域市场营销、产品创新、反欺诈审查、借后管理、风控体系搭建方面有深刻认识和丰富经验，2017年担任红小宝平台首席风控官，负责客户风险识别与评价、出借产品设计与创新、借前反欺诈、借中与借后管理、反舞弊操作等一系列风险管控体系的管理工作。
+      .person-partner
+        .name 王锐哲
+        .position 总经理
+        .info 中国首批互联网金融从业者，是互联网金融行业早期发展与崛起的见证者。对互联网证券及网络借贷业务有着独到的见解，曾先后服务于和讯、金融界（NYSE:JRJC）、人人贷等知名企业，负责产品规划、创新及运营管理工作。2016出任红小宝平台总经理，负责战略规划及经营管理
+      .person-partner.partner-last
+        .name 杨东海
+        .position 首席财务官
+        .info 伦敦大学国王学院访问学者,中共党员,获经济学学士、工商管理硕士、博士。世界银行硬贷款项目财务管理专家。具备20 多年大中型企业财务管理及资本运作管理经验,曾任上海浦东联合信托投资有限公司董事长助理、克莉丝汀国际控股有限公司（HK:01210）首席财务官、光明乳业股份有限公司（SH:600597）财务副总监、上海外高桥保税区开发股份有限公司（SH:600648）董事长助理等职务。2017年担任红小宝平台首席财务官，负责财务、投融资、内控、合规等方面工作的管理。
+      a.all-manage-info#J_all-manage-info 全部董监高信息>
+    .about-company-title
+      h4 员工信息
+    .about-company-staff
+      p 截止2018年3月15日，公司员工68人，其中技术团队人数占28%，风控团队人数占37%；本科占比60%，硕士及以上占4%，人员构成、年龄结构、学历分布如下：
+      .about-company-staff-chart
+        .chart#J_pie-people
+        .legend
+          .legend-item.red 风控占比37%
+          .legend-item 技术占比28%
+          .legend-item.orange 其他占比35%      
+      .about-company-staff-chart
+        .chart#J_pie-age
+        .legend
+          .legend-item.red 20~25岁占比31%
+          .legend-item 26~30岁占比37%
+          .legend-item.orange 31~55岁占比32% 
+      .about-company-staff-chart
+        .chart#J_pie-education
+        .legend
+          .legend-item.red 研究生及以上4%
+          .legend-item 本科60%
+          .legend-item.orange 本科以下35%
+  .about-company-modal-wrap#J_about-company-modal
+    .about-company-modal
+      img(src='/img/about-company-license.jpg')
+  .about-company-modal-wrap#J_about-company-modal-partner
+    .about-company-modal
+      img(src='/img/about-company-per-centum.png')
+
+  .modal-wrap.about-company-manage-info#J_about-company-manage-info
+    .modal-dialog
+      p.manage-title 董监高信息
+      table
+        thead
+          tr
+            th.manage-name 姓名
+            th 职位
+        tbody
+          tr
+            td 徐东
+            td 执行董事、首席风控官
+          tr
+            td 金陈超
+            td 监事长
+          tr
+            td 梁玉婷
+            td 监事
+          tr
+            td 许铭
+            td 监事
+          tr
+            td 王锐哲
+            td 总经理
+          tr
+            td 杨东海
+            td 首席财务官
+
+block foot-script
+  script.
+    app.aboutCompany.init();
+    app.popModal.init({
+      showSwitchId: '#J_all-manage-info',
+      hideSwitchId: '#J_about-company-manage-info',
+      modalId: '#J_about-company-manage-info'
+    });

@@ -1,0 +1,151 @@
+.riskvail
+  $riskvail-uncheck-out = #c8c8c8
+  $riskvail-check-out = #ABCCFF
+  $riskvail-check-in  = #3B88FF
+  $riskvail-checked = #73ADFF
+  $riskvail-btnsubmit = #F55151
+  $riskvail-modal-red = #F55151
+  $riskvail-btn-bg = #E8E8EE
+  $riskvail-modal-wrap = rgba(0,0,0,0.3)
+  list-style: none
+  .option-no-checked
+    color: $red-color
+  &-skip
+    color: $green-color
+    position: absolute
+  &-content
+    overflow: hidden
+    margin: 0.93rem 0
+    &-info
+      color: $gray-txt-black
+      font-size: $font-size-small  
+      margin: 0  
+  &-questionlist
+    margin-top: 1.56rem    
+  &-question
+    margin-top: 1.25rem
+    &-title
+      margin: 0
+      font-size: $font-size-base
+      color: $text-color
+      font-weight: normal
+      padding-left: 1rem
+      position: relative
+    &-num
+      position: absolute
+      left: 0  
+    &-option
+      font-size: $font-size-small  
+      color: $link-gray-color
+      padding-left: 1.1rem
+      overflow: hidden
+      label
+        vertical-align: top
+        display: inline-block
+        padding-top: 0.4rem
+        width: 100%
+      label>* 
+        pointer-events: none
+      input
+        display: none
+      .riskvail-checkbox
+        display: inline-block
+        position: relative
+        margin-right: 0.75rem
+        font-style: normal
+        padding-left: 1.25rem
+        &:before
+          content: ""
+          height: 0.75rem
+          width: 0.75rem
+          border-radius: 50%
+          position: absolute
+          left: 0
+          top: 0.31rem
+          display: inline-block
+          border: 0.07rem solid $riskvail-uncheck-out
+        &:after
+          content: ""
+          display: inline-block
+          height: 0.38rem
+          width: 0.38rem
+          border-radius: 50%
+          position: absolute
+          top: 0.5rem
+          left: 0.19rem
+      input:checked+.riskvail-checkbox
+        color: $riskvail-checked
+        &:before
+          background: $riskvail-check-out
+          border: none
+        &:after
+          background: $riskvail-check-in
+  &-errinfo
+    margin: 0 auto
+    text-align: center
+    color: $riskvail-btnsubmit        
+  &-btn-submit
+    width: 97%
+    height: 2.5rem
+    display: block
+    border: none
+    text-align: center
+    color: $white-color
+    font-size: $font-size-base
+    border-radius: 0.25rem
+    background: $riskvail-btnsubmit
+    margin: 1.6rem 0.3rem
+  &-modal-wrap
+    background: $riskvail-modal-wrap 
+    position: fixed;
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    visibility: hidden
+    opacity: 0
+    transition: opacity  0.5s 
+  &-modal-in
+      visibility: visible
+      opacity: 1
+  &-modal
+    $btn-cancel = #1c85b0
+    position: absolute
+    margin: auto
+    left: 50%
+    top: 50%
+    transform: translate(-50%,-50%)
+    width: 17.5rem
+    padding-top: 1.8rem
+    border-radius: 0.25rem
+    background: $white-color
+    &-info
+      padding: 0 1.25rem
+      height: 2.5rem
+      margin-bottom: 1.56rem
+      margin-top: 0
+      font-size: $font-size-small
+      text-align: center
+      p
+        margin: 0
+      .risktype
+        color: $riskvail-modal-red
+    &-btnbox
+      margin: 0 auto
+      overflow: hidden
+    &-btn-cancel,
+    &-btn-confirm
+      height: 2.5rem
+      width: 50%
+      float: left
+      border: none
+      color: $grey-color
+      background: $riskvail-btn-bg
+    &-btn-cancel
+      border-bottom-left-radius: 0.25rem
+    &-btn-confirm
+      float: right
+      color: $_white
+      background: $riskvail-modal-red
+      border: 0.07rem solid $riskvail-modal-red
+      border-bottom-right-radius: 0.25rem       

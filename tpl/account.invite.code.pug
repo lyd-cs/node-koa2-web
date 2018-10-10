@@ -1,0 +1,32 @@
+extend base
+
+block title
+  | 邀请码认证 - 账户设置 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))  
+
+block content
+  - var _query = query || {}
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 邀请码认证
+    .uc-invite-setting
+      if errors
+        .alert-danger
+          include ./mod/error.pug
+      form#J_invite-form.form-horizontal.uc-form(method='post')
+        .form-group
+          label.control-label 邀请码
+          .control-content
+            input#J_code.form-control(type='text', autocomplete='off', name='code', value=_query.code)
+          .help-inline
+        .form-group.form-group-button
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            button.btn-basic.J_btn-secure-submit(type='submit') 提交  
+    
+block foot-script
+  script.
+    app.settingInviteCode.inviteCodeValid()

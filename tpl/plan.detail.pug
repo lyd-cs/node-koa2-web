@@ -1,0 +1,191 @@
+extend base
+
+block title
+  - var _planDetailDataList = _.get(planDetail, 'dataList[0]', {})
+  - var _planDetailPlanName = _.get(_planDetailDataList, 'name', '')
+  | #{_planDetailPlanName} -
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+
+block content
+  - var _planDetailDataList = _.get(planDetail, 'dataList[0]', '')
+  - var _planDetailStatus = _.get(_planDetailDataList, 'unifyStatus', 0) - 0 || 0
+  - var _state = UIHelper.parsePlanStatus(_planDetailStatus)
+  - var _isWaitOpen = _state.wait_open
+  - var _isCountDown = _state.wait_reserve
+  - var _isBidding = _state.opening
+  - var _isBiddingdone = _state.open_full
+  - var _isDoing = _state.period_locking
+  - var _isDone = _state.period_closed
+  - var _isExiting = _state.period_exiting
+  - var _isPeriodOpen = _state.period_open
+  - var _now = _now || Date.now()
+  - var _startTime = _.get(_planDetailDataList, 'beginSellingTime', '')
+  - var _planDetailEndTime = _.get(_planDetailDataList, 'endLockingTime', '')
+  - var _financeEndTime = _.get(_planDetailDataList, 'financeEndTime', '')
+  - var _planDetailLockerStartTime = _.get(_planDetailDataList, 'lockStart', '')
+  - var _planDetailSellEndTime = _.get(_planDetailDataList, 'endSellingTime', '')
+  - var _planDetailPlanName = _.get(_planDetailDataList, 'name', '')
+  - var _productDetailYearRate = _.get(_planDetailDataList, 'expectedRate', 0) - 0
+  - var _productExtraInterestRate = _.get(_planDetailDataList, 'extraInterestRate', 0) - 0
+  - var _productBaseInterestRate = _.get(_planDetailDataList, 'baseInterestRate', 0) - 0
+  - var _productDetailAmount = _.get(_planDetailDataList, 'amount', 0) - 0
+  - var _productDetailDuration = _.get(_planDetailDataList, 'lockPeriod', 0) - 0
+  - var _planDetailJoinDuration = UIHelper.diffDate(_now, _planDetailSellEndTime)
+  - var _planDetailProductId = _.get(_planDetailDataList, 'id', 0) - 0
+  - var _joinCount = _.get(_planDetailDataList, 'joinCount', 0) - 0
+  - var _productDetailInvestLimit = _.get(_planDetailDataList, 'singleMaxRegisterAmount', 0) - 0
+  - var _planDetailMinAmount = _.get(_planDetailDataList, 'minRegisterAmount', 0) -0
+  - var _productDetailRemainAmount = _.get(_planDetailDataList, 'remainAmount', 0) -0
+  - var _earnTotal = _.get(_planDetailDataList, 'earnInterest' , 0)
+  - var _planDetailPercent = _.get(_planDetailDataList, 'finishRatio', 0) - 0
+  - var _planDetailEnsure = _.get(planDetail, 'principalBalanceContractName', 0)
+  - var _userIsFirstBuy = _.get(planDetail, 'isFirst') -0  || 0
+  - var _userIsRealName = _.get(userState, 'isAllPassed') - 0 || 0
+  - var _planDetailIncreasing = _.get(_planDetailDataList, 'registerMultipleAmount', 0) - 0 || 0
+  - var _productDetailProgress = UIHelper.productProgress(_planDetailPercent)
+  - var _isFromPlan = true
+  - var _userAvailableBalance = userAvailableBalance || 0
+  - var _userIsCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0
+  - var _isMobilePassed = _.get(userState, 'isMobilePassed') - 0 || 0
+  - var _isAllPassed = _userIsCreateAccount && _userIsCashPasswordPassed && _userIsBindCard && _userIsIdPassed && _isMobilePassed
+  - var _couponType = _.get(bestCoupon, 'couponType', '')
+  - var _couponDicountRate = _.get(bestCoupon, 'dicountRate') - 0 || 0
+  - var _couponMaxDiscountAmount = _.get(bestCoupon, 'maxDiscountAmount') - 0 || 0
+  - var _couponAllowDerateInvest = _.get(bestCoupon, 'allowDerateInvest') - 0 || 0
+  - var _couponDerateAmount = _.get(bestCoupon, 'derateAmount') - 0 || 0
+  - var _productCashType = _.get(_planDetailDataList, 'cashType', '')
+  - var _productCashTypeTolower = _.get(_planDetailDataList, 'cashType', '').toLowerCase()
+  - var _productDrawDay = _.get(_planDetailDataList, 'cashDrawDay', '')
+  - var isMonthlyPaymentsPlan = UIHelper.parsePlanPayments(_productCashType)
+  - var _riskType = _.get(planDetail, 'riskType')
+  //- - var _applyPeople = UIHelper.parseApplyPeople(_riskType)
+  if _startTime
+    - _startTime = UIHelper.moment(_startTime).format('x') - 0
+  - var _productNovice = _.get(_planDetailDataList, 'novice', 0) - 0
+  - var _productSubsidyInterestRate = _.get(_planDetailDataList, 'subsidyInterestRate', 0) - 0
+  - var _productNewBiePlanAmount = _.get(planDetail, 'newBiePlanAmount', 0) - 0
+  - var _productNewBiePlanLeftAmount = _.get(planDetail, 'newbiePlanLeftAmount', 0) - 0
+  - var _productLockDays = _.get(_planDetailDataList, 'lockDays', 0) - 0
+  - var _productExpectedSubsidyInterestAmount = _.get(planDetail, 'expectedSubsidyInterestAmount, 0') - 0
+  - var _isNewBie = _.get(userState, 'isNewbie', 0) - 0
+  .section
+    if _planDetailDataList
+      include ./mod/product.detail.pug
+      .plan-detail-step
+        if isMonthlyPaymentsPlan && (_isDone || _isExiting || _isPeriodOpen)
+          span.step-income #{UIHelper.parseMonthlyPlanCashDrawDay(_productDrawDay)}
+          if _planDetailProductId > 675
+            span.step-quit 随时可退
+          .step-line.step-month-done
+        else if isMonthlyPaymentsPlan && _isDoing
+          span.step-income.step-month-done-income #{UIHelper.parseMonthlyPlanCashDrawDay(_productDrawDay)}
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-month-doing
+        else if isMonthlyPaymentsPlan && (_isBidding || _isBiddingdone)
+          span.step-income.step-month-doing-income #{UIHelper.parseMonthlyPlanCashDrawDay(_productDrawDay)}
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-month-join
+        else if isMonthlyPaymentsPlan
+          span.step-income.step-month-doing-income #{UIHelper.parseMonthlyPlanCashDrawDay(_productDrawDay)}
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-month-wait
+        else if !isMonthlyPaymentsPlan && (_isDone || _isExiting || _isPeriodOpen)
+          span.step-income.step-reinvest-income 收益复投
+          if _planDetailProductId > 675
+            span.step-quit 随时可退
+          .step-line.step-done
+        else if !isMonthlyPaymentsPlan && _isDoing
+          span.step-income.step-reinvest-done-income 收益复投
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-doing
+        else if !isMonthlyPaymentsPlan && (_isBidding || _isBiddingdone)
+          span.step-income.step-reinvest-doing-income 收益复投
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-join
+        else
+          span.step-income.step-reinvest-doing-income 收益复投
+          if _planDetailProductId > 675
+            span.step-quit.step-month-done-quit 随时可退
+          .step-line.step-wait
+        .step-item(class={'step-text': _isBidding || _isBiddingdone || _isDoing || _isDone})
+          .step-item-title 加入
+          .step-item-time #{UIHelper.formatdate('MM-DD HH:mm', _startTime)}
+        .step-item.step-item-lock(class={'step-text': _isDoing || _isDone})
+          .step-item-title 进入锁定期
+          .step-item-time #{UIHelper.formatdate('MM-DD HH:mm', _planDetailLockerStartTime)}
+        .step-item.step-item-open(class={'step-text': _isDone})
+          if _planDetailProductId > 675
+            .step-item-title 进入开放期
+          else
+            .step-item-title 到期退出
+          .step-item-time #{UIHelper.formatdate('YYYY-MM-DD', _planDetailEndTime)}
+      include ./mod/plan.tab.pug
+    else
+      include ./mod/nothing.data.pug
+  #J_plan-detail-realname-modal
+
+block foot-script
+  - var _planDetailDataList = _.get(planDetail, 'dataList[0]', {})
+  - var _planDetailMinAmount = _.get(_planDetailDataList, 'minRegisterAmount', 0) - 0
+  - var _planDetailRemainAmount = _.get(_planDetailDataList, 'remainAmount', 0) -0
+  - var _planDetailSingleJoin = _.get(_planDetailDataList, 'singleMaxRegisterAmount', 0) - 0
+  - var _planDetailProductId = _.get(_planDetailDataList, 'id', 0) - 0
+  - var _planDetailDuration = _.get(_planDetailDataList, 'lockPeriod', 0) - 0 ||0
+  - var _planDetailSubsidyEachProfit = _.get(planDetail, 'expectedSubsidyInterestAmount', 0) - 0
+  - var _planNewbiePlanLeftAmount = _.get(planDetail, 'newbiePlanLeftAmount', 0) - 0
+  - var _userAvailableBalance = userAvailableBalance? userAvailableBalance : 0
+  - var _planDetailEachProfit = _.get(planDetail, 'totalInterest', 0) - 0 || 0
+  - var _planNovice = _.get(_planDetailDataList, 'novice', 0) - 0
+  - var _userIsLogin = isLogin
+  - var _userSecure = _.get(userState, 'isAllPassed') - 0 || 0
+  - var _userIsRisk = _.get(userState, 'riskEvaluationScore')
+  - var _planDetailIncreasing = _.get(_planDetailDataList, 'registerMultipleAmount', 0) - 0 || 0
+  - var _userIsFirstBuy = _.get(planDetail, 'isFirst') - 0 || 0
+  - var _userRemainInvest = _.get(planDetail, 'userRemainAmount', 0) - 0 || 0
+  - var _userIsCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsSettingTradPwd = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0
+  script.
+    app.modalShow.init({
+      isLogin: #{_userIsLogin},
+      isCreateAccount: #{_userIsCreateAccount},
+      isSettingTradPwd: #{_userIsSettingTradPwd},
+      isBindCard: #{_userIsBindCard},
+      isIdPassed: #{_userIsIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+    })
+    app.PlanDetail.init({
+      minAmount: #{_planDetailMinAmount},
+      remainAmount: #{_planDetailRemainAmount},
+      singleJoin: #{_planDetailSingleJoin},
+      planId: #{_planDetailProductId},
+      isRealName: #{_userSecure},
+      lockTime: #{_planDetailDuration},
+      availableBalance: #{_userAvailableBalance},
+      eachProfit: #{_planDetailEachProfit},
+      subsidyEachProfit: #{_planDetailSubsidyEachProfit},
+      newbiePlanLeftAmount: #{_planNewbiePlanLeftAmount},
+      isLogin: #{_userIsLogin},
+      isRisk: #{_userIsRisk>=0?true:false},
+      increasingInvest: #{_planDetailIncreasing},
+      isFirstBuy: #{_userIsFirstBuy},
+      userRemainInvest: #{_userRemainInvest},
+      isCreateAccount: #{_userIsCreateAccount},
+      isSettingTradPwd: #{_userIsSettingTradPwd},
+      isBindCard: #{_userIsBindCard},
+      isIdPassed: #{_userIsIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+      subsidyEachProfit: #{_planDetailSubsidyEachProfit},
+      isPlanNovice: #{_planNovice}
+    });

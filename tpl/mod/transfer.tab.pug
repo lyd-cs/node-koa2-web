@@ -1,0 +1,122 @@
+.tab-section.loan-item-list
+  ul.tab-bar.loan-item-nav#J_loan-item-nav(role="tablist")
+    li.item-nav-product(class='active')
+      a(href='#info', data-toggle="tab", data-target='#user_info')#J_info 借款人详情
+    li
+      a(href='#order', data-init="0", data-toggle="tab", data-target='#user_order')#J_order-list.J_tab-pane 出借记录
+    li
+      a(href='#refund', data-init="0", data-toggle="tab", data-target='#user_refund')#J_refund-list.J_tab-pane 还款表现
+    li
+      a(href='#debt', data-init="0", data-toggle="tab", data-target='#user_debt')#J_debt-list.J_tab-pane 债权记录
+    li.last-tabs
+      a(href='#transfer', data-init="0", data-toggle="tab", data-target='#user_transfer')#J_transfer-list.J_tab-pane 转让记录      
+  .item-list-detail.tab-content.tab-card.J_user-tab
+    .item-list-box.item-info.tab-pane(class='active', role="tabpanel")#user_info
+      .item-info-title.item-info-first 审核状态
+      .item-info-wrap
+        if _isIdentity
+          img.item-attest(src='/img/attest-identity.png')
+        if _isWork
+          img.item-attest(src='/img/attest-work.png')
+        if _isIncome
+          img.item-attest(src='/img/attest-income.png')
+        if _isCredit 
+          img.item-attest(src='/img/attest-credit.png')
+        if _fifthStatus
+          .icon-wrap
+            p #{_fifthStatus}
+      .item-info-title 安全等级
+      .item-info-wrap
+        .item-info-safe-level #{_riskType}
+        .item-info-safe-level-descript #{_loanDetailSecurityLevel}
+      .item-info-title.item-info-lender 借款人信息
+      .item-info-wrap
+        .item-info-cont-item
+          span 姓名
+          | #{_loanDetailName}
+        .item-info-cont-item
+          span 身份证号
+          | #{_loanDetailIDCard}
+        .item-info-cont-item
+          span 年龄
+          | #{_loanDetailAge}
+        .item-info-cont-item
+          span 学历
+          | #{_loanDetailEducation}
+        .item-info-cont-item
+          span 婚姻
+          | #{UIHelper.parseLoanDetailMarriageStauts(_loanDetailMarriage) || '- -'}
+        .item-info-cont-item
+          span 籍贯
+          | #{_loanDetailHomeTown}
+        .item-info-cont-item
+          span.month-opera-title 近6个月征信报告逾期情况
+          | #{_loanDetailOverDueStatus}次
+        .item-info-cont-item
+          span.month-opera-title 借款人经营及财务状况
+          | #{_loanDetailUserFinanceStatus}
+        .item-info-cont-item
+          span.month-opera-title 借款人还款能力变化
+          | #{_loanDetailRepaymentCapacity}
+        .item-info-cont-item
+          span.month-opera-title 借款人涉诉、受行政处罚情况
+          | #{_loanDetailPunishedStatus}
+        .item-info-cont-item
+          span.month-opera-title 担保方式
+          | #{_loanDetailProtectSolution}
+        .item-info-cont-item
+          span 标的ID
+          a(href='/loan/' + _loanId).loan-sign #{_loanId}
+      .item-info-title 财务信息
+      .item-info-wrap
+        .item-info-cont-item
+          span 收入(月)
+          | #{UIHelper.parseIncomeExtent(_loanDetailIncome)}
+        .item-info-cont-item
+          span 房产
+          | #{_loanDetailHouse ? '有' : '无'}
+        .item-info-cont-item
+          span 车产
+          | #{_loanDetailCar ? '有' : '无'}
+      .item-info-title 负债信息
+      .item-info-wrap
+        .item-info-cont-item
+          span 房贷
+          | #{_loanDetailHouseLoan ? '有' : '无'}
+        .item-info-cont-item
+          span 车贷
+          | #{_loanDetailCarLoan ? '有' : '无'}
+        .item-info-cont-item
+          span.month-opera-title 在其他网贷平台借款
+          | #{_loanDetailOtherPlatStatus}次
+        .item-info-cont-item
+          span.month-opera-title 其他重大负债
+          | #{_loanDetailOtherMajorLiabilities ? '有' : '无'}
+      .item-info-title 工作信息
+      .item-info-wrap
+        .item-info-cont-item
+          span 公司类别
+          | #{_loanDetailCompanyCategory}
+        .item-info-cont-item
+          span 公司行业
+          | #{_loanDetailCompanyIndustry}
+        .item-info-cont-item
+          span 职位
+          | #{_loanDetailJob}
+        .item-info-cont-item
+          span 工作城市
+          | #{_loanDetailCity}
+      .item-info-title 资金运用状况
+      .item-info-wrap
+        .item-info-cont-item
+          span 状态
+          if _dataDetailCashDraw
+            | 恒丰银行已受理提现
+          else
+            | 恒丰银行暂未受理提现
+      .item-info-title 借款详情
+      .item-info-wrap #{_loanDetaiDescription}
+    .item-list-box.item-order.tab-pane(role="tabpanel")#user_order    
+    .item-list-box.item-trading.item-list-current.tab-pane(role="tabpanel")#user_refund
+    .item-list-box.item-debt.item-list-current.tab-pane(role="tabpanel")#user_debt
+    .item-list-box.item-transfer.item-list-current.tab-pane(role="tabpanel")#user_transfer     

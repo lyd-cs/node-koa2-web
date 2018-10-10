@@ -1,0 +1,212 @@
+.wscredit
+  $font-size-download = 26px
+  $app-download-btn-bg = #D8B27A
+  $font-color-download = #9B9B9B
+  $font-color-desc-text = #7F7F7F
+  $app-download-border-color = #C9A96E
+  $font-color-footer-hover = #C49E62
+  &-banner
+    min-width: $container-width
+    overflow: hidden
+    height: 230px
+    background: url('/img/wscredit-banner.png') no-repeat center center
+  &-content
+    min-width: $container-width
+  &-wrap
+    clearfix()
+    padding: 0 80px
+  &-left
+    float: left
+  &-right
+    float: right
+  &-desc
+    &-title
+      font-size: $font-size-download
+      line-height: 42px
+      color: $grey-color-dark
+      text-align: center
+      margin-top: 45px
+    &-text
+      font-size: $font-size-huge
+      line-height: 28px
+      color: $font-color-desc-text
+      letter-spacing: 2.22px
+      margin-top: 18px
+      text-align: center
+      margin-bottom: 30px
+      margin-top: 20px
+      span 
+        margin-right: 16px
+      .last-text
+        margin-right: 0
+  &-icon
+    display: inline-block
+    background: url('/img/wscredit-app-icon.png') no-repeat 0 0
+    margin-left: 34px
+    margin-right: 8px
+    margin-top: 12px
+  .icon-apple
+    width: $font-size-download
+    height: 30px
+    background-position: 0 -49px
+  .icon-android
+    width: 24px
+    height: 30px
+    background-position: 0 0
+  .icon-footer-apple
+    width: 34px
+    height: 37px
+    background-position: 0 -146px
+  .icon-footer-android
+    width: 34px
+    height: 35px
+    background-position: 0 -98px
+  &-download-head
+    margin-top: 12px
+    margin-left: 70px
+    &-wrap
+      position: relative
+      clearfix()
+      a
+        display: block
+        width: 164px
+        height: 58px
+        margin-left: 16px
+        border-radius: 4px
+        border: 1px solid $app-download-border-color
+        font-size: $font-size-base
+        line-height: 20px
+    &-qrcode
+      width: 135px
+      height: 135px
+      border-radius: 4px
+      padding: 4px
+      border: 1px solid $app-download-btn-bg
+    &-img
+      height: 356px
+      width: 415px
+      background: url('/img/wscredit-head-bg.png') no-repeat center
+    .app-head-ios
+      margin-top: 18px
+      color: $font-color-download 
+      cursor: default
+    .app-head-android
+      background: $app-download-btn-bg
+      color: $white-color 
+      transition: .2s
+      &:hover
+        background: $font-color-footer-hover
+        .icon-android
+        .app-btns-text
+          opacity: 0.6
+    .app-btns-text
+      display: inline-block
+      line-height: 18px
+      width: 66px
+      text-align: center
+      p
+        margin-bottom: 0
+  .download-tips-info
+    position: absolute
+    bottom: -24px
+    left: 12px
+    font-size: $font-size-h6
+    color: $white-color 
+    line-height: 20px
+  .head-tips
+    color: $font-color-download 
+    line-height: 20px
+    left: 0
+  &-step
+    padding-top: 116px
+    background: $white-color 
+    &-word
+      width: 454px
+  .step-desc-text
+    font-size: $font-size-large
+  &-step-word
+    margin-top: 168px
+  &-desc-img
+    width: 456px
+    height: 570px
+  &-apply-img
+    background: url('/img/wscredit-apply-bg.png') no-repeat center
+  &-agency-img
+    background: url('/img/wscredit-agency-bg.png') no-repeat center
+  &-withdraw-img
+    background: url('/img/wscredit-withdraw-new-bg.png') no-repeat center
+  &-repay-img
+    background: url('/img/wscredit-repay-new-bg.png') no-repeat center
+  &-wrap-icon
+    width: 60px
+    height: 60px
+    margin: 0 auto
+    background: url('/img/wscredit-desc-icon.png') no-repeat 0 0
+  .apply-icon
+    background-position: 0 0
+  .agency-icon
+    background-position: 0 -74px
+  .withdraw-icon
+    background-position: 0 -146px
+  .repay-icon
+    background-position: 0 -218px
+  &-agency
+  &-withdraw
+  &-repay
+    margin-top: 160px
+  &-repay
+    margin-bottom: 85px
+  &-footer
+    height: 367px
+    overflow: hidden
+    background: url('/img/wscredit-footer-bg.png') no-repeat center
+    .footer-title
+      font-size: $font-size-download
+      color: $white-color 
+      letter-spacing: 1px
+      margin-top: 52px
+      margin-bottom: 48px
+      text-align: center
+    &-download-wrap
+      width: 356px
+      margin: 0 auto
+      position: relative
+      clearfix()
+      a
+        display: block
+        width: 180px
+        height: 70px
+        margin-left: 16px
+        border-radius: 4px
+        border: 2px solid $white-color 
+        font-size: $font-size-middle
+        line-height: 22px
+    &-download-qrcode
+      width: 160px
+      height: 160px
+      padding: 6px
+      border: 2px solid $white-color 
+      border-radius: 4px
+    .app-footer-ios
+      margin-top: 18px
+      color: $white-color 
+      opacity: 0.6
+      cursor: default
+    .app-footer-android
+      background: $app-download-btn-bg
+      color: $white-color 
+      transition: .2s
+      &:hover
+        color: $app-download-btn-bg
+        background: $white-color 
+        opacity: .9
+        .icon-footer-android
+          background-position: 0 -206px
+    .app-btns-text
+      display: inline-block
+      line-height: 18px
+      width: 70px
+      text-align: center
+      p
+        margin-bottom: 0
+

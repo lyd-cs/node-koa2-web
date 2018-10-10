@@ -1,0 +1,128 @@
+.icon
+  &-scroll
+    $roll-top-color = #C5C5C5
+    position: fixed
+    right: 20px
+    bottom: 20px
+    width: 52px
+    .jdcard-active
+      width: 104px
+      height: 66px
+      margin-left: -38px
+      margin-bottom: 15px
+    a
+      display: inline-block
+      width: 104px
+      height: 66px
+      background: url('/img/jdcard-active-enter.png') no-repeat
+  &-item
+    width: 52px
+    height: 52px
+    cursor: pointer
+    text-align: center
+  &-mobile-download
+    $mobile-border-color = rgba(113,123,133,0.20)
+    background: url('/img/mobile-download.png') no-repeat
+    margin-bottom: 4px
+    position: relative
+    .mobile-download
+      position: absolute
+      left: -195px
+      top: -76px
+      padding-right: 15px 
+      width: 195px
+      height: 208px
+      display: none
+      &-code
+        height: 208px
+        padding: 20px
+        background-color: $white-color
+        z-index: 1000
+        border: solid 1px $mobile-border-color
+        position: absolute
+        border-radius(2px)
+        &:after
+          content: ''
+          width: 8px
+          height: 15px
+          background: url('/img/triangle-small.png')
+          position: absolute
+          top: 94px
+          right: -8px
+        img
+          width: 140px
+          height: 140px
+        p
+          font-size: $font-size-h4
+          color: $grey-color-dark
+          margin-top: 10px
+    &:hover
+      background: url('/img/mobile-download-active.png') no-repeat
+      .mobile-download
+        display: block
+  &-scroll-top
+    background: url('/img/scroll-top.png') no-repeat
+    margin-top: 87px
+    &:hover
+      background: url('/img/scroll-top-active.png') no-repeat
+  &-hide
+    visibility: hidden
+  &-simulate-checkbox
+    height: 14px
+    width: 14px
+    display: inline-block
+    &-uncheck
+      background: url('img/simulate-checkbox-uncheck.png')
+    &-checked
+      background: url('img/simulate-checkbox-checked.png') 
+    &-disabled
+      cursor: not-allowed
+      background: url('img/simulate-checkbox-disabled.png')
+  &-question-circle
+    margin-left: 3px
+    margin-bottom:-1px
+    background: url('img/icon.account.home.tip.png')
+    height: 11px
+    width: 11px
+    display: inline-block
+    z-index: 99
+  &-novice
+    $_novice-arrow-color = #F55151
+    &-bank
+      background: url('/img/icon-novice-bank.png') center center no-repeat
+      &-active
+        position: absolute
+        opacity: 0
+        left: 0
+        right: 0
+        background: url('/img/icon-novice-bank-active.png') center center no-repeat
+    &-disperse
+      background: url('/img/icon-novice-disperse.png') center center no-repeat
+      &-active
+        position: absolute
+        opacity: 0
+        left: 0
+        right: 0
+        background: url('/img/icon-novice-disperse-active.png') center center no-repeat
+    &-risk
+      opacity: 1
+      background: url('/img/icon-novice-risk.png') center center no-repeat
+      &-active
+        position: absolute
+        opacity: 0
+        left: 0
+        right: 0
+        background: url('/img/icon-novice-risk-active.png') center center no-repeat
+    &-arrow
+      display: block
+      position: relative
+      width: 18px
+      height: 8px
+      left: 31px
+      top: 4px
+      transition: .3s
+      background: url('/img/icon-novice-arrow.png') center center no-repeat
+    &-step-arrow
+      background: url('/img/icon-novice-arrow-gray.png') center center no-repeat
+      &-active
+        background: url('/img/icon-novice-step-arrow-active.png') center center no-repeat

@@ -1,0 +1,106 @@
+extends base
+
+block title
+  | 红小宝注册立送双重豪礼
+
+block page-val
+  - var pageClass = 'propoganda-body landing-luxury-result-height'
+
+block content
+  .landing-luxury
+    .landing-luxury-detail#J_wrap
+      img(src='/img/mobile/landing-banner-luxury.png')
+      .landing-luxury-content
+        img(src='/img/mobile/landing-luxury-form.png')
+        .landing-luxury-form
+          .propoganda-page.propoganda-register
+            - var _mobileIconUrl = '/img/propoganda-register-luxury-mobile.png'
+            - var _smscodeIconUrl = '/img/propoganda-register-luxury-smscode.png'
+            - var _passwordIconUrl = '/img/propoganda-register-luxury-password.png'
+            - var _btnColor = 'btn-lighter'
+            include ./mod/register.form.nocode.pug
+        .landing-luxury-wrap
+          img.wrap-title(src='/img/mobile/landing-luxury-profit-title.png')
+          .item-product
+            img(src='/img/mobile/landing-luxury-product-title.png')
+            .item-product-title 红利智投
+            .item-product-detail
+              dl
+                dt.profit-year 6.5
+                  span %
+                dd
+                   | 平均历史年化收益
+              dl
+                dt 3
+                  span 个月
+                dd
+                  | 锁定期
+              dl
+                dt 1000
+                  span 元
+                dd
+                  | 起投金额
+          .item-product
+            img(src='/img/mobile/landing-luxury-product-title.png')
+            .item-product-title 红利智投
+            .item-product-detail
+              dl
+                dt.profit-year 9.6
+                  span %
+                dd
+                  | 平均历史年化收益
+              dl
+                dt 12
+                  span 个月
+                dd
+                  | 锁定期
+              dl
+                dt 1000
+                  span 元
+                dd
+                  | 起投金额
+          img.wrap-title.item-invest-title(src='/img/mobile/landing-invest-title.png')
+          .item-invest-content
+            .item.item-invest-deposit
+              h1 恒丰银行资金存管
+              p 用户资金由恒丰银行存管，
+              p 平台接触不到用户资金，不可能卷款跑路
+              img.item-invest-deposit-image(src='/img/landing-register-give-safe.png')
+            .item.item-invest-risk
+              h1 四重风控审核，精选优质资产
+              p 平台与同盾反欺诈、美林大数据、
+              p 上海资信等第三方合作，标准化审核流程，确保
+              p 每个上线项目优质可靠
+              img.item-invest-risk-image(src='/img/landing-register-give-fine-new.png')
+            .item.item-invest-disperse
+              h1 智能分散，有效降低风险
+              p 用户只需要买入，后台系统自动将出借资金小
+              p 额分配到多个项目中，有效降低单一借款人违约的风险
+              img.item-invest-disperse-image(src='/img/landing-register-give-reduce.png')
+      .landing-luxury-footer
+        include ./mod/landing.footer.pug
+    .landing-luxury-result.hide#J_result
+      img.logo(src='/img/mobile/landing-luxury-logo.png')
+      img(src='/img/mobile/landing-result-luxury.png')
+      .result-download
+        a(href='http://a.app.qq.com/o/simple.jsp?pkgname=com.hoomsun.hxb') 下载红小宝APP>>
+        p 欢迎来到红小宝！
+        p.item-large 增值人生，触手可及！
+      img.result-left-bg(src='/img/mobile/landing-luxury-result-left.png')
+      img.result-right-bg(src='/img/mobile/landing-luxury-result-right.png')
+block foot-script
+  script.
+    app.landingCarnival.init({
+      form: '#J_user-register-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      trigger: '#J_verifycode',
+      smscode: '#J_smscode',
+      noCaptcha: true
+    });
+    app.util.wx.init({
+      title: '银行存管的高收益平台 ',
+      desc: '告别死工资，注册送1288现金红包',
+      link: '/landing/luxury',
+      imgUrl: '/img/mobile/invite-logo.png'
+    });

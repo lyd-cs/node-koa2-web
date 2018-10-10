@@ -1,0 +1,20 @@
+- var _activeDesc = [{amount: 50, limit:'任意金额', month: '任意期限'}, {amount: 100, limit:'10000元', month: '1月期'}, {amount: 200, limit:'20000元', month: '3月期', extraRate: '0.5%'}, {amount: 500, limit:'30000元', month: '9月期'}]
+.landing-miya-active
+  .landing-miya-active-desc
+    .desc-title 活动说明
+    ol
+      li 对活动如有任何疑问，敬请咨询红小宝客服热线400-1552-888；
+      li 活动时间：2018年6月21日起，本活动仅针对活动期间通过蜜芽渠道注册的新用户；
+      li 活动期间，新用户注册后单笔投资达到指定额度/期限，即可获得对应蜜芽券奖励； 
+        table
+          tr
+            td 蜜芽券
+            td 投资金额
+            td 投资期限
+          each item, idx in _activeDesc
+            tr
+              td #{item.amount}元
+              td #{item.limit}
+              td #{item.month}
+        | 蜜芽券兑换码将在完成投资后的下一个工作日，以短信的形式发送至您的注册手机号，全部蜜芽券为0门槛全场通用；
+      li 本活动规则解释权归红小宝所有。

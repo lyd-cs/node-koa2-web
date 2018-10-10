@@ -1,0 +1,67 @@
+extend base
+
+block title
+  | 红利智投退出 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css')) 
+
+block content
+  - var _endLockingTime = _.get(planQuitData, 'endLockingTime') - 0
+  - var _planQuitAmount = _.get(planQuitData, 'amount', 0) - 0
+  - var _totalEarnInterest = _.get(planQuitData, 'totalEarnInterest', 0) - 0
+  - var _earnInterestNow = _.get(planQuitData, 'earnInterestNow', 0) - 0
+  - var _mobile = _.get(userState, 'mobile')
+  include ./mod/account.nav.pug
+  .section.uc-setting.uc-plan-exit
+    if result
+      .uc-plan-exit-result
+        img(src='/img/buy-successed.png')
+        h4.uc-plan-exit-success 退出已申请
+        .uc-plan-exit-tips 您已申请退出，将在#{UIHelper.formatdate('YYYY-MM-DD', quitTime)}开始退出，期间可撤销退出，会继续享有收益。
+        a(href='/account/plan/'+financePlanId).btn.btn-basic 完成
+    else
+      .uc-title
+        h4 申请退出
+      if errors
+        .alert-danger
+          include ./mod/error.pug
+      form.form-horizontal.uc-form.uc-withdraw-form#J_exit-form(method='post')
+        .form-group
+          label.control-label 加入本金
+          .uc-mobile-form-title #{UIHelper.formatNumber(_planQuitAmount, 2)}元
+        if _totalEarnInterest
+          .form-group
+            label.control-label 预期收益
+            .uc-mobile-form-title #{UIHelper.formatNumber(_totalEarnInterest, 2)}元
+        else
+          .form-group
+            label.control-label 当前已赚
+            .uc-mobile-form-title #{UIHelper.formatNumber(_earnInterestNow, 2)}元
+        .form-group
+          label.control-label 退出时间
+          .uc-mobile-form-title #{UIHelper.formatdate('YYYY-MM-DD', _endLockingTime)}
+        .form-group
+          label.control-label 手机验证码
+          .control-content
+            input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='smscode', maxlength='6', placeholder='手机验证码')
+            button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+          .smscode-sure 短信验证码已发送到您的手机#{UIHelper.safeMobile(_mobile)}
+        .form-group.form-group-button
+          .help-inline
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            button.btn-basic.btn.charge-btn(type='submit') 退出
+      .uc-plan-exit-foot
+        span
+        | 温馨提示：在退出时间之前均可撤销退出，期间收益会继续享有。
+        
+block foot-script
+  script.
+    var _mobile = #{_mobile}
+    app.accountPlanExit.init({
+      form: '#J_exit-form',
+      smscode: '#J_smscode',
+      trigger: '#J_verifycode',
+      mobile: _mobile
+    });

@@ -1,0 +1,130 @@
+extends base
+
+block title
+  | 红小宝
+
+block page-val
+  - var pageClass = 'propoganda-body'
+
+block content
+  - var _inviteCode = staffId
+  .propoganda-scroll#scroll-container
+    .propoganda-page.propoganda-introduce
+      img.propoganda-introduce-poster(data-src='/img/propoganda-poster-0209.png')
+    .propoganda-page.propoganda-product
+      h3.propoganda-title 红小宝产品
+      p.propoganda-product-introduce 红利智投
+      img.propoganda-product-type(data-src='/img/propoganda-product-0315.jpg')
+      p.propoganda-product-introduce 年化收益9.9%，到期还本付息
+      p.propoganda-product-tip *更多优质产品敬请期待
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-secure
+      h3.propoganda-title 银行资金存管
+      img.propoganda-secure-process(data-src='/img/propoganda-process.png')
+      h4.propoganda-secure-title 平台不会卷款跑路
+      p.propoganda-secure-text 用户资金由恒丰银行存管、平台不会触碰用户资金，用户每一笔资金动态都可以在恒丰银行查询
+      h4.propoganda-secure-title 其他人也盗不走您账户里的钱
+      p.propoganda-secure-text 账户资金只能提现到充值的银行卡，即使您的手机丢失，旁人也无法盗走您的资金
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-safety
+      h3.propoganda-title 360°网络安全防护
+      .propoganda-safety-technology
+        img.geotrust(data-src="/img/propoganda-trust.png")
+        p GeoTrust认证的SSL数据加密技术，保证数据传输安全
+      .propoganda-safety-technology
+        img(data-src="/img/propoganda-alicloud.png")
+        p 阿里云均衡负载服务器，保证系统平稳运行
+      .propoganda-safety-technology
+        img(data-src="/img/propoganda-firewall.png")
+        p 三层硬件+软件防火墙，攻击统统拦在门外
+      .propoganda-safety-technology
+        img(data-src="/img/propoganda-struct.png")
+        p 分布式架构，容灾备份，数据无价
+      .propoganda-safety-technology
+        img(data-src="/img/propoganda-watch.png")
+        p 7x24不间断实时监控，风险扼于萌芽
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-riskcontrol
+      h3.propoganda-title 层层风控 只为最优质项目
+      p.propoganda-riskcontrol-introduce 和第三方征信机构合作，建立科学有效的审核及风控体系，对借款人进行大数据，多维度的贷前审查。
+      img.propoganda-riskcontrol-system(data-src='/img/propoganda-pneumatic.png')
+      h4.propoganda-riskcontrol-cooperate 贷前审查合作机构
+      img.meilin-logo(data-src='/img/propoganda-meilin.png')
+      img.tongdun-logo(data-src='/img/propoganda-tongdun.png')
+      img.zixin-logo(data-src='/img/propoganda-zixin.png')
+      img.zhengxin-logo(data-src='/img/propoganda-zhengxin.png')
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-disperse
+      h3.propoganda-title 智能分散 降低出借风险
+      img.propoganda-disperse-system(data-src='/img/propoganda-disperse.png')
+      p.propoganda-disperse-introduce 在优质项目的基础上，出借风险随着出借项目数量的增多而减少。
+      p.propoganda-disperse-introduce 红小宝专业的金融团队搭建了智能分散匹配模式，用户只需要买入，后台系统自动将出借资金小额分散到多个项目中，有效降低单一借款人违约的风险。
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-receive
+      h3.propoganda-title 完善的风控管理体系
+      h4.propoganda-receive-subtitle 贷后管理
+      h4.propoganda-receive-manage-header 还款到期前三天
+      p.propoganda-receive-manage-text 联系借款人，提醒及时还款
+      h4.propoganda-receive-manage-header 轻微逾期
+      p.propoganda-receive-manage-text 电话催促与实地外访结合，运用电话、信函、实地外访、失联查找等方式进行逾期管理与催收。
+      h4.propoganda-receive-manage-header 中长期逾期
+      p.propoganda-receive-manage-text 外访催收与法律诉讼结合，委托合法的第三方专业机构进行外访催收，委托专业律所进行贷后法律诉讼追偿逾期欠款。
+      a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-legal
+      h3.propoganda-title 合法合规 有效法律保障
+      .propoganda-legal-type
+        img.propoganda-legal-type-logo(src='/img/propoganda-cbrc.png')
+        p.propoganda-legal-type-introduce 红小宝严格恪守《网络借贷信息中介机构业务活动管理暂行办法》、《互联网金融指导意见》等金融监管法规，远离非法集资，充分信息披露。
+      .propoganda-legal-type
+        img.propoganda-legal-type-logo(src='/img/propoganda-cfca.png')
+        p.propoganda-legal-type-introduce 中国金融认证中心(CFCA)对红小宝上每一笔协议提供电子签名，并保证合同信息不被篡改。
+      .propoganda-legal-type
+        img.propoganda-legal-type-logo(src='/img/propoganda-conctract-law.png')
+        p.propoganda-legal-type-introduce 红小宝上每一份协议均符合《中华人民共和国合同法》及《最高人民法院关于审理民间借贷案件适用法律若干问题的规定》，受法律保护。
+      a.register-now(href='#register') 立即注册 >
+    //-
+      .propoganda-page.propoganda-achievement
+        h3.propoganda-title 多年耕耘 硕果累累
+        .propoganda-achievement-map
+          span.propoganda-achievement-slogen 覆盖全国18个省，43个城市，服务人数超过十万人。
+        .propoganda-achievement-menber
+          img.propoganda-achievement-menber-logo(src="/img/propoganda-cif.png")
+          p.propoganda-achievement-menber-introduce 中国互联网金融工作委员会成员
+        .propoganda-achievement-menber
+          img.propoganda-achievement-menber-logo(src="/img/propoganda-smeshx.png")
+          p.propoganda-achievement-menber-introduce 中小企业服务平台特约机构
+        .propoganda-achievement-menber
+          img.propoganda-achievement-menber-logo(src="/img/propoganda-cis.png")
+          p.propoganda-achievement-menber-introduce 上海资信专委会成员
+        .propoganda-achievement-menber
+          img.propoganda-achievement-menber-logo(src="/img/propoganda-xiaoedai.png")
+          p.propoganda-achievement-menber-introduce 中国小额信贷联盟成员
+        a.register-now(href='#register') 立即注册 >
+    .propoganda-page.propoganda-register
+      img.propoganda-register-poster(src='/img/propoganda-register-poster.png')
+      - var _mobileIconUrl = '/img/propoganda-register-mobile.png'
+      - var _captchaIconUrl = '/img/propoganda-register-captcha.png'
+      - var _smscodeIconUrl = '/img/propoganda-register-smscode.png'
+      - var _passwordIconUrl = '/img/propoganda-register-password.png'
+      include ./register.form.pug
+      .propoganda-register-copyright Copyright © 2017 #{hoomxbBeian}
+block foot-script
+  script.
+    var _inviteId = #{_inviteCode};
+    app.landingAbout.init({
+      form: '#J_user-register-form',
+      mobile: '#J_mobile',
+      password: '#J_password',
+      captcha: '#J_graphicCode',
+      captchaimg: '#J_graphicCode_container',
+      trigger: '#J_verifycode',
+      captchaholder: '.form-group-graphicCode',
+      smscode: '#J_smscode',
+      submitbtn:'#J_btn-submit',
+    });
+    app.util.wx.init({
+      title: '红小宝2.0新版起航，邀您体验',
+      link: '/landing/about/' + _inviteId ,
+      desc: '红小宝携手恒丰银行完成资金存管，2.0版本扬帆起航，一分钟探索新版红小宝',
+      imgUrl: '/img/mobile/logo-wx.jpg'
+    });

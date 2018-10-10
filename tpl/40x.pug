@@ -1,0 +1,14 @@
+extend base
+
+block title
+  | 404 - 
+
+block content
+  .section.error-page
+    .error-page-title
+      img(src='/img/error-title.png')
+    .error-page-content
+      p 对不起，您访问的页面不存在或已被删除。
+      p 立即返回
+        a(href='/') 首页
+        | 看看吧~

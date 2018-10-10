@@ -1,0 +1,93 @@
+if _isWaitOpen || _isBidding || _isCountDown || _isPreSales
+  .product-detail-buy
+    dl
+      dt 剩余可投(元)
+      dd.item-residue-cash #{UIHelper.formatNumber(_productDetailRemainAmount, 2)}
+    dl
+      dt 可用金额(元)
+      if isLogin
+        dd 
+          | #{UIHelper.formatNumber(_userAvailableBalance, 2)}
+          if _userIsCreateAccount && _userIsCashPasswordPassed && _userIsIdPassed
+            a(href='/account/quickpay').item-recharge 充值
+          else
+            a.J_charge-createaccount-guide.item-recharge 充值
+      else
+        dd.item-login
+          a(href='/login') 登录
+          | 后查看
+    include ./buy.form.pug 
+if _isDoing
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-doing-status
+      h3 收益中
+      dl.intro-item-halfWidth
+        if _isFromPlan
+          dt 已累计收益
+          dd #{UIHelper.formatNumber(_earnTotal, 2)}元
+        if _isFromLoan
+          dt 已还期数
+          dd #{_loanDetailRefundMonth}/#{_productDetailDuration}期
+      dl.intro-item-halfWidth-noBorder
+        if _isFromLoan
+          dt 下一还款日
+          dd #{UIHelper.formatdate('YYYY-MM-DD', _loanDetailRefundDate)}
+if _isBiddingdone
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-biddingdone-status
+      if _isFromPlan
+        h3 销售结束
+        dl.intro-item-fullWidth
+          dt 加入人次
+          dd #{_joinCount}人
+      if _isFromLoan
+        h3.full-scale 已满标
+          .text-sentence 等待放款至借款人账户
+        dl.intro-item-halfWidth
+          dt 满标用时
+          dd 
+            if _loanDetailJoinTime.hours() > 0 
+              | #{Math.floor(_loanDetailJoinTime.asHours())}
+              span 时
+            if _loanDetailJoinTime.minutes() > 0 || _loanDetailJoinTime.hours() > 0 || _loanDetailJoinTime.days() > 0
+              | #{_loanDetailJoinTime.minutes()}
+              span 分
+            | #{_loanDetailJoinTime.seconds()}
+            span 秒
+        dl.intro-item-halfWidth-noBorder
+          dt 加入人次
+          dd #{_loanDetailJoinPerson}
+if _isExiting
+  .product-detail-buy-bg
+    if _isFromPlan
+      .product-detail-buy-status.product-exiting-status       
+        h3 退出中
+        dl.intro-item-fullWidth
+          dt 累计收益(元)
+          dd #{UIHelper.formatNumber(_earnTotal, 2)}
+if _isDone
+  .product-detail-buy-bg
+    if _isFromPlan
+      .product-detail-buy-status.product-done-status
+        h3 已退出
+        dl.intro-item-fullWidth
+          dt 累计收益(元)
+          dd #{UIHelper.formatNumber(_earnTotal, 2)}
+    if _isFromLoan
+      .product-detail-buy-status.product-settle-status
+        h3 已结清
+        dl.intro-item-fullWidth
+          dt 结清日期
+          dd #{UIHelper.formatdate('YYYY-MM-DD', _loanDetailDoneTime)}
+if _isFailed
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-failed-status
+      h3 已流标
+if _isLending
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-credit-status
+      h3 放款中
+if _isFirstApply
+  .product-detail-buy-bg
+    .product-detail-buy-status.product-wait-invest-status
+      h3 待成交

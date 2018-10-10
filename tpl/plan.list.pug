@@ -1,0 +1,81 @@
+extend base
+
+block title
+  | 红利智投 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))
+  
+block content
+  - var _recommendList = _.get(recommendData, 'dataList') || []
+  - var _monthlyPaymentsRecommendList = monthlyPaymentsRecommend
+  .plan
+    .plan-banner
+    .section
+      .plan-recommend
+        .plan-icon
+          img(src='/img/plan-title-content.png') 
+        .plan-recommend-body
+          h4.plan-recommend-body-header 收益复投
+          include ./mod/plan.recommend.pug
+        .plan-recommend-body
+          h4.plan-recommend-body-header 按月提取收益
+          include ./mod/plan.month.recommend.pug
+      .plan-list#J_plan-list
+        h3 红利智投列表
+        if dataList && dataList.length
+          .plan-list-content.J_plan-list-body
+            .list-main
+              .item-list
+                span.item-title.item-name 服务名称
+                span.item-title 平均历史年化收益
+                span.item-title 锁定期(月)
+                span.item-title 总金额(元)
+                span.item-title 加入人次
+                span.item-title 收益处理方式
+                span.item-title.item-status 状态
+              .plan-list-body
+                each item, idx in dataList
+                  - var _productStatus = _.get(item, 'unifyStatus', 0) - 0 || 0;
+                  - var _state = UIHelper.parsePlanStatus(_productStatus);
+                  - var waitopen = _state.wait_open;
+                  - var countDown = _state.wait_reserve;
+                  - var binding = _state.opening;
+                  - var bindingdone = _state.open_full;
+                  - var doing = _state.period_locking;
+                  - var done = _state.period_closed;
+                  - var _startTime = _.get(item, 'beginSellingTime', 0) - 0 || 0;
+                  - var _now = _now || Date.now();
+                  - var _planName = _.get(item, 'name', '');
+                  - var _yieldRate = _.get(item, 'expectedRate', 0) - 0;
+                  - var _amount = _.get(item, 'amount', 0) - 0;
+                  - var _duration = _.get(item, 'lockPeriod', 0) - 0;
+                  - var _productId = _.get(item, 'id', 0) - 0;
+                  - var _joinCount = _.get(item, 'joinCount', 0) - 0;
+                  - var _productSellEndTime = _.get(item, 'endSellingTime', '');
+                  - var _productCashType = _.get(item, 'cashType', '');
+                  a(href='/plan/' + _productId).item-list
+                    span.item-cell.item-name #{_planName}
+                    span.item-cell.item-yield #{UIHelper.formatNumber(_yieldRate, 1)}%
+                    span.item-cell #{_duration} 
+                    span.item-cell #{UIHelper.formatNumber(_amount)}
+                    span.item-cell #{_joinCount}
+                    span.item-cell #{UIHelper.parsePlanCashType(_productCashType)}
+                    span.item-cell.item-status
+                      span(class={'plan-binding':binding})
+                        if waitopen || countDown
+                          | 等待加入
+                        else if binding
+                          | 立即加入
+                        else if bindingdone
+                          | 销售结束
+                        else if doing
+                          | 收益中
+            include ./mod/pager.ajax.pug
+        else
+          .plan-list-content
+            include ./mod/nothing.data.pug
+
+block foot-script
+  script.
+    app.planList.init();

@@ -1,0 +1,63 @@
+extend base
+
+block title
+  | 红利智投加入取消 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css')) 
+
+block content
+  - var _quitTime = _.get(planJoinQuitData, 'cancelTime') - 0
+  - var _quitAmount = _.get(planJoinQuitData, 'cancelAmount', 0) - 0
+  - var _couponAmount = _.get(planJoinQuitData, 'couponAmount', 0) - 0 
+  - var _mobile = _.get(userState, 'mobile', '')
+  include ./mod/account.nav.pug
+  .section.uc-setting.uc-plan-exit
+    if result === 'success'
+      .uc-plan-exit-result
+        img(src='/img/buy-successed.png')
+        h4.uc-plan-exit-success 红利智投成功取消
+        .uc-plan-exit-tips 您加入的#{planName}已退出
+        a(href='/account/plan').btn.btn-basic 完成
+    else if result === 'overtime'
+      .uc-plan-exit-result
+        img(src='/img/buy-result-error.png')
+        h4.uc-plan-exit-success 退出已加入红利智投
+        .uc-plan-exit-tips 很遗憾，你加入的红利智投已超过可取消时间
+        a(href='/account/plan/'+financePlanId).btn.btn-basic 完成
+    else
+      .uc-title
+        h4 退出红利智投
+      if errors
+        .alert-danger
+          include ./mod/error.pug
+      form.form-horizontal.uc-form.uc-withdraw-form#J_exit-join-form(method='post')
+        .form-group
+          label.control-label 退出金额
+          .uc-mobile-form-title #{UIHelper.formatNumber(_quitAmount, 2)}元
+          if _couponAmount
+            .coupon-amount 您使用的优惠券金额#{_couponAmount}元已被扣除
+        .form-group
+          label.control-label 退出时间
+          .uc-mobile-form-title #{UIHelper.formatdate('YYYY-MM-DD', _quitTime)}
+        .form-group
+          label.control-label 手机验证码
+          .control-content
+            input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='smscode', maxlength='6', placeholder='手机验证码')
+            button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+          .smscode-sure 短信验证码已发送到您的手机#{UIHelper.safeMobile(_mobile)}
+        .form-group.form-group-button
+          .help-inline
+          .control-content
+            input(type='hidden', name='_csrf', value=csrf)
+            button.btn-basic.btn.charge-btn(type='submit') 退出
+
+block foot-script
+  script.
+    var _mobile = #{_mobile}
+    app.accountPlanJoinExit.init({
+      form: '#J_exit-join-form',
+      smscode: '#J_smscode',
+      trigger: '#J_verifycode',
+      mobile: _mobile
+    });

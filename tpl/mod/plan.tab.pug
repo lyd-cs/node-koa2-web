@@ -1,0 +1,10 @@
+.tab-section.plan-tab-list
+  ul.tab-bar.plan-tab-nav(role="tablist")#plan-tab-nav
+    li.item-nav-product(class='active')
+      a(href='#order',  data-init="1",data-toggle="tab", data-target='#plan_detail')#J_order-list 服务详情
+    li.last-tabs
+      a(href='#refund', data-init="0", data-toggle="tab", data-target='#user_order')#J_refund-list 加入记录
+  .item-list-detail.tab-content.tab-card#tab-content
+    .item-list-box.item-info.tab-pane(class='active', role="tabpanel")#plan_detail
+      include ./plan.detail.planDetail.pug
+    .item-list-box.item-order.item-list-current.tab-pane(role="tabpanel")#user_order

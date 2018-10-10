@@ -1,0 +1,40 @@
+doctype html
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    title 企业充值
+    meta(name='csrf-param', content='_csrf')
+    meta(name='csrf-token', content=csrf)
+    link(rel='stylesheet', href= UIHelper.static_url('/css/app.css') )
+    link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+    <!--[if lt IE 9]>
+    script(src= UIHelper.static_url('/lib/html5shiv.min.js') )
+    script(src= UIHelper.static_url('/lib/respond.min.js') )
+    <![endif]-->
+    script(src= UIHelper.static_url('/js/lib.js') )
+    block head-style
+  body
+    block body
+      block header
+      block content
+        .section.uc-setting
+          .uc-title
+            h4 红上金融企业充值
+          form.J_recharge-form.uc-enterprise-charge(method='post', action='/enterprise/recharge')
+            .form-group.charge-money
+              .control-content
+                label 充值金额：
+                input.form-control.charge-amount(type="text", name='amount', required)
+                span 元
+            .form-group
+              .control-content
+                input(type="hidden", name='_csrf', value=csrf)
+                button.btn.btn-basic.charge-btn(type='submit') 充值
+                .J_help-inline.help-inline
+                  if errors
+                    include ./mod/error.pug
+      block footer
+      script(src= UIHelper.static_url('/js/app.js'))
+    block foot-script
+      script.
+        app.enterpriseRecharge.init()

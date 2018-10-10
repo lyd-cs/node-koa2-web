@@ -1,0 +1,22 @@
+extend base
+
+block title
+  | APP下载
+
+block content
+  .download
+    .download-header.J_download-wechat
+      p 下载红小宝app
+      p 1.点击右上角分享图标
+      p 2.点击浏览器进行下载
+      .download-icon-arrow
+    .download-content.J_download-wechat
+    .download-footer
+      p 人生增值 触手可及
+        span 红小宝APP
+block foot-script
+  script.
+    app.download.init({
+      androidDownload: '#{androidDownloadUrl}',
+      iosDownload: '#{iphoneDownloadUrl}'
+    });

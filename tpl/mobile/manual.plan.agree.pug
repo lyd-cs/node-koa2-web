@@ -1,0 +1,224 @@
+extend base
+
+block title
+  if !agreementData || agreementData && agreementData.contractId >= 8
+    | 红利智投服务协议
+  else 
+    | 红利计划服务协议
+block content
+  .container.agreement
+    //-
+      textarea(style="width: 100%; height: 100px") #{JSON.stringify(agreementData)}
+    if agreementData
+      - var _userAmount = _.get(agreementData, 'amount') - 0 || 0
+      - var _userMaxAmount = _.get(agreementData, 'singleMaxRegisterAmount') - 0 || 0
+      - var _userRealName = _.get(agreementData, 'realName') || ''
+      - var _userIdcNum = _.get(agreementData, 'cardNumber') || ''
+      - var _productYearRate = _.get(agreementData, 'compoundRate') - 0 || 0
+      - var _productEndSellTime = _.get(agreementData, 'endSellingTime') - 0 || 0
+      - var _productMultipleAmount = _.get(agreementData, 'registerMultipleAmount') - 0 || 0
+      - var _productPlanName = _.get(agreementData, 'financeplanName') || ''
+      - var _productBeginSellTime = _.get(agreementData, 'beginSellingTime') - 0 || 0
+      - var _productMinAmount = _.get(agreementData, 'minRegisterAmount') - 0 || 0
+      - var _productTcpNum = _.get(agreementData, 'agreementNumber') || ''
+      - var _productStartLockTime = _.get(agreementData, 'LockStart') - 0 || 0
+      - var _productEndLockTime = _.get(agreementData, 'endLockingTime') - 0 || 0
+      - var _contractId = _.get(agreementData, 'contractId') - 0 || 0
+      - var _productDrawDay = _.get(agreementData, 'incomeDay', '')
+      - var _lockPeriod = _.get(agreementData, 'lockPeriod')
+    if errors
+      .singup-errors.alert-danger
+        include ../mod/error.pug
+
+    if !_contractId || _contractId && _contractId >= 8
+      include ./mod/manual.plan.agree.eight.pug
+    else if  _contractId && _contractId == 7
+      include ./mod/manual.plan.agree.seven.pug 
+    else
+      if _contractId && _contractId > 2  && _contractId < 6
+        h5 尊敬的客户：竑翀网络科技（上海）有限公司（以下称"红小宝"）"红利自动投标服务计划"（以下称"红利计划"）仅面向红小宝的新老注册用户。红利计划旨在为红小宝的新老注册用户提供效率更高、退出更加灵活的服务，以便更好地提高出借人的资金使用效率。
+      else
+        h5 尊敬的客户：红上金融信息服务（上海）有限公司（以下称"红小宝"）"红利自动投标服务计划"（以下称"红利计划"）仅面向红小宝的新老注册用户。红利计划旨在为红小宝的新老注册用户提供效率更高、退出更加灵活的服务，以便更好地提高出借人的资金使用效率。
+      h4 《红利计划服务协议书》
+      p 协议编号：
+        if agreementData
+          | #{_productTcpNum}
+      p 甲方：
+        if agreementData
+          | #{_userRealName}
+      p 身份证件号码：
+        if agreementData
+          | #{_userIdcNum}
+      if _contractId && _contractId > 2  && _contractId < 6
+        p 乙方：竑翀网络科技（上海）有限公司
+        p 住所：上海市嘉定区真南路4268号2幢J3086室
+      else
+        p 乙方：红上金融信息服务（上海）有限公司 
+        p 住所：上海市嘉定区银翔路655号B区1158室
+      p 邮编：201800 
+      p 咨询电话：400-1552-888 
+      p 甲乙双方经友好协商，本着平等自愿、诚实信用的原则，达成如下协议：
+
+      h5 1、红利计划服务意向
+      p 1.1 乙方作为一家在上海市合法成立并有效存续的有限责任公司，拥有www.hoomxb.com 网站以及对应的手机客户端（下称"红小宝网站"或"红小宝平台"）的经营权，主要通过红小宝平台为互联网环境下各主体之间的借贷交易提供信息中介和居间撮合服务；乙方谨此推出"出借人优先自动投标及到期按相关规则自动退出"的红利计划服务（下称"红利计划"），为加入红利计划的出借人提供更加贴心、便捷的服务，并将尽最大努力维护出借人的合法利益。
+      p 1.2 甲方同意加入本期红利计划，并自愿遵守红小宝网站现有的相关协议及规则。
+      h5 2、甲方加入本期红利计划详情：
+      p 甲方同意按照如下条件通过红小宝平台加入乙方提供的本期红利计划，相关条件详情如下：
+      table(cellspacing='0', cellpadding='0', width='100%')
+        tbody
+          tr
+            th 名称
+            td
+              if agreementData
+                | #{_productPlanName}
+          tr
+            th 平均历史年化收益
+            td
+              if agreementData
+                | #{UIHelper.formatNumber(_productYearRate, 2)}%
+          tr
+            th 加入资金数额（下称”甲方加入资金”）
+            td
+              if agreementData
+                | 共#{UIHelper.formatNumber(_userAmount, 2)}元
+          tr
+            th 锁定期
+            td
+              if agreementData
+                | #{_lockPeriod}
+          tr
+            th 优先自动投标范围
+            td 红小宝平台上发布的已审核借款需求以及红小宝【债权转让市场】转让的债权
+          tr
+            th 锁定期开始日
+            td
+              if agreementData
+                | #{UIHelper.formatdate('YYYY-MM-DD', _productStartLockTime)}
+          tr
+            th 锁定期结束日
+            td
+              if agreementData
+                | #{UIHelper.formatdate('YYYY-MM-DD', _productEndLockTime)}
+          if isMonthlyPaymentsPlan
+            tr
+              th 收益提取日
+              td
+                if agreementData
+                  | #{UIHelper.formatdate('YYYY年MM月DD日', _productDrawDay)}起，每月#{UIHelper.formatdate('DD', _productDrawDay)}日，
+                else
+                  | 20XX年XX月XX日起，每月XX日，
+                | 若当月没有该日，则收益提取日为当月最后一天。
+      h5 甲方已经知悉、了解并同意：本协议所示平均历史年化收益不代表甲方最终实际收益；甲方出借本金以及相应的利息存在不能够按期收回的风险；在实际收益率未达到预期收益率的情况下，甲方仅能收取其实际收益。乙方不对甲方本金的收回、可获收益金额作出任何承诺、保证。
+      h5 甲方在申请期内支付完毕甲方加入资金的，即加入本期红利计划，且无论甲方加入本期红利计划时锁定期是否开始，一旦加入，甲方均不得撤销、取消本协议和/撤销、取消加入本期红利计划，并只能根据本协议第6条约定退出本期红利计划。甲方加入本期红利计划后，甲方即可通过系统在本协议项下甲方认可的范围内进行优先自动投标。
+      h5 3、本期红利计划基本要素：
+      p 3.1 名称：
+        if agreementData
+          | #{_productPlanName}
+      p 3.2 投标范围：红小宝平台上发布的已审核借款需求以及红小宝【债权转让市场】转让的债权。
+      p 3.3 加入金额要求：最低加入金额为人民币【
+        if agreementData
+          | #{UIHelper.formatNumber(_productMinAmount)}
+        else
+          | xxx
+        | 】元，并以人民币【
+        if agreementData
+          | #{UIHelper.formatNumber(_productMultipleAmount)}
+        else
+          | xxx
+        | 】整数倍递增，最高不超过人民币【
+        if agreementData
+          | #{UIHelper.formatNumber(_userMaxAmount)}
+        else
+          | xxx
+        | 】元。
+      p 3.4 申请期：自
+        if agreementData
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productBeginSellTime)}
+        else
+          | 20xx年xx月xx日
+        | 至
+        if agreementData
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productEndSellTime)}
+        else
+          | 20xx年xx月xx日
+        | 。申请期内，甲方可申请加入本期红利计划。具体的加入方式请参见红小宝平台红利计划现有申请、加入规则。
+      p 3.5 锁定期：自
+        if agreementData
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productStartLockTime)}
+        else
+          | 20xx年xx月xx日
+        | 至
+        if agreementData
+          | #{UIHelper.formatdate('YYYY-MM-DD', _productEndLockTime)}
+        else
+          | 20xx年xx月xx日
+        | 。甲方加入本期红利计划后及锁定期内，甲方加入本期红利计划的资金不能提现。
+      h5 4、授权
+      p 4.1 甲方在此无条件且不可撤销地同意并确认：自甲方加入本期红利计划起，甲方即可通过系统在本协议项下甲方认可的范围内进行优先自动投标（"投标"即出借或受让已有借款债权，下同），并通过红小宝平台系统以甲方名义自动签署相关借款协议、债权转让协议；甲方对此等自动投标和自动签署相关借款协议、债权转让协议之安排已充分知悉并理解；该等自动签署的借款协议、债权转让协议均视为甲方真实意思的表示，甲方对该等法律文件的效力均予以认可且无任何异议，并无条件接受该等自动签署的借款协议、债权转让协议之约束。
+      p 4.2 甲方在此无条件且不可撤销地同意并确认、授权：甲方通过系统自动投标而签署之借款协议、债权转让协议等法律文件或其中的相关条款生效后，乙方即可根据该等协议和本协议相关约定，对相关款项进行划扣、支付、冻结以及行使其他权利，甲方对此均予以接受和认可。
+      h5 5、甲方回款处理及费用
+      p 5.1 回款处理：借款人每期偿还的本金将继续由乙方提供自动投标服务，并适用本协议各项约定；甲方加入资金通过自动优先投标出借或购买已有债权后，各笔借款每期偿还的利息在计提管理费用后的剩余部分将作为红利计划的可支配收益（下称“收益”）
+        if isMonthlyPaymentsPlan
+          | 于收益提取日
+        | 支付给甲方并根据甲方之选择进行处理；（计提管理费用的详细计算过程参见注1）
+      p 5.2 红利计划费用种类：乙方收取的红利计划费用包括管理费用（称为"管理费用"）。
+      if isMonthlyPaymentsPlan
+        p 5.3 收益处理方式：收益将留存在甲方红小宝平台账户，甲方可自行支配。
+      else
+        p 5.3 收益处理方式：甲方在加入本期红利计划时，可自主选择如下两种收益处理方式中的一种；一旦确认，不得修改：
+        p （1）留存在红小宝平台账户：收益将留存在甲方红小宝平台账户，甲方可自行支配。
+        p （2）收益复投：收益将继续由乙方提供自动投标服务，适用本协议各项约定。
+      p 5.4 管理费用的计算和收取：
+      p （1）就乙方依据本协议为甲方提供的自动投标服务，甲方应当向乙方支付管理费用。
+      p （2）目标值：目标值仅为乙方收取管理费的基准和依据，不代表对甲方加入本期红利计划可以取得的收益的任何预测，也不是乙方对甲方加入本期红利计划可以取得的收益的任何保证、承诺。（目标值的具体计算办法见注2）
+      p （3）当甲方到期退出时，若甲方加入资金对应借款在甲方退出本期红利计划前产生的总利息（下称"甲方期间总利息"）小于或等于相应目标值，则乙方不向甲方收取管理费用；若甲方期间总利息大于相应目标值，则超过目标值的部分为乙方收取的管理费，在甲方到期退出时予以扣除。
+      p 5.5 甲方对本协议项下乙方收取的管理费用的标准、方式均已充分知晓并理解，对该等约定无任何异议，且在任何时候均不就该等约定向乙方提出任何主张或要求。
+      h5 6、本期红利计划的退出
+      p 6.1 到期退出
+      p 锁定期届满日当日，甲方将不再享受优先自动投标服务并自动退出本期红利计划；届时甲方通过本期红利计划自动投标而产生之债权、资金，按照第6.2款规定进行处理。
+      p 6.2 退出方式
+      p 甲方在此无条件且不可撤销地同意并授权：甲方到期自动退出本期红利计划时，授权乙方通过系统自动将甲方加入资金通过系统自动投标而产生之债权、资金按照如下方式处理：
+      p （1） 如加入本期红利计划的相关金额通过系统自动出借或受让债权后对应债权本息尚未完全回款并处于正常还款状态，则系统将于甲方退出本期红利计划之时将该等债权通过红小宝平台的债权转让市场进行转让；该等债权最终转让完毕的时间以其在债权转让市场的实际交易情况确定，乙方并不对该等债权转让完成的时间做出任何承诺和保证； 转让所得资金按照本协议第6.2条第（2）款规定处理；
+      p （2） 对于甲方退出本期红利计划时甲方加入资金中尚未进行投标的部分，以及虽投标但是已收回的本息资金，均由系统在根据本协议第5条规定的标准扣除乙方收取的管理费用后直接留存在甲方红小宝平台账户，甲方可自行支配、使用；
+      p （3） 如加入本期红利计划的资金出借或受让债权后对应债权本息尚未完全回款且处于逾期状态，则对于该等逾期的债权，暂不进行转让；在该等逾期债权的债务人对逾期欠款进行清偿且该等债权的状态处于正常还款后，按照本协议第6.2条（1）款规定进行转让；
+      h5 7、服务计划保障
+      p 7.1 为保证本期红利计划的及时性，在甲方加入本期红利计划时，系统即为甲方加入本期红利计划的甲方加入资金启动优先自动投标的功能。
+      p 7.2 为增加投标的优先性， 系统将为甲方加入资金安排优先自动投标，保障甲方加入资金可以按照本协议约定规则通过红小宝网站系统优先进行自动投标。
+      h5 8、意外事件
+      p 如因司法机关或行政机关对甲方采取强制措施导致其本期红利计划金额对应的资金被全部或部分冻结、扣划，视为甲方提前退出本期红利计划，本协议自动终止。本协议因此而自动终止的，甲方将不再享有相应收益。但甲方仍应按照本协议第5.2、5。3及5.4条之规定向乙方支付管理费用。
+      h5 9、税费
+      p 甲方应自行承担并缴付其因加入本期红利计划所获收益的应纳税额。
+      h5 10、甲方声明和保证
+      p 10.1 在签署本协议书以前，乙方已就本协议书及有关交易文件的全部条款和内容向甲方进行了详细的说明和解释，甲方已认真阅读本协议有关条款，对有关条款不存在任何疑问或异议，并对协议双方的权利、义务、责任与风险有清楚和准确的理解。
+      p 10.2 甲方保证所使用的资金为合法取得，且甲方对该等资金拥有完全且无瑕疵的处分权。
+      p 10.3 甲方保证为履行本协议而向乙方提供的全部资料均真实、有效。
+      h5 11、其他
+      p 11.1 甲方需要通过红小宝网站或客服人员、网站平台查询等方式了解相关信息。如未及时查询，或由于通讯故障、系统故障以及其他不可抗力等因素影响使甲方无法及时了解相关信息，由此产生的责任和风险由甲方自行承担。
+      p 11.2 本服务协议和甲方通过点击确认与乙方签署的用户注册协议等相关协议，以及乙方在红小宝网站不时公示之交易规则、说明、公告等涉及甲乙双方权利义务的法律文件，共同构成了约束甲方接受乙方在本协议项下提供之服务时双方行为的协议之整体，甲方均须予以遵守，如有违反，应当自行承担相关法律后果。
+      p 11.3 由于地震、火灾、战争等不可抗力导致的交易中断、延误的，甲乙双方互不承担责任。但应在条件允许的情况下，应采取一切必要的补救措施以减小不可抗力造成的损失。
+      p 11.4 甲方成功加入本期红利计划后，如果在本期红利计划申请期内，甲方追加加入本期红利计划的资金金额，则甲方与乙方之间的权利义务约定及甲方加入本期红利计划的总金额应以最后生成的协议书所约定的内容为准。甲方应当在本期红利计划的申请期内进行追加，具体追加方式适用本协议第3.4条之规定。
+      p 11.5 本协议项下产生的纠纷，双方先行协商解决，协商不成的，任何一方可向乙方住所地人民法院提起诉讼。
+      p 11.6 本协议自甲方在红小宝金融网站操作确认同意签署本协议并支付完毕全部甲方加入资金、乙方确认甲方成功加入本期红利计划时（以甲方的红小宝平台账户信息显示为准）生效。本协议采用电子文本形式制成，可以有一份或者多份并且每一份具有同等法律效力，并永久保存在乙方为此设立的专用服务器上备查，对各方均具有法律约束力。
+      p 注1
+      p 各笔借款每期偿还的总利息中超过比照注2中计算的当期目标值的部分作为红利计划当期管理费用计提。
+      p 注2
+
+      p 目标值=P x Y/12 x M + P x Y/360 x D
+      p P:甲方加入资金；
+      p Y:平均历史年化收益；
+      p M:锁定期开始日（含）至甲方退出本期红利计划之日
+      p （不含）之间足月部分的月数。
+      p D: 锁定期开始日（含）至甲方退出本期红利计划之日
+      p （不含）之间足月部分以外的剩余天数。
+
+      .agreement-footer
+        h5.agreement-footer-title  甲方：
+          span.self-default-span #{_userRealName}
+        h5.agreement-footer-title 乙方：
+          if agreementData
+            if _contractId > 2  && _contractId < 6
+              span.self-default-span 竑翀网络科技（上海）有限公司
+              .agreement-signature-plan: img(src='/img/signature-manual-hc.png')
+            else
+              span.self-default-span 红上金融信息服务（上海）有限公司
+              .agreement-signature-plan: img(src='/img/signature-manual-new.png')

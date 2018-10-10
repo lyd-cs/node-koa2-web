@@ -1,0 +1,18 @@
+form#J_buy-form(action='/plan/'+_planDetailProductId, method='post').loan-buy-form
+  input(type='hidden', name='_csrf', value=csrf)
+  .form-group.item-title
+    | 预期收益(元)：
+    span#J_invest_message 0.00
+    if isLogin
+      a(href='/account/quickpay').item-recharge 充值
+  .form-group.form-ipt-box#J_form-ipt-box
+    input#J_ipt(type='text', autocomplete='off', name='amount', placeholder=(_userIsFirstBuy ? _planDetailMinAmount : _planDetailIncreasing)+'元起投,'+_planDetailIncreasing+'元递增', maxlength='8', style='ime-mode:disabled').loan-vote-input.form-control
+    .help-inline.plan-detail-help-inline
+  .form-group
+    if waitopen
+      button.btn.btn-buy-submit.J_buy-btn(type='submit', disabled).disabled.plan-detail-form-btn 等待加入
+    else if countDown
+      .plan-detail-form-countdown.btn.disabled
+        include ./count-down.pug
+    else
+      button.btn-basic.btn-buy-submit.J_buy-btn(type='submit') #{_userIsFirstBuy ? '立即加入' : '追加'}

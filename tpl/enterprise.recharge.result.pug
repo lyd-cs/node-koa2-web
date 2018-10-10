@@ -1,0 +1,18 @@
+extend enterprise
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+block content
+  .section.uc-setting
+    .uc-title
+      h4 红上金融企业充值
+    .uc-recharge-result
+      if isResult
+        h4.uc-recharge-success
+          i.fa.fa-check-circle
+          | 成功充值#{UIHelper.formatNumber(orderAmount/100, 2)}元
+      else
+        h4.uc-recharge-error
+          i.fa.fa-exclamation-circle
+          | 充值失败
+        p #{errorMessage}

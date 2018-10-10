@@ -1,0 +1,28 @@
+extend base
+
+block title
+  | #{aboutTitle}
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block page-val
+  - var pageClass = 'about-wrap'
+
+block content
+  img(src="/img/mobile/about-contact-us-map.png").about-contact-map
+  h2.about-contact-title 红上金融信息服务(上海)有限公司
+  .about-contact-detail
+    dl
+      dt 公司地址：
+      dd 上海市嘉定区南翔镇银翔路799号21楼04室
+    dl
+      dt 投诉建议：
+      dd co_hxb@hongxiaobao.cn
+    dl
+      dt 客服电话：
+      dd 400-1552-888
+
+block foot-script
+  script.
+    app.scrollPosition.init();

@@ -1,0 +1,63 @@
+extend base
+
+block title
+  | 散标出借 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+  
+block content
+  .loan#loan-list
+    .loan-banner
+    .section.loan-list-body
+      ul.tab-bar.tab-loan-transfer-bar
+        li.item-nav-loan.active
+          a(href='/loan') 散标出借
+        li.last-tabs
+          a(href='/transfer') 债权转让  
+      //-
+        textarea(style="width: 100%; height: 100px") #{JSON.stringify(dataList)}
+      if dataList && dataList.length
+        .loan-list
+          .header-line
+            span.header-item.col-title 标的名称
+            span.header-item 年利率
+            span.header-item 期限（月）
+            span.header-item.col-loan-money 标的金额（元）
+            span.header-item.col-progress 投标进度
+            span.header-item.col-bidding-state 状态
+          .loan-list-content
+            each item,idx in dataList
+              - var _loanId = _.get(item, 'loanId', 0) - 0 || 0
+              - var _loanListTitle = _.get(item, 'title') || ''
+              - var _loanListYearRate = _.get(item, 'interest', 0) - 0 || 0
+              - var _loanListDuration = _.get(item, 'months', 0) - 0 || 0
+              - var _loanListAmount = _.get(item, 'amount', 0) - 0 || 0
+              - var _loanListProgress = _.get(item, 'finishedRatio', 0) -0 || 0
+              - var _loanProgress = UIHelper.productProgress(_loanListProgress)
+              - var _loanListStatus = _.get(item, 'status') || ''
+              - var _state = UIHelper.parseLoanStatus(_loanListStatus)
+              - var _isBidding = _state.open
+              - var _isBiddingdone = _state.ready || _state.first_ready
+              - var _isDoing = _state.in_progress
+              - var odd = ((idx+1) % 2 == 0)
+              a(href='/loan/' + _loanId).item-list
+                .item-cell #{_loanListTitle}
+                .item-cell.rate #{UIHelper.formatNumber(_loanListYearRate, 2)}%
+                .item-cell #{_loanListDuration}
+                .item-cell #{UIHelper.formatNumber(_loanListAmount)}
+                .item-cell
+                  span.percent #{_loanProgress}%
+                  +progress(_loanProgress)
+                .item-cell
+                  //-
+                    textarea(style="width: 100%; height: 100px") #{JSON.stringify(_state)}
+                  if _isBidding
+                    .bidding-status.item-bidding-link 投标
+                  else if _isBiddingdone
+                    .item-biddingdone-link 已满标
+                  else if _isDoing
+                    .item-doing-link 收益中
+      else
+        include ./mod/nothing.data.pug
+    include ./mod/pagination.pug

@@ -1,0 +1,37 @@
+extends base
+
+block title
+  | 邀请好友分千元红包 - 
+
+block content
+  - var _userType = _.get(userState, 'inviteRole') || ''
+  - var _isLogin = isLogin
+  - var isModalShow = _isLogin && _userType == 'SALES'
+  .landing-active
+    .landing-active-banner
+    .section
+      .landing-active-content
+        .invite-welfare
+          h3 邀请好友平分千元红包
+          p 邀请好友拆开红包并注册成功后
+          p 双方各可获得500元红包
+        .invest-welfare
+          h3 好友出借再得返现奖励
+          p 您邀请的好友注册30天内的每笔出借
+          p 您均可获得好友出借年化金额的0.5%的现金返现，上不封顶
+        .invest-example
+          h4 举个例子
+          p 好友A加入12月期红利智投10万元，您可获得返现奖励：( 10万 x 12 ) / 12 x 0.5% = 500元
+          p 好友B加入6月期红利智投5万元，您可获得返现奖励：( 5万 x 6 ) / 12 x 0.5% = 125元
+        if isModalShow
+          #J_sale-invite.invest-btn
+        else
+          .invest-btn
+            a(href='/account/invite')
+        .active-rule
+          h4 活动规则
+          include ./mod/invite.instruction.pug
+  
+block foot-script
+  script.
+    app.saleModalShow.init()

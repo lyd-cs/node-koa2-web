@@ -1,0 +1,16 @@
+extends base
+
+block title
+  | 使用说明
+
+block page-val
+  - var pageClass = 'discount-body'
+
+block content
+  .discount-explain-title
+    img(src='/img/mobile/icon-discount-explain.png').discount-explain-icon 
+    | 优惠券兑换温馨提示
+  ul.discount-explain-list
+    li 1、优惠券仅限在有效期内使用，每次只能使用一张，每张仅限使用一次；
+    li 2、优惠券不可用于新手产品，每种类别的优惠券使用规则及使用限制略有不同；
+    li 3、兑换过的优惠券只对当前账户生效，不能跨账户使用。

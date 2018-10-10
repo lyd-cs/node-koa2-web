@@ -1,0 +1,69 @@
+extends base
+
+block title
+  | 蜜芽用户理财专场
+
+block page-val
+  - var pageClass = 'landing-register-body'
+block content
+  - var _planList = planList
+  .landing-miya-signup#J_landing-wrap
+    .J_landing-miya-signup-packet-banner.landing-miya-signup-packet-banner
+      img(src='/img/mobile/landing.miya.receive-packet-0601.png')
+      .receive-packet-stage
+        img(src="/img/mobile/landing-miya-packet.png", alt="")
+        .receive-packet-guide
+        .J_receive-packet-content.receive-packet-content
+          img.J_receive-packet.receive-packet(src="/img/mobile/landing-miya-packet-receive.png", alt="lalal")
+      img.receive-packet-bottom(src="/img/mobile/landing-miya-receive-packet-bottom.png", alt="")
+    .J_landing-miya-signup-step1-banner.landing-miya-signup-step1-banner.hide 
+      img(src="/img/mobile/landing-miya-signup-step1-banner.png", alt="")
+    .J_landing-miya-signup-step2-banner.landing-miya-signup-step2-banner.hide
+      img(src="/img/mobile/landing-miya-signup-step2-banner.png", alt="")
+    form#J_register-form.landing-miya-signup-form.hide(method='post')
+      #J_form-control-mobile.form-mobile
+        .form-control.form-control-mobile
+          input#J_mobile.landing-miya-signup-mobile-input.landing-miya-signup-input(type="text", name="mobile", placeholder="请输入手机号", autocomplete='off', minlength='11', maxlength='11')
+      #J_form-control-register.form-sms-password.hide
+        .form-tips 验证码发送至：
+          span.J_form-tips
+        .form-control.form-control-smscode
+          input#J_smscode.landing-miya-signup-form-smscode.landing-miya-signup-input(type="text", name="smscode", placeholder="请输入验证码", autocomplete='off', maxlength='6')
+          button(type='button').landing-miya-signup-countdown#J_verifycode 获取验证码
+        .form-control.form-control-password
+          input#J_password.landing-miya-signup-input.landing-miya-signup-input(type="password", name="password", placeholder="请设置登录密码，8-20位字母+数字", autocomplete='off', maxlength='20')
+      input(type="hidden", name="inviteSerial", value=inviteSerial)
+      input(type="hidden", name="utmSource", value='Group5-miya')
+      input(type="hidden", name="action", value='carnival')
+      input(type='hidden', name='_csrf', value=csrf)
+      button#J_btn-invite-submit.landing-miya-signup-submit(type='submit') 立即领取
+    #J_signup_error_container.landing-register-toast-notify
+    .J_landing-miya-product.landing-miya-product.hide
+      include ./mod/landing.miya.active.pug
+    .J_landing-miya-signup-button.landing-miya-signup-button.hide
+      a(href='#')
+        img(src="/img/mobile/landing-miya-signup-button-20.png")
+    .J_landing-miya-signup-platform.landing-miya-signup-platform.hide
+      img.landing-miya-signup-platform-title(src='/img/mobile/landing-miya-signup-platform-title.png')
+      .landing-miya-signup-platform-content
+        .item-platform
+          p 恒丰银行
+          p 资金存管
+        .item-platform
+          p 2亿元
+          p 注册资本
+        .item-platform
+          p 3A级
+          p 信用企业
+        .item-platform
+          p 中国小额
+          p 信贷联盟
+  .landing-miya-signup-success.hide#J_landing-signup-result
+    img(src='/img/mobile/landing-miya-signup-success-bg.png').landing-miya-signup-success-image
+    button.J_landing-miya-download.landing-miya-signup-success-download 下载红小宝APP
+
+block foot-script
+  script.
+    app.landingMiyaSignup.init({
+      downloadHandler: '.J_landing-miya-download'
+    });

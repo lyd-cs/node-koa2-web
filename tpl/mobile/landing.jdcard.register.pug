@@ -1,0 +1,78 @@
+extends base
+
+block title
+  | 注册领好礼
+
+block page-val
+  - var pageClass = 'landing-register-body'
+block content
+  .landing-register-jdcard#J_landing-register-jdcard
+    .landing-register-jdcard-header
+      img(src='/img/mobile/landing-register-jdcard-poster.png').landing-register-jdcard-poster
+      form#J_register-form.landing-register-jdcard-form(method='post')
+        #J_form-control-mobile.form-mobile
+          .form-control.form-control-mobile
+            input#J_mobile.landing-register-mobile-input.landing-register-jdcard-input(type="text", name="mobile", placeholder="请输入手机号", autocomplete='off', minlength='11', maxlength='11')
+        #J_form-control-register.form-sms-password.hide
+          .form-tips.J_form-tips 验证码发送至：
+          .form-control.form-control-smscode
+            input#J_smscode.landing-register-jdcard-form-smscode.landing-register-jdcard-input(type="text", name="smscode", placeholder="请输入验证码", autocomplete='off', maxlength='6')
+            button(type='button').landing-register-jdcard-countdown#J_verifycode 获取验证码
+          .form-control.form-control-password
+            input#J_password.landing-register-password-input.landing-register-jdcard-input(type="password", name="password", placeholder="请设置登录密码，8-20位数字+字母", autocomplete='off', maxlength='20')
+        input(type="hidden", name="inviteSerial", value=inviteSerial)
+        input(type="hidden", name="utmSource", value=utmSource)
+        input(type="hidden", name="action", value='inviteRegister')
+        input(type='hidden', name='_csrf', value=csrf)
+        button#J_btn-invite-submit.landing-register-jdcard-submit(type='submit') 立即领取
+    .landing-register-jdcard-welfare
+      h4.landing-register-jdcard-body-title.landing-register-jdcard-welfare-title
+      .landing-register-jdcard-welfare-body
+        .landing-register-jdcard-welfare-body-littleCard
+          .item 
+            img(src='/img/mobile/landing-register-jdcard-card20.png')
+          .item
+            img(src='/img/mobile/landing-register-jdcard-card80.png')
+          .item
+            img.last(src='/img/mobile/landing-register-jdcard-card200.png')
+        .landing-register-jdcard-welfare-body-bigCard
+          .item
+            img(src='/img/mobile/landing-register-jdcard-card400.png')
+          .item
+            img(src='/img/mobile/landing-register-jdcard-card800.png')
+    .landing-register-jdcard-envelope
+      h4.landing-register-jdcard-body-title.landing-register-jdcard-envelope-title
+      .landing-register-jdcard-envelope-body
+        img(src='/img/mobile/landing-register-jdcard-envelope.png')
+    .landing-register-jdcard-plan
+      h4.landing-register-jdcard-body-title.landing-register-jdcard-plan-title
+      .landing-register-jdcard-plan-body
+        if recommendPlanList.length
+          each item in recommendPlanList
+            .landing-register-jdcard-item
+              h4.landing-register-jdcard-item-title #{item.lockPeriod}月期
+              span.rate #{item.expectedRate}%
+              span 平均历史年化收益
+
+    .landing-register-jdcard-platform
+      h4.landing-register-jdcard-body-title.landing-register-jdcard-platform-title
+      .landing-register-jdcard-platform-body
+        .jdcard-platform-item.jdcard-platform-bank 恒丰银行<br/>资金存管
+        .jdcard-platform-item.jdcard-platform-registered-fund 2亿元<br/>注册资本
+        .jdcard-platform-item.jdcard-platform-secure 3A级<br/>信用企业
+        .jdcard-platform-item.jdcard-platform-alliance 中国小额<br/>信贷联盟
+
+    button(type='button').landing-register-jdcard-receive.J_landing-register-jdcard-receive 领1600元京东卡
+    .landing-register-jdcard-footer 红上金融信息服务（上海）有限公司<br/>Copyright © 2017 沪ICP备14046628号-2<br/>市场有风险，出借需谨慎
+    .landing-register-toast-notify#J_invite-register-error-container
+
+  .J_landing-register-jdcard-success.landing-register-jdcard-success.hide
+    img(src='/img/mobile/landing-register-jdcard-success-poster.png').landing-register-jdcard-success-poster
+    p.landing-register-jdcard-android-text 1600元京东卡已发放至您的红小宝账户<br/>下载红小宝APP，立即查看！
+    button#J_landing-register-jdcard-download.landing-register-jdcard-success-download 下载红小宝APP
+    img(src='/img/mobile/landing-register-jdcard-success-footer-poster.png').landing-register-jdcard-success-footer-poster
+    .landing-register-jdcard-footer 红上金融信息服务（上海）有限公司<br/>Copyright © 2017 沪ICP备14046628号-2<br/>市场有风险，出借需谨慎
+
+block foot-script
+  script.
+    app.registerJdCard.init();

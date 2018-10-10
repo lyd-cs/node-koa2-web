@@ -1,0 +1,25 @@
+{
+  "rules": {
+    "strict": 0,
+    "no-underscore-dangle": 0,
+    "camelcase": [0, { "properties": "never" }],
+    "quotes": [2, "single"],
+    "no-await-in-loop": "off",
+    "no-dupe-args": "error",
+    "no-sparse-arrays": "error",
+    "no-trailing-spaces": "error",
+    "no-return-assign": 0,
+    "semi": [2, "always"],
+    "space-before-function-paren": [2, "never"],
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ]
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  }
+}

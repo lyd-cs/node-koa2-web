@@ -1,0 +1,112 @@
+extend base
+
+block title
+  | 新手专区
+
+block page-val
+  link(rel='stylesheet', href= UIHelper.static_url('/css/mobile.landing.css'))
+
+block content
+  - var _isCreatAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsInvestPlan = _.get(userState, 'hasEverInvest') - 0 || 0
+  - var _userIsInvestLoan = _.get(userState, 'hasEverInvestLoan') - 0 || 0
+  - var _noviceProduct = noviceProduct
+  - var _subsidyInterestRate = _.get(_noviceProduct, 'subsidyInterestRate', 0) - 0
+  - var _baseInterestRate = _.get(_noviceProduct, 'baseInterestRate', 0) - 0
+  - var _lockDays = _.get(_noviceProduct, 'lockDays', 0) - 0
+  - var _lockPeriod = _.get(_noviceProduct, 'lockPeriod', 0) - 0
+  - var _id = _.get(_noviceProduct, 'id', 0) - 0
+  - var _planDetailStatus = _.get(_noviceProduct, 'unifyStatus', 0) - 0 || 0
+  - var _state = UIHelper.parsePlanStatus(_planDetailStatus)
+  - var _isWaitOpen = _state.wait_open
+  - var _isCountDown = _state.wait_reserve
+  - var _isBidding = _state.opening
+  - var _isBiddingdone = _state.open_full
+  - var _isDoing = _state.period_locking
+  - var _isDone = _state.period_closed
+  - var _isExiting = _state.period_exiting
+  - var _startTime = _.get(_noviceProduct, 'beginSellingTime', 0) - 0
+  - var _now = _now || Date.now()
+  .landing-container
+    .landing-novice-banner
+      img(src='/img/landing-newbie-banner.png')
+    .landing-novice-main
+      .landing-novice-content  
+        .landing-novice-wrap
+          h3.landing-novice-title 新用户专享产品
+          .landing-novice-product
+            img(src='/img/landing-newbie-product-bg.png')
+            dl.landing-novice-product-rate
+              if _noviceProduct 
+                dt.landing-novice-product-rate-base #{UIHelper.formatNumber(_baseInterestRate, 1)}
+                  small.landing-novice-product-rate-subsid %
+                    if _subsidyInterestRate   
+                      | +#{UIHelper.formatNumber(_subsidyInterestRate, 1)}%
+              else
+                dt.landing-novice-product-rate-base --
+              dd 平均历史年化收益
+            dl.landing-novice-product-time
+              if _noviceProduct && _lockDays 
+                dt #{_lockDays}
+                dd 期限（天）
+              else if _noviceProduct && _lockPeriod
+                dt #{_lockPeriod}
+                dd 期限（月）
+              else 
+                dt --
+                dd 期限
+            .landing-novice-product-btns
+              a.J_jump-to-app.landing-novice-product-btn(data-path='/plan/detail', data-productid= _id)
+                if _isWaitOpen
+                  | #{UIHelper.formatdate('MM月DD日 HH:mm', _startTime)}开售
+                if _isCountDown
+                  include ../mod/count-down.pug
+                if _isBidding
+                  | 立即加入
+                if _isBiddingdone
+                  | 销售结束
+                if _isDoing
+                  | 收益中
+                if _isDone
+                  | 已退出
+                if _isExiting
+                  | 退出中
+        .landing-novice-wrap
+          h3.landing-novice-title.title-top 为什么选择红小宝
+          .landing-novice-choose.J_jump-webpage-to-app(data-path='/landing/deposit' data-title='恒丰银行资金存管')
+            img(src='/img/landing-newbie-choose-deposit.png')
+            span.landing-novice-choose-btn.hengfeng-btn 恒丰银行资金存管
+          .landing-novice-choose.J_jump-webpage-to-app(data-path='/landing/trust' data-title='多重安全保证')
+            img(src='/img/landing-newbie-choose-safe.png')
+            span.landing-novice-choose-btn.safe-btn 多重安全保证
+        .landing-novice-wrap
+          h3.landing-novice-title.title-top 三步开启理财生活
+          .landing-novice-finance
+            .novice-finance-item.novice-finance-register(class={'novice-finance-register-complete': isLogin}) 
+              span 注册
+            .novice-finance-item.novice-finance-secure(class={'novice-finance-secure-complete': _isCreatAccount}) 
+              span 开户
+            .novice-finance-item.novice-finance-invest(class={'novice-finance-invest-complete': _userIsInvestPlan || _userIsInvestLoan}) 
+              span 投资
+        .landing-novice-btns  
+          if !isLogin
+            span.J_jump-to-app(data-path='/account/login').landing-novice-btn  立即注册
+          else if !_isCreatAccount
+            span.J_jump-to-app(data-path='/home/EscrowActivity').landing-novice-btn  立即开户
+          else
+            span.J_jump-to-app(data-path='/home/plan_fragment').landing-novice-btn  立即投资
+      .landing-novice-desc
+        h3.landing-novice-desc-title 活动说明
+        p 1、【红利智投-新手专享】500元起投，单笔递增金额最低500元；
+        p 2、用户投资【红利智投-新手专享】，累计投资总额最高为10000元，超过10000元时，则不可再继续投资【红利智投-新手专享】；
+        p 3、【红利智投-新手专享】不参与任何其它活动，不可使用红包、满减券等其它优惠；
+        p 4、该【红利智投-新手专享】锁定期为7天，当到达锁定期后，如不退出可继续享受5.8%预期年化收益，8%加息奖励只在新手专享锁定期内享有；
+        p 5、收益计算方式：
+        p.dest-indent 红利智投收益（5.8%）=新手专享持有天数*（加入金额*预期收益率/12）/30
+        p.dest-indent 加息奖励收益（8%）=锁定期天数*（加入金额*加息利率/12）/30
+        p 6、红利智投收益和加息奖励收益，将会在您退出该期【红利智投-新手专享】后，分别返还至账户余额；
+        p 7、对本活动如有任何疑问，敬请咨询红小宝理财客服专线：400-1552-888；
+        p 8、本活动最终解释权归红小宝官方所有；
+block foot-script
+  script.
+    app.callApp.init();

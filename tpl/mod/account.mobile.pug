@@ -1,0 +1,82 @@
+.uc-mobile-header
+  .item(class= step === 'identity' || step  === 'newmobile' || step === 'result' ? 'active' : '')
+    span 1
+    | 验证身份信息
+  .item(class= step  === 'newmobile' || step === 'result' ? 'active' : '')
+    span 2
+    | 修改手机号码
+  .item(class= step === 'result' ? 'active' : '')
+    span 3
+    | 修改成功
+.uc-mobile-body
+  if errors
+    .alert-danger
+      include ./error.pug
+  if step === 'identity'
+    form#J_mobile-form.form-horizontal.uc-form(method='post')
+      if _userIsIdPassed
+        .form-group
+          label.control-label 姓名
+          .uc-mobile-form-title #{_userName}
+        .form-group
+          label.control-label 身份证号码
+          .control-content
+            input#J_identity.form-control.J_numValidate(type='text', name='identity', autocomplete='off', placeholder='您的身份证号码', value=_query.identity, maxlength='18', minlength='18')
+      .form-group
+        label.control-label 原手机号码
+        .uc-mobile-form-title.uc-mobile-tips #{UIHelper.safeMobile(_mobile)}
+          //- .uc-mobile-tips-txt
+          //-   span *
+          //-   | 如原手机号已停用,请联系4001551888
+      .form-group
+        label.control-label 手机验证码
+        .control-content
+          input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', name='smscode', autocomplete='off', minlength='6', maxlength='6', placeholder='手机验证码', value=_query.smscode)
+          button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+      .form-group.form-group-button
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='action', value='identity')
+          input(type='hidden', name='type', value='oldmobile')
+          button.btn-basic(type='submit') 下一步
+          .uc-mobile-tips-txt
+            span *
+            | 如原手机号已停用,请联系400-1552-888
+  else if step === 'newmobile'
+    form#J_mobile-form.form-horizontal.uc-form(method='post')
+      .form-group
+        label.control-label 新手机号码
+        .control-content
+          input#J_mobile.form-control.forgot-input.forgot-tel.J_numValidate(type='text', autocomplete='off', name='mobile', placeholder='请输入您要绑定的新手机号', value=_query.mobile, minlength='11', maxlength='11')
+      .form-group#J_captcha-holder
+        label.control-label 验证码
+        .control-content
+          input.J_forgot-input.form-control.forgot-input#J_captcha.form-smscode(type='text', autocomplete='off', name='captcha', placeholder='请输入右图中的验证码', maxlength='4', minlength='4')
+          img#J_captcha-img.J_captcha-refresh.captcha-img.img-validate(src='/captcha?_='+Math.random().toString().substr(2,6), data-target='#J_captcha-img', data-src='/captcha', alt='看不清，点击刷新')
+          .helper-line.J_helper-line
+      .form-group
+        label.control-label 手机验证码
+        .control-content
+          input#J_smscode.control-smscode.form-control.forgot-input.form-smscode(type='text', autocomplete='off', name='newsmscode', minlength='6', maxlength='6', placeholder='手机验证码', value=_query.newsmscode)
+          button.tel-validate#J_verifycode.form-sendcode(type='button', tabindex='-1') 发送验证码
+      .form-group.form-group-button
+        .control-content
+          input(type='hidden', name='_csrf', value=csrf)
+          input(type='hidden', name='action', value='newmobile')
+          button.btn-basic(type='submit') 确认修改
+  else if step === 'result'
+    .uc-mobile-result
+      if isResult
+        .uc-mobile-result-success
+          h2
+            i.fa.fa-check-circle
+            | 修改成功
+          p 为了您的账户安全，请使用新手机号重新登录  
+          a(href='/logout').mobile-success 重新登录
+      else    
+        .uc-mobile-result-fail
+          h2
+            i.fa.fa-exclamation-circle
+            | 修改失败
+          p 网络连接失败，请检查网络~  
+          a(href='/account/setting').mobile-success 确定  

@@ -1,0 +1,95 @@
+- var _planImg = [{index: 'landing-miya-plan-a.png', desc: 'landing-miya-plan-desc-1.png', picture: 'landing-miya-plan-picture-1.png'}, {index: 'landing-miya-plan-b.png', desc: 'landing-miya-plan-desc-3-0601.png', picture: 'landing-miya-plan-picture-3.png'}, {index: 'landing-miya-plan-c.png', desc: 'landing-miya-plan-desc-9-0615.png', picture: 'landing-miya-plan-picture-6.png'}, {index: 'landing-miya-plan-new.png', desc: 'landing-miya-plan-desc-new.png', picture: 'landing-miya-plan-picture-new.png'}]
+- var _activeDescrib = [{month: '1', invest: '1', income: '100'}, {month: '3', invest: '2', income: '200'}, {month: '9', invest: '3', income: '500'}]
+- var _planList = planList || [{id: '1', lockPeriod: '1', baseInterestRate: '5.8', extraInterestRate: '1.0'},{id: '3',lockPeriod: '3',baseInterestRate: '6.5',extraInterestRate: ''},{id: '9',lockPeriod: '9',baseInterestRate: '9.6',extraInterestRate: '1.0'}]
+- var _planType = planType
+- var _novicePlanList = turntablePlanList && turntablePlanList[0] || {}
+- var _noviceId = _.get(_novicePlanList, 'id') || 0;
+- var _lockDays = _.get(_novicePlanList, 'lockDays') || ''
+- var _lockPeriod = _.get(_novicePlanList, 'lockPeriod') || ''
+- var _noviceRate = _.get(_novicePlanList, 'baseInterestRate') || 0
+- var _subsidyInterestRate = _.get(_novicePlanList, 'subsidyInterestRate') || 0
+if !_isNotShowPlanTitle
+  .landing-miya-plan-title
+    img(src="/img/mobile/landing-miya-plan-title.png")
+    .plan-desc 1000元起投 期限灵活
+if planType === 'NEW_PLAN'
+  .landing-miya-plan-list
+    .landing-miya-plan-item
+      img.item-index(src="/img/mobile/" + _planImg[3].index)
+      .item-header 新手专享产品
+      .item-body
+        .item-body-rate(class={'item-body-rate-active': _isMiyaActiveUser})
+          .item-rate #{_noviceRate}%
+            if _subsidyInterestRate
+              span.item-rate-extra +#{_subsidyInterestRate}%
+          if _isMiyaActiveUser && _subsidyInterestRate 
+            span.item-exclusive.item-miya 蜜芽专享
+          else if _subsidyInterestRate
+            span.item-exclusive 蜜芽专享
+          .item-desc 平均年化收益
+        .item-body-month(class={'item-body-month-active': _isMiyaActiveUser})
+          .item-income 
+            if _lockDays
+              | #{_lockDays}天
+            else
+              | #{_lockPeriod}个月
+          .item-desc 投资期限
+        if _isMiyaActiveUser
+          .item-body-join
+            if _miyaTurntableUser
+              a.J_landing-miya-download  加入 
+            else 
+              a.J_jump-to-app(data-path='/plan/detail', data-productid = _noviceId)  加入 
+    .landing-miya-plan-desc
+      .plan-desc-money.new
+      .plan-desc-text
+        p 首次投资任意产品即送
+          span 50元
+          | 蜜芽券！
+else
+  .landing-miya-first-invest.landing-miya-first-invest-top
+    img(src="/img/mobile/landing-miya-turntable-result-biuss.png", alt="")
+.landing-miya-plan-list
+  each item, idx in _planList
+    - var _id = _.get(item, 'id') || 0;
+    - var _month = _.get(item, 'lockPeriod') || ''
+    - var _rate = _.get(item, 'baseInterestRate') || 0
+    - var _extraRate = _.get(item, 'extraInterestRate') || 0
+    .landing-miya-plan-item
+      img.item-index(src="/img/mobile/" + _planImg[idx].index)
+      .item-header 红利智投#{_month}月期
+      .item-body
+        .item-body-rate(class={'item-body-rate-active': _isMiyaActiveUser})
+          .item-rate #{_rate}%
+            if _extraRate
+              span.item-rate-extra +#{_extraRate}%
+          if _isMiyaActiveUser && _extraRate 
+            span.item-exclusive.item-miya 蜜芽专享
+          else if _extraRate
+            span.item-exclusive 蜜芽专享
+          .item-desc 平均年化收益
+        .item-body-month(class={'item-body-month-active': _isMiyaActiveUser})
+          .item-income #{_month}个月
+          .item-desc 投资期限
+        if _isMiyaActiveUser
+          .item-body-join
+            if _miyaTurntableUser
+              a.J_landing-miya-download  加入 
+            else 
+              a.J_jump-to-app(data-path='/plan/detail', data-productid = _id)  加入 
+      .item-wrap
+        img.item-example(src="/img/mobile/" + _planImg[idx].desc)
+        img.item-picture(src="/img/mobile/" + _planImg[idx].picture)
+    .landing-miya-plan-desc
+      if _month === '1'
+        .plan-desc-money.one
+      else if _month === '3'
+        .plan-desc-money.two
+      else if _month === '9'
+        .plan-desc-money.five
+      .plan-desc-text
+        p 投资#{_activeDescrib[idx].month}月期产品#{_activeDescrib[idx].invest}万元及以上，
+        p 红小宝送您
+          span #{_activeDescrib[idx].income}元
+          | 蜜芽券！
+include ./landing.miya.active.desc.pug

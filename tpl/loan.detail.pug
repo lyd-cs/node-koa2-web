@@ -1,0 +1,147 @@
+extend base
+
+block title
+  - var _loanDetailTitle = _.get(dataDetail, 'loanVo.title') || ''
+  | #{_loanDetailTitle} - 散标出借 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+
+block content
+  - var _dataDetailLoanInfo = _.get(dataDetail, 'loanVo') || []
+  - var _dataDetailUser = _.get(dataDetail, 'userVo') || []
+  - var _dataDetailUserInfo = _.get(dataDetail, 'idCardInfo') || []
+  - var _dataDetailMinInvest = _.get(dataDetail, 'minInverst') - 0 || 0
+  - var _dataDetailnterestDate = _.get(dataDetail, 'interestDate') || ''
+  - var _dataDetailCountdown = _.get(dataDetail, 'remainTime') || ''
+  - var _dataDetailCashDraw = _.get(dataDetail, 'cashDraw') || 0
+  - var _loanDetailTitle = _.get(_dataDetailLoanInfo, 'title') || ''
+  - var _loanId = _.get(_dataDetailLoanInfo, 'loanId') - 0 || 0
+  - var _productDetailAmount = _.get(_dataDetailLoanInfo,'amount', 0) - 0 || 0
+  - var _productDetailYearRate = _.get(_dataDetailLoanInfo,'interest', 0) - 0 || 0
+  - var _productDetailDuration = _.get(_dataDetailLoanInfo, 'months', 0) - 0 || 0
+  - var _loanDetailRepaymentType = _.get(_dataDetailLoanInfo, 'repaymentType') || ''
+  - var _productDetailInvestLimit = _dataDetailMinInvest
+  - var _loanDetailProgress = _.get(_dataDetailLoanInfo, 'finishedRatio', 0) - 0 || 0
+  - var _productDetailProgress = UIHelper.productProgress(_loanDetailProgress)
+  - var _loanDetailRestTime = _dataDetailCountdown
+  - var _loanDetailName = _.get(_dataDetailUserInfo, 'name') || '- -'
+  - var _loanDetailIDCard = _.get(_dataDetailUserInfo, 'idNo') || '- -'
+  - var _loanDetailAge = _.get(_dataDetailUserInfo, 'age') - 0 || '- -'
+  - var _loanDetailAddress = _.get(_dataDetailUserInfo, 'address') || ''
+  - var _loanDetailEducation = _.get(_dataDetailUser, 'graduation') || '无'
+  - var _loanDetailMarriage = _.get(_dataDetailUser, 'marriageStatus')
+  - var _loanDetailHomeTown = _.get(_dataDetailUser, 'homeTown') || ''
+  - var _loanDetailIncome = _.get(_dataDetailUser, 'monthlyIncome', 0) - 0 || 0
+  - var _loanDetailHouse = _.get(_dataDetailUser, 'hasHouse', 0) - 0 || 0
+  - var _loanDetailCar = _.get(_dataDetailUser, 'hasCar', 0) || 0
+  - var _loanDetailHouseLoan = _.get(_dataDetailUser, 'hasHouseLoan') - 0 || ''
+  - var _loanDetailCarLoan = _.get(_dataDetailUser, 'hasCarLoan') - 0 || ''
+  - var _loanDetailOtherPlatStatus  = _.get(_dataDetailUser, 'otherPlatStatus ') - 0 || 0
+  - var _loanDetailOtherMajorLiabilities    = _.get(_dataDetailUser, 'otherMajorLiabilities   ') - 0 || ''
+  - var _loanDetailCompanyCategory = _.get(_dataDetailUser, 'companyCategory') || '无'
+  - var _loanDetailCompanyIndustry = _.get(_dataDetailUser, 'companyIndustry') || '无'
+  - var _loanDetailJob = _.get(_dataDetailUser, 'companyPost') || '无'
+  - var _loanDetailCity = _.get(_dataDetailUser, 'companyLocation') || '无'
+  - var _loanDetailProvince = _.get(_dataDetailUser, 'companyProvince') || '无'
+  - var _loanDetailGender = _.get(_dataDetailUserInfo, 'gender') || '无'
+  - var _productDetailRemainAmount = _.get(_dataDetailLoanInfo, 'surplusAmount', 0) - 0 || 0
+  - var _loanCreditInfoItems = _.get(_dataDetailLoanInfo, 'creditInfoItems', '')
+  - var _loanCreditInfoItemsStatus = UIHelper.parseLoanDetailCheckStatus(_loanCreditInfoItems);
+  - var _isIdentity = _loanCreditInfoItemsStatus.IDENTIFICATION_SCANNING
+  - var _isWork = _loanCreditInfoItemsStatus.WORK
+  - var _isIncome = _loanCreditInfoItemsStatus.INCOME_DUTY
+  - var _isCredit = _loanCreditInfoItemsStatus.CREDIT
+  - var _fifthStatus = _loanCreditInfoItemsStatus.fifthStatus
+  - var _userAvailableBalance = _.get(loanAmount, 'availablePoints', 0) - 0 || 0
+  - var _loanDetaiDescription =  UIHelper.loanDetailDescription({amount: _productDetailAmount,title: _loanDetailTitle,age: _loanDetailAge,gender: _loanDetailGender,companyProvince: _loanDetailProvince,companyLocation: _loanDetailCity,companyPost: _loanDetailJob})
+  - var _loanDetailOverDueStatus = _.get(_dataDetailUser, 'overDueStatus') || '0'
+  - var _loanDetailOtherPlatStatus = _.get(_dataDetailUser, 'otherPlatStatus') || '0'
+  - var _loanDetailUserFinanceStatus = _.get(_dataDetailUser, 'userFinanceStatus') || '良好'
+  - var _loanDetailRepaymentCapacity = _.get(_dataDetailUser, 'repaymentCapacity') || '暂无变化'
+  - var _loanDetailPunishedStatus = _.get(_dataDetailUser, 'punishedStatus') || '暂无信息'
+  - var _loanDetailProtectSolution = _.get(_dataDetailUser, 'protectSolution') || '暂无'
+  - var _loanDetailSecurityLevel = UIHelper.loanDetailSecurityLevel
+
+  - var _status = _.get(_dataDetailLoanInfo, 'status') || ''
+  - var _state = UIHelper.parseLoanStatus(_status)
+  - var _isBidding = _state.open
+  - var _isWaitOpen = _state.wait_open
+  - var _isFailed = _state.failed
+  - var _isBiddingdone = _state.ready || _state.first_ready
+  - var _isDone = _state.closed
+  - var _isDoing = _state.in_progress
+  - var _isPreSales = _state.pre_sales
+  - var _isLending = _state.fangbiao_processing
+  - var _isFirstApply = _state.first_apply
+  - var _isFromLoan = true
+  - var _loanDetailLastMonth = _.get(_dataDetailLoanInfo, 'leftMonths') - 0 || 0
+  - var _loanDetailRefundMonth = _productDetailDuration - _loanDetailLastMonth
+  - var _loanDetailRefundDate = _.get(_dataDetailLoanInfo, 'nextRepayDate') || ''
+  - var _loanDetailJoinTime = UIHelper.moment.duration(_.get(_dataDetailLoanInfo, 'fullTime') - 0 || 0)
+  - var _loanDetailJoinPerson = _.get(_dataDetailLoanInfo, 'joinCount') || ''
+  - var _loanDetailDoneTime = _.get(_dataDetailLoanInfo, 'closeTime') - 0 || 0
+  - var _riskType = _.get(_dataDetailLoanInfo, 'riskLevel')
+  - var _userIsCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0
+  - var _isMobilePassed = _.get(userState, 'isMobilePassed') - 0 || 0
+  - var _isAllPassed = _userIsCreateAccount && _userIsCashPasswordPassed && _userIsBindCard && _userIsIdPassed && _isMobilePassed
+  - var couponLimit = _.get(couponDataList, 'dicountRate') || ''
+  - var _couponOver = _.get(couponDataList, 'couponOver') || {}
+  - var _couponBest = _.get(_couponOver, 'dicountRate') || ''
+  .section
+    if !dataDetail
+      include ./mod/nothing.data.pug
+    else
+      include ./mod/product.detail.pug
+      .loan-detail-body
+        include ./mod/loan.tab.pug
+  #J_user-secure
+
+block foot-script
+  - var _userSecure = _.get(userState, 'isAllPassed') - 0 || 0
+  - var _userIsRisk = _.get(userState, 'riskEvaluationScore')
+  - var _userIsCreateAccount = _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsCashPasswordPassed = _.get(userState, 'isCashPasswordPassed') - 0 || 0
+  - var _userIsBindCard = _.get(userState, 'hasBindCard') - 0 || 0
+  - var _userIsIdPassed = _.get(userState, 'isIdPassed') - 0
+  script.
+    var _restInvest = #{_productDetailRemainAmount}
+    var _accountRemaining = #{_userAvailableBalance}
+    var _isLogin = #{isLogin}
+    var _userSecure = #{_userSecure}
+    var _userIsRisk = #{_userIsRisk>=0?true:false}
+    var _investLimit = #{_productDetailInvestLimit}
+    var _userIsCreateAccount = #{_userIsCreateAccount}
+    var _userIsSettingTradPwd = #{_userIsCashPasswordPassed}
+    var _userIsBindCard = #{_userIsBindCard}
+    app.modalShow.init({
+      isLogin: _isLogin,
+      isCreateAccount: _userIsCreateAccount,
+      isSettingTradPwd: _userIsSettingTradPwd,
+      isBindCard: _userIsBindCard,
+      isIdPassed: #{_userIsIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+    })
+    app.loanDetail.init({
+      restInvest: _restInvest,
+      accountRemaining: _accountRemaining,
+      isLogin: _isLogin,
+      loanId: #{_loanId},
+      userSecure: _userSecure,
+      isRisk: _userIsRisk,
+      investLimit: _investLimit,
+      isCreateAccount: _userIsCreateAccount,
+      isSettingTradPwd: _userIsSettingTradPwd,
+      isBindCard: _userIsBindCard,
+      isIdPassed: #{_userIsIdPassed},
+      isMobilePassed: #{_isMobilePassed},
+    });
+    //- app.investModalShow.init({
+    //-   isLogin: _isLogin,
+    //-   isCreateAccount: _userIsCreateAccount,
+    //-   isSettingTradPwd: _userIsSettingTradPwd,
+    //-   isBindCard: _userIsBindCard
+    //- })

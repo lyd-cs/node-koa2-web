@@ -1,0 +1,59 @@
+.form
+  $form-errors-color = #e72e19
+  $form-send-color = #FFA338 
+  $form-ipt-border-color = #eeeeee
+  $form-date-icon-color = #bbbbbb
+  $form-send-disabled-bg = #DEDEDE
+  &-errors
+    border: 1px solid $form-errors-color
+  &-inline
+    color: $form-errors-color
+    position: absolute
+    bottom: -20px
+  &-smscode
+    width: 66%
+    float: left
+  &-sendcode
+    display: inline-block
+    margin-left: 8px
+    border: 1px solid $form-send-color
+    color: $white-color
+    background: $form-send-color
+    height: 40px
+    border-radius(4px)
+    &[disabled]
+      color: $white-color
+      border-color: $form-send-disabled-bg
+      background: $form-send-disabled-bg
+  &-group
+    .help-inline
+      position: absolute
+      bottom: 0
+      right: 0
+    .error-msg
+      color: $base-red-color
+    .availfund
+      display: none
+  &-time
+    float: left
+    clearfix()
+    .form-group
+      float: left
+      margin-bottom: 0
+      position: relative
+      i
+        position: absolute
+        right: 16%
+        top: 10px
+        color: $form-date-icon-color
+    label
+      line-height: 36px
+      float: left
+      margin: 0 6px 0 0
+      font-weight: normal
+    .form-date
+      width: 80%
+      padding: 6px
+      outline: none
+      background: $grey-linghter
+      border: 1px solid $form-ipt-border-color

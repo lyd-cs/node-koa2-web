@@ -1,0 +1,141 @@
+extend base
+
+block title
+  | #{aboutTitle} -
+  
+block subnav
+  include ./mod/sub.nav.pug  
+
+block content
+  - var totalBorrowAmount = _.get(platData, 'totalBorrowAmount') - 0 || 0
+  - var totalBorrowCount = _.get(platData, 'totalBorrowCount') - 0 || 0
+  - var currentBorrowAmount = _.get(platData, 'currentBorrowAmount') - 0 || 0
+  - var currentLendAmount = currentBorrowAmount/10000
+  - var currentBorrowCount = _.get(platData, 'currentBorrowCount') - 0 || 0
+  - var totalRegisterCount = _.get(platData, 'totalRegisterCount') - 0 || 0
+  - var totalEarnInterest = _.get(platData, 'totalEarnInterest') - 0 || 0
+  - var totalLenderCount = _.get(platData, 'totalLenderCount') - 0 || 0
+  - var totalBorrowerCount = _.get(platData, 'totalBorrowerCount') - 0 || 0
+  - var currentLenderCount = _.get(platData, 'currentLenderCount') - 0 || 0
+  - var currentBorrowerCount = _.get(platData, 'currentBorrowerCount') - 0 || 0
+  - var topList = _.get(platData, 'Top10List')
+  - var _platFormTopList = topList ? JSON.parse(topList) : []
+  - var topPercent = _.get(platData, 'top10Percent') - 0 || 0
+  - var statDate = _.get(platData, 'statDate') - 0 || 0
+  .about-platform
+    .section.case
+      //-
+        textarea.info(style='width:100%;height:100px') data = #{JSON.stringify(_platFormTopList)}
+      .about-platform-title
+        h3 平台数据 
+        p Operational Data
+        .about-platform-date 数据截止至：#{UIHelper.formatdate('YYYY年MM月DD日', statDate)}
+      .about-platform-record
+        .about-platform-list.about-platform-deal
+          h4 平台交易数据
+          .about-platform-deal-body
+            dl
+              dt#J_deal-amount 0
+              dd 累计交易金额（万元）
+            dl
+              dt#J_deal-borrow 0
+              dd 累计交易笔数（笔）
+            dl
+              dt#J_deal-count 0
+              dd 累计为用户赚取收益（元）
+          .about-platform-deal-footer 备注：统计数据口径不包含债权转让    
+        .about-platform-list.about-platform-user
+          h4 平台用户信息
+          .about-platform-user-body
+            dl
+              dt#J_user-count 0
+              dd 累计注册用户（人）
+            dl
+              dt#J_user-borrow 0
+              dd 累计借款人总数（人）
+            dl
+              dt#J_user-lender 0
+              dd 累计出借人数量（人）
+                span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<p>当期出借人数量（人）：" +currentLenderCount + "</p>") 
+        .about-platform-list.about-platform-loan
+          h4 平台借款数据
+          .about-platform-loan-header
+            dl
+              dt #{UIHelper.formatNumber(currentBorrowerCount)}
+              dd 当期借款人数量（人）
+            dl
+              dt #{UIHelper.formatNumber(currentBorrowCount)}
+              dd 当期借款笔数（笔）
+                span.icon-question-circle(data-trigger="hover", data-toggle="popover", data-content="<div class='popover-borrow'>关联关系借贷笔数：0笔</div><div>关联关系借贷余额：0元</div>")  
+            dl.about-platform-loan-header-last
+              dt #{UIHelper.formatNumber(currentLendAmount)}
+              dd 借贷余额（万元）
+          .about-platform-loan-body
+            table(cellspacing='0', cellpadding='0', width='100%')
+              thead
+                tr
+                  th(width='20%') 前十大借款人
+                  th 用户名
+                  th 借款余额（元）
+                  th 占比
+              tbody
+                each item,idx in _platFormTopList
+                  - var userName = _.get(item, 'name') || ''
+                  - var amount = _.get(item, 'principal') - 0 || 0
+                  - var percent = _.get(item, 'percent') - 0 || 0
+                  - var itemPercent = percent * 100
+                  tr
+                    td #{idx + 1}
+                    td #{UIHelper.safeUserName(userName)}
+                    td #{UIHelper.formatNumber(amount, 2)}
+                    td #{UIHelper.formatNumber(itemPercent, 2)}%
+        .about-platform-list.about-platform-overdue
+          h4 逾期情况(截止2018年3月31日)
+          .about-platform-overdue-body
+            dl
+              dt 0
+              dd 累计逾期金额（万元）
+            dl
+              dt 0
+              dd 累计逾期笔数（笔）
+            dl
+              dt 0
+              dd 逾期90天（不含）
+                p 以上金额（万元）
+            dl
+              dt 0
+              dd 逾期90天（不含）
+                p 以上笔数（笔）
+            dl
+              dt 207.57
+              dd 累计代偿金额（万元）
+            dl
+              dt 466
+              dd 累计代偿笔数（笔）    
+
+block foot-script
+  script.
+    var options = {
+      useEasing: true, 
+      useGrouping: true, 
+      separator: ',', 
+      decimal: '.', 
+    };
+    var _JdealAmount = #{UIHelper.toFixed(totalBorrowAmount, 2)}/10000;
+    var _JtotalBorrowCount = #{UIHelper.toFixed(totalBorrowCount, 2)};
+    var _JtotalEarnInterest = #{UIHelper.toFixed(totalEarnInterest, 2)};
+    var _JtotalRegisterCount = #{UIHelper.toFixed(totalRegisterCount, 2)};
+    var _JtotalBorrowerCount = #{UIHelper.toFixed(totalBorrowerCount, 2)};
+    var _JtotalLenderCount = #{UIHelper.toFixed(totalLenderCount, 2)};
+    var _dealAmount = new CountUp('J_deal-amount', 0, _JdealAmount, 0, 1.5, options);
+    var _dealBorrow = new CountUp('J_deal-borrow', 0, _JtotalBorrowCount, 0, 1.5, options);
+    var _dealCount = new CountUp('J_deal-count', 0, _JtotalEarnInterest, 0, 1.5, options);
+    var _userCount = new CountUp('J_user-count', 0, _JtotalRegisterCount, 0, 1.5, options);
+    var _userBorrow = new CountUp('J_user-borrow', 0, _JtotalBorrowerCount, 0, 1.5, options);
+    var _userLender = new CountUp('J_user-lender', 0, _JtotalLenderCount, 0, 1.5, options);
+    _dealAmount.start();
+    _dealBorrow.start();
+    _dealCount.start();
+    _userCount.start();
+    _userBorrow.start();
+    _userLender.start();

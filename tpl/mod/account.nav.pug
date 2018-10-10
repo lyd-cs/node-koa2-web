@@ -1,0 +1,13 @@
+- var _userUnreadCount = _.get(userState, 'unread') - 0 || 0
+- var _userType = _.get(userState, 'inviteRole', '')
+- var _isShowInviteFriend = _.get(userState, 'isShowInviteFriend')
+.uc-nav
+  .section
+    a(href='/account', class={'uc-nav-active': path=='/account'}).uc-nav-link 账户总览
+    a(href='/account/plan', class={'uc-nav-active': _.startsWith(path,'/account/plan')}).uc-nav-link 红利智投资产
+    a(href='/account/loan', class={'uc-nav-active': _.startsWith(path,'/account/loan')}).uc-nav-link 散标债权资产
+    a(href='/account/coupon', class={'uc-nav-active': _.startsWith(path,'/account/coupon')}).uc-nav-link 我的优惠券
+    if _userType != 'SALES' && _isShowInviteFriend !== '0'
+      a(href='/account/invite', class={'uc-nav-active': _.startsWith(path,'/account/invite')}).uc-nav-link 邀请好友
+    a(href='/account/message', class={'uc-nav-active': _.startsWith(path,'/account/message')}).uc-nav-link 我的消息(#{_userUnreadCount})
+    a(href='/account/setting', class={'uc-nav-active': _.startsWith(path,'/account/setting')}).uc-nav-link 账户设置

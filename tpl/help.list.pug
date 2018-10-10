@@ -1,0 +1,22 @@
+extend base
+
+block title
+  | 小宝课堂 - 
+
+block content
+  - var dataList = [{id: 1, title : '网络借贷中介机构应当履行哪些义务？', time: '1514937600000'}, {id: 2, title : '出借人和借款人分别应当履行哪些义务？', time: '1514937600000'}, {id: 3, title : '借款人有哪些禁止行为？', time: '1514937600000'}, {id: 4, title : '哪类人群适合在网络借贷平台出借？', time: '1514937600000'},{id: 5, title : '网络借贷通常可能面临哪些风险？', time: '1514937600000'},{id: 6, title : '什么是网络借贷信息中介机构？', time: '1514937600000'}, {id: 7, title : '什么是网络借贷？', time: '1514937600000'}, {id: 8,title : '什么是资金存管？', time: '1514937600000'}, {id: 9, title : '什么是“互联网金融”？', time: '1514937600000'}]
+  
+  .section
+    .help
+      .help-science
+        .help-science-title
+          h3 知识科普
+          a(href='/help') &lt;&lt;返回
+        .help-science-list
+          each item,idx in dataList.reverse()
+            - var _scienceTitle = _.get(item, 'title') || ''
+            - var _scienceId = _.get(item, 'id') - 0 || 0
+            - var _scienceTime = _.get(item, 'time') - 0 || 0
+            a(href='/help/list/'+_scienceId, class={'item-spac': idx % 2 !== 0}).science-item
+              span.item-question #{_scienceTitle}
+              span.item-time #{UIHelper.formatdate('YYYY-MM-DD', _scienceTime)}

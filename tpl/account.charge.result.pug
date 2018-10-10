@@ -1,0 +1,26 @@
+extend base
+
+block title
+  | 网银充值 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))    
+  
+block content
+  include ./mod/account.nav.pug
+  .section.uc-setting
+    .uc-title
+      h4 网银充值
+    .uc-recharge-result
+      if isResult
+        h4.uc-recharge-success
+          i.fa.fa-check-circle
+          | 成功充值#{UIHelper.formatNumber(orderAmount/100, 2)}元
+        a(href='/account').btn.btn-basic 查看账户
+      else
+        h4.uc-recharge-error
+          i.fa.fa-exclamation-circle
+          | 充值失败
+        a(href='/account').btn.btn-basic 查看账户  
+    .uc-warm-tips
+      include ./mod/account.warn.prompt.pug

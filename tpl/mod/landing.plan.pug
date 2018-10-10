@@ -1,0 +1,14 @@
+.product-list
+  each item, idx in _recommendList
+    - var _planYieldRate = _.get(item, 'expectedRate', 0) - 0
+    - var _planDuration = _.get(item, 'lockPeriod', 0) - 0
+    .product-item(class={'item-last': (idx+1)%2 == 0})
+      .item-head 红利智投-#{_planDuration}月期
+      .item-body
+        .item-rate
+          .rate #{_planYieldRate}
+            span %
+          .desc 平均历史年化收益
+        .item-month 
+          .month #{_planDuration}
+          .desc 锁定期（月）

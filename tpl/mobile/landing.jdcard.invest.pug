@@ -1,0 +1,156 @@
+extends base
+
+block title
+  | 新用户专享福利
+
+block page-val
+  - var pageClass = 'propoganda-body'
+
+block content
+  .landing-invested-gift 
+    - var _isLogin = isLogin
+    //- promotion 以Group3开头的是 本次活动用户
+    - var _promotion = _.get(userState, 'promotion', '');
+    - var _isPromotion = _.startsWith(_promotion, 'Group3');
+    - var _isGroup6 = _.startsWith(_promotion, 'Group6');
+    if _isLogin
+      if !_isPromotion && recommendList && recommendList.length
+        .landing-invested-gift-banner
+          img(src='/img/mobile/landing-invested-gift-redpacket-banner.jpg')
+        .landing-invested-gift-redpacket
+          h1.landing-invested-gift-title 注册即享300元新手红包
+          img(src='/img/mobile/landing-invested-gift-redpacket-register.png')
+          a.landing-invested-gift-register-btn.J_jump-to-app(data-path='/home/plan_fragment') 立即使用
+      else if jdCards
+        - var _recommendList = recommendList || [];
+        - var _recommendId1 = _.get(_recommendList, '[0].id', 0) - 0
+        - var _recommendId3 = _.get(_recommendList, '[1].id', 0) - 0
+        - var _recommendId6 = _.get(_recommendList, '[2].id', 0) - 0
+        - var _jdCards = jdCards || {}
+        - var _userJdCards = {'card20': '20', 'card80': '80', 'card200': '200', 'card400': '400', 'card900': '900'};
+        .landing-invested-gift-banner
+          img(src='/img/mobile/landing-invested-gift-banner.png')
+        .landing-invested-gift-card
+          h1.landing-invested-gift-title 出借立领1600元京东卡 
+          .item-jd-card 
+            img(src='/img/mobile/landing-invested-gift-20.png')
+            .item-jd-card-state
+              if _jdCards[_userJdCards.card20]
+                a(disabled) 已兑换
+              //- else if
+              //-   a.state-confirming(href='#') 兑换确认中
+              else 
+                a.J_jump-to-app(data-path='/plan/detail', data-productid = _recommendId1) 出借1千元兑换
+              p 投资1月期及以上产品
+          .item-jd-card 
+            img(src='/img/mobile/landing-invested-gift-80.png')
+            .item-jd-card-state
+              if _jdCards[_userJdCards.card80]
+                a(disabled) 已兑换
+              //- else if
+              //-   a.state-confirming(href='#') 兑换确认中
+              else 
+                a.J_jump-to-app(data-path='/plan/detail', data-productid = _recommendId1) 出借5千元兑换
+              p 投资1月期及以上产品
+          .item-jd-card 
+            img(src='/img/mobile/landing-invested-gift-200.png')
+            .item-jd-card-state
+              if _jdCards[_userJdCards.card200]
+                a(disabled) 已兑换
+              //- else if 
+              //-   a.state-confirming(href='#') 兑换确认中
+              else 
+                a.J_jump-to-app(data-path='/plan/detail', data-productid = _recommendId3) 出借1万元兑换
+              p 投资3月期及以上产品
+          .item-jd-card 
+            img(src='/img/mobile/landing-invested-gift-400.png')
+            .item-jd-card-state
+              if _jdCards[_userJdCards.card400]
+                a(disabled) 已兑换
+              //- else if 
+              //-   a.state-confirming(href='#') 兑换确认中
+              else 
+                a.J_jump-to-app(data-path='/plan/detail', data-productid = _recommendId6) 出借2万元兑换
+              p 投资6月期及以上产品
+          .item-jd-card 
+            img(src='/img/mobile/landing-invested-gift-900.png')
+            .item-jd-card-state
+              if _jdCards[_userJdCards.card900]
+                a(disabled) 已兑换
+              //- else if 
+              //-   a.state-confirming(href='#') 兑换确认中
+              else 
+                a.J_jump-to-app(data-path='/plan/detail', data-productid = _recommendId6) 出借5万元兑换
+              p 投资6月期及以上产品
+        .landing-invested-gift-register 
+          - var registerPacket = [{title: '18', content: '使用12月期及以上产品', condition: '满1000元可用'}, {title: '50', content: '使用12月期及以上产品', condition: '满5000元可用'}, {title: '100', content: '使用12月期及以上产品', condition: '满10000元可用'}, {title: '200', content: '使用12月期及以上产品', condition: '满20000元可用'}, {title: '500', content: '使用12月期及以上产品', condition: '满50000元可用'}, {title: '1000', content: '使用12月期及以上产品', condition: '满100000元可用'}];
+          h1.landing-invested-gift-title 注册即享1868元新手红包
+          .landing-invested-gift-register-content
+            each item in registerPacket
+              dl 
+                dt 
+                  span &yen;
+                  | #{item.title} 
+                dd= item.content
+                dd= item.condition
+          a.landing-invested-gift-register-btn.J_jump-to-app(data-path='/home/plan_fragment') 立即使用
+      
+      if recommendList && recommendList.length
+        .landing-invested-gift-product 
+          h1.landing-invested-gift-title 精选产品·红利智投
+            span 锁定期结束可随时退出，退出前持续享受收益
+          .landing-invested-gift-product-content 
+            each item, idx in recommendList
+              - var _baseInterestRate = _.get(item, 'expectedRate', 0) - 0
+              - var _lockPeriod = _.get(item, 'lockPeriod', '')
+              - var _id = _.get(item, 'id', 0) - 0
+              - var _totalAmount = _.get(item, 'totalAmount', 0) - 0
+              .item-product 
+                dl 
+                  dt #{_baseInterestRate}%
+                  dd 平均历史年化收益
+                dl 
+                  dt #{_lockPeriod}个月
+                  dd 期限
+                // 需要跳转到app
+                button.J_jump-to-app(data-path='/plan/detail', data-productid = _id, disabled=_isGroup6 && (idx == 0) && (_totalAmount>=500000)) 加入
+
+        .landing-invested-gift-platform 
+          h1.landing-invested-gift-title 平台资质
+          .landing-invested-gift-platform-content
+            dl.item-bank
+              dt 
+              dd 恒丰银行
+              dd 资金存管
+            dl.item-assets
+              dt 
+              dd 2亿元
+              dd 注册资本
+            dl.item-class
+              dt 
+              dd 三级
+              dd 等保测评
+            dl.item-union
+              dt 
+              dd 中国小额
+              dd 信贷联盟
+        
+
+block foot-script
+  - var error = _.get(errors, '[0]') || {};
+  if !isLogin
+    script.
+      app.interactive.openAppPage({
+        path: '/account/login'
+      });
+  else 
+    script.
+      var _errorObj = !{JSON.stringify(error).replace(/<\//g, '<\\/')}
+      var _errKey = Object.keys(_errorObj);
+      if(_errKey.length){
+        app.interactive.showMessage({
+          type: 'dialog',
+          message: _errorObj.page
+        });
+      }
+      app.callApp.init();

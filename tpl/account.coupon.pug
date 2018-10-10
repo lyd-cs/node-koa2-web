@@ -1,0 +1,31 @@
+extend base
+
+block title
+  | 我的福利 -
+
+block head-style
+  link(rel='stylesheet', href=UIHelper.static_url('/css/account.css'))
+
+block content
+  include ./mod/account.nav.pug
+  .uc-coupon
+    .section
+      .J_uc-coupon-list.uc-coupon-list
+        .uc-title
+          h4 我的福利
+          a.J_exchange-coupon 兑换优惠券 &gt;
+        ul.J_coupon-category.tab-bar.coupon-nav
+          li
+            a.active(data-type='AVAILABLE') 可使用
+          li
+            a(data-type='USED') 已使用
+          li.last-tabs
+            a(data-type='DISABLED') 已过期
+        .J_coupon-content.coupon-content
+          include ./mod/account.coupon.list.pug
+      input(type="hidden", name='action', value='account')
+
+block foot-script
+  script.
+    app.accountCoupon.init();
+    app.exchangeCoupon.init();

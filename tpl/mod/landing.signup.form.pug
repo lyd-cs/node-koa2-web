@@ -1,0 +1,23 @@
+.landing-signup-wrap
+  .J_singup-wrap.signup-wrap
+    form#J_user-signup-form.signup-form(method='post')
+      .form-group
+        input#J_mobile.form-control(type='text', name='mobile', placeholder='请输入手机号码', minlength='11', maxlength='11', autocomplete='off', value=_signupQuery.mobile || '')
+      .form-group
+        input#J_password.form-control(type='password', name='password', value='', autocomplete='off', placeholder='8-20位数字+字母', maxlength='20')
+      .J_form-group-graphicCode.form-group.form-group-graphicCode
+        input#J_graphicCode.control-small.ignore.form-control(type='text', name='captcha', placeholder='请输入右图中的验证码', autocomplete='off', maxlength='4', value=_signupQuery.captcha || '')
+        img#J_graphicCode_container.control-captcha(type='button', alt='看不清，点击刷新', data-src='/captcha', src='/captcha?_=' + Math.random().toString().substr(2, 6), data-target='#J_graphicCode_container')
+      .form-group
+        input#J_smscode.control-small.form-control(type='text', name='smscode', placeholder='手机验证码', autocomplete='off', maxlength='6', value=_signupQuery.smsCode || '')
+        button#J_verifycode.btn.control-button(type='button', tabindex='-1') 发送验证码
+      .form-group.signup-form-btn
+        input(type='hidden', name='inviteSerial', value=inviteSerial)
+        input(type='hidden', name='_csrf', value=csrf)
+        input(type='hidden', name='utmSource', value=utmSource )
+        #J_signup-error-label-container.error-label-container
+        button#J_submit.btn-basic.btn-block.form-button(type='submit') #{_landingSignupFormButtonText ? _landingSignupFormButtonText : '立即注册'}
+      .form-group.agreement-group
+        input.J_agreement-control.agreement-control(type='checkbox', checked, id='signup-agreement')
+        label(for='signup-agreement') 我已阅读并同意 
+        a(href="/agreement/signup", target='_blank').protocol 《用户注册协议》

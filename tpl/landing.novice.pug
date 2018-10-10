@@ -1,0 +1,148 @@
+extends base
+
+block title
+  | 新手专享 -
+block content
+  - var _userIsLogin = isLogin || 0
+  - var _userIsCreateEscrowAcc= _.get(userState, 'isCreateEscrowAcc') - 0 || 0
+  - var _userIsInvestPlan = _.get(userState, 'hasEverInvest') - 0 || 0
+  - var _userIsInvestLoan = _.get(userState, 'hasEverInvestLoan') - 0 || 0
+  - var _isNewBie = _.get(userState, 'isNewbie', 0) - 0
+  .landing-novice
+    .landing-novice-banner
+      h2 一见如故 . 新用户见面礼
+      h1 13.8%专享产品
+    .section
+      if (!_userIsLogin || _isNewBie) && noviceData
+        .landing-novice-product
+          img(src='/img/landing-novice-product-title.png')
+          .product-content
+            - var _productBaseInterestRate =  _.get(noviceData, 'baseInterestRate', 0) - 0
+            - var _productSubsidyInterestRate =  _.get(noviceData, 'subsidyInterestRate', 0) - 0
+            - var _productLockDays = _.get(noviceData, 'lockDays', 0) - 0
+            - var _productlockPeriod = _.get(noviceData, 'lockPeriod', 0) - 0
+            - var _productMinRegisterAmount = _.get(noviceData, 'minRegisterAmount', 0) - 0
+            - var _productId = _.get(noviceData, 'id', 0) - 0
+            - var _planDetailStatus = _.get(noviceData, 'unifyStatus', 0) - 0 || 0
+            - var _state = UIHelper.parsePlanStatus(_planDetailStatus)
+            - var _isWaitOpen = _state.wait_open
+            - var _isCountDown = _state.wait_reserve
+            - var _isBidding = _state.opening
+            - var _isBiddingdone = _state.open_full
+            - var _isDoing = _state.period_locking
+            - var _isDone = _state.period_closed
+            - var _isExiting = _state.period_exiting
+            - var _startTime = _.get(noviceData, 'beginSellingTime', 0) - 0
+            - var _now = _now || Date.now()
+            dl.item-first
+              dt
+                span.item-base-rate #{UIHelper.formatNumber(_productBaseInterestRate, 1)}
+                span.item-subsidy-rate %+#{UIHelper.formatNumber(_productSubsidyInterestRate, 1)}%
+              dd 平均历史年化收益
+            dl
+              if _productLockDays
+                dt #{_productLockDays}天
+              else if _productlockPeriod
+                dt #{_productlockPeriod}月
+              dd 锁定期
+            dl.item-last
+              dt #{_productMinRegisterAmount}元
+              dd 起投金额
+            if _isWaitOpen
+              a(href='/plan/' + _productId) #{UIHelper.formatdate('MM月DD日 HH:mm', _startTime)}开售
+            if _isCountDown
+              a(href='/plan/' + _productId)
+                include ./mod/count-down.pug
+            if _isBidding
+              a(href='/plan/' + _productId) 立即加入
+            if _isBiddingdone
+              a(href='/plan/' + _productId) 销售结束
+            if _isDoing
+              a(href='/plan/' + _productId) 收益中
+            if _isDone
+              a(href='/plan/' + _productId) 已退出
+            if _isExiting
+              a(href='/plan/' + _productId) 退出中
+      .landing-novice-why
+        img(src='/img/landing-novice-why-title.png')
+        .landing-novice-why-controller.J_novice-why-controller
+          .icon-container.J_icon-container(data-flag='bank')
+            i.icon-novice-bank
+            i.icon-novice-bank-active.active.J_icon-active
+            p 银行存管
+          .icon-container.J_icon-container(data-flag='risk')
+            i.icon-novice-risk
+            i.icon-novice-risk-active.J_icon-active
+            p 四重风控
+          .icon-container.J_icon-container(data-flag='disperse')
+            i.icon-novice-disperse
+            i.icon-novice-disperse-active.J_icon-active
+            p 智能分散
+          i.icon-novice-arrow.J_icon-arrow
+        .landing-novice-why-detail.J_novice-why-detail
+          .desc-container.desc-bank.active.J_bank
+            h1 恒丰银行 资金存管
+            p 红小宝已与恒丰银行完成资金存管对接，做到资金与平台有效隔离，避免平台客户资金被直接挪用
+          .desc-container.desc-disperse.J_risk
+            h1 四重风控审核 精选优质资产
+            p 红小宝与同盾反欺诈、美林大数据、上海资信等第三方合作，严格把控审核流程，确保每个线上项目优质可靠
+          .desc-container.desc-risk.J_disperse
+            h1 智能分散 有效降低风险
+            p 红小宝秉承小额分散的投资理念，红利计划产品会自动将用户资金小额分散的投资到多个项目中，有效降低单一借款人的违约风险
+          .desc-image
+            img.active(src='/img/landing-novice-why-bank.png', data-flag='1').J_bank
+            img(src='/img/landing-novice-why-risk.png', data-flag='2').J_risk
+            img(src='/img/landing-novice-why-disperse.png', data-flag='3').J_disperse
+      .landing-novice-step
+        img(src='/img/landing-novice-step-title.png')
+        .landing-novice-step-image
+          .step-item.step-register
+            if _userIsLogin
+              img(src='/img/landing-novice-step-register-active.png')
+              p 注册
+              i.icon-novice-step-arrow-active
+            else
+              img(src='/img/landing-novice-step-register.png')
+              p 注册
+              i.icon-novice-step-arrow
+          .step-item.step-account
+            if _userIsCreateEscrowAcc
+              img(src='/img/landing-novice-step-account-active.png')
+              p 开户
+              i.icon-novice-step-arrow-active
+            else
+              img(src='/img/landing-novice-step-account.png')
+              p 开户
+              i.icon-novice-step-arrow
+          .step-item.step-invest
+            if _userIsInvestPlan || _userIsInvestLoan
+              img(src='/img/landing-novice-step-invest-active.png')
+              p 投资
+            else
+              img(src='/img/landing-novice-step-invest.png')
+              p 投资
+        if !_userIsLogin
+          a.landing-novice-step-btn(href='/signup') 立即注册
+        else if !_userIsCreateEscrowAcc
+          a.landing-novice-step-btn(href='/deposit/createaccount') 立即开户
+        else
+          a.landing-novice-step-btn(href='/plan') 去投资
+    .landing-novice-activity
+      .section
+        h4 活动说明：
+        ul.item-list
+          li 1、【红利智投-新手专享】500元起投，单笔递增金额最低500元；
+          li 2、用户投资【红利智投-新手专享】，累计投资总额最高为10000元，超过10000元时，则不可再继续投资【红利智投-新手专享】；
+          li 3、【红利智投-新手专享】不参与任何其它活动，不可使用红包、满减券等其它优惠；
+          li 4、该【红利智投-新手专享】锁定期为7天，当到达锁定期后，如不退出可继续享受5.8%预期年化收益，8%加息奖励只在新手专享锁定期内享有；
+          li 5、收益计算方式：
+            ul 
+              li 红利智投收益（5.8%）=新手专享持有天数*（加入金额*预期收益率/12）/30
+              li 加息奖励收益（8%）=锁定期天数*（加入金额*加息利率/12）/30
+          li 6、红利智投收益和加息奖励收益，将会在您退出该期【红利智投-新手专享】后，分别返还至账户余额；
+          li 7、对本活动如有任何疑问，敬请咨询红小宝理财客服专线：400-1552-888；
+          li 8、本活动最终解释权归红小宝官方所有；
+
+block foot-script
+  script.
+    app.novice.init();

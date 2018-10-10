@@ -1,0 +1,18 @@
+extend base
+
+block title
+  - var _newsTitle= _.get(content, 'title') || ''
+  | #{_newsTitle} -
+
+block subnav
+  include ./mod/sub.nav.pug
+
+block content
+  - var _newsContent= _.get(content, 'substance') || ''
+  .about-dynamic
+    .section.case
+      p.about-dynamic-title
+        a(href='/about/news')  红上动态
+      .content
+        != _newsContent
+        .main-foot (此文由红上官方发布，转载请注明来源于红上： http://www.hoomsun.com）

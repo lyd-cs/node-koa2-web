@@ -1,0 +1,23 @@
+- var bankCardIdx = bankId
+- var bankTipsData = bankLimitList[bankCardIdx]
+
+if bankTipsData && bankTipsData.limit
+  - var name = bankTipsData.name || ''
+  - var limit = bankTipsData.limit || ''
+  #J_limit-title
+    h4 #{name}限额
+    if limit && limit.length
+      table(cellpadding='0', cellspacing='0', width='100%')#J_limit-table
+        thead
+          tr
+            th 单笔限额
+            th 每日限额
+            th 必要条件
+        tbody
+          each item, idx in limit
+            tr
+              td.limit-width #{item.single}
+              td.limit-width #{item.day}
+              td #{item.choose}
+                        
+

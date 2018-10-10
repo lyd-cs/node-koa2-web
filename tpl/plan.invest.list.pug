@@ -1,0 +1,36 @@
+extend base
+
+block title
+  | 红利智投投标明细 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+  
+block content
+  .loan
+    .section.loan-list-body
+      if dataList && dataList.length
+        .loan-list
+          .header-line
+            span.header-item.col-title 标的名称
+            span.header-item 年利率
+            span.header-item 标的金额(元)
+            span.header-item 期限(月)
+            span.header-item 标的等级
+          .loan-list-content
+            each item,idx in dataList
+              - var _loanId = _.get(item, 'loanId', 0) - 0 || 0
+              - var _loanListTitle = _.get(item, 'title') || ''
+              - var _loanListYearRate = _.get(item, 'interest', 0) - 0 || 0
+              - var _loanListDuration = _.get(item, 'months', 0) - 0 || 0
+              - var _loanListAmount = _.get(item, 'amount', 0) - 0 || 0
+              - var _loanListRank = _.get(item, 'riskLevel') || ''             
+              a(href='/loan/' + _loanId).item-list
+                .item-cell #{_loanListTitle}
+                .item-cell.rate #{UIHelper.formatNumber(_loanListYearRate, 2)}%
+                .item-cell #{UIHelper.formatNumber(_loanListAmount, 2)}
+                .item-cell #{_loanListDuration}
+                .item-cell #{_loanListRank}
+      else
+        include ./mod/nothing.data.pug
+    include ./mod/pagination.pug

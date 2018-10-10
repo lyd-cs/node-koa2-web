@@ -1,0 +1,38 @@
+//modal for body
+.modal-open
+  position: relative
+  overflow: hidden
+  height: 100%
+  .wx-share
+    overflow-x: hidden
+    overflow-y: auto    
+.wx-share
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, .74)
+  z-index: 101
+  overflow: hidden
+  opacity: 0
+  willchange: opacity
+  transition: opacity .5s
+  animation: fadeIn .5s both
+  user-select: none
+  &.active
+    display: block
+    opacity: 1
+  &:after
+    position: absolute
+    top: 1rem
+    right: 1rem
+    left: 0
+    bottom: 0
+    content: ''
+    background: url('/img/mobile/wx-share-sale.png') no-repeat 100% 0
+    background-size: 90% auto
+  &-safari
+    &:after
+      background-image: url('/img/mobile/wxshare-safari.png')

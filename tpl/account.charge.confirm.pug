@@ -1,0 +1,47 @@
+//-
+  textarea(style="width: 100%; height: 100px") #{JSON.stringify(dataInfo)}
+
+
+- var _plat_no = _.get(dataInfo, 'plat_no') || ''
+- var _order_no = _.get(dataInfo, 'order_no') || ''
+- var _partner_trans_date = _.get(dataInfo, 'partner_trans_date') || ''
+- var _partner_trans_time = _.get(dataInfo, 'partner_trans_time') || ''
+- var _amt = _.get(dataInfo, 'amt') || 0
+- var _platcust = _.get(dataInfo, 'platcust') || ''
+- var _type = _.get(dataInfo, 'type') || ''
+- var _charge_type = _.get(dataInfo, 'charge_type') || ''
+- var _bankcode = _.get(dataInfo, 'bankcode') || ''
+- var _card_type = _.get(dataInfo, 'card_type') || ''
+- var _currency_code = _.get(dataInfo, 'currency_code') || ''
+- var _card_no = _.get(dataInfo, 'card_no') || ''
+- var _notify_url = notifyUrl || ''
+- var _return_url = _.get(dataInfo, 'return_url') || ''
+- var _pay_code = _.get(dataInfo, 'pay_code') || ''
+- var _remark = _.get(dataInfo, 'remark') || ''
+- var _signdata = _.get(dataInfo, 'signdata') || ''
+- var _originUrl = originUrl
+
+form(method='post', action= _originUrl + '/Gateway_client/fundAction_gatewayRechargeRequest')#J_pay
+  input(type='hidden', name='plat_no', value=_plat_no)
+  input(type='hidden', name='order_no', value=_order_no)
+  input(type='hidden', name='partner_trans_date', value=_partner_trans_date)
+  input(type='hidden', name='partner_trans_time', value=_partner_trans_time)
+  input(type='hidden', name='amt', value=_amt)
+  input(type='hidden', name='platcust', value=_platcust)
+  input(type='hidden', name='type', value=_type)
+  input(type='hidden', name='charge_type', value=_charge_type)
+  input(type='hidden', name='bankcode', value=_bankcode)
+  input(type='hidden', name='card_type', value=_card_type)
+  input(type='hidden', name='currency_code', value=_currency_code)
+  input(type='hidden', name='card_no', value=_card_no)
+  input(type='hidden', name='notify_url', value=_notify_url)
+  input(type='hidden', name='return_url', value=_return_url)
+  input(type='hidden', name='pay_code', value=_pay_code)
+  input(type='hidden', name='remark', value=_remark)  
+  input(type='hidden', name='signdata', value=_signdata) 
+    
+block foot-script
+  script.
+    window.onload= function(){
+      document.getElementById('J_pay').submit();
+    }   

@@ -1,0 +1,27 @@
+.about-2018Q1
+  $report-bg = #4751D4
+  img   
+    width: 100%
+  &-navigation
+    width: 1.25rem
+    height: 1.32rem
+    position: fixed
+    left: 50%
+    bottom: 1.3rem
+    margin-left: -0.66rem
+    background-size: contain
+    animation: reportArrow 2s infinite
+  &-index
+  &-last
+    background: $report-bg
+
+@keyframes reportArrow{
+  from {
+    background: url('/img/mobile/about-eightreport-arrows-write.png') center center no-repeat
+    background-size: contain
+  }
+  to {
+    background: url('/img/mobile/about-eightreport-arrows-blue.png') center center no-repeat
+    background-size: contain
+  }
+}

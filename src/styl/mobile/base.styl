@@ -1,0 +1,88 @@
+/**
+ * base
+ */
+$_white = $white-color
+$link-gray-color = #666666
+$link-icon-color = #9ba5a7
+$base-bg = #f7f7f7
+$red-color = #ff4747
+$green-color = #94d150
+$_border-color = #cfd4d6
+$padding-header-top = 2.8rem
+$padding-left-right = 1rem
+
+
+html
+  min-width: 320px
+  height: 100%
+  overflow-x: hidden
+  //-webkit-touch-callout: none;    /* 禁止在中IOS，长按a，弹出菜单事件*/
+  -webkit-text-size-adjust: none;  /* 禁止缩放字体大小 */
+  -webkit-appearance: none;       /* 禁止使用系统风格 */
+  -webkit-tap-highlight-color: transparent; /* 禁止点击时高亮 */
+  -webkit-user-drag: none;        /* 禁止整体拖动*/
+  //-webkit-user-select: none;     /* 禁止选中文字 for iOS */
+
+body
+  line-height: $line-height-base
+  color: $text-color
+  max-width: 640px
+
+.mbody
+  //background: $base-bg
+  // padding-top: $padding-header-top
+  padding: 0 1rem 1rem
+  margin: 0 auto
+
+a
+img
+button
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 禁止点击时高亮 */
+  -webkit-touch-callout:none;  /* 禁止在中IOS，长按，弹出菜单事件 */
+
+a
+  color: $link-color
+  text-decoration: none
+  &:visited
+  &:hover
+  &:focus
+    color: $link-hover-color
+    text-decoration: $link-hover-decoration
+
+/**
+ * Micro clearfix from nicolas
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+clearfix()
+  &:before
+  &:after
+    content: " "
+    display: table
+  &:after
+    clear: both
+
+.cf
+  clearfix()
+.cf
+  *zoom: 1
+
+.hide
+  display: none !important;
+
+.invisible
+  visibility: hidden
+
+.visible
+  visibility: visible
+
+.user-select
+  -webkit-touch-callout: inherit;
+  -webkit-user-select: auto;
+
+.text
+  &-left
+    text-align: left
+  &-right
+    text-align: right
+  &-center
+    text-align: center

@@ -1,0 +1,27 @@
+.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModlLabel')
+  .modal-dialog.modal-user-info-perfect
+    .modal-content
+      .modal-herder
+        button.close.close-button(data-dismiss="modal", aria-label="Close")
+      .modal-body
+        if type == 'idNo'
+          h3 您尚未进行实名认证，请联系客服
+          h3 客服电话400-1552-888
+        else if type == 'tradPwd'
+          h3 存管账户信息不完善，请完善信息后再出借
+        else if type == 'bankCard'
+          h3 您还没有绑卡，请先绑卡后再进行此操作
+        else if type == 'mobile'
+          h3 您尚未绑定手机，请联系客服
+          h3 客服电话400-1552-888
+      .modal-footer
+        if type == 'idNo'
+          a.do-nothing 确定
+        else if type == 'tradPwd'
+          a.do-nothing 暂不完善
+          a.active(href='/deposit/createaccount') 确定
+        else if type == 'bankCard'
+          a.do-nothing 暂不绑卡
+          a.active(href='/account/bank/add') 去绑卡
+        else if type == 'mobile'
+          a.do-nothing 确定

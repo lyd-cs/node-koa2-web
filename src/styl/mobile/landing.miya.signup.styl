@@ -1,0 +1,223 @@
+.landing-miya-signup
+  $landing-miya-bg = #FF758F
+  $landing-miya-download-text-color = #B6634F
+  $button-countdown-bg = #CCC
+  width: 100%
+  max-width: 640px
+  padding: 1.156rem 0 2.5rem
+  margin: 0 auto
+  min-height: 100%
+  background-color: $landing-miya-bg
+  &-packet-banner
+  &-step1-banner
+  &-step2-banner
+    text-align: center
+    font-size: 0
+    img 
+      max-width: 100%
+      display: block
+    .receive-packet-guide
+      width: 1.375rem
+      height: 1.25rem
+      position: absolute
+      top: -4rem
+      left: 50%
+      margin-left: -.687rem
+      animation: miyapacketGuide 0.5s infinite
+      background-repeat: no-repeat
+      background-size: contain
+    .receive-packet-stage
+      width: 74%
+      margin: -.5rem auto 0
+      animation: miyapacketStageChange 0.4s infinite
+      background-size: contain
+      background-repeat: no-repeat
+      padding-bottom: 4rem
+      position: relative
+      img
+        width: 10.6rem
+        margin: 0 auto
+      .receive-packet
+        width: 3.9rem
+        height: 3.9rem
+        position: absolute
+        z-index: 22
+      .receive-packet-content
+        position: absolute
+        top: 2.5rem
+        left: 50%
+        width: 3.9rem
+        height: 3.9rem
+        margin-left: -2rem
+        &:before
+          width: 3.9rem
+          height: 3.9rem
+          content: ''
+          display: block
+          background: url('/img/mobile/landing-miya-pactet-receive-bg-03.png') no-repeat center center
+          background-size: contain
+          position: absolute
+          left: 0
+          top: 0
+          animation: miyaKaiBgScal 2s infinite
+      .opening-packet
+        animation: miyaOpeningPacket 1.5s
+    .receive-packet-bottom
+      position: absolute
+      bottom: 0
+  &-form 
+    width: 100%
+    text-align: center
+    margin-top: -8rem
+    position: relative
+    z-index: 99
+    .form-mobile
+      margin: 0 auto .625rem
+    .form-sms-password
+      .form-tips
+        color: $white-color
+        font-size: .75rem
+        margin-bottom: .31rem
+      .landing-miya-signup-form-smscode
+        width: 12.5rem
+    .form-control-smscode
+      display: flex
+      justify-content: space-between
+      width: 19.4rem
+      margin: 0 auto
+  &-input 
+    margin-bottom: 1.25rem
+    padding-left: 1rem
+    width: 19.4rem
+    height: 2.7rem
+    border: none
+    border-radius: .19rem
+    line-height: normal
+  &-submit
+    width: 19.4rem
+    height: 2.75rem
+    font-size: 1.188rem
+    color: $white-color
+    border: none
+    border-radius: .25rem
+    background-image: linear-gradient(-180deg, #FFCF5E 8%, #FDB127 95%)
+    box-shadow: 0 0.625rem 0.78rem 0 rgba(217,43,67,0.58)
+  &-countdown
+    flex: 0 1 auto
+    width: 6.25rem
+    height: 2.7rem
+    padding: 0
+    font-size: 1rem
+    line-height: 2.75rem
+    color: $white-color
+    background-image: linear-gradient(-180deg, #FFCF5E 8%, #FDB127 95%)
+    box-shadow: 0 .156rem .78rem 0 rgba(181,0,0,0.19)
+    border-radius: 0.25rem
+    border: none
+    &[disabled]
+      background: $button-countdown-bg
+  &-platform
+    padding: 3.44rem 0 0
+    text-align: center
+    &-title 
+      width: 10.72rem 
+      height: 1.56rem 
+      margin: 0 auto 1.875rem
+    &-content 
+      display: flex
+      justify-content: space-around
+      .item-platform
+        width: 21%
+        padding-top: 5.34rem
+        p 
+          margin: 0
+          font-size: 0.75rem
+          color: $white-color
+        &:nth-child(1)
+          background: url('/img/mobile/landing-miya-signup-bank.png') no-repeat center top 
+          background-size: 100%
+        &:nth-child(2)
+          background: url('/img/mobile/landing-miya-signup-assets.png') no-repeat center top 
+          background-size: 100%
+        &:nth-child(3)
+          background: url('/img/mobile/landing-miya-signup-class-0601.png') no-repeat center top 
+          background-size: 100%
+        &:nth-child(4)
+          background: url('/img/mobile/landing-miya-signup-union.png') no-repeat center top 
+          background-size: 100% 
+  &-success
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    font-size: $font-size-base
+    color: $landing-miya-download-text-color
+    text-align: center
+    background-color: $landing-miya-bg
+    padding: 2rem 0
+    &-content
+      margin-top: -16rem
+    &-image 
+      max-width: 100%
+    &-title
+      font-size: 2rem
+      margin: 0 auto 1.5rem
+      color: $white-color
+    &-desc
+      font-size: 1rem
+      color: $white-color
+      margin: 0 auto 0.5rem
+    &-download
+      position: absolute
+      z-index: 10
+      width: 18.5rem
+      height: 2.75rem
+      top: 75%
+      left: 50%
+      margin-left: -9.25rem
+      font-size: $font-size-large
+      color: $white-color
+      background-image: linear-gradient(-180deg, #FFCF5E 8%, #FDB127 95%)
+      border-radius: 0.25rem
+      border: none
+      box-shadow: 0 .156rem .78rem 0 rgba(0,0,0,0.19)
+@keyframes miyapacketStageChange{
+  from{
+    background: url('/img/mobile/landing.miya.receive-stage-01.png') no-repeat center bottom
+    background-size: contain
+  }
+  to{
+    background: url('/img/mobile/landing.miya.receive-stage-02.png') no-repeat center bottom
+    background-size: contain
+  }
+}
+@keyframes miyaOpeningPacket{
+  from{
+    transform: rotateY(0deg)
+  }
+  to{
+    transform: rotateY(360deg)
+  }
+} 
+@keyframes miyaKaiBgScal{
+  0%{
+    transform: scale(1, 1)
+  }
+  50%{
+    transform: scale(1.58, 1.58)
+  }
+  100%{
+    transform: scale(1, 1)
+  }
+}
+@keyframes miyapacketGuide{
+  from{
+    background: url('/img/mobile/landing-miya-pactet-receive-guide-01.png') no-repeat center bottom
+    background-size: contain
+  }
+  to{
+    background: url('/img/mobile/landing-miya-pactet-receive-guide-02.png') no-repeat center bottom
+    background-size: contain
+  }
+}

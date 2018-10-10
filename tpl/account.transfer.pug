@@ -1,0 +1,69 @@
+extend base
+
+block title
+  | 债权转让 - 
+
+block head-style
+  link(rel='stylesheet', href= UIHelper.static_url('/css/account.css'))
+  link(rel='stylesheet', href= UIHelper.static_url('/css/product.css'))  
+
+block content
+  include ./mod/account.nav.pug
+  - var _termsInTotal = _.get(transferData, 'termsInTotal') - 0 || 0
+  - var _expectRecoveryAmount = _.get(transferData, 'expectRecoveryAmount') - 0 || 0
+  - var _termsLeft = _.get(transferData, 'termsLeft') - 0 || 0
+  - var _currentTransValue = _.get(transferData, 'currentTransValue') - 0 || 0
+  - var _transFee = _.get(transferData, 'transFee') - 0 || 0
+  - var _loanId = _.get(transferData, 'loanId') - 0 || 0
+  - var _rate = _.get(transferData, 'rate') - 0 || 0
+  - var _isError = isError - 0 || 0
+  .section.product-account-buy-confirm
+      h3 转让债权确认
+      form#buy-confirm-wrapper(method='post')
+        .product-account-buy-confirm-case
+          .product-account-buy-confirm-box
+            .item-list
+              .item-title 债权ID
+              .item-content #{_isError ? '--' : _loanId}
+            .item-list
+              .item-title 当前债权价值
+              .item-content #{_isError ? '--' : UIHelper.formatNumber(_currentTransValue, 2)}元
+            .item-list
+              .item-title 剩余期限
+              .item-content 
+                if _isError
+                  | --个月
+                else
+                  | #{_termsLeft}/#{_termsInTotal}个月
+            .item-list
+              .item-title 预估手续费
+              .item-content #{_isError ? '--' : UIHelper.formatNumber(_transFee, 2)}元 (实际回收金额的#{_isError ? '--' : UIHelper.formatNumber(_rate, 2)}%)
+            .item-list
+              .item-title 预计回收金额
+              .item-content #{_isError ? '--' : UIHelper.formatNumber(_expectRecoveryAmount, 2)}元
+          .product-account-buy-confirm-trade  
+            .trade-text 交易密码
+            input.trade-password.form-control(type='password', placeholder='请输入您的交易密码', name='password', minLength='6', maxLength='6')
+            .trade-forgot
+              .trade-error
+                if errors 
+                  include ./mod/error.pug
+              a(href='/account/trad/password') 忘记密码？
+          .buy-confirm-wrapper
+            input(type='hidden', name='loanId', value=_loanId)    
+            input(type='hidden', name='_csrf', value=csrf)
+            input(type='hidden', name='cashPassword')
+            button#J_btn-buy-confirm.btn-buy-confirm.btn-basic.buy-confirm(type='submit', disabled=(_isError ? true : false)) 确认转让  
+            .product-account-buy-confirm-check  
+              input(type='checkbox', checked)#J_submit
+              label(for='J_submit')
+              | 我已阅读并同意
+              a(href='/agreement/transfer', target='_blank', rel='nofollow').product-account-buy-confirm-link 《债权转让及受让协议》
+              p
+                a(href='/agreement/electronicSignature', target='_blank', rel='nofollow').product-buy-confirm-link 《个人电子签章授权委托书》
+                a(href='/agreement/digitalCertificate', target='_blank', rel='nofollow').product-buy-confirm-link 《CFCA数字证书服务协议》
+block foot-script
+  script.
+    app.accountTransfer.init({
+      isError: #{_isError}
+    });

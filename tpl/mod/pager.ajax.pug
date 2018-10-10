@@ -1,0 +1,51 @@
+- var _page = page || 1
+- var _pageTotal = pageTotal
+- var _pageDisplay = pageDisplay || 9
+- var _pageUrl = pageUrl || ''
+- var _pageMin = 1
+- var _pageMax = 1
+
+if _pageTotal > 1 && _page <= _pageTotal
+  ul.pagination(data-page=_page, data-total=_pageTotal)
+    - var _pageMax = _page
+    if _pageTotal < _pageDisplay
+      - var _pageMin = 1
+    else
+      if _page > 1
+        li
+          a(class=_page==1? '': 'page-btn', href='javascript:void(0);', data-page=_page-1, data-filter=_filter)
+            i.fa.fa-angle-left.fa-2
+            | 上一页
+      if _page < (_pageDisplay/2+1)
+        - var _pageMin = 1
+      else if (_pageTotal - _page ) < (_pageDisplay / 2)
+        - var _pageMin = _pageTotal - _pageDisplay + 1
+      else
+        - var _pageMin = _page - Math.round(_pageDisplay/2)
+    each x,idx in _.range(_pageMin, _pageMax)
+      li
+        a.page-btn(href='javascript:void(0);', data-page=x, data-filter=_filter)= x
+
+    li.pages-active
+      a.page-btn(href='javascript:void(0);', data-page=_page, data-filter=_filter)= _page
+
+    - var _pageMin = _page + 1
+    if _pageTotal < _pageDisplay
+      - var _pageMax = _pageTotal + 1
+    else
+      if (_pageTotal - _page) < (_pageDisplay/2)
+        - var _pageMax = _pageTotal + 1
+      else if _page < (_pageDisplay/2)
+        - var _pageMax = _pageDisplay + 1
+      else
+        - var _pageMax = _page + Math.round(_pageDisplay/2)
+
+    each x,idx in _.range(_pageMin, _pageMax)
+      li
+        a.page-btn(href='javascript:void(0);', data-page=x, data-filter=_filter)= x
+
+    if _page < _pageTotal && _pageTotal > _pageDisplay
+      li
+        a(class=_page==_pageTotal? '': 'page-btn', href='javascript:void(0);', data-page=(_page+1), data-filter=_filter)
+          | 下一页
+          i.fa.fa-angle-right.fa-2
